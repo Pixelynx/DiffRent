@@ -26,7 +26,7 @@ DiffRent is an application that is meant to improve the ability for landlords an
   
 ## Docs
 ---
-* [Wireframes](N/A)
+* [Wireframes] (N/A)
 * [Endpoints] (N/A)
 * [Components] (N/A)
 * [Schema] (N/A)
