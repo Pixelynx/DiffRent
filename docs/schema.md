@@ -1,5 +1,15 @@
 # Schema
 ---
+
+## Apartments
+---
+| Column Name | Data Type | Details |
+| ------------- | ------------- | ------------- |
+| id | integer | primary key |
+| name | string | not null |
+| address | string | not null |
+| landlord_id | int ref | not null |
+
 ## Landlords
 ---
 | Column Name  | Data Type | Details |
@@ -24,15 +34,6 @@
 | building_id | int ref | |
 | phone | string | |
 | password | string | not null |
-
-## Apartments
----
-| Column Name | Data Type | Details |
-| ------------- | ------------- | ------------- |
-| id | integer | primary key |
-| name | string | not null |
-| address | string | not null |
-| landlord_id | int ref | not null |
 
 ## Tickets
 ---
