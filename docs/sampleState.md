@@ -42,7 +42,7 @@ state = {
             apt: 0,
             phone: '123-242-5678',
             password: 'asr38w9ur743tu'
-        }
+        },
         1: {
             id: 1,
             name: 'Tenant Sample',
