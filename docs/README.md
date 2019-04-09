@@ -22,13 +22,13 @@ DiffRent is an application that is meant to improve the ability for landlords an
   * Setting up notice for when specific a tenant's rent is due
   * Confirming rent payment with invoice feature
   * Setting up/rescheduling appointments for visits to apartments
-  
+
 ## Docs
 ---
-* [Wireframes] (N/A)
-* [Endpoints] (N/A)
-* [Components] (N/A)
-* [Schema] (N/A)
+* [Wireframes] (./wireframes/)
+* [Endpoints] (./endpoints.md)
+* [Components] (./components.md)
+* [Schema] (./schema.md)
 
 # Implementation Timeline
 ---
