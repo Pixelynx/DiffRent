@@ -16,22 +16,22 @@ const getAllLandlords = (req, res, next) => {
     })
 }
 
-// const getSingleLandlord = (req, res, next) => {
-//   userId = Number(req.params.id)
-//   db.one(`Select * FROM landlords WHERE id=$1`, userId)
-//   .then(data => {
-//     res.status(200)
-//        .json({
-//          status: 'Success',
-//          message: 'Received Single Landlord',
-//          data: data
-//        })
-//   })
-//   .catch(err => {
-//     console.log('error:', error)
-//     next(err)
-//   })
-// }
+const getSingleLandlord = (req, res, next) => {
+  userId = Number(req.params.id)
+  db.one(`Select * FROM landlords WHERE id=$1`, userId)
+  .then(data => {
+    res.status(200)
+       .json({
+         status: 'Success',
+         message: 'Received Single Landlord',
+         data: data
+       })
+  })
+  .catch(err => {
+    console.log('error:', error)
+    next(err)
+  })
+}
 
 const addNewLandlord = (req, res, next) => {
   db.none("INSERT INTO landlords(name, email, phone, dob, password_digest) VALUES(${name}, ${email}, ${phone}, ${dob}, ${password_digest})",
@@ -97,6 +97,7 @@ const deleteLandlord = (req, res, next) => {
 
 module.exports = {
   getAllLandlords: getAllLandlords,
+  getSingleLandlord: getSingleLandlord,
   addNewLandlord: addNewLandlord,
   updateLandlord: updateLandlord,
   deleteLandlord: deleteLandlord
