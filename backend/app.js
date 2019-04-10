@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 const landlords = require('./routes/landlord.js')
 const tenants = require('./routes/tenants.js')
 const tickets = require('./routes/tickets.js')
-// const apartments = require('./routes/tickets.js')
+const apartments = require('./routes/tickets.js')
 
 
 var app = express();
@@ -31,7 +31,7 @@ app.use('/users', usersRouter);
 app.use('/landlords', landlords);
 app.use('/tenants', tenants);
 app.use('/tickets', tickets);
-// app.use('/apartments', apartments);
+app.use('/apartments', apartments);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
