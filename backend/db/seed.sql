@@ -54,7 +54,12 @@ INSERT INTO apartments(name, address, landlord_id) VALUES ('4C', '939 Woodycrest
                                                      ('3', '5959 Broadway, Bronx, NY 10463', 2),
                                                      ('10', '250 Bedford Park Blvd, Bronx, NY 10458', 3),
                                                      ('1A', '287 Onderdonk Ave, Queens, NY 11385', 4),
-                                                     ('5D', '16-74 Bell Blvd, Queens, NY 11360', 5);
+                                                     ('5D', '16-74 Bell Blvd, Queens, NY 11360', 5),
+                                                     ('2A', '1251 East 19th Street, Brooklyn, NY 11230', 6),
+                                                     ('3D', '85 Herbert Street, Brooklyn, NY 11222', 7),
+                                                     ('22B', '280 Park Avenue South, New York, NY 10010', 8),
+                                                     ('5D', '152 Ludlow Street, New York, NY 10002', 9),
+                                                     ('3', '10 East 8th Street, New York, NY 10003', 10);
 
 INSERT INTO tenants(name, email, phone, dob, apartment_id, password_digest) VALUES ('Zoe Goulding', 'zGoulding@gmail.com', '(609)367-5162', '1998-10-01', 1,  'abc123' ),
                                                                                     ('Nikola Ryder', 'nRyder@gmail.com', '(319)471-7363', '1995-12-02', 2,  '123abc' ),
@@ -67,8 +72,4 @@ INSERT INTO tenants(name, email, phone, dob, apartment_id, password_digest) VALU
                                                                                     ('Ben Guevara', 'Benguevara@gmail.com', '(319)334-7531', 9, 'qwerty'),
                                                                                     ('Cynthia Tyler', 'Cynthiatyler@gmail.com', '(262)748-9749', 10, 'cookie123');
 
-INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '2019-05-05', '12:00 [PM]' ),
-                                                                                        (2, 'Unit Entrance', 'Door not closing right', '1', '2019-05-07', '1:00 [PM]' ),
-                                                                                        (3, 'Ceiling', 'Living room ceiling needs small repair', '0', '2019-05-08', '2:00 [PM]' ),
-                                                                                        (4, 'Window', 'Window lock not working', '0', '2019-05-08', '11:00 [AM]' ),
-                                                                                        (5, 'Building key', 'Lost key for the entrance of the building', '0', '2019-05-09', '4:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '2019-05-05', '12:00 [PM]' );
