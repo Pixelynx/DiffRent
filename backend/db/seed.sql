@@ -66,7 +66,7 @@ INSERT INTO tenants(name, email, phone, dob, apartment_id, password_digest) VALU
                                                                                     ('Kylie Thomas', 'kThomas@gmail.com', '(440)685-5383', '1996-06-03', 3, '456xyz' ),
                                                                                     ('Brody Welsh', 'bWelsh@gmail.com', '(312)600-6147', '1991-04-05', 4,  'xyz456' ),
                                                                                     ('Karol Lu', 'kLu@gmail.com', '(206)213-6903', '1980-09-02', 5, '987abc' ),
-                                                                                    ('Kamil Penn', 'Kamilpenn@gmail.com', '(248)943-5521', '1985-09-08' 6, 'ABCD1234'),
+                                                                                    ('Kamil Penn', 'Kamilpenn@gmail.com', '(248)943-5521', '1985-09-08', 6, 'ABCD1234'),
                                                                                     ('Katelyn Barrow', 'Katelynbarrow@gmail.com', '281)336-6863', 7, '1234ABCD'),
                                                                                     ('Marilyn Quinn', 'Marilynquinn@gmail.com', '(620)495-1375', 8, 'JFK123'),
                                                                                     ('Ben Guevara', 'Benguevara@gmail.com', '(319)334-7531', 9, 'qwerty'),
