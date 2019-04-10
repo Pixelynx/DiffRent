@@ -39,7 +39,7 @@ const addNewLandlord = (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
-    dob: req.body.phone,
+    dob: req.body.dob,
     password_digest: req.body.password_digest
   })
   .then(() => {
@@ -57,7 +57,7 @@ const addNewLandlord = (req, res, next) => {
 
 const updateLandlord = (req, res, next) => {
   userId = Number(req.params.id)
-  db.none(`UPDATE landlords SET name=${name}, email=${email}, phone=${phone}, dob=${dob}, password_digest=${password_digest} WHERE id=${id}`,
+  db.none("UPDATE landlords SET name=${name}, email=${email}, phone=${phone}, dob=${dob}, password_digest=${password_digest} WHERE id=${id}",
   {
     id: req.params.id,
     name:req.body.name,
