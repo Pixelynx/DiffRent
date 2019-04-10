@@ -40,5 +40,3 @@ TBD
 * Rating feature
 * Submit review on users' profiles
 * Messaging feature
-
-/
