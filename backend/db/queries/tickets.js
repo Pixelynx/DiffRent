@@ -1,8 +1,8 @@
 const db = require('../../db/index.js');
 
 const getTicketsByApt = (req, res, next) => {
-    let id = parseInt(req.params.id);
-  db.any(`SELECT tickets.id AS ticketId, apartment_id, subject, body, status, appt_date, appt_time, apartments.name, address, landlord_id FROM tickets JOIN apartments ON (tickets.apartment_id=apartments.id) WHERE apartment_id=$1`, [id])
+    let tId = parseInt(req.params.id);
+  db.any(`SELECT tickets.id AS ticketId, apartment_id, subject, body, status, appt_date, appt_time, apartments.name, address, landlord_id FROM tickets JOIN apartments ON (tickets.apartment_id=apartments.id) WHERE apartment_id=$1`, tId)
   .then(data => {
       res.status(200)
          .json({
@@ -17,22 +17,6 @@ const getTicketsByApt = (req, res, next) => {
     })
 }
 
-// const getSingleLandlord = (req, res, next) => {
-//   userId = Number(req.params.id)
-//   db.one(`Select * FROM landlords WHERE id=$1`, userId)
-//   .then(data => {
-//     res.status(200)
-//        .json({
-//          status: 'Success',
-//          message: 'Received Single Landlord',
-//          data: data
-//        })
-//   })
-//   .catch(err => {
-//     console.log('error:', error)
-//     next(err)
-//   })
-// }
 
 const addNewTicket = (req, res, next) => {
   db.none("INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(${apartment_id}, ${subject}, ${body}, ${status}, ${appt_date}, ${appt_time})",
