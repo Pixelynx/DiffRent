@@ -10,13 +10,13 @@ CREATE TABLE landlords (
     phone VARCHAR NOT NULL,
     dob DATE,
     password_digest VARCHAR NOT NULL 
-)
+);
 
 CREATE TABLE apartments (
     id SERIAL PRIMARY KEY,
     address VARCHAR NOT NULL,
     landlord_id INT NOT NULL REFERENCES landlords(id)
-)
+);
 
 CREATE TABLE tenants(
     id SERIAL PRIMARY KEY,
@@ -25,7 +25,7 @@ CREATE TABLE tenants(
     email VARCHAR NOT NULL,
     apartment_id INT NOT NULL REFERENCES apartments(id),
     password_digest VARCHAR NOT NULL
-)
+);
 
 CREATE TABLE tickets(
     id SERIAL PRIMARY KEY,
@@ -35,5 +35,7 @@ CREATE TABLE tickets(
     status BOOLEAN,
     appt_date DATE NOT NULL,
     appt_time TIME NOT NULL
-)
+);
+
+-- INSERT INTO landlords(name, email, phone, dob, password_digest) VALUES ('James Bennett', 'jBennet@gmail.com', '4582019297', )
 
