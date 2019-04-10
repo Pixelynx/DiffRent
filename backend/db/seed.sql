@@ -67,10 +67,10 @@ INSERT INTO tenants(name, email, phone, dob, apartment_id, password_digest) VALU
                                                                                     ('Brody Welsh', 'bWelsh@gmail.com', '(312)600-6147', '1991-04-05', 4,  'xyz456' ),
                                                                                     ('Karol Lu', 'kLu@gmail.com', '(206)213-6903', '1980-09-02', 5, '987abc' ),
                                                                                     ('Kamil Penn', 'Kamilpenn@gmail.com', '(248)943-5521', '1985-09-08', 6, 'ABCD1234'),
-                                                                                    ('Katelyn Barrow', 'Katelynbarrow@gmail.com', '281)336-6863', 7, '1234ABCD'),
-                                                                                    ('Marilyn Quinn', 'Marilynquinn@gmail.com', '(620)495-1375', 8, 'JFK123'),
-                                                                                    ('Ben Guevara', 'Benguevara@gmail.com', '(319)334-7531', 9, 'qwerty'),
-                                                                                    ('Cynthia Tyler', 'Cynthiatyler@gmail.com', '(262)748-9749', 10, 'cookie123');
+                                                                                    ('Katelyn Barrow', 'Katelynbarrow@gmail.com', '(281)336-6863', '1990-03-25', 7, '1234ABCD'),
+                                                                                    ('Marilyn Quinn', 'Marilynquinn@gmail.com', '(620)495-1375', '1992-07-01', 8, 'JFK123'),
+                                                                                    ('Ben Guevara', 'Benguevara@gmail.com', '(319)334-7531', 9, '1989-06-13','qwerty'),
+                                                                                    ('Cynthia Tyler', 'Cynthiatyler@gmail.com', '(262)748-9749', 10, '1988-08-18', 'cookie123');
 
 INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '2019-05-05', '12:00 [PM]' ),
                                                                                       (2, 'Unit Entrance', 'Door not closing right', '1', '2019-05-07', '1:00 [PM]' ),
