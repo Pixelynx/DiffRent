@@ -35,8 +35,8 @@ CREATE TABLE tickets(
     subject VARCHAR NOT NULL,
     body TEXT NOT NULL,
     status BIT,
-    appt_date DATE NOT NULL,
-    appt_time TIME NOT NULL
+    appt_date DATE,
+    appt_time TIME
 );
 
 INSERT INTO landlords(name, email, phone, dob, password_digest) VALUES ('James Bennett', 'jBennet@gmail.com', '(458)201-9297', '1992-01-01', 'abc123' ),
