@@ -57,4 +57,8 @@ INSERT INTO tenants(name, email, phone, dob, apartment_id, password_digest) VALU
                                                                                     ('Brody Welsh', 'bWelsh@gmail.com', '(312)600-6147', '1991-04-05', '4',  'xyz456' ),
                                                                                     ('Karol Lu', 'kLu@gmail.com', '(206)213-6903', '1980-09-02', '5', '987abc' );
 
-INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '2019-05-05', '12:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '2019-05-05', '12:00 [PM]' ),
+                                                                                        (2, 'Unit Entrance', 'Door not closing right', '1', '2019-05-07', '1:00 [PM]' ),
+                                                                                        (3, 'Ceiling', 'Living room ceiling needs small repair', '0', '2019-05-08', '2:00 [PM]' ),
+                                                                                        (4, 'Window', 'Window lock not working', '0', '2019-05-08', '11:00 [AM]' ),
+                                                                                        (5, 'Building key', 'Lost key for the entrance of the building', '0', '2019-05-09', '4:00 [PM]' );
