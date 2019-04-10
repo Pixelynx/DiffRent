@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 const landlords = require('./routes/landlord.js')
 const tenants = require('./routes/tenants.js')
 const tickets = require('./routes/tickets.js')
-const apartments = require('./routes/tickets.js')
+const apartments = require('./routes/apartments.js')
 
 
 var app = express();
