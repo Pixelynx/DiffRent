@@ -5,8 +5,8 @@ const init = require("./passport");
 const helpers = require("./helpers");
 
 passport.use(
-    new LocalStrategy((username, password, done) => {
-      db.one("SELECT * FROM landlords WHERE email = ${email}", {
+    new LocalStrategy((email, password, done) => {
+      db.one("SELECT * FROM tenants WHERE email = ${email}", {
         email: email
       })
         .then(user => {
