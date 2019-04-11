@@ -1,4 +1,5 @@
 const db = require('../../db/index.js');
+const authHelpers = require("../../auth/helpers");
 
 const getAllLandlords = (req, res, next) => {
   db.any(`SELECT * FROM landlords`)
@@ -34,13 +35,14 @@ const getSingleLandlord = (req, res, next) => {
 }
 
 const addNewLandlord = (req, res, next) => {
+  const hash = authHelpers.createHash(req.body.password_digest);
   db.none("INSERT INTO landlords(name, email, phone, dob, password_digest) VALUES(${name}, ${email}, ${phone}, ${dob}, ${password_digest})",
   {
     name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
     dob: req.body.dob,
-    password_digest: req.body.password_digest
+    password_digest: hash
   })
   .then(() => {
     res.status(200)
@@ -95,10 +97,31 @@ const deleteLandlord = (req, res, next) => {
     })
 }
 
+
+const logoutUser = (req, res, next) => {
+  req.logout();
+  res.status(200).send("log out success");
+}
+
+const loginUser = (req, res) => {
+res.json(req.user);
+}
+
+const isLoggedIn = (req, res) => {
+  if (req.user) {
+      res.json({ username: req.user });
+  } else {
+      res.json({ username: null });
+  }
+}
+
 module.exports = {
   getAllLandlords: getAllLandlords,
   getSingleLandlord: getSingleLandlord,
   addNewLandlord: addNewLandlord,
   updateLandlord: updateLandlord,
-  deleteLandlord: deleteLandlord
+  deleteLandlord: deleteLandlord,
+  logoutUser: logoutUser,
+  loginUser: loginUser,
+  isLoggedIn: isLoggedIn
 }
