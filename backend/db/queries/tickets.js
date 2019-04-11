@@ -17,6 +17,23 @@ const getTicketsByApt = (req, res, next) => {
     })
 }
 
+const getTicketsByLandlord = (req, res, next) => {
+    let lId = parseInt(req.params.id);
+  db.any(`SELECT tickets.id AS ticketId, apartment_id, subject, body, status, apartments.name, appt_date, appt_time, address, landlord_id, landlords.name, landlords.email, landlords.phone FROM tickets JOIN apartments ON (tickets.apartment_id=apartments.id) JOIN landlords ON (apartments.landlord_id=landlords.id) WHERE landlords.id=$1`, lId)
+  .then(data => {
+      res.status(200)
+         .json({
+           status: 'Success',
+           message: 'Received All Tickets',
+           data: data
+         })
+    })
+    .catch(err => {
+      console.log('error:', err)
+      next(err)
+    })
+}
+
 
 const addNewTicket = (req, res, next) => {
   db.none("INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(${apartment_id}, ${subject}, ${body}, ${status}, ${appt_date}, ${appt_time})",
@@ -84,6 +101,7 @@ const deleteTicket = (req, res, next) => {
 
 module.exports = {
   getTicketsByApt: getTicketsByApt,
+  getTicketsByLandlord: getTicketsByLandlord,
   addNewTicket: addNewTicket,
   updateTicket: updateTicket,
   deleteTicket: deleteTicket
