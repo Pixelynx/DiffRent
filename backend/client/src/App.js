@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
 import axios from 'axios';
-import LandlordDash from './LandlordsDash/LandlordDash.js'
+import Navbar from '../src/navbar/Navbar';
+import LandlordDash from './LandlordsDash/LandlordDash.js';
 import Tickets from './tickets/tickets.jsx';
 import AuthForm from "./login/AuthForm";
 import Auth from "./utils/Auth";
@@ -55,6 +56,7 @@ class App extends Component {
       <div className="App">
         <>
           <h3>Team 3!</h3>
+          <Navbar/>
           <Switch>
             <Route path="/auth" render={() => {
                 return (<AuthForm
