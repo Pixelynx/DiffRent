@@ -5,7 +5,7 @@ import LandlordDash from './LandlordsDash/LandlordDash.js'
 import Tickets from './tickets/tickets.jsx';
 import AuthForm from "./login/AuthForm";
 import Auth from "./utils/Auth";
-import PrivateRoute from "./utils/AuthRouting";
+// import PrivateRoute from "./utils/AuthRouting";
 
 class App extends Component {
   state = {
@@ -13,38 +13,40 @@ class App extends Component {
     user: "",
   };
 
-  componentDidMount() {
-    // check if user is logged in on refresh
-    this.checkAuthenticateStatus();
-  }
+  // componentDidMount() {
+  //   // check if user is logged in on refresh
+  //   this.checkAuthenticateStatus();
+  // }
 
-  checkAuthenticateStatus = () => {
-    axios.get("/users/isLoggedIn").then(user => {
-      if (user.data.username === Auth.getToken()) {
-        this.setState({
-          isLoggedIn: Auth.isUserAuthenticated(),
-          username: Auth.getToken()
-        });
-      } else {
-        if (user.data.username) {
-          this.logoutUser();
-        } else {
-          Auth.deauthenticateUser();
-        }
-      }
-    });
-  };
+  // checkAuthenticateStatus = () => {
+  //   axios.post("/tenants/isLoggedIn")
+  //   .then(user => {
+  //     debugger
+  //     if (user.data.username === Auth.getToken()) {
+  //       this.setState({
+  //         isLoggedIn: Auth.isUserAuthenticated(),
+  //         username: Auth.getToken()
+  //       });
+  //     } else {
+  //       if (user.data.username) {
+  //         this.logoutUser();
+  //       } else {
+  //         Auth.deauthenticateUser();
+  //       }
+  //     }
+  //   });
+  // };
 
-  logoutUser = () => {
-    axios
-      .post("/users/logout")
-      .then(() => {
-        Auth.deauthenticateUser();
-      })
-      .then(() => {
-        this.checkAuthenticateStatus();
-      });
-  };
+  // logoutUser = () => {
+  //   axios
+  //     .post("/users/logout")
+  //     .then(() => {
+  //       Auth.deauthenticateUser();
+  //     })
+  //     .then(() => {
+  //       this.checkAuthenticateStatus();
+  //     });
+  // };
 
 
   render() {
