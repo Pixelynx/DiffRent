@@ -29,9 +29,29 @@ const getSingleLandlord = (req, res, next) => {
        })
   })
   .catch(err => {
-    console.log('error:', error)
+    console.log('error:', err)
     next(err)
   })
+}
+
+const getAllAptsByLandlord = (req, res, next) => {
+  landlord_id = Number(req.params.id)
+  db.any(`SELECT  apartments.id AS apartment_id, apartments.address, tenants.name, tenants.email, tenants.phone FROM apartments
+          JOIN tenants
+          ON apartments.id = tenants.apartment_id
+          WHERE apartments.landlord_id=$1`, landlord_id)
+    .then(data => {
+      res.status(200)
+        .json({
+          status: "Succuss",
+          message: 'Received All apts for Landlord',
+          data: data
+        })
+    })
+    .catch(err => {
+      console.log("error: ", err)
+      next(err)
+    })
 }
 
 const addNewLandlord = (req, res, next) => {
@@ -118,6 +138,7 @@ const isLoggedIn = (req, res) => {
 module.exports = {
   getAllLandlords: getAllLandlords,
   getSingleLandlord: getSingleLandlord,
+  getAllAptsByLandlord: getAllAptsByLandlord,
   addNewLandlord: addNewLandlord,
   updateLandlord: updateLandlord,
   deleteLandlord: deleteLandlord,
