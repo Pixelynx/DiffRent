@@ -10,7 +10,7 @@ class App extends Component {
         <>
           <h3>Team 3!</h3>
           <Switch>
-            <Route exact path='/landlord' component={LandlordDash} />
+            <Route exact path='/landlord/:id' component={LandlordDash} />
           </Switch>
         </>
       </div>
