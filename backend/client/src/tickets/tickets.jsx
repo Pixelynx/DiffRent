@@ -16,6 +16,7 @@ class Tickets extends Component {
     super()
   }
   state = {
+    user:
     ticketModalOpen: false,
     ticketsUnresolved: [],
     ticketsResolved: [],

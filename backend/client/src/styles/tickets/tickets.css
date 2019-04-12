@@ -1,9 +1,13 @@
 .tickets-container {
-  background-color: var(--dark-purple);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--modal-container);
 }
 
 .tickets-window {
-  height: 600px;
-  width: 1000px;
-  background-color: var(--dark-purple);
+  width: 900px;
+  height: 500px;
+  background-color: var(--light-purple);
 }
