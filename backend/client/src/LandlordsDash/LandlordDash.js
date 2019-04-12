@@ -17,8 +17,15 @@ class LandlordDash extends Component {
     }
   }
 
+  componentDidMount(){
+    this.getAptsByLandlord()
+  }
+
   getAptsByLandlord = () => {
-    axios.get('/landlord/:id')
+    axios.get('/landlords/1/apartments')
+    .then(res => {
+      console.log('apt data: ', res.data.data)
+    })
   }
 
   render(){
