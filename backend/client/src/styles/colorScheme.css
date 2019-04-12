@@ -1,0 +1,9 @@
+:root {
+  --dark-purple: #8860D0;
+  --light-purple: #C1C8E4;
+  --dark-blue: #5680E9;
+  --medium-blue: #5AB9EA;
+  --light-blue: #84CEEB;
+}
+
+/* css variables -- background-color: var(--dark-pruple) for example */

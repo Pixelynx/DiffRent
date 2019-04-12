@@ -7,7 +7,10 @@ class TenantTicket extends Component {
 
   render() {
     return(
-      <div>ticket modal</div>
+      <div className='tickets-container'>
+        <div className='tickets-window'>
+        </div>
+      </div>
     )
   }
 }

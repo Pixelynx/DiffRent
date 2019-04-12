@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import TenantTicket from './tenantTickets/tenantTicket.jsx';
+import '../styles/colorScheme.css';
 import '../styles/tickets/tickets.css';
 
 // modal display of tickets
