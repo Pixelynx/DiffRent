@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Route, Switch} from 'react-router-dom';
 import axios from 'axios';
 import LandlordDash from './LandlordsDash/LandlordDash.js'
+import Tickets from './tickets/tickets.jsx';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/landlord/:id' component={LandlordDash} />
           </Switch>
+          <Tickets />
         </>
       </div>
     );
