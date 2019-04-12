@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import TenantTicket from './tenantTickets/tenantTicket.jsx';
+import '../styles/tickets/tickets.css';
 
 // modal display of tickets
 // automatically set on open tickets
@@ -10,8 +11,8 @@ import TenantTicket from './tenantTickets/tenantTicket.jsx';
   // back will display subject, date/time of appointment, and descr of problem
 
 class Tickets extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
   }
   state = {
     ticketModalOpen: false,
@@ -34,7 +35,7 @@ class Tickets extends Component {
       <>
       <button onClick={this.handleModalOpen}>Tickets</button>
       {this.state.ticketModalOpen ?
-        <div>oof</div> : null }
+        <TenantTicket /> : null }
       </>
     )
   }
