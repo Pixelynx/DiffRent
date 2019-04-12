@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 class LandlordDash extends Component {
   constructor(){
@@ -16,10 +17,14 @@ class LandlordDash extends Component {
     }
   }
 
+  getAptsByLandlord = () => {
+    axios.get('/landlord/:id')
+  }
+
   render(){
     return(
       <>
-        LandDarsh
+
       </>
     )
   }
