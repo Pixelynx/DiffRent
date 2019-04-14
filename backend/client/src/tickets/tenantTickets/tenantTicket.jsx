@@ -5,12 +5,17 @@ class TenantTicket extends Component {
     super()
   }
 
+
   render() {
+    const { displayUnresolvedTickets } = this.props
     return(
+      <>
       <div className='tickets-container'>
         <div className='tickets-window'>
+          {displayUnresolvedTickets}
         </div>
       </div>
+      </>
     )
   }
 }
