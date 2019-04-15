@@ -53,12 +53,24 @@ class Tickets extends Component {
 
   render() {
     console.log(this.state)
+
+    if(this.state.ticketModalOpen) {
+      return(
+        <>
+        <div className='tickets-container'>
+            <div className='tickets-window'>
+              {this.displayUnresolvedTickets}
+            </div>
+          </div>
+        </>
+            )
+    }
+
     return(
       <>
       <button onClick={this.handleModalOpen}>Tickets</button>
-      {this.state.ticketModalOpen ?
-        <TenantTicket
-          displayUnresolvedTickets={this.displayUnresolvedTickets}/> : null }
+
+
       </>
     )
   }
