@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Auth = {
     authenticateUser: token => {
       localStorage.setItem("token", token);

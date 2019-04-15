@@ -18,13 +18,14 @@ const Form = ({
       <form onSubmit={path === "/landlords/login" ? loginUser : registerUser}>
         <input
           type="text"
+          autoComplete='off'
           value={username}
           name="username"
           placeholder="username"
           onChange={handleChange}
         />
         <input
-          type="text"
+          type="password"
           value={password}
           name="password"
           placeholder="password"
