@@ -60,7 +60,7 @@ class Tickets extends Component {
       visibility = 'show'
       return(
         <>
-          <div onClick={!this.state.ticketModalOpen} className='tickets-container'>
+          <div onClick={this.handleModalOpen} className='tickets-container'>
             <div className='tickets-window'>
               {this.displayUnresolvedTickets}
             </div>
