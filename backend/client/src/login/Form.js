@@ -14,8 +14,8 @@ const Form = ({
   const path = match.path;
   return (
     <React.Fragment>
-      <h1> {path === "/auth/login" ? "Login" : "Register"} </h1>
-      <form onSubmit={path === "/auth/login" ? loginUser : registerUser}>
+      <h1> {path === "/landlords/login" ? "Login" : "Register"} </h1>
+      <form onSubmit={path === "/landlords/login" ? loginUser : registerUser}>
         <input
           type="text"
           value={username}
