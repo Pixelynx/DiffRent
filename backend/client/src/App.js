@@ -61,7 +61,28 @@ class App extends Component {
           <Navbar/>
           {logoutButton}
           <Switch>
-            <Route path="/auth" render={() => {
+            <Route path="/landlords/login" render={() => {
+                return (<AuthForm
+                    checkAuthenticateStatus={this.checkAuthenticateStatus}
+                    isLoggedIn={isLoggedIn}/>
+                );
+              }}
+            />
+            <Route path="/landlords/register" render={() => {
+                return (<AuthForm
+                    checkAuthenticateStatus={this.checkAuthenticateStatus}
+                    isLoggedIn={isLoggedIn}/>
+                );
+              }}
+            />
+            <Route path="/tenants/login" render={() => {
+                return (<AuthForm
+                    checkAuthenticateStatus={this.checkAuthenticateStatus}
+                    isLoggedIn={isLoggedIn}/>
+                );
+              }}
+            />
+            <Route path="/tenants/register" render={() => {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
                     isLoggedIn={isLoggedIn}/>

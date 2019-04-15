@@ -54,7 +54,7 @@ class AuthForm extends Component {
     const { username, password } = this.state;
 
     axios
-      .post("/users/login", { username, password })
+      .post("/landlords/login", { username, password })
       .then(() => {
         Auth.authenticateUser(username);
       })
@@ -76,7 +76,7 @@ class AuthForm extends Component {
     return (
       <Switch>
         <Route
-          path="/auth/login"
+          exact path="/tenants/login"
           render={() => {
             return (
               <Form
@@ -91,7 +91,52 @@ class AuthForm extends Component {
           }}
         />
         <Route
-          path="/auth/register"
+          exact path="/landlords/login"
+          render={() => {
+            return (
+              <Form
+                username={username}
+                password={password}
+                isLoggedIn={isLoggedIn}
+                loginUser={this.loginUser}
+                registerUser={this.registerUser}
+                handleChange={this.handleChange}
+              />
+            );
+          }}
+        />
+        <Route
+          exact path="/tenants/register"
+          render={() => {
+            return (
+              <Form
+                username={username}
+                password={password}
+                isLoggedIn={isLoggedIn}
+                loginUser={this.loginUser}
+                registerUser={this.registerUser}
+                handleChange={this.handleChange}
+              />
+            );
+          }}
+        />
+        <Route
+          exact path="/landlords/register"
+          render={() => {
+            return (
+              <Form
+                username={username}
+                password={password}
+                isLoggedIn={isLoggedIn}
+                loginUser={this.loginUser}
+                registerUser={this.registerUser}
+                handleChange={this.handleChange}
+              />
+            );
+          }}
+        />
+        <Route
+          exact path="/auth/register"
           render={() => {
             return (
               <Form
