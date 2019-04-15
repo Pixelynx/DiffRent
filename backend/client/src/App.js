@@ -3,6 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../src/navbar/Navbar';
 import LandlordDash from './LandlordsDash/LandlordDash.js';
+import TenantDash from './TenantDash/TenantDash.js';
 import Tickets from './tickets/tickets.jsx';
 import AuthForm from "./login/AuthForm";
 import Auth from "./utils/Auth";
@@ -52,7 +53,7 @@ class App extends Component {
 
   render() {
     const { isLoggedIn } = this.state;
-    
+
     let logoutButton = isLoggedIn ? <button onClick={this.logoutUser}>Logout</button> : null;
     return (
       <div className="App">
@@ -68,6 +69,7 @@ class App extends Component {
               }}
             />
             <Route exact path='/landlord/:id' component={LandlordDash} />
+            <Route exact path='/tenant/:id' component={TenantDash} />
             <Route exact path='/' component={Homepage} />
           </Switch>
         </>
