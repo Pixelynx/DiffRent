@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 const {
-  getAllMsgs
+  getAllMsgs,
+  addMsg
 } = require("../db/queries/messages");
 
-router.get('/', getAllMsgs)
+router.get('/allmessages', getAllMsgs);
+
+router.post('/newmessage', addMsg);
 
 module.exports = router;
