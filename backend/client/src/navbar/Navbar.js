@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Tickets from '../tickets/tickets.jsx';
 
 const NavBar = () => {
   return(
     <nav>
       <div>
         <ul>
-          <li><NavLink to={"/"}>Home </NavLink></li>
+          <li><Tickets /></li>
           <li><NavLink to={"/message"}>Message </NavLink></li>
           <li><NavLink to={"/tickets"}>Tickets </NavLink></li>
           <li><NavLink to={"/about"}>About </NavLink></li>
