@@ -39,6 +39,15 @@ CREATE TABLE tickets(
     appt_time TIME
 );
 
+CREATE TABLE messages(
+    id SERIAL PRIMARY KEY,
+    landlord_id INT NOT NULL REFERENCES landlords(id),
+    tenant_id INT NOT NULL REFERENCES tenants(id),
+    body TEXT NOT NULL,
+    message_date DATE,
+    message_time TIME
+);
+
 INSERT INTO landlords(name, email, phone, dob, password_digest) VALUES ('James Bennett', 'jBennet@gmail.com', '(458)201-9297', '1992-01-01', 'abc123' ),
                                                                         ('Rick Nixon', 'rNixon@gmail.com', '(321)861-7901', '1990-02-02', '123abc' ),
                                                                         ('Yasmin Henry', 'yHenry@gmail.com', '(434)847-4706', '1992-03-03', '456xyz' ),
