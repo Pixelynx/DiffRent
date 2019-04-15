@@ -17,6 +17,8 @@ class AuthForm extends Component {
     });
   };
 
+  
+
   registerUser = async e => {
     e.preventDefault();
     const { username, password } = this.state;
@@ -55,8 +57,12 @@ class AuthForm extends Component {
 
     axios
       .post("/landlords/login", { username, password })
-      .then(() => {
-        Auth.authenticateUser(username);
+      .then((res) => {
+        debugger
+        Auth.authenticateUser(username) &&
+        this.setState({
+          type: "landlord"
+        })
       })
       .then(() => {
         this.props.checkAuthenticateStatus();

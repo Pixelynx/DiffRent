@@ -13,7 +13,7 @@ import PrivateRoute from "./utils/AuthRouting";
 class App extends Component {
   state = {
     isLoggedIn: false,
-    username: "",
+    username: ""
   };
 
   componentDidMount() {
