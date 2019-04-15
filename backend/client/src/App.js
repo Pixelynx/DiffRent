@@ -55,8 +55,8 @@ class App extends Component {
     return (
       <div className="App">
         <>
-          <h3>Team 3!</h3>
           <Navbar/>
+          <h3>Team 3!</h3>
           <Switch>
             <Route path="/auth" render={() => {
                 return (<AuthForm
