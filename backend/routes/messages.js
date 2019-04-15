@@ -7,6 +7,7 @@ const {
 } = require("../db/queries/messages");
 
 router.get('/allmessages', getAllMsgs);
+
 router.post('/newmessage', addMsg);
 
 module.exports = router;
