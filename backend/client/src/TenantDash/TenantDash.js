@@ -29,7 +29,7 @@ class TenantDash extends Component {
   }
 
   getTenantInfo = () => {
-    axios.get('/tenants/1')
+    axios.get(`/tenants/${this.props.match.params.id}`)
     .then(res => {
       console.log('tenants: ', res.data.data)
       this.setState({
@@ -39,9 +39,9 @@ class TenantDash extends Component {
   }
 
   getLandlordInfo = () => {
-    axios.get('/apartments/1/landlord/1')
+    axios.get(`/apartments/landlord/${this.props.match.params.id}`)
     .then(res => {
-        debugger;
+        console.log('yoooo', res)
         this.setState({
           landlordInfo: {
             name: res.data.apartment.name,
@@ -56,7 +56,7 @@ class TenantDash extends Component {
 
 
   getAllTickets = () => {
-    axios.get('/tickets/landlord/1')
+    axios.get(`/tickets/landlord/${this.props.match.params.id}`)
       .then(res => {
       this.setState({
         tickets: res.data.data
@@ -65,6 +65,7 @@ class TenantDash extends Component {
   }
 
   render(){
+    console.log(this.props)
      const {landlordInfo, tickets} = this.state;
     return(
       <>

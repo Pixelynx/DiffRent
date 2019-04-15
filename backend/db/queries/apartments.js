@@ -38,7 +38,7 @@ const addApt = (req, res, next) => {
 
 const getLandlordByApt = (req, res, next) => {
   aptId = Number(req.params.id)
-  db.one(`SELECT landlords.name, landlords.email, landlords.phone, landlords. dob FROM apartments
+  db.one(`SELECT landlords.id, landlords.name, landlords.email, landlords.phone, landlords. dob FROM apartments
       JOIN landlords
       ON apartments.landlord_id = landlords.id
       WHERE apartments.id=$1`, aptId)
@@ -49,6 +49,10 @@ const getLandlordByApt = (req, res, next) => {
         apartment,
         message: "Receive Landlords info"
       })
+  })
+  .catch(err => {
+    console.log('error:', err)
+    next(err)
   })
 }
 
