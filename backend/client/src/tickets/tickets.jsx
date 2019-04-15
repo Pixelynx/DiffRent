@@ -57,13 +57,13 @@ class Tickets extends Component {
     if(this.state.ticketModalOpen) {
       return(
         <>
-        <div className='tickets-container'>
+          <div className='tickets-container'>
             <div className='tickets-window'>
               {this.displayUnresolvedTickets}
             </div>
           </div>
         </>
-            )
+      )
     }
 
     return(
