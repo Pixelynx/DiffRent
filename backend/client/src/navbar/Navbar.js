@@ -6,10 +6,10 @@ const NavBar = () => {
   return(
     <nav>
       <div>
-        <ul>  
+        <ul>
             <li><NavLink to={"/"}>Home </NavLink></li>
             <li><NavLink to={"/message"}>Message </NavLink></li>
-            <li><li><Tickets /></li></li>
+            <li><Tickets /></li>
             <li><NavLink to={"/logout"}>Logout </NavLink></li>
             <li><NavLink to={"/about"}>About </NavLink></li>
             <li><NavLink to={"/faq"}>FAQ </NavLink></li>
