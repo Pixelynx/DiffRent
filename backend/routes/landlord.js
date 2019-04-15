@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('../auth/landlordLocal');
+const passport = require('../auth/local');
 const { loginRequired } = require("../auth/helpers");
 const queries = require('../db/queries/landlords.js');
 
