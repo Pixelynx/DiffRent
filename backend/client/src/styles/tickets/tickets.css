@@ -1,4 +1,8 @@
 .tickets-container {
+  display: none;
+}
+
+.tickets-container {
   position: absolute;
   display: flex;
   justify-content: center;

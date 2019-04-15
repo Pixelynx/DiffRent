@@ -54,10 +54,13 @@ class Tickets extends Component {
   render() {
     console.log(this.state)
 
+    let visibility = 'hide'
+
     if(this.state.ticketModalOpen) {
+      visibility = 'show'
       return(
         <>
-          <div className='tickets-container'>
+          <div onClick={!this.state.ticketModalOpen} className='tickets-container'>
             <div className='tickets-window'>
               {this.displayUnresolvedTickets}
             </div>
