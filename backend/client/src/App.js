@@ -41,7 +41,7 @@ class App extends Component {
 
   logoutUser = () => {
     axios
-      .post("/users/logout")
+      .post("/landlords/logout")
       .then(() => {
         Auth.deauthenticateUser();
       })
