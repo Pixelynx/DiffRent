@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import TenantContactInfo from './TenantContactInfo.js';
-import TicketDashInfo from './TicketDashInfo.js';
+import TenantContactInfo from './LandlordTenantContactDashInfo.js';
+import TicketDashInfo from './LandlordTicketDashInfo.js';
 
 class LandlordDash extends Component {
   constructor(){
@@ -21,21 +21,34 @@ class LandlordDash extends Component {
   }
 
   componentDidMount(){
+    this.getLandlordInfo();
     this.getAptsByLandlord();
     this.getAllTickets();
+  }
+
+  getLandlordInfo = () => {
+    axios.get('/landlords/1')
+    .then(res => {
+      console.log('landlord: ', res.data.data)
+      this.setState({
+        name: res.data.data.name
+      })
+    })
   }
 
   getAptsByLandlord = () => {
     axios.get('/landlords/1/apartments')
     .then(res => {
-      this.setState({
-        tenantInfo: {
-          name: res.data.data[0].name,
-          apartment_id: res.data.data[0].apartment_id,
-          address: res.data.data[0].address,
-          email: res.data.data[0].email,
-          phone: res.data.data[0].phone,
-        }
+      res.data.data.map(info => {
+        this.setState({
+          tenantInfo: {
+            name: info.name,
+            apartment_id: info.apartment_id,
+            address: info.address,
+            email: info.email,
+            phone: info.phone,
+          }
+        })
       })
     })
   }
@@ -53,6 +66,7 @@ class LandlordDash extends Component {
      const {tenantInfo, tickets} = this.state;
     return(
       <>
+        <h1>Welcome, {this.state.name}</h1>
         <TenantContactInfo tenantInfo={tenantInfo}/>
         <TicketDashInfo tickets={tickets} />
       </>
