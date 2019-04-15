@@ -7,7 +7,7 @@ import Tickets from './tickets/tickets.jsx';
 import AuthForm from "./login/AuthForm";
 import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
-// import PrivateRoute from "./utils/AuthRouting";
+import PrivateRoute from "./utils/AuthRouting";
 
 class App extends Component {
   state = {
@@ -38,24 +38,27 @@ class App extends Component {
     });
   };
 
-  // logoutUser = () => {
-  //   axios
-  //     .post("/users/logout")
-  //     .then(() => {
-  //       Auth.deauthenticateUser();
-  //     })
-  //     .then(() => {
-  //       this.checkAuthenticateStatus();
-  //     });
-  // };
+  logoutUser = () => {
+    axios
+      .post("/users/logout")
+      .then(() => {
+        Auth.deauthenticateUser();
+      })
+      .then(() => {
+        this.checkAuthenticateStatus();
+      });
+  };
 
 
   render() {
     const { isLoggedIn } = this.state;
+    
+    let logoutButton = isLoggedIn ? <button onClick={this.logoutUser}>Logout</button> : null;
     return (
       <div className="App">
         <>
           <Navbar/>
+          {logoutButton}
           <Switch>
             <Route path="/auth" render={() => {
                 return (<AuthForm
@@ -67,7 +70,6 @@ class App extends Component {
             <Route exact path='/landlord/:id' component={LandlordDash} />
             <Route exact path='/' component={Homepage} />
           </Switch>
-          <Tickets />
         </>
       </div>
     );
