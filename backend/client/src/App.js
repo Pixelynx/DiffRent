@@ -9,6 +9,7 @@ import AuthForm from "./login/AuthForm";
 import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
 import PrivateRoute from "./utils/AuthRouting";
+import './styles/index.css';
 
 class App extends Component {
   state = {
