@@ -54,6 +54,7 @@ const getAllAptsByLandlord = (req, res, next) => {
     })
 }
 
+
 const addNewLandlord = (req, res, next) => {
   const hash = authHelpers.createHash(req.body.password_digest);
   db.none("INSERT INTO landlords(name, email, phone, dob, password_digest) VALUES(${name}, ${email}, ${phone}, ${dob}, ${password_digest})",
