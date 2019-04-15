@@ -3,6 +3,8 @@ CREATE DATABASE diffrent;
 
 \c diffrent;
 
+CREATE TYPE userAcc as ENUM('landlord', 'tenant');
+
 CREATE TABLE landlords (
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
