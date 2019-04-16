@@ -8,7 +8,8 @@ import Form from "./Form";
 class AuthForm extends Component {
   state = {
     username: "",
-    password: ""
+    password: "", 
+    type: ''
   };
 
   handleChange = e => {
@@ -52,27 +53,47 @@ class AuthForm extends Component {
   };
 
   loginUser = e => {
+    // debugger;
     e.preventDefault();
     const { username, password } = this.state;
 
-    axios
-      .post("/landlords/login", { username, password })
-      .then((res) => {
-        debugger
-        Auth.authenticateUser(username) &&
-        this.setState({
-          type: "landlord"
+    if (e.target[2].value === 'landlord')
+      { return axios
+        .post("/landlords/login", { username, password })
+        .then((res) => {
+          debugger
+          Auth.authenticateUser(username)
         })
-      })
-      .then(() => {
-        this.props.checkAuthenticateStatus();
-      })
-      .then(() => {
-        this.setState({
-          username: "",
-          password: ""
+        .then(() => {
+          this.props.checkAuthenticateStatus();
+        })
+        .then(() => {
+          this.setState({
+            username: "",
+            password: ""
+          });
         });
-      });
+      } else if (e.target[2]. value === 'tenant')
+      { return axios
+        .post("/tenants/login", { username, password })
+        .then((res) => {
+          this.setState({
+            type: res.data.user_type
+          })
+        })
+        .then(() => {
+          Auth.authenticateUser(username)
+        })
+        .then(() => {
+          this.props.checkAuthenticateStatus();
+        })
+        .then(() => {
+          this.setState({
+            username: "",
+            password: ""
+          });
+        });
+      }
   };
 
   render() {
@@ -161,4 +182,4 @@ class AuthForm extends Component {
   }
 }
 
-export default AuthForm;
+export default withRouter(AuthForm);

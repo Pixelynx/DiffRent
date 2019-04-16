@@ -9,7 +9,8 @@ const Form = ({
   isLoggedIn,
   loginUser,
   registerUser,
-  handleChange
+  handleChange,
+  type
 }) => {
   const path = match.path;
 
@@ -31,6 +32,7 @@ const Form = ({
                   placeholder="password"
                   onChange={handleChange}
                 />
+                <input type="hidden" readOnly={true} value='landlord' />
                 <button type="submit">Submit</button>
               </form>
             </>;
@@ -53,6 +55,7 @@ const Form = ({
                   placeholder="password"
                   onChange={handleChange}
                 />
+                <input type="hidden" readOnly={true} value='tenant' />
                 <button type="submit">Submit</button>
               </form>
             </>;
