@@ -32,7 +32,7 @@ class Tickets extends Component {
   handleSetState = () => {
     axios.get(`/tickets/${this.state.apt}`)
     .then(res => {
-      this.setState({ ticketsResolved: res.data.data})
+      this.setState({ ticketsUnresolved: res.data.data})
     })
   }
 
@@ -54,15 +54,14 @@ class Tickets extends Component {
   render() {
     console.log(this.state)
 
-    let visibility = 'hide'
-
     if(this.state.ticketModalOpen) {
-      visibility = 'show'
       return(
         <>
           <div onClick={this.handleModalOpen} className='tickets-container'>
             <div className='tickets-window'>
-              {this.displayUnresolvedTickets}
+              <ul>
+              {this.displayUnresolvedTickets()}
+              </ul>
             </div>
           </div>
         </>
