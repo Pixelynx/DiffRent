@@ -7,7 +7,6 @@ const session = require("express-session");
 const passport = require("./auth/local");
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 const landlords = require('./routes/landlord.js')
 const tenants = require('./routes/tenants.js')
@@ -39,7 +38,6 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 app.use('/landlords', landlords);
 app.use('/tenants', tenants);
