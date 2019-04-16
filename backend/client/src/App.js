@@ -14,7 +14,7 @@ import './styles/index.css';
 class App extends Component {
   state = {
     isLoggedIn: false,
-    username: "",
+    username: ""
   };
 
   componentDidMount() {
