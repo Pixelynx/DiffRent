@@ -23,8 +23,9 @@
 }
 
 .tickets-window-info {
+  justify-self: center;
   height: 300px;
   width: 150px;
-  background-color: #fff;
-  /* background-color: var(--dark-purple); */
+  background-color: #71EEBA;
+  list-style: none;
 }
