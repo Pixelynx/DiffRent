@@ -45,9 +45,12 @@ class Tickets extends Component {
     const { ticketsUnresolved, ticketModalOpen } = this.state
     if(ticketsUnresolved && ticketModalOpen) {
       let showTickets = ticketsUnresolved.map(ticket => {
+        let date = ticket.appt_date
+        let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
           return(
             <ul className='tickets-window-info'>
-              <li>{ticket.subject}</li>
+              <li className='ticket-item' id='ticket-subject'>Issue: {ticket.subject}</li>
+              <li className='ticket-item' id='ticket-appt'>Appointment: {apptDate}</li>
             </ul>
         )
       })
