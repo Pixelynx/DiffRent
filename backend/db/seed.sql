@@ -17,7 +17,7 @@ CREATE TABLE users(
 
 CREATE TABLE apartments(
     id SERIAL PRIMARY KEY,
-    name VARCHAR NOT NULL,
+    apt VARCHAR NOT NULL,
     address VARCHAR NOT NULL,
     landlord_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL,
     tenant_id INT REFERENCES users(id) ON DELETE SET NULL
@@ -68,27 +68,27 @@ INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Cynthia Tyler', 'Cynthiatyler@gmail.com', '(262)748-9749','1988-08-18', 'cookie123', 'tenant');
 
 
-INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('4C', '939 Woodycrest Ave, Bronx, NY 10452', 11, 1);
-INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('3', '5959 Broadway, Bronx, NY 10463', 12, 2);
-INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('10', '250 Bedford Park Blvd, Bronx, NY 10458', 13, 3);
-INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('1A', '287 Onderdonk Ave, Queens, NY 11385', 14, 4);
-INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('5D', '16-74 Bell Blvd, Queens, NY 11360', 15, 5);
-INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('2A', '1251 East 19th Street, Brooklyn, NY 11230', 16, 6);
-INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('3D', '85 Herbert Street, Brooklyn, NY 11222', 17, 7);
-INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('22B', '280 Park Avenue South, New York, NY 10010', 18, 8);
-INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('5D', '152 Ludlow Street, New York, NY 10002', 19, 9);
-INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('3', '10 East 8th Street, New York, NY 10003', 20, 10);
+INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('4C', '939 Woodycrest Ave, Bronx, NY 10452', 11, 1);
+INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('3', '5959 Broadway, Bronx, NY 10463', 12, 2);
+INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('10', '250 Bedford Park Blvd, Bronx, NY 10458', 13, 3);
+INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('1A', '287 Onderdonk Ave, Queens, NY 11385', 14, 4);
+INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('5D', '16-74 Bell Blvd, Queens, NY 11360', 15, 5);
+INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('2A', '1251 East 19th Street, Brooklyn, NY 11230', 16, 6);
+INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('3D', '85 Herbert Street, Brooklyn, NY 11222', 17, 7);
+INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('22B', '280 Park Avenue South, New York, NY 10010', 18, 8);
+INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('5D', '152 Ludlow Street, New York, NY 10002', 19, 9);
+INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('3', '10 East 8th Street, New York, NY 10003', 20, 10);
 
 
 
--- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '2019-05-05', '12:00 [PM]' );
--- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door not closing right', '1', '2019-05-07', '1:00 [PM]' );
--- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door STILL not closing right', '1', '2019-05-07', '1:00 [PM]' );
--- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'key broke in door', '1', '2019-05-07', '1:00 [PM]' );
--- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'gas leak', '1', '2019-05-07', '1:00 [PM]' );
--- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(3, 'Ceiling', 'Living room ceiling needs small repair', '0', '2019-05-08', '2:00 [PM]' );
--- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(4, 'Window', 'Window lock not working', '0', '2019-05-08', '11:00 [AM]' );
--- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(5, 'Building key', 'Lost key for the entrance of the building', '0', '2019-05-09', '4:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '0', '1', '2019-05-05', '12:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door not closing right', '1', '1', '1', '2019-05-07', '1:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door STILL not closing right', '1', '0', '1', '2019-05-07', '1:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'key broke in door', '1', '1', '0', '2019-05-07', '1:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'gas leak', '1', '0', '1', '2019-05-07', '1:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(3, 'Ceiling', 'Living room ceiling needs small repair', '0', '0', '1', '2019-05-08', '2:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(4, 'Window', 'Window lock not working', '0', '0', '0', '2019-05-08', '11:00 [AM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(5, 'Building key', 'Lost key for the entrance of the building', '0', '0', '1', '2019-05-09', '4:00 [PM]' );
 
 
 
