@@ -19,8 +19,8 @@ CREATE TABLE apartments(
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
     address VARCHAR NOT NULL,
-    landlord_id IN NOT NULL REFERENCES users(id) ON DELETE SET NULL,
-    tenant_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL
+    landlord_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL,
+    tenant_id INT REFERENCES users(id) ON DELETE SET NULL
 );
 
 CREATE TABLE tickets(
@@ -36,22 +36,23 @@ CREATE TABLE tickets(
 CREATE TABLE messages(
     id SERIAL PRIMARY KEY,
     landlord_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL,
-    tenant_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL,
+    tenant_id INT REFERENCES users(id) ON DELETE SET NULL,
     body TEXT NOT NULL,
     message_date DATE
 );
 
 
 
-INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES('James Bennett', 'jBennet@gmail.com', '(458)201-9297', '1992-01-01', 'abc123', 'landlord');
-INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES('Reya Herbert', 'rHerbert@gmail.com', '(562)298-3280', '1992-04-05', '123abc', 'landlord');
-INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES('Ricardo Sheridan', 'Ricardosheridan@gmail.com', '(321)402-7158', '1978-10-05', 'landlord');
-INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES('Jim Sears', 'Jimsears@gmail.com', '(316)755-8390', '1983-01-26', '456xyz', 'landlord');
+INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('James Bennett', 'jBennet@gmail.com', '(458)201-9297', '1992-01-01', 'abc123', 'landlord');
+INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Reya Herbert', 'rHerbert@gmail.com', '(562)298-3280', '1992-04-05', '123abc', 'landlord');
+INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Ricardo Sheridan', 'Ricardosheridan@gmail.com', '(321)402-7158', '1978-10-05', '123abc', 'landlord');
+INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Jim Sears', 'Jimsears@gmail.com', '(316)755-8390', '1983-01-26', '456xyz', 'landlord');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Rick Nixon', 'rNixon@gmail.com', '(321)861-7901', '1990-02-02', '123abc', 'landlord');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Jamie Cummings', 'Jamiecummings@gmail.com', '(480)927-7470', '1959-04-10', 'cookie123', 'landlord');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Zane Daniels', 'Zanedaniels@gmail.com', '(302)219-8677', '1963-09-16', 'qwerty', 'landlord');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Sol Finney', 'sFinney@gmail.com', '(402)899-1372', '1992-01-02', '987abc', 'landlord');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Yasmin Henry', 'yHenry@gmail.com', '(434)847-4706', '1992-03-03', '456xyz', 'landlord');
+INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Elliot Horn', 'Elliothorn@gmail.com', '(432)221-7567', '1985-12-15', 'JFK123', 'landlord');
 
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Zoe Goulding', 'zGoulding@gmail.com', '(609)367-5162', '1998-10-01',  'abc123', 'tenant');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Nikola Ryder', 'nRyder@gmail.com', '(319)471-7363', '1995-12-02',  '123abc', 'tenant');
@@ -65,16 +66,16 @@ INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Cynthia Tyler', 'Cynthiatyler@gmail.com', '(262)748-9749','1988-08-18', 'cookie123', 'tenant');
 
 
-INSERT INTO apartments(name, address, user_id) VALUES ('4C', '939 Woodycrest Ave, Bronx, NY 10452', 1);
-INSERT INTO apartments(name, address, user_id) VALUES ('3', '5959 Broadway, Bronx, NY 10463', 2);
-INSERT INTO apartments(name, address, user_id) VALUES ('10', '250 Bedford Park Blvd, Bronx, NY 10458', 3);
-INSERT INTO apartments(name, address, user_id) VALUES ('1A', '287 Onderdonk Ave, Queens, NY 11385', 4);
-INSERT INTO apartments(name, address, user_id) VALUES ('5D', '16-74 Bell Blvd, Queens, NY 11360', 5);
-INSERT INTO apartments(name, address, user_id) VALUES ('2A', '1251 East 19th Street, Brooklyn, NY 11230', 6);
-INSERT INTO apartments(name, address, user_id) VALUES ('3D', '85 Herbert Street, Brooklyn, NY 11222', 7);
-INSERT INTO apartments(name, address, user_id) VALUES ('22B', '280 Park Avenue South, New York, NY 10010', 8);
-INSERT INTO apartments(name, address, user_id) VALUES ('5D', '152 Ludlow Street, New York, NY 10002', 9);
-INSERT INTO apartments(name, address, user_id) VALUES ('3', '10 East 8th Street, New York, NY 10003', 10);
+INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('4C', '939 Woodycrest Ave, Bronx, NY 10452', 11, 1);
+INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('3', '5959 Broadway, Bronx, NY 10463', 12, 2);
+INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('10', '250 Bedford Park Blvd, Bronx, NY 10458', 13, 3);
+INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('1A', '287 Onderdonk Ave, Queens, NY 11385', 14, 4);
+INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('5D', '16-74 Bell Blvd, Queens, NY 11360', 15, 5);
+INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('2A', '1251 East 19th Street, Brooklyn, NY 11230', 16, 6);
+INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('3D', '85 Herbert Street, Brooklyn, NY 11222', 17, 7);
+INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('22B', '280 Park Avenue South, New York, NY 10010', 18, 8);
+INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('5D', '152 Ludlow Street, New York, NY 10002', 19, 9);
+INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('3', '10 East 8th Street, New York, NY 10003', 20, 10);
 
 
 
