@@ -18,13 +18,14 @@ CREATE TABLE users(
 CREATE TABLE apartments(
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
-    address VARCHAR NOT NULL, 
-    user_id INT NOT NULL REFERENCES users(id)
+    address VARCHAR NOT NULL,
+    landlord_id IN NOT NULL REFERENCES users(id) ON DELETE SET NULL
+    tenant_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL
 );
 
 CREATE TABLE tickets(
     id SERIAL PRIMARY KEY,
-    apartment_id INT NOT NULL REFERENCES apartments(id),
+    apartment_id INT NOT NULL REFERENCES apartments(id) ON DELETE SET NULL,
     subject VARCHAR NOT NULL,
     body TEXT NOT NULL,
     status BIT,
@@ -34,8 +35,8 @@ CREATE TABLE tickets(
 
 CREATE TABLE messages(
     id SERIAL PRIMARY KEY,
-    landlord_id INT NOT NULL REFERENCES users(id),
-    tenant_id INT NOT NULL REFERENCES users(id),
+    landlord_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL,
+    tenant_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL,
     body TEXT NOT NULL,
     message_date DATE
 );
