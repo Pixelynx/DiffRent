@@ -52,19 +52,19 @@ class Tickets extends Component {
   displayUnresolvedTickets = () => {
     // need a better way to
     const { ticketsUnresolved, ticketsResolved, ticketModalOpen } = this.state
-    let status = 'RESOLVED';
+    let status = 'RESOLVE';
     if(ticketsUnresolved || ticketsResolved && ticketModalOpen) {
       let showTickets = ticketsUnresolved.map(ticket => {
         let date = ticket.appt_date
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
-            if(ticket.status) status = 'UNRESOLVED';
+            if(!ticket.status) status = 'RESOLVED';
           return(
             <>
             <div className='ticket-window'>
               <ul className='ticket-front'>
                 <li className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</li>
                 <li className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</li>
-                <li>{status}</li>
+                <li>{ticket.status ? 'UNRESOLVED' : 'RESOLVED'}</li>
               </ul>
               <ul className='ticket-back'>
                 <li className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</li>

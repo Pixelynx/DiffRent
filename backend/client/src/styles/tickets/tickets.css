@@ -41,6 +41,8 @@
 
 .ticket-front, .ticket-back {
   padding: 0;
+  font-family: sans-serif;
+  font-size: 25px;
   backface-visibility: hidden;
   justify-self: center;
   height: 300px;
@@ -58,7 +60,10 @@
   color: red;
 }
 
-
 .ticket-item {
   margin-bottom: 5px;
+}
+
+.status-btn {
+  color: red;
 }
