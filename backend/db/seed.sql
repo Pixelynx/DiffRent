@@ -6,13 +6,13 @@ CREATE DATABASE diffrent;
 CREATE TYPE userAcc as ENUM('landlord', 'tenant');
 
 CREATE TABLE users(
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  email VARCHAR NOT NULL,
-  phone VARCHAR NOT NULL,
-  dob DATE,
-  password_digest VARCHAR NOT NULL,
-  user_type userAcc
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    email VARCHAR NOT NULL,
+    phone VARCHAR NOT NULL,
+    dob DATE,
+    password_digest VARCHAR NOT NULL,
+    user_type userAcc
 );
 
 CREATE TABLE apartments(
@@ -33,6 +33,12 @@ CREATE TABLE tickets(
     in_progress BIT,
     appt_date DATE,
     appt_time TIME
+);
+
+CREATE TABLE threads(
+    id SERIAL PRIMARY KEY,
+    tenant_id INT REFERENCES users(id),
+    landlord_id INT REFERENCES users(id)
 );
 
 CREATE TABLE messages(
