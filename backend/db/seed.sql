@@ -28,7 +28,9 @@ CREATE TABLE tickets(
     apartment_id INT NOT NULL REFERENCES apartments(id) ON DELETE SET NULL,
     subject VARCHAR NOT NULL,
     body TEXT NOT NULL,
-    status BIT,
+    completed_tenant BIT,
+    completed_landlord BIT,
+    in_progress BIT,
     appt_date DATE,
     appt_time TIME
 );
@@ -79,14 +81,18 @@ INSERT INTO apartments(name, address, tenant_id, landlord_id) VALUES ('3', '10 E
 
 
 
-INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '2019-05-05', '12:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door not closing right', '1', '2019-05-07', '1:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door STILL not closing right', '1', '2019-05-07', '1:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'key broke in door', '1', '2019-05-07', '1:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'gas leak', '1', '2019-05-07', '1:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(3, 'Ceiling', 'Living room ceiling needs small repair', '0', '2019-05-08', '2:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(4, 'Window', 'Window lock not working', '0', '2019-05-08', '11:00 [AM]' );
-INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(5, 'Building key', 'Lost key for the entrance of the building', '0', '2019-05-09', '4:00 [PM]' );
+-- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '2019-05-05', '12:00 [PM]' );
+-- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door not closing right', '1', '2019-05-07', '1:00 [PM]' );
+-- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door STILL not closing right', '1', '2019-05-07', '1:00 [PM]' );
+-- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'key broke in door', '1', '2019-05-07', '1:00 [PM]' );
+-- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'gas leak', '1', '2019-05-07', '1:00 [PM]' );
+-- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(3, 'Ceiling', 'Living room ceiling needs small repair', '0', '2019-05-08', '2:00 [PM]' );
+-- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(4, 'Window', 'Window lock not working', '0', '2019-05-08', '11:00 [AM]' );
+-- INSERT INTO tickets(apartment_id, subject, body, status, appt_date, appt_time) VALUES(5, 'Building key', 'Lost key for the entrance of the building', '0', '2019-05-09', '4:00 [PM]' );
+
+
+
+
 
 -- CREATE TABLE landlords (
 --     id SERIAL PRIMARY KEY,
