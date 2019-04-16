@@ -2,7 +2,8 @@ const db = require('../../db/index.js');
 const authHelpers = require("../../auth/helpers");
 
 const getAllLandlords = (req, res, next) => {
-  db.any(`SELECT * FROM landlords`)
+  db.any(`SELECT * FROM users
+        WHERE user_type = 'landlord'`)
   .then(data => {
       res.status(200)
          .json({
@@ -19,7 +20,8 @@ const getAllLandlords = (req, res, next) => {
 
 const getSingleLandlord = (req, res, next) => {
   userId = Number(req.params.id)
-  db.one(`Select * FROM landlords WHERE id=$1`, userId)
+  db.one(`SELECT name, email, phone, dob, password_digest, user_type, apartments.id AS apartmentId, apt, address, landlord_id FROM users JOIN apartments ON (users.id=apartments.landlord_id) WHERE apartments.landlord_id=$1
+          `, userId)
   .then(data => {
     res.status(200)
        .json({
@@ -36,9 +38,9 @@ const getSingleLandlord = (req, res, next) => {
 
 const getAllAptsByLandlord = (req, res, next) => {
   landlord_id = Number(req.params.id)
-  db.any(`SELECT  apartments.id AS apartment_id, apartments.address, tenants.name, tenants.email, tenants.phone FROM apartments
-          JOIN tenants
-          ON apartments.id = tenants.apartment_id
+  db.any(`SELECT  apartments.id AS apartment_id, apartments.address, apartments.apt, users.name, users.email, users.phone FROM apartments
+          JOIN users
+          ON apartments.tenant_id = users.id
           WHERE apartments.landlord_id=$1`, landlord_id)
     .then(data => {
       res.status(200)
@@ -56,13 +58,14 @@ const getAllAptsByLandlord = (req, res, next) => {
 
 const addNewLandlord = (req, res, next) => {
   const hash = authHelpers.createHash(req.body.password_digest);
-  db.none("INSERT INTO landlords(name, email, phone, dob, password_digest) VALUES(${name}, ${email}, ${phone}, ${dob}, ${password_digest})",
+  db.none("INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES(${name}, ${email}, ${phone}, ${dob}, ${password_digest}, ${user_type})",
   {
     name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
     dob: req.body.dob,
-    password_digest: hash
+    password_digest: hash,
+    user_type: "landlord"
   })
   .then(() => {
     res.status(200)
@@ -79,14 +82,15 @@ const addNewLandlord = (req, res, next) => {
 
 const updateLandlord = (req, res, next) => {
   userId = Number(req.params.id)
-  db.none("UPDATE landlords SET name=${name}, email=${email}, phone=${phone}, dob=${dob}, password_digest=${password_digest} WHERE id=${id}",
+  db.none("UPDATE users SET name=${name}, email=${email}, phone=${phone}, dob=${dob}, password_digest=${password_digest}, user_type=${user_type} WHERE id=${id}",
   {
     id: req.params.id,
     name:req.body.name,
     email: req.body.email,
     phone: req.body.phone,
     dob: req.body.dob,
-    password_digest: req.body.password_digest
+    password_digest: req.body.password_digest,
+    user_type: "landlord"
   })
     .then(() => {
     res.status(200)
@@ -103,7 +107,8 @@ const updateLandlord = (req, res, next) => {
 
 const deleteLandlord = (req, res, next) => {
   userId = Number(req.params.id)
-  db.result(`DELETE FROM landlords WHERE id=$1`, userId)
+  db.result(`DELETE FROM users WHERE id=${userId} AND user_type = 'landlord'
+`, userId)
     .then(result => {
       res.status(200)
          .json({
