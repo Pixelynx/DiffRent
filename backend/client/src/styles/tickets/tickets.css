@@ -12,8 +12,19 @@
 }
 
 .tickets-window {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
   align-self: center;
   width: 900px;
   height: 500px;
   background-color: var(--dark-purple);
+}
+
+.tickets-window-info {
+  height: 300px;
+  width: 150px;
+  background-color: #fff;
+  /* background-color: var(--dark-purple); */
 }

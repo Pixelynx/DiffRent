@@ -45,7 +45,11 @@ class Tickets extends Component {
     const { ticketsUnresolved, ticketModalOpen } = this.state
     if(ticketsUnresolved && ticketModalOpen) {
       let showTickets = ticketsUnresolved.map(ticket => {
-          return <li>{ticket.subject}</li>
+          return(
+            <ul className='tickets-window-info'>
+              <li>{ticket.subject}</li>
+            </ul>
+        )
       })
       return showTickets
     }
@@ -59,9 +63,7 @@ class Tickets extends Component {
         <>
           <div onClick={this.handleModalOpen} className='tickets-container'>
             <div className='tickets-window'>
-              <ul>
               {this.displayUnresolvedTickets()}
-              </ul>
             </div>
           </div>
         </>
