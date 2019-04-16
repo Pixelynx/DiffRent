@@ -6,7 +6,6 @@ const helpers = require("./helpers");
 passport.use(
   new LocalStrategy({passReqToCallback: true},
     (req, username, password, done) => {
-    console.log(req.originalUrl)
     if(req.originalUrl === "/tenants/login")
       { return db.one("SELECT * FROM users WHERE email = ${email} AND user_type='tenant'", {
         email: username

@@ -8,6 +8,7 @@ const passport = require("./auth/local");
 
 var indexRouter = require('./routes/index');
 
+const users = require('./routes/users.js')
 const landlords = require('./routes/landlord.js')
 const tenants = require('./routes/tenants.js')
 const tickets = require('./routes/tickets.js')
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
+app.use('/users', users);
 app.use('/landlords', landlords);
 app.use('/tenants', tenants);
 app.use('/tickets', tickets);
