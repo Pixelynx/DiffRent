@@ -18,7 +18,7 @@ CREATE TABLE users(
 CREATE TABLE apartments(
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
-    address VARCHAR NOT NULL,
+    address VARCHAR NOT NULL, 
     user_id INT NOT NULL REFERENCES users(id)
 );
 
