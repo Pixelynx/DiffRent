@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   checkAuthenticateStatus = () => {
-    axios.post("/landlords/isLoggedIn")
+    axios.post("/users/isLoggedIn")
     .then(user => {
       if (user.data.username === Auth.getToken()) {
         this.setState({
@@ -42,7 +42,7 @@ class App extends Component {
 
   logoutUser = () => {
     axios
-      .post("/landlords/logout")
+      .post("/users/logout")
       .then(() => {
         Auth.deauthenticateUser();
       })
