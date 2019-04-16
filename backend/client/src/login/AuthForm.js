@@ -8,8 +8,7 @@ import Form from "./Form";
 class AuthForm extends Component {
   state = {
     username: "",
-    password: "", 
-    type: ''
+    password: ""
   };
 
   handleChange = e => {
@@ -56,12 +55,15 @@ class AuthForm extends Component {
     // debugger;
     e.preventDefault();
     const { username, password } = this.state;
+    const { type } = this.props
 
     if (e.target[2].value === 'landlord')
       { return axios
         .post("/landlords/login", { username, password })
         .then((res) => {
-          debugger
+          type(res.data)
+      })
+        .then(() => {
           Auth.authenticateUser(username)
         })
         .then(() => {
@@ -77,9 +79,7 @@ class AuthForm extends Component {
       { return axios
         .post("/tenants/login", { username, password })
         .then((res) => {
-          this.setState({
-            type: res.data.user_type
-          })
+            type(res.data)
         })
         .then(() => {
           Auth.authenticateUser(username)
@@ -182,4 +182,4 @@ class AuthForm extends Component {
   }
 }
 
-export default withRouter(AuthForm);
+export default AuthForm;

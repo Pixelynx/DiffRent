@@ -10,11 +10,14 @@ import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
 import PrivateRoute from "./utils/AuthRouting";
 import './styles/index.css';
+import { type } from 'os';
 
 class App extends Component {
   state = {
     isLoggedIn: false,
-    username: ""
+    id: '',
+    username: '',
+    type: ''
   };
 
   componentDidMount() {
@@ -28,7 +31,7 @@ class App extends Component {
       if (user.data.username === Auth.getToken()) {
         this.setState({
           isLoggedIn: Auth.isUserAuthenticated(),
-          username: Auth.getToken()
+          username: Auth.getToken(),
         });
       } else {
         if (user.data.username) {
@@ -39,6 +42,15 @@ class App extends Component {
       }
     });
   };
+
+  type = (text) => {
+    debugger
+    this.setState({
+      id: text.id,
+      type: text.user_type
+    })
+  }
+
 
   logoutUser = () => {
     axios
@@ -53,8 +65,8 @@ class App extends Component {
 
 
   render() {
-    const { isLoggedIn } = this.state;
-
+    const { isLoggedIn, type } = this.state;
+    console.log(type)
     let logoutButton = isLoggedIn ? <button onClick={this.logoutUser}>Logout</button> : null;
     return (
       <div className="App">
@@ -65,6 +77,7 @@ class App extends Component {
             <Route path="/landlords/login" render={() => {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
+                    type={this.type}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}
@@ -72,6 +85,7 @@ class App extends Component {
             <Route path="/landlords/register" render={() => {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
+                    type={this.type}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}
@@ -79,6 +93,7 @@ class App extends Component {
             <Route path="/tenants/login" render={() => {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
+                    type={this.type}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}
@@ -86,6 +101,7 @@ class App extends Component {
             <Route path="/tenants/register" render={() => {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
+                    type={this.type}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}
