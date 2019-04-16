@@ -19,7 +19,7 @@ CREATE TABLE apartments(
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
     address VARCHAR NOT NULL,
-    landlord_id IN NOT NULL REFERENCES users(id) ON DELETE SET NULL
+    landlord_id IN NOT NULL REFERENCES users(id) ON DELETE SET NULL,
     tenant_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL
 );
 
