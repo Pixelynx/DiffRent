@@ -1,4 +1,9 @@
-.tickets-container {
+@font-face {
+  font-family: 'Zillah';
+  src: url('../../fonts/zillah/ZILLM.ttf');
+}
+
+.modal-container {
   /* margin: 0; */
   display: flex;
   position: absolute;
@@ -11,6 +16,7 @@
   background-color: var(--modal-container);
 }
 
+
 .ticket-window-container {
   display: flex;
   align-items: center;
@@ -18,11 +24,12 @@
   align-self: center;
   width: 900px;
   height: 500px;
-  background-color: var(--dark-purple);
+  background-color: var(--dark-blue);
   perspective: 1000;
 }
 
 .ticket-window {
+  display: flex;
   transition: 0.6s;
   transform-style: preserve-3d;
   position: relative;
@@ -33,11 +40,12 @@
 }
 
 .ticket-front, .ticket-back {
+  padding: 0;
   backface-visibility: hidden;
   justify-self: center;
   height: 300px;
-  width: 150px;
-  background-color: #71EEBA;
+  width: 200px;
+  background-color: var(--light-purple);
   list-style: none;
 }
 
