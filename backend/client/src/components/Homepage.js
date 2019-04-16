@@ -9,8 +9,8 @@ class Homepage extends Component{
         return(
             <>
                 <h1>DiffRent</h1>
-                <a href='/tenant/login'><button>Tenant</button></a>
-                <a href='/landlord/login'><button>Landlord</button></a>
+                <a href='/tenants/login'><button>Tenant</button></a>
+                <a href='/landlords/login'><button>Landlord</button></a>
             </>
         )
     }

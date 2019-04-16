@@ -3,6 +3,8 @@ CREATE DATABASE diffrent;
 
 \c diffrent;
 
+CREATE TYPE userAcc as ENUM('landlord', 'tenant');
+
 CREATE TABLE landlords (
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
@@ -44,8 +46,7 @@ CREATE TABLE messages(
     landlord_id INT NOT NULL REFERENCES landlords(id),
     tenant_id INT NOT NULL REFERENCES tenants(id),
     body TEXT NOT NULL,
-    message_date DATE,
-    message_time TIME
+    message_date DATE
 );
 
 INSERT INTO landlords(name, email, phone, dob, password_digest) VALUES ('James Bennett', 'jBennet@gmail.com', '(458)201-9297', '1992-01-01', 'abc123' ),

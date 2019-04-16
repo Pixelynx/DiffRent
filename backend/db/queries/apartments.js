@@ -5,7 +5,7 @@ const getAllApts = (req, res, next) => {
   .then(apartments => {
     res.status(200).json({
       status: "Success",
-      apartments, 
+      apartments,
       message: "Received all apartments"
     });
   })
@@ -36,8 +36,29 @@ const addApt = (req, res, next) => {
   .catch(err => next(err));
 }
 
+const getLandlordByApt = (req, res, next) => {
+  aptId = Number(req.params.id)
+  db.one(`SELECT landlords.id, landlords.name, landlords.email, landlords.phone, landlords. dob FROM apartments
+      JOIN landlords
+      ON apartments.landlord_id = landlords.id
+      WHERE apartments.id=$1`, aptId)
+  .then(apartment => {
+    res.status(200)
+      .json({
+        status: "Success",
+        apartment,
+        message: "Receive Landlords info"
+      })
+  })
+  .catch(err => {
+    console.log('error:', err)
+    next(err)
+  })
+}
+
 module.exports = {
   getAllApts,
   getSingleApt,
-  addApt
+  addApt,
+  getLandlordByApt
 }

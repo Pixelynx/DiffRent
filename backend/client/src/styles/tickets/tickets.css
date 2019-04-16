@@ -1,13 +1,31 @@
 .tickets-container {
+  /* margin: 0; */
   display: flex;
+  position: absolute;
   justify-content: center;
-  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
   height: 100vh;
+  width: 100vw;
   background-color: var(--modal-container);
 }
 
 .tickets-window {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  align-self: center;
   width: 900px;
   height: 500px;
-  background-color: var(--light-purple);
+  background-color: var(--dark-purple);
+}
+
+.tickets-window-info {
+  justify-self: center;
+  height: 300px;
+  width: 150px;
+  background-color: #71EEBA;
+  list-style: none;
 }

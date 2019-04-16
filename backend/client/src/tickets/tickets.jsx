@@ -32,7 +32,7 @@ class Tickets extends Component {
   handleSetState = () => {
     axios.get(`/tickets/${this.state.apt}`)
     .then(res => {
-      this.setState({ ticketsResolved: res.data.data})
+      this.setState({ ticketsUnresolved: res.data.data})
     })
   }
 
@@ -45,7 +45,11 @@ class Tickets extends Component {
     const { ticketsUnresolved, ticketModalOpen } = this.state
     if(ticketsUnresolved && ticketModalOpen) {
       let showTickets = ticketsUnresolved.map(ticket => {
-          return <li>{ticket.subject}</li>
+          return(
+            <ul className='tickets-window-info'>
+              <li>{ticket.subject}</li>
+            </ul>
+        )
       })
       return showTickets
     }
@@ -53,12 +57,24 @@ class Tickets extends Component {
 
   render() {
     console.log(this.state)
+
+    if(this.state.ticketModalOpen) {
+      return(
+        <>
+          <div onClick={this.handleModalOpen} className='tickets-container'>
+            <div className='tickets-window'>
+              {this.displayUnresolvedTickets()}
+            </div>
+          </div>
+        </>
+      )
+    }
+
     return(
       <>
       <button onClick={this.handleModalOpen}>Tickets</button>
-      {this.state.ticketModalOpen ?
-        <TenantTicket
-          displayUnresolvedTickets={this.displayUnresolvedTickets}/> : null }
+
+
       </>
     )
   }
