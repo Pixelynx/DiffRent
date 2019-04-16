@@ -42,16 +42,26 @@ class Tickets extends Component {
   }
 
   displayUnresolvedTickets = () => {
+    // need a better way to
     const { ticketsUnresolved, ticketModalOpen } = this.state
     if(ticketsUnresolved && ticketModalOpen) {
       let showTickets = ticketsUnresolved.map(ticket => {
         let date = ticket.appt_date
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
+        // let appointment = new Date(`apptDate ${ticket.appt_time}`)
           return(
-            <ul className='tickets-window-info'>
-              <li className='ticket-item' id='ticket-subject'>Issue: {ticket.subject}</li>
-              <li className='ticket-item' id='ticket-appt'>Appointment: {apptDate}</li>
-            </ul>
+            <>
+            <div className='ticket-window'>
+              <ul className='ticket-front'>
+                <li className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</li>
+                <li className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</li>
+              </ul>
+              <ul className='ticket-back'>
+                <li className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</li>
+                <li className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</li>
+              </ul>
+            </div>
+            </>
         )
       })
       return showTickets
@@ -65,7 +75,7 @@ class Tickets extends Component {
       return(
         <>
           <div onClick={this.handleModalOpen} className='tickets-container'>
-            <div className='tickets-window'>
+            <div className='ticket-window-container'>
               {this.displayUnresolvedTickets()}
             </div>
           </div>
