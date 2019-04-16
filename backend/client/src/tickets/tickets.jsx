@@ -50,7 +50,7 @@ class Tickets extends Component {
   }
 
   displayUnresolvedTickets = () => {
-    // need a better way to
+    // need to change up ticket resolve -- append resolve to tenants and landlord tickets
     const { ticketsUnresolved, ticketsResolved, ticketModalOpen } = this.state
     let status = 'RESOLVE';
     if(ticketsUnresolved || ticketsResolved && ticketModalOpen) {
