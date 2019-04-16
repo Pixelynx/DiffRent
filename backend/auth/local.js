@@ -11,7 +11,7 @@ passport.use(
         email: username
       })
       .then(user => {
-        console.log(user)
+        // console.log(user)
         if (!helpers.comparePass(password, user.password_digest)) {
           // console.log('FAILED AT PASSWORD')
           return done(null, false);
@@ -29,7 +29,7 @@ passport.use(
       email: username
     })
     .then(user => {
-      console.log(user)
+      // console.log(user)
       if (!helpers.comparePass(password, user.password_digest)) {
         // console.log('FAILED AT PASSWORD')
         return done(null, false);
