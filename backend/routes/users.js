@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const passport = require('../auth/local');
+const { loginRequired } = require("../auth/helpers");
+const queries = require('../db/queries/users.js');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.post("/isLoggedIn", queries.isLoggedIn);
+router.post("/logout", loginRequired, queries.logoutUser);
 
 module.exports = router;
