@@ -36,30 +36,41 @@ class Tickets extends Component {
     })
   }
 
+  // hacky fix to get the modal to ONLY close when the outer div is clicked
   handleModalOpen = (e) => {
     const currentState = this.state.ticketModalOpen
-    this.setState({ ticketModalOpen: !currentState })
+    if(e.target.className === 'modal-container' || e.target.className === 'tickets-btn') {
+      this.setState({ ticketModalOpen: !currentState })
+    }
+  }
+
+  tenantHandleStatus = (e) => {
+    let currentState = this.state.tenantMarkedResolved;
+    this.setState({ tenantMarkedResolved: !currentState })
   }
 
   displayUnresolvedTickets = () => {
     // need a better way to
-    const { ticketsUnresolved, ticketModalOpen } = this.state
-    if(ticketsUnresolved && ticketModalOpen) {
+    const { ticketsUnresolved, ticketsResolved, ticketModalOpen } = this.state
+    let status = 'RESOLVED';
+    if(ticketsUnresolved || ticketsResolved && ticketModalOpen) {
       let showTickets = ticketsUnresolved.map(ticket => {
         let date = ticket.appt_date
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
-        // let appointment = new Date(`apptDate ${ticket.appt_time}`)
+            if(ticket.status) status = 'UNRESOLVED';
           return(
             <>
             <div className='ticket-window'>
               <ul className='ticket-front'>
                 <li className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</li>
                 <li className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</li>
+                <li>{status}</li>
               </ul>
               <ul className='ticket-back'>
                 <li className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</li>
                 <li className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</li>
                 <li className='ticket-item' id='ticket-desc'>Description: {ticket.body}</li>
+                <button onClick={this.tenantHandleStatus} className='status-btn'>{status}</button>
               </ul>
             </div>
             </>
@@ -75,7 +86,7 @@ class Tickets extends Component {
     if(this.state.ticketModalOpen) {
       return(
         <>
-          <div onClick={this.handleModalOpen} className='tickets-container'>
+          <div onClick={this.handleModalOpen} className='modal-container'>
             <div className='ticket-window-container'>
               {this.displayUnresolvedTickets()}
             </div>
@@ -83,12 +94,9 @@ class Tickets extends Component {
         </>
       )
     }
-
     return(
       <>
-      <button onClick={this.handleModalOpen}>Tickets</button>
-
-
+      <button className='tickets-btn' onClick={this.handleModalOpen}>Tickets</button>
       </>
     )
   }
