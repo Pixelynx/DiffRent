@@ -60,7 +60,6 @@ class Tickets extends Component {
                 <li className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</li>
                 <li className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</li>
                 <li className='ticket-item' id='ticket-desc'>Description: {ticket.body}</li>
-
               </ul>
             </div>
             </>
