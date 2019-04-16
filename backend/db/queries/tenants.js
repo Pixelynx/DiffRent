@@ -101,21 +101,9 @@ const deleteTanant = (req, res, next) => {
     })
 }
 
-const logoutUser = (req, res, next) => {
-  req.logout();
-  res.status(200).send("log out success");
-}
 
 const loginUser = (req, res) => {
 res.json(req.user);
-}
-
-const isLoggedIn = (req, res) => {
-  if (req.user) {
-      res.json({ username: req.user });
-  } else {
-      res.json({ username: null });
-  }
 }
 
 module.exports = {
@@ -124,7 +112,5 @@ module.exports = {
   addNewTenant: addNewTenant,
   updateTanant: updateTanant,
   deleteTanant: deleteTanant,
-  logoutUser: logoutUser,
-  loginUser: loginUser,
-  isLoggedIn: isLoggedIn
+  loginUser: loginUser
 }

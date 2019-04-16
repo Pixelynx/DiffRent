@@ -13,8 +13,7 @@ router.delete('/:id', queries.deleteLandlord);
 router.put('/:id', queries.updateLandlord);
 
 router.post("/login", passport.authenticate("local", {}), queries.loginUser);
-router.post("/isLoggedIn", queries.isLoggedIn);
-router.post("/logout", loginRequired, queries.logoutUser);
+
 
 
 module.exports = router;
