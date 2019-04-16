@@ -19,7 +19,7 @@
   width: 900px;
   height: 500px;
   background-color: var(--dark-purple);
-
+  perspective: 1000;
 }
 
 .ticket-window {
@@ -39,6 +39,10 @@
   width: 150px;
   background-color: #71EEBA;
   list-style: none;
+}
+
+.ticket-front {
+  position: absolute;
 }
 
 .ticket-back {
