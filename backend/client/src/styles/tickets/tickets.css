@@ -43,6 +43,7 @@
 
 .ticket-back {
   transform: rotateY(180deg);
+  color: red;
 }
 
 
