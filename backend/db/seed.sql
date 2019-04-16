@@ -19,12 +19,12 @@ CREATE TABLE apartments(
     id SERIAL PRIMARY KEY,
     name VARCHAR NOT NULL,
     address VARCHAR NOT NULL,
-    user_id INT REFERENCES users(id)
+    user_id INT NOT NULL REFERENCES users(id)
 );
 
 CREATE TABLE tickets(
     id SERIAL PRIMARY KEY,
-    apartment_id INT REFERENCES apartments(id),
+    apartment_id INT NOT NULL REFERENCES apartments(id),
     subject VARCHAR NOT NULL,
     body TEXT NOT NULL,
     status BIT,
@@ -34,8 +34,8 @@ CREATE TABLE tickets(
 
 CREATE TABLE messages(
     id SERIAL PRIMARY KEY,
-    landlord_id INT REFERENCES users(id),
-    tenant_id INT REFERENCES users(id),
+    landlord_id INT NOT NULL REFERENCES users(id),
+    tenant_id INT NOT NULL REFERENCES users(id),
     body TEXT NOT NULL,
     message_date DATE
 );
