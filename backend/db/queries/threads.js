@@ -34,9 +34,9 @@ const getAllMsgsInThread = (req, res, next) => {
   db.any("SELECT * FROM messages JOIN threads ON messages.threads_id = threads.id WHERE threads.id=$1", threadsId)
   .then(messages => {
     res.status(200).json({
-      status: "Success",
-      messages, 
-      message: "Received all messages for thread " + threadsId
+      status: "Success", 
+      message: "Received all messages for thread " + threadsId,
+      data: [...messages]
     });
   })
   .catch(err => {

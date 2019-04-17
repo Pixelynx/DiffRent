@@ -5,7 +5,7 @@ const addMsg = (req, res, next) => {
   db.none("INSERT INTO messages(owner_id, body, threads_id) VALUES(${owner_id}, ${body}, ${threads_id})", {
     owner_id: Number(req.body.owner_id),
     threads_id: Number(req.body.threads_id),
-    body: req.body
+    body: req.body.body
   })
   .then(() => {
     res.status(200).json({
