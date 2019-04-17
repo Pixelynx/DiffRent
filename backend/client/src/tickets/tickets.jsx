@@ -4,13 +4,6 @@ import TenantTicket from './tenantTickets/tenantTicket.jsx';
 import '../styles/colorScheme.css';
 import '../styles/tickets/tickets.css';
 
-// modal display of tickets
-// automatically set on open tickets
-// tickets will be displayed as cards
-  // front will display subject, and date of appointment (if applicable)
-// cards flip to show more info on hover
-  // back will display subject, date/time of appointment, and descr of problem
-
 class Tickets extends Component {
   constructor() {
     super()
@@ -44,6 +37,7 @@ class Tickets extends Component {
     }
   }
 
+  // needs to be adjused to identify whether it's a tenant or landlord logged in and update the state respectively
   tenantHandleStatus = (e) => {
     let currentState = this.state.tenantMarkedResolved;
     this.setState({ tenantMarkedResolved: !currentState })
@@ -81,7 +75,6 @@ class Tickets extends Component {
   }
 
   render() {
-    console.log(this.state)
 
     if(this.state.ticketModalOpen) {
       return(
