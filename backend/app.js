@@ -13,6 +13,7 @@ const landlords = require('./routes/landlord.js')
 const tenants = require('./routes/tenants.js')
 const tickets = require('./routes/tickets.js')
 const apartments = require('./routes/apartments.js')
+const threads = require('./routes/threads.js')
 const messages = require('./routes/messages.js')
 
 
@@ -45,6 +46,7 @@ app.use('/landlords', landlords);
 app.use('/tenants', tenants);
 app.use('/tickets', tickets);
 app.use('/apartments', apartments);
+app.use('/threads', threads);
 app.use('/messages', messages);
 
 // catch 404 and forward to error handler
