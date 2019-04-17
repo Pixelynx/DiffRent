@@ -23,7 +23,11 @@ class CreateTicketForm extends Component {
     return(
       <>
         <div onClick={this.handleModalOpen} className='form-modal-container'>
-          <input className='submit-ticket-btn' type='submit' value='Submit Ticket'/>
+          <form className='form-container'>
+            <input type='text' id='form-subject'/>
+            <input type='text' id='form-descr'/>
+            <input className='submit-ticket-btn' type='submit' value='Submit Ticket'/>
+          </form>
         </div>
 
       </>
