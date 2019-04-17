@@ -68,6 +68,7 @@ const Form = ({
 
   return (
     <React.Fragment>
+      {demoTenant}
       {path === "/landlords/login" ? landlordLogin : tenantLogin }
       <p>{isLoggedIn ? "Logged In!" : ""}</p>
     </React.Fragment>
