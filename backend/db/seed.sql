@@ -8,7 +8,7 @@ CREATE TYPE userAcc as ENUM('landlord', 'tenant');
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
-    email VARCHAR NOT NULL,
+    email VARCHAR NOT NULL UNIQUE,
     phone VARCHAR NOT NULL,
     dob DATE,
     password_digest VARCHAR NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE messages(
     owner_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL,
     threads_id INT REFERENCES threads(id),
     body TEXT NOT NULL,
-    message_date DATE
+    message_date TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 
