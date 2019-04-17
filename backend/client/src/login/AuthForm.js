@@ -52,7 +52,6 @@ class AuthForm extends Component {
   };
 
   loginUser = e => {
-    // debugger;
     e.preventDefault();
     const { username, password } = this.state;
     const { getUserInfo } = this.props
@@ -119,7 +118,6 @@ class AuthForm extends Component {
         });
   }
   demoLandordLogin = (e) => {
-    debugger
     e.preventDefault();
     let username = 'jBennet@gmail.com';
     let password = 'abc'

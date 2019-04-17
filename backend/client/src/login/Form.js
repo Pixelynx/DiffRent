@@ -66,16 +66,18 @@ const Form = ({
                 <button type="submit">Demo Tenant Login</button>
               </form>
             </>;
+
   let demoLandlord = <>
-              <form onSubmit={demoLandordLogin}>
-                <button type="submit">Demo Landlord Login</button>
-              </form>
-            </>;
+  <form onSubmit={demoLandordLogin}>
+    <button type="submit">Demo Landlord Login</button>
+  </form>
+</>;
+
+  let demo = <>{path === "/tenants/login" ? demoTenant : demoLandlord}</>
 
   return (
     <React.Fragment>
-      {demoTenant}
-      {demoLandlord}
+      {demo}
       {path === "/landlords/login" ? landlordLogin : tenantLogin }
       <p>{isLoggedIn ? "Logged In!" : ""}</p>
     </React.Fragment>
