@@ -5,13 +5,28 @@ import '../../styles/tickets/createTicketForm.css';
 class CreateTicketForm extends Component {
   state = {
     formSubmitted: false,
-    formModalOpen: false
+    formModalOpen: true
+  }
+
+  handleModalOpen = (e) => {
+    e.preventDefault();
+    const currentState = this.state.formModalOpen
+    if(e.target.className === 'form-modal-container' || e.target.className === 'submit-ticket-btn') {
+      this.setState({ formModalOpen: !currentState })
+    }
+
   }
 
   render() {
-    if(this.props.createTicket) {
+    console.log(this.state)
+    if(this.props.createTicket && this.state.formModalOpen) {
     return(
-      <div className='form-modal-container'></div>
+      <>
+        <div onClick={this.handleModalOpen} className='form-modal-container'>
+          <input className='submit-ticket-btn' type='submit' value='Submit Ticket'/>
+        </div>
+
+      </>
     )
   } else return null
   }
