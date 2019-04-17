@@ -10,7 +10,6 @@ import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
 import PrivateRoute from "./utils/AuthRouting";
 import './styles/index.css';
-import { type } from 'os';
 
 class App extends Component {
   state = {
@@ -27,12 +26,14 @@ class App extends Component {
 
   checkAuthenticateStatus = () => {
     axios.post("/users/isLoggedIn")
-    .then(user => {
+    .then((user) => {
       if (user.data.username === Auth.getToken()) {
         this.setState({
           isLoggedIn: Auth.isUserAuthenticated(),
           username: Auth.getToken(),
-        });
+        })
+        // &&
+
       } else {
         if (user.data.username) {
           this.logoutUser();
@@ -42,6 +43,13 @@ class App extends Component {
       }
     });
   };
+
+  getUserInfo = () => {
+    axios.get('/users')
+    .then((res) => {
+      
+    })
+  }
 
   type = (text) => {
     debugger
