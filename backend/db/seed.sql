@@ -37,6 +37,7 @@ CREATE TABLE tickets(
 
 CREATE TABLE threads(
     id SERIAL PRIMARY KEY,
+    title TEXT,
     tenant_id INT REFERENCES users(id),
     landlord_id INT REFERENCES users(id)
 );
