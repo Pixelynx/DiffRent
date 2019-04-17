@@ -4,7 +4,6 @@
 }
 
 .modal-container {
-  /* margin: 0; */
   display: flex;
   position: absolute;
   justify-content: center;
