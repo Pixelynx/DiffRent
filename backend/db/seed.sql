@@ -43,8 +43,8 @@ CREATE TABLE threads(
 
 CREATE TABLE messages(
     id SERIAL PRIMARY KEY,
-    landlord_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL,
-    tenant_id INT REFERENCES users(id) ON DELETE SET NULL,
+    owner_id INT NOT NULL REFERENCES users(id) ON DELETE SET NULL,
+    threads_id INT REFERENCES threads(id),
     body TEXT NOT NULL,
     message_date DATE
 );
