@@ -1,5 +1,5 @@
 const db = require('../../db/index.js');
-import {addMsg} from '../queries/messages'
+const {addMsg} = require('./messages');
 
 // addThread - Create a thread 
 // getAllMsgsInThread - Gets all the messages for one thread
