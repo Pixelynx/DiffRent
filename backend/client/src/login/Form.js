@@ -10,7 +10,7 @@ const Form = ({
   loginUser,
   registerUser,
   handleChange,
-  type
+  demoLogin
 }) => {
   const path = match.path;
 
@@ -57,6 +57,12 @@ const Form = ({
                 />
                 <input type="hidden" readOnly={true} value='tenant' />
                 <button type="submit">Submit</button>
+              </form>
+              {path === "/tenants/login" ? demoTenant : null}
+            </>;
+  let demoTenant = <>
+              <form onSubmit={demoLogin}>
+                <button type="submit">Demo Tenant Login</button>
               </form>
             </>;
 

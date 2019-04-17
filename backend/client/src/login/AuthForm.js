@@ -96,6 +96,29 @@ class AuthForm extends Component {
       }
   };
 
+  demoLogin = (e) => {
+    e.preventDefault();
+    let username = 'zGoulding@gmail.com';
+    let password = 'abc'
+    axios
+        .post("/tenants/login", { username, password })
+        .then((res) => {
+            this.props.getUserInfo(res.data.email)
+        })
+        .then(() => {
+          Auth.authenticateUser(username)
+        })
+        .then(() => {
+          this.props.checkAuthenticateStatus();
+        })
+        .then(() => {
+          this.setState({
+            username: "",
+            password: ""
+          });
+        });
+  }
+
   render() {
     const { username, password } = this.state;
     const { isLoggedIn } = this.props;
@@ -110,6 +133,7 @@ class AuthForm extends Component {
                 username={username}
                 password={password}
                 isLoggedIn={isLoggedIn}
+                demoLogin={this.demoLogin}
                 loginUser={this.loginUser}
                 registerUser={this.registerUser}
                 handleChange={this.handleChange}
