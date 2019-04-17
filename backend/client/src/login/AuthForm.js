@@ -55,13 +55,13 @@ class AuthForm extends Component {
     // debugger;
     e.preventDefault();
     const { username, password } = this.state;
-    const { type } = this.props
+    const { getUserInfo } = this.props
 
     if (e.target[2].value === 'landlord')
       { return axios
         .post("/landlords/login", { username, password })
         .then((res) => {
-          type(res.data)
+          getUserInfo(res.data.email)
       })
         .then(() => {
           Auth.authenticateUser(username)
@@ -79,7 +79,7 @@ class AuthForm extends Component {
       { return axios
         .post("/tenants/login", { username, password })
         .then((res) => {
-            type(res.data)
+            getUserInfo(res.data.email)
         })
         .then(() => {
           Auth.authenticateUser(username)
