@@ -10,7 +10,8 @@ const Form = ({
   loginUser,
   registerUser,
   handleChange,
-  demoLogin
+  demoLogin,
+  demoLandlordLogin
 }) => {
   const path = match.path;
 
@@ -65,10 +66,16 @@ const Form = ({
                 <button type="submit">Demo Tenant Login</button>
               </form>
             </>;
+  let demoLandlord = <>
+              <form onSubmit={demoLandlordLogin}>
+                <button type="submit">Demo Landlord Login</button>
+              </form>
+            </>;
 
   return (
     <React.Fragment>
       {demoTenant}
+      {demoLandlord}
       {path === "/landlords/login" ? landlordLogin : tenantLogin }
       <p>{isLoggedIn ? "Logged In!" : ""}</p>
     </React.Fragment>
