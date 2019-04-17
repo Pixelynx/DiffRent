@@ -10,6 +10,7 @@ import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
 import PrivateRoute from "./utils/AuthRouting";
 import './styles/index.css';
+import { isNull } from 'util';
 
 class App extends Component {
   state = {
@@ -26,12 +27,17 @@ class App extends Component {
     axios.post("/users/isLoggedIn")
     .then((user) => {
       if (user.data.username === Auth.getToken()) {
+        if (user.data.username !== null) 
+          {return this.setState({
+              isLoggedIn: Auth.isUserAuthenticated(),
+            })
+            &
+            this.getUserInfo(user.data.username)  
+          }
         this.setState({
           isLoggedIn: Auth.isUserAuthenticated(),
           username: Auth.getToken(),
         })
-        &&
-        this.getUserInfo(user.data.username);
       } else {
         if (user.data.username) {
           this.logoutUser();
@@ -43,6 +49,7 @@ class App extends Component {
   };
 
   getUserInfo = (email) => {
+    debugger
     axios.get('/users/'+ email)
     .then((res) => {
       this.setState({

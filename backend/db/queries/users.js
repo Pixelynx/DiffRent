@@ -3,7 +3,7 @@ const db = require('../../db/index.js');
 
 const getSingleUser = (req, res, next) => {
     email= req.params.id;
-  db.one("SELECT * FROM users WHERE users.email = $1", email)
+  db.one("SELECT id, name, email, phone, user_type FROM users WHERE users.email = $1", email)
     .then(data => {
       res.status(200)
          .json({
