@@ -14,9 +14,7 @@ import './styles/index.css';
 class App extends Component {
   state = {
     isLoggedIn: false,
-    id: '',
-    username: '',
-    type: ''
+    user: ''
   };
 
   componentDidMount() {
@@ -32,8 +30,8 @@ class App extends Component {
           isLoggedIn: Auth.isUserAuthenticated(),
           username: Auth.getToken(),
         })
-        // &&
-
+        &&
+        this.getUserInfo(user.data.username);
       } else {
         if (user.data.username) {
           this.logoutUser();
@@ -44,18 +42,21 @@ class App extends Component {
     });
   };
 
-  getUserInfo = () => {
-    axios.get('/users')
+  getUserInfo = (email) => {
+    axios.get('/users/'+ email)
     .then((res) => {
-      
+      this.setState({
+        user: res.data.data
+      })
     })
   }
 
-  type = (text) => {
-    debugger
-    this.setState({
-      id: text.id,
-      type: text.user_type
+  getUserAptInfo = (email) => {
+    axios.get('/users/apt/'+ email)
+    .then((res) => {
+      this.setState({
+        user: res.data
+      })
     })
   }
 
@@ -73,8 +74,7 @@ class App extends Component {
 
 
   render() {
-    const { isLoggedIn, type } = this.state;
-    console.log(type)
+    const { isLoggedIn } = this.state;
     let logoutButton = isLoggedIn ? <button onClick={this.logoutUser}>Logout</button> : null;
     return (
       <div className="App">
@@ -85,7 +85,7 @@ class App extends Component {
             <Route path="/landlords/login" render={() => {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
-                    type={this.type}
+                    getUserInfo={this.getUserInfo}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}
@@ -93,7 +93,7 @@ class App extends Component {
             <Route path="/landlords/register" render={() => {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
-                    type={this.type}
+                    getUserInfo={this.getUserInfo}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}
@@ -101,7 +101,7 @@ class App extends Component {
             <Route path="/tenants/login" render={() => {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
-                    type={this.type}
+                    getUserInfo={this.getUserInfo}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}
@@ -109,7 +109,7 @@ class App extends Component {
             <Route path="/tenants/register" render={() => {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
-                    type={this.type}
+                    getUserInfo={this.getUserInfo}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}
