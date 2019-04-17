@@ -11,7 +11,7 @@ const Form = ({
   registerUser,
   handleChange,
   demoLogin,
-  demoLandlordLogin
+  demoLandordLogin
 }) => {
   const path = match.path;
 
@@ -67,7 +67,7 @@ const Form = ({
               </form>
             </>;
   let demoLandlord = <>
-              <form onSubmit={demoLandlordLogin}>
+              <form onSubmit={demoLandordLogin}>
                 <button type="submit">Demo Landlord Login</button>
               </form>
             </>;

@@ -119,6 +119,7 @@ class AuthForm extends Component {
         });
   }
   demoLandordLogin = (e) => {
+    debugger
     e.preventDefault();
     let username = 'jBennet@gmail.com';
     let password = 'abc'
@@ -133,12 +134,6 @@ class AuthForm extends Component {
         .then(() => {
           this.props.checkAuthenticateStatus();
         })
-        .then(() => {
-          this.setState({
-            username: "",
-            password: ""
-          });
-        });
   }
 
   render() {
