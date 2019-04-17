@@ -118,6 +118,28 @@ class AuthForm extends Component {
           });
         });
   }
+  demoLandordLogin = (e) => {
+    e.preventDefault();
+    let username = 'jBennet@gmail.com';
+    let password = 'abc'
+    axios
+        .post("/landlords/login", { username, password })
+        .then((res) => {
+            this.props.getUserInfo(res.data.email)
+        })
+        .then(() => {
+          Auth.authenticateUser(username)
+        })
+        .then(() => {
+          this.props.checkAuthenticateStatus();
+        })
+        .then(() => {
+          this.setState({
+            username: "",
+            password: ""
+          });
+        });
+  }
 
   render() {
     const { username, password } = this.state;
@@ -149,6 +171,7 @@ class AuthForm extends Component {
                 username={username}
                 password={password}
                 isLoggedIn={isLoggedIn}
+                demoLandordLogin={this.demoLandordLogin}
                 loginUser={this.loginUser}
                 registerUser={this.registerUser}
                 handleChange={this.handleChange}

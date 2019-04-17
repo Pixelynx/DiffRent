@@ -49,7 +49,6 @@ class App extends Component {
   };
 
   getUserInfo = (email) => {
-    debugger
     axios.get('/users/'+ email)
     .then((res) => {
       this.setState({
