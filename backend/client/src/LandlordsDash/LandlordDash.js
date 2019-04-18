@@ -63,8 +63,8 @@ class LandlordDash extends Component {
         tickets: res.data.data
       })
     })
-  } 
-
+  }
+ 
   render(){
     console.log(this.props)
      const {tenantInfo, tickets} = this.state;
