@@ -38,9 +38,9 @@ const addApt = (req, res, next) => {
 
 const getLandlordByApt = (req, res, next) => {
   aptId = Number(req.params.id)
-  db.one(`SELECT landlords.id, landlords.name, landlords.email, landlords.phone, landlords. dob FROM apartments
-      JOIN landlords
-      ON apartments.landlord_id = landlords.id
+  db.one(`SELECT users.id, users.name, users.email, users.phone, users.dob FROM apartments
+      JOIN users
+      ON apartments.landlord_id = users.id
       WHERE apartments.id=$1`, aptId)
   .then(apartment => {
     res.status(200)
