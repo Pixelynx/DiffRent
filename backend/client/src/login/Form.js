@@ -8,77 +8,47 @@ const Form = ({
   password,
   isLoggedIn,
   loginUser,
-  registerUser,
   handleChange,
-  demoLogin,
-  demoLandordLogin
-}) => {
+  demoLogin
+  }) => {
   const path = match.path;
 
-  let landlordLogin = <>
-              <h1> {path === "/landlords/login" ? "Landlord Login" : "Register"} </h1>
-              <form onSubmit={path === "/landlords/login" ? loginUser : registerUser}>
-                <input
-                  type="text"
-                  autoComplete='off'
-                  value={username}
-                  name="username"
-                  placeholder="username"
-                  onChange={handleChange}
-                />
-                <input
-                  type="password"
-                  value={password}
-                  name="password"
-                  placeholder="password"
-                  onChange={handleChange}
-                />
-                <input type="hidden" readOnly={true} value='landlord' />
-                <button type="submit">Submit</button>
-              </form>
-            </>;
+  let loginForm = <>
+                    <h1> {path === "/landlords/login" ? "Landlord Login" : "Tenant Login"} </h1>
+                    <form onSubmit={loginUser}>
+                      <input
+                        type="text"
+                        autoComplete='off'
+                        value={username}
+                        name="username"
+                        placeholder="username"
+                        onChange={handleChange}
+                      />
+                      <input
+                        type="password"
+                        value={password}
+                        name="password"
+                        placeholder="password"
+                        onChange={handleChange}
+                      />
+                      <input type="hidden" readOnly={true} value={path === "/landlords/login" ? "landlord" : "tenant"} />
+                      <button type="submit">Submit</button>
+                    </form>
 
-  let tenantLogin = <>
-              <h1> {path === "/tenants/login" ? "Tenant Login" : "Register"} </h1>
-              <form onSubmit={path === "/tenants/login" ? loginUser : registerUser}>
-                <input
-                  type="text"
-                  autoComplete='off'
-                  value={username}
-                  name="username"
-                  placeholder="username"
-                  onChange={handleChange}
-                />
-                <input
-                  type="password"
-                  value={password}
-                  name="password"
-                  placeholder="password"
-                  onChange={handleChange}
-                />
-                <input type="hidden" readOnly={true} value='tenant' />
-                <button type="submit">Submit</button>
-              </form>
-              {path === "/tenants/login" ? demoTenant : null}
-            </>;
-  let demoTenant = <>
-              <form onSubmit={demoLogin}>
-                <button type="submit">Demo Tenant Login</button>
-              </form>
-            </>;
-
-  let demoLandlord = <>
-  <form onSubmit={demoLandordLogin}>
-    <button type="submit">Demo Landlord Login</button>
-  </form>
-</>;
-
-  let demo = <>{path === "/tenants/login" ? demoTenant : demoLandlord}</>
+                    <form onSubmit={demoLogin}>
+                      <button type="submit">{path === "/landlords/login" ? "Demo Landlord Login" : "Demo Tenant Login"}</button>
+                    </form>
+                    {path === '/landlords/login' ? 'Not a landlord?' : 'Not a tenant?'}
+                    <a href={path === '/landlords/login' ? '/tenants/login' : '/landlords/login'}>
+                      <button>
+                        {path === '/landlords/login' ? 'Log in as Tenant' : 'Log in as Landlord'}
+                      </button>
+                    </a>
+                  </>
 
   return (
     <React.Fragment>
-      {demo}
-      {path === "/landlords/login" ? landlordLogin : tenantLogin }
+      {loginForm}
       <p>{isLoggedIn ? "Logged In!" : ""}</p>
     </React.Fragment>
   );

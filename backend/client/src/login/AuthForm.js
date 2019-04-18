@@ -97,10 +97,13 @@ class AuthForm extends Component {
 
   demoLogin = (e) => {
     e.preventDefault();
-    const { getUserAptInfo, getUserInfo, user } = this.props;
-    let username = 'zGoulding@gmail.com';
+    const { match, getUserAptInfo, getUserInfo, user } = this.props;
+    const path = match.path;
     let password = 'abc';
-    axios
+
+    if (path === '/tenants/login'){
+      let username = 'zGoulding@gmail.com'
+    return axios
         .post("/tenants/login", { username, password })
         .then((res) => {
             if(!user){
@@ -120,26 +123,23 @@ class AuthForm extends Component {
             password: ""
           });
         });
-  }
-  demoLandordLogin = (e) => {
-    e.preventDefault();
-    const { getUserAptInfo, getUserInfo, user } = this.props;
-    let username = 'jBennet@gmail.com';
-    let password = 'abc'
-    axios
-        .post("/landlords/login", { username, password })
-        .then((res) => {
-            if(!user){
-              return getUserAptInfo(res.data.email)} else if (!user) {
-                return getUserInfo(res.data.email)
-              }
-        })
-        .then(() => {
-          Auth.authenticateUser(username)
-        })
-        .then(() => {
-          this.props.checkAuthenticateStatus();
-        })
+    } else if (path === '/landlords/login'){
+      let username = 'jBennet@gmail.com' 
+       return axios
+      .post("/landlords/login", { username, password })
+      .then((res) => {
+          if(!user){
+            return getUserAptInfo(res.data.email)} else if (!user) {
+              return getUserInfo(res.data.email)
+            }
+      })
+      .then(() => {
+        Auth.authenticateUser(username)
+      })
+      .then(() => {
+        this.props.checkAuthenticateStatus();
+      })
+    }
   }
 
   render() {
@@ -172,7 +172,7 @@ class AuthForm extends Component {
                 username={username}
                 password={password}
                 isLoggedIn={isLoggedIn}
-                demoLandordLogin={this.demoLandordLogin}
+                demoLogin={this.demoLogin}
                 loginUser={this.loginUser}
                 registerUser={this.registerUser}
                 handleChange={this.handleChange}
@@ -210,24 +210,9 @@ class AuthForm extends Component {
             );
           }}
         />
-        <Route
-          exact path="/auth/register"
-          render={() => {
-            return (
-              <Form
-                username={username}
-                password={password}
-                isLoggedIn={isLoggedIn}
-                loginUser={this.loginUser}
-                registerUser={this.registerUser}
-                handleChange={this.handleChange}
-              />
-            );
-          }}
-        />
       </Switch>
     );
   }
 }
 
-export default AuthForm;
+export default withRouter(AuthForm);
