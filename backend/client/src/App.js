@@ -11,7 +11,6 @@ import Homepage from './components/Homepage';
 import Thread from './inbox/thread';
 import PrivateRoute from "./utils/AuthRouting";
 import './styles/index.css';
-import { isNull } from 'util';
 
 class App extends Component {
   state = {
@@ -28,17 +27,13 @@ class App extends Component {
     axios.post("/users/isLoggedIn")
     .then((user) => {
       if (user.data.username === Auth.getToken()) {
-        if (user.data.username !== null) 
+        if (user.data.username !== null)
           {return this.setState({
-              isLoggedIn: Auth.isUserAuthenticated(),
-            })
+            isLoggedIn: Auth.isUserAuthenticated(),
+          })
             &
-            this.getUserInfo(user.data.username)  
+            this.getUserInfo2(user.data.username)  
           }
-        this.setState({
-          isLoggedIn: Auth.isUserAuthenticated(),
-          username: Auth.getToken(),
-        })
       } else {
         if (user.data.username) {
           this.logoutUser();
@@ -62,9 +57,16 @@ class App extends Component {
     axios.get('/users/apt/'+ email)
     .then((res) => {
       this.setState({
-        user: res.data
+        user: res.data.data
       })
     })
+  }
+
+  getUserInfo2 = (user) => {
+    if(!this.state.user){
+      return this.getUserAptInfo(user)} else if (!this.state.user) {
+        return this.getUserInfo(user)
+      } 
   }
 
 
@@ -76,7 +78,8 @@ class App extends Component {
       })
       .then(() => {
         this.setState({
-          user: ''
+          user: '',
+          isLoggedIn: false
         })
       })
       .then(() => {
@@ -111,6 +114,8 @@ class App extends Component {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
                     getUserInfo={this.getUserInfo}
+                    getUserAptInfo={this.getUserAptInfo}
+                    user={user}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}
@@ -119,6 +124,8 @@ class App extends Component {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
                     getUserInfo={this.getUserInfo}
+                    getUserAptInfo={this.getUserAptInfo}
+                    user={user}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}
@@ -127,6 +134,8 @@ class App extends Component {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
                     getUserInfo={this.getUserInfo}
+                    getUserAptInfo={this.getUserAptInfo}
+                    user={user}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}
@@ -135,6 +144,8 @@ class App extends Component {
                 return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
                     getUserInfo={this.getUserInfo}
+                    getUserAptInfo={this.getUserAptInfo}
+                    user={user}
                     isLoggedIn={isLoggedIn}/>
                 );
               }}

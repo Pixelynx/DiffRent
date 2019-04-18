@@ -19,42 +19,42 @@ class AuthForm extends Component {
 
   
 
-  registerUser = async e => {
-    e.preventDefault();
-    const { username, password } = this.state;
+  // registerUser = async e => {
+  //   e.preventDefault();
+  //   const { username, password } = this.state;
 
-    await axios.post("/users/new", { username, password });
+  //   await axios.post("/users/new", { username, password });
 
-    Auth.authenticateUser(username);
+  //   Auth.authenticateUser(username);
 
-    await axios.post("/users/login", { username, password });
+  //   await axios.post("/users/login", { username, password });
 
-    await this.props.checkAuthenticateStatus();
+  //   await this.props.checkAuthenticateStatus();
 
-    this.setState({
-      username: "",
-      password: ""
-    });
-    // axios.post("/users/new", { username, password }).then(() => {
-    //   Auth.authenticateUser(username);
-    //   axios
-    //     .post("/users/login", { username, password })
-    //     .then(() => {
-    //       this.props.checkAuthenticateStatus();
-    //     })
-    //     .then(() => {
-    //       this.setState({
-    //         username: "",
-    //         password: ""
-    //       });
-    //     });
-    // });
-  };
+  //   this.setState({
+  //     username: "",
+  //     password: ""
+  //   });
+  //   axios.post("/users/new", { username, password }).then(() => {
+  //     Auth.authenticateUser(username);
+  //     axios
+  //       .post("/users/login", { username, password })
+  //       .then(() => {
+  //         this.props.checkAuthenticateStatus();
+  //       })
+  //       .then(() => {
+  //         this.setState({
+  //           username: "",
+  //           password: ""
+  //         });
+  //       });
+  //   });
+  // };
 
   loginUser = e => {
     e.preventDefault();
     const { username, password } = this.state;
-    const { getUserInfo } = this.props
+    const { getUserAptInfo, getUserInfo, user } = this.props;
 
     if (e.target[2].value === 'landlord')
       { return axios
@@ -97,12 +97,16 @@ class AuthForm extends Component {
 
   demoLogin = (e) => {
     e.preventDefault();
+    const { getUserAptInfo, getUserInfo, user } = this.props;
     let username = 'zGoulding@gmail.com';
-    let password = 'abc'
+    let password = 'abc';
     axios
         .post("/tenants/login", { username, password })
         .then((res) => {
-            this.props.getUserInfo(res.data.email)
+            if(!user){
+              return getUserAptInfo(res.data.email)} else if (!user) {
+                return getUserInfo(res.data.email)
+              }
         })
         .then(() => {
           Auth.authenticateUser(username)
@@ -119,12 +123,16 @@ class AuthForm extends Component {
   }
   demoLandordLogin = (e) => {
     e.preventDefault();
+    const { getUserAptInfo, getUserInfo, user } = this.props;
     let username = 'jBennet@gmail.com';
     let password = 'abc'
     axios
         .post("/landlords/login", { username, password })
         .then((res) => {
-            this.props.getUserInfo(res.data.email)
+            if(!user){
+              return getUserAptInfo(res.data.email)} else if (!user) {
+                return getUserInfo(res.data.email)
+              }
         })
         .then(() => {
           Auth.authenticateUser(username)
