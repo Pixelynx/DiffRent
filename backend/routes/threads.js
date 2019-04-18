@@ -9,6 +9,6 @@ const {
 
 router.post('/newthread/', addThread)
 router.get('/msgsinthread', getAllMsgsInThread)
-router.get('/threadsbyuser', getThreadsByUser)
+router.get('/:landlord_id/:tenant_id', getThreadsByUser)
 
 module.exports = router;

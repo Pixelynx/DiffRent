@@ -45,13 +45,16 @@ const getAllMsgsInThread = (req, res, next) => {
 };
 
 const getThreadsByUser = (req, res, next) => {
-  let userId = parseInt(req.params.id)
-  db.any("SELECT * FROM threads WHERE threads.tenant_id = $1 OR landlord_id = $1", userId)
+  let tenant_id = parseInt(req.params.tenant_id)
+  let landlord_id = parseInt(req.params.landlord_id)
+  console.log(req.params)
+  console.log(landlord_id, tenant_id)
+  db.any("SELECT * FROM threads WHERE threads.tenant_id = $1 OR landlord_id = $2", [tenant_id, landlord_id])
   .then(threads => {
     res.status(200).json({
       status: "Success",
       threads, 
-      message: "Received all threads for thread " + userId
+      message: "Received all threads for thread " 
     });
   })
   .catch(err => {
