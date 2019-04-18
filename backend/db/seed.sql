@@ -97,6 +97,9 @@ INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_lan
 INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(4, 'Window', 'Window lock not working', '0', '0', '0', '2019-05-08', '11:00 [AM]' );
 INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(5, 'Building key', 'Lost key for the entrance of the building', '0', '0', '1', '2019-05-09', '4:00 [PM]' );
 
+INSERT INTO threads(title, tenant_id, landlord_id) 
+VALUES('Will be on vacation', 11, 1), ('Quick question regarding heat', 12, 2);
+
 
 
 
