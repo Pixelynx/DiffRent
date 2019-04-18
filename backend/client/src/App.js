@@ -153,7 +153,16 @@ class App extends Component {
             <Route exact path='/landlord/:id' component={LandlordDash} />
             <Route exact path='/tenant/:id' component={TenantDash} />
             <Route exact path='/' component={Homepage} />
-            <Route exact path='/message' component={Thread} />
+            <Route exact path='/inbox' render={() => {
+              
+              return(
+                  <Thread 
+                    tenant_id={this.state.user.tenant_id} 
+                    landlord_id={this.state.user.landlord_id}
+                  />
+                )
+              }} 
+            />
           </Switch>
         </>
       </div>
