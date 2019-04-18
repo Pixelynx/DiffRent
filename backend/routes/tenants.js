@@ -15,3 +15,4 @@ router.post("/login", passport.authenticate("local", {}), queries.loginUser);
 
 
 module.exports = router;
+ 

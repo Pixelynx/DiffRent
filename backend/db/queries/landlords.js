@@ -125,7 +125,7 @@ const deleteLandlord = (req, res, next) => {
 const loginUser = (req, res) => {
 res.json(req.user);
 }
-
+ 
 module.exports = {
   getAllLandlords: getAllLandlords,
   getSingleLandlord: getSingleLandlord,
