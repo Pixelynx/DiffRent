@@ -1,12 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import ThreadList from './threadList';
+import '../styles/inbox/threads.css'
 
 class Thread extends React.Component {
   constructor() {
     super();
     this.state = {
-      threads: [] 
+      threads: [],
+      title_input: ''
     }
   }
 
@@ -17,12 +19,22 @@ class Thread extends React.Component {
       this.setState({threads: res.data.threads})
     })
   }
+
+  handleChange = (e) => {
+    this.setState({title_input: e.target.value})
+  }
+
   render(){
-    let threads = this.props.threads
-    console.log(this.props)
+    console.log(this.state)
     return(
       <React.Fragment>
         <div>
+          <form>
+            <label>
+              <input type="text" onChange={this.handleChange} value={this.state.title_input} placeholder={"Subject"}/>
+            </label>
+            <input type="submit" value="submit" />
+          </form>
           <ThreadList threads={this.state.threads} />
         </div>
       </React.Fragment>
