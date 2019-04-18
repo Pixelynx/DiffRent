@@ -8,6 +8,7 @@ import Tickets from './tickets/tickets.jsx';
 import AuthForm from "./login/AuthForm";
 import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
+import Thread from './inbox/thread';
 import PrivateRoute from "./utils/AuthRouting";
 import './styles/index.css';
 import { isNull } from 'util';
@@ -141,6 +142,7 @@ class App extends Component {
             <Route exact path='/landlord/:id' component={LandlordDash} />
             <Route exact path='/tenant/:id' component={TenantDash} />
             <Route exact path='/' component={Homepage} />
+            <Route exact path='/message' component={Thread} />
           </Switch>
         </>
       </div>
