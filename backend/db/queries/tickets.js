@@ -19,7 +19,7 @@ const getTicketsByApt = (req, res, next) => {
 
 const getTicketsByLandlord = (req, res, next) => {
     let lId = parseInt(req.params.id);
-  db.any(`SELECT tickets.id AS ticketId, apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, apartments.apt, appt_date, appt_time, address, landlord_id, landlords.name, landlords.email, landlords.phone FROM tickets JOIN apartments ON (tickets.apartment_id=apartments.id) JOIN landlords ON (apartments.landlord_id=landlords.id) WHERE landlords.id=$1`, lId)
+  db.any(`SELECT tickets.id AS ticketId, apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, apartments.apt, appt_date, appt_time, address, landlord_id, users.name, users.email, users.phone FROM tickets JOIN apartments ON (tickets.apartment_id=apartments.id) JOIN users ON (apartments.landlord_id=users.id) WHERE users.id=$1`, lId)
   .then(data => {
       res.status(200)
          .json({

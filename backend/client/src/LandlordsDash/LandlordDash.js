@@ -58,6 +58,7 @@ class LandlordDash extends Component {
   getAllTickets = (landlordId) => {
     axios.get(`/tickets/landlord/${this.props.match.params.id}`)
       .then(res => {
+        console.log("landlordTicket", res.data)
       this.setState({
         tickets: res.data.data
       })
