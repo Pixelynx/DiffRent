@@ -85,7 +85,7 @@ class App extends Component {
     return (
       <div className="App">
         <>
-          <Navbar/>
+          <Navbar isLoggedIn={isLoggedIn}/>
           {logoutButton}
           <Switch>
             <Route path="/landlords/login" render={() => {
