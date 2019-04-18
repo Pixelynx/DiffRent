@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../src/navbar/Navbar';
 import LandlordDash from './LandlordsDash/LandlordDash.js';
@@ -74,14 +74,32 @@ class App extends Component {
         Auth.deauthenticateUser();
       })
       .then(() => {
+        this.setState({
+          user: ''
+        })
+      })
+      .then(() => {
         this.checkAuthenticateStatus();
       });
   };
 
 
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn, user } = this.state;
+
     let logoutButton = isLoggedIn ? <button onClick={this.logoutUser}>Logout</button> : null;
+
+    // if (user){
+    //   debugger
+    // if (user.type || isLoggedIn === 'landlord'){
+    //   debugger
+    //     return <Redirect to={`/landlord/${user.id}`} />
+    //   } else if (isLoggedIn && user.type === 'tenant'){
+    //     return <Redirect to='/tenant/:id' />
+    //   }
+
+    // }
+
     return (
       <div className="App">
         <>
