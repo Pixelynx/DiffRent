@@ -1,0 +1,43 @@
+.home1{
+    position: absolute;
+    overflow: hidden;
+}
+
+.container{
+    margin: auto;
+    display: flex;
+    left: 50%;
+    height: 300px;
+    width: 300px;
+}
+
+.op{
+    position: absolute;
+    height: 300px;
+    background: white;
+    opacity: .8;
+    width: 300px;
+}
+
+.homepageButtons{
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 200px;
+    width: 300px;
+    align-items: center;
+}
+
+/* .logo_official{
+    position: relative;
+}
+
+
+.tenantButton{
+    position: relative;
+}
+
+.landlordButton{
+    position: relative;
+} */

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
+import '../styles/homepage.css'
 import logo from "../logo/DiffRent_logo_official.png";
+import home1 from "../assets/housesandbuildings.jpg";
 
 
 class Homepage extends Component{
@@ -14,19 +16,22 @@ class Homepage extends Component{
        };
        let bgImgStyle = {
          width: '100%',
-         height: '504px',
+         height: '100%',
          padding: "0px",
          margin: '0px',
-         boder: '0px'
+         boder: '0px',
        }
         return(
             <>
+                <img className='home1' src={home1} style={bgImgStyle} />
+                <div className='container'>
+                <div className='op'></div>
+                <div className='homepageButtons'>
                 <img className='logo_official' src={logo} style={styles} />
-                <h1>DiffRent</h1>
-                <img src='https://webassets.inman.com/wp-content/uploads/2016/03/NY_Ss_Ryan-DeBerardinis_247248475-1984x880.jpg' style={bgImgStyle}/>
-                <img src='https://images.fastcompany.net/image/upload/w_1280,f_auto,q_auto,fl_lossy/wp-cms/uploads/2017/07/p-1-meet-the-nyc-renter-who-built-a-business-exposing-bad-landlords-1.jpg' style={bgImgStyle} />
-                <a href='/tenants/login'><button>Tenant</button></a>
-                <a href='/landlords/login'><button>Landlord</button></a>
+                  <a href='/tenants/login'><button className='tenantButton'>Tenant</button></a>
+                  <a href='/landlords/login'><button className='landlordButton'>Landlord</button></a>
+                </div>
+                </div>
             </>
         )
     }
