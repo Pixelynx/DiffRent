@@ -52,7 +52,6 @@ class AuthForm extends Component {
   };
 
   loginUser = e => {
-    // debugger;
     e.preventDefault();
     const { username, password } = this.state;
     const { getUserInfo } = this.props
@@ -133,12 +132,6 @@ class AuthForm extends Component {
         .then(() => {
           this.props.checkAuthenticateStatus();
         })
-        .then(() => {
-          this.setState({
-            username: "",
-            password: ""
-          });
-        });
   }
 
   render() {
