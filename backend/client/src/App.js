@@ -16,6 +16,7 @@ import './styles/index.css';
 
 class App extends Component {
   state = {
+    navbar: false,
     isLoggedIn: false,
     user: ''
   };
@@ -71,6 +72,12 @@ class App extends Component {
       } 
   }
 
+  toggleNavbar = () => {
+    this.setState({
+      navbar: !this.state.navbar
+    })
+  }
+
 
   logoutUser = () => {
     axios
@@ -91,14 +98,23 @@ class App extends Component {
 
 
   render() {
-    const { isLoggedIn, user } = this.state;
+    const { isLoggedIn, user, navbar } = this.state;
 
     let logoutButton = isLoggedIn ? <button onClick={this.logoutUser}>Logout</button> : null;
 
     return (
       <div className="App">
         <>
-          <Navbar isLoggedIn={isLoggedIn}/>
+          <div
+          className={navbar ? "openNavbar" : "closedNavbar"}
+          onClick={this.toggleNavbar} 
+          // onMouseEnter={this.toggleNavbar} onMouseLeave={this.toggleNavbar}
+          >
+            {isLoggedIn ? <div >=</div> : null}
+          <div >
+          {navbar ? <Navbar isLoggedIn={isLoggedIn} toggleNavbar={this.toggleNavbar}/>: null}
+          </div>
+          </div>
           {logoutButton}
           <Switch>
             <Route path="/landlords/login" render={() => {
