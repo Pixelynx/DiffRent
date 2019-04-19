@@ -1,8 +1,8 @@
 body, html {
   height: 100%;
   margin: 0;
-  font-size: 16px;
-  font-family: "Lato";
+  font-size: 18px;
+  font-family: 'Didact Gothic', sans-serif;
   font-weight: 400;
   line-height: 1.8em;
   color: #ddd;
@@ -119,6 +119,7 @@ width: 100%;
   background-color: whitesmoke;
 
 }
+
 
 
 
