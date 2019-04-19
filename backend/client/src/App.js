@@ -4,8 +4,8 @@ import axios from 'axios';
 import Navbar from '../src/navbar/Navbar';
 import LandlordDash from './LandlordsDash/LandlordDash.js';
 import TenantDash from './TenantDash/TenantDash.js';
-import Tickets from './tickets/tickets';
 import AuthForm from "./login/AuthForm";
+import Tickets from './tickets/tickets';
 import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
 import Inbox from './inbox/inbox';
@@ -141,7 +141,7 @@ class App extends Component {
                     : <Redirect to={`/tenants/${user.userid}`}/>
               }}
             />
-            <PrivateRoute path='/tickets' component={Tickets} {...this.state} />
+            <PrivateRoute path='/tickets' component={Tickets} user={this.state.user} isLoggedIn={isLoggedIn} />
             <PrivateRoute path='/landlord/:id' component={LandlordDash} />
             <PrivateRoute path='/tenant/:id' component={TenantDash} />
             <Route exact path='/' render={() => {
