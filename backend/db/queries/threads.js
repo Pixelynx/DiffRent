@@ -16,7 +16,7 @@ const {addMsg} = require('./messages');
 // };
 
 const addThread = (req, res, next) => {
-  db.one("INSERT INTO threads(tenant_id, landlord_id) VALUES(${tenant_id}, ${landlord_id}) RETURNING threads.id", req.body)
+  db.one("INSERT INTO threads(title, tenant_id, landlord_id) VALUES( ${title}, ${tenant_id}, ${landlord_id}) RETURNING *", req.body)
   .then((thread) => {
     res.status(200).json({
       status: "Success",
