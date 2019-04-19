@@ -4,7 +4,7 @@ import ThreadItem from './threadItem';
 const ThreadList = (props) => {
   const threadsMap = props.threads.map(thread => {
     return(
-      <ThreadItem thread={thread}/>
+      <ThreadItem thread={thread} key={thread.id}/>
     )
   })
   return(

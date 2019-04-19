@@ -2,14 +2,16 @@ const db = require('../../db/index.js');
 
 const addMsg = (req, res, next) => {
   console.log('ADD MESSAGE BODY', req.body)
-  db.none("INSERT INTO messages(owner_id, body, threads_id) VALUES(${owner_id}, ${body}, ${threads_id})", {
+  db.one("INSERT INTO messages(owner_id, body, threads_id) VALUES(${owner_id}, ${body}, ${threads_id})", {
     owner_id: Number(req.body.owner_id),
     threads_id: Number(req.body.threads_id),
-    body: req.body.body
+    body: req.body.body,
+    // message_date: new Date()
   })
-  .then(() => {
+  .then((newMessage) => {
     res.status(200).json({
       status: "Success",
+      newMessage,
       message: "New message added"
     });
   })

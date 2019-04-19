@@ -100,7 +100,8 @@ INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_lan
 INSERT INTO threads(title, tenant_id, landlord_id) 
 VALUES('Will be on vacation', 11, 1), ('Quick question regarding heat', 12, 2);
 
-
+INSERT INTO messages(owner_id, threads_id, body, message_date)
+VALUES('11', '1', 'Please fix this','1995-12-17T03:24:00');
 
 
 
