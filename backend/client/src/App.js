@@ -4,7 +4,7 @@ import axios from 'axios';
 import Navbar from '../src/navbar/Navbar';
 import LandlordDash from './LandlordsDash/LandlordDash.js';
 import TenantDash from './TenantDash/TenantDash.js';
-import Tickets from './tickets/tickets.jsx';
+import Tickets from './tickets/tickets';
 import AuthForm from "./login/AuthForm";
 import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
@@ -92,7 +92,6 @@ class App extends Component {
     const { isLoggedIn, user } = this.state;
 
     let logoutButton = isLoggedIn ? <button onClick={this.logoutUser}>Logout</button> : null;
-    console.log(!isLoggedIn)
 
     return (
       <div className="App">
@@ -140,6 +139,7 @@ class App extends Component {
                     : <Redirect to={`/tenants/${user.userid}`}/>
               }}
             />
+            <PrivateRoute path='/tickets' component={Tickets} {...this.state} />
             <PrivateRoute path='/landlord/:id' component={LandlordDash} />
             <PrivateRoute path='/tenant/:id' component={TenantDash} />
             <Route exact path='/' render={() => {
