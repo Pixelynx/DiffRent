@@ -24,7 +24,7 @@ class Homepage extends Component{
         return(
             <>
                 <img className='home1' src={home1} style={bgImgStyle} />
-                <div class="arrow bounce">
+                <div class="arrow-bounce bounce">
 
                 </div>
                 <section className='section-1'>
