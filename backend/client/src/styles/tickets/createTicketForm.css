@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Zillah';
+  src: url('../../fonts/zillah/ZILLM.ttf');
+}
+
 .form-modal-container {
   display: flex;
   position: absolute;
@@ -14,13 +19,21 @@
 .form-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: flex-end;
   /* justify-content: space-around; */
   align-self: center;
   width: 400px;
   height: 600px;
   background-color: var(--light-purple);
+}
+
+.create-tik-notice {
+  width: 300px;
+  /* padding-bottom: 100px; */
+  font-size: 40px;
+  font-family: 'Zillah';
+  color: var(--medium-blue);
 }
 
 #form-subject {
@@ -46,4 +59,9 @@
   height: 50px;
   width: 250px;
   border: none;
+  margin-bottom: 50px;
+  background-color: var(--dark-purple);
+  font-family: 'Zillah';
+  font-size: 30px;
+  color: var(--medium-blue);
 }
