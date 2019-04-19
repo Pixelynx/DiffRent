@@ -8,7 +8,9 @@ import Tickets from './tickets/tickets';
 import AuthForm from "./login/AuthForm";
 import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
+import Inbox from './inbox/inbox';
 import Thread from './inbox/thread';
+
 import PrivateRoute from "./utils/AuthRouting";
 import './styles/index.css';
 
@@ -147,15 +149,23 @@ class App extends Component {
               : <Redirect to={user.user_type === 'landlord' ? `/landlord/${user.userid}` : `/tenant/${user.userid}`} />
             }} />
             <Route exact path='/inbox' render={() => {
-              
               return(
-                  <Thread 
+                  <Inbox 
                     tenant_id={this.state.user.tenant_id} 
                     landlord_id={this.state.user.landlord_id}
                   />
                 )
               }} 
             />
+            <Route exact path='/inbox/threads/:thread_id' render={(props) => {
+              return(
+                <Thread
+                  tenant_id={this.state.user.tenant_id} 
+                  landlord_id={this.state.user.landlord_id}
+                   
+                />
+              )
+            }} />
           </Switch>
         </>
       </div>
