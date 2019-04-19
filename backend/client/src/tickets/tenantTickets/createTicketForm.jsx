@@ -5,7 +5,9 @@ import '../../styles/tickets/createTicketForm.css';
 class CreateTicketForm extends Component {
   state = {
     formSubmitted: false,
-    formModalOpen: true
+    formModalOpen: true,
+    subjectInput: '',
+    bodyInput: ''
   }
 
   handleModalOpen = (e) => {
@@ -14,7 +16,31 @@ class CreateTicketForm extends Component {
     if(e.target.className === 'form-modal-container' || e.target.className === 'submit-ticket-btn') {
       this.setState({ formModalOpen: !currentState })
     }
+  }
 
+  handleSubjectInput = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleBodyInput = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleSubmitTicket = (e) => {
+    this.setState({ formSubmitted: true })
+  }
+
+  handlePostTicket = (e) => {
+    e.preventDefault()
+    const { subjectInput, bodyInput } = this.state
+
+    if(subjectInput && bodyInput) {
+    axios.post('/tickets', {
+      subject: subjectInput,
+      body: bodyInput
+    })
+      .catch(err => console.log(err))
+    }
   }
 
   render() {
@@ -23,12 +49,13 @@ class CreateTicketForm extends Component {
     return(
       <>
         <div onClick={this.handleModalOpen} className='form-modal-container'>
-          <form className='form-container'>
-            <input type='text' placeholder='subject' id='form-subject'/>
+          <form className='form-container' onSubmit={this.handlePostTicket}>
+            <p className='create-tik-notice'>Please provide a detailed description of the issue within the household.</p>
+            <input type='text' onChange={this.handleSubjectInput} name='subjectInput' placeholder='subject' id='form-subject'/>
             <br/>
-            <input type='text' placeholder='Please provide a detailed description of the issue within the household...'id='form-descr'/>
+            <input type='text' onChange={this.handleBodyInput} name='bodyInput' placeholder='Details...' id='form-descr'/>
             <br/>
-            <input className='submit-ticket-btn' type='submit' value='Submit Ticket'/>
+            <input className='submit-ticket-btn' onClick={this.handleSubmitTicket} name='subjectInput' type='submit' value='Submit Ticket'/>
           </form>
         </div>
 
