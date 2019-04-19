@@ -11,8 +11,6 @@ const MessageList = (props) => {
   return(
     <>
       <div style={{padding: 5, border:'1px red solid'}}>{messagesMap}</div>
-      <input type="text" placeholder="type here" /> 
-      <button onClick={props.sendMessage}>Send</button>
     </>
   )
 }
