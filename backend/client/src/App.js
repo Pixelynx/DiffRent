@@ -112,10 +112,9 @@ class App extends Component {
           >
             {isLoggedIn ? <div >=</div> : null}
           <div >
-          {navbar ? <Navbar isLoggedIn={isLoggedIn} toggleNavbar={this.toggleNavbar}/>: null}
+          {navbar ? <Navbar isLoggedIn={isLoggedIn} toggleNavbar={this.toggleNavbar} logoutButton={logoutButton}/>: null}
           </div>
           </div>
-          {logoutButton}
           <Switch>
             <Route path="/landlords/login" render={() => {
                 return !user ? <AuthForm

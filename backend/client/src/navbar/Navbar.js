@@ -9,7 +9,7 @@ let styles = {
  };
 
 const NavBar = (props) => {
-  const { isLoggedIn, toggleNavbar } = props;
+  const { isLoggedIn, toggleNavbar, logoutButton } = props;
   return(
     <>
       { isLoggedIn ? 
@@ -22,6 +22,7 @@ const NavBar = (props) => {
                 <li><NavLink to={"/tickets"}> Tickets </NavLink></li>
                 <li><NavLink to={"/about"}>About </NavLink></li>
                 <li><NavLink to={"/faq"}>FAQ </NavLink></li>
+                {logoutButton}
               </ul>
             </div>
           </nav> : null
