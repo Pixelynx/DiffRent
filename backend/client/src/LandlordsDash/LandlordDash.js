@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import '../styles/dashboards/dashboards.css'
 
 import TenantContactInfo from './LandlordTenantContactDashInfo.js';
 import TicketDashInfo from './LandlordTicketDashInfo.js';
@@ -70,7 +71,7 @@ class LandlordDash extends Component {
      const {tenantInfo, tickets} = this.state;
     return(
       <>
-        <h1>Welcome, {this.state.name}</h1>
+        <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
         <TenantContactInfo tenantInfo={tenantInfo}/>
         <TicketDashInfo tickets={tickets} />
       </>

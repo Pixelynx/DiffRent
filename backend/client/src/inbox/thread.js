@@ -1,63 +1,57 @@
 import React from 'react';
+import MessageList from './messageList';
 import axios from 'axios';
-import ThreadList from './threadList';
-import '../styles/inbox/threads.css'
 
 class Thread extends React.Component {
-  constructor() {
-    super();
+  constructor(){
+    super()
     this.state = {
-      threads: [],
-      title_input: ''
+      messages: [],
+      showMessages: false,
+      messageBody: ''
     }
   }
 
-  // let landlord_id = this.props.landlord_id; props from app.js passing to threads 
-
-  componentDidMount() {
-    let landlord_id = this.props.landlord_id
-    let tenant_id = this.props.tenant_id
-    axios.get(`/threads/${landlord_id}/${tenant_id}`).then(res => {
-      this.setState({threads: res.data.threads})
+  componentDidMount(){
+    axios.get(`/threads/${this.props.thread.id}/messages`)
+    .then(res => {
+      this.setState({messages: res.data.data})
     })
   }
 
-  handleChange = (e) => {
-    this.setState({title_input: e.target.value})
+  sendMessage = (body) => {
+    const owner_id = 11
+    const threads_id = this.props.thread.id
+    const message_date = new Date()
+    axios.post(`/messages/newmessage`, {
+      owner_id, 
+      threads_id,
+      message_date,
+      body
+    })
+    .then(res => {
+      this.setState({messages: [...this.state.messages, res.data.newMessage]})
+    })
   }
 
-  // pass in two arguments: route and object
-  // look at axios.post 
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    axios.post(`/threads/newthread`, {
-      title: this.state.title_input,
-      landlord_id: this.props.landlord_id,
-      tenant_id: this.props.tenant_id
-    }).then(res => {
-      let newThread = res.data.thread
-      this.setState({
-        threads: [...this.state.threads, newThread], 
-        title_input: ''
-      })
-    })
+  showMessages = () => {
+    this.setState({showMessages: !this.state.showMessages})
   }
 
   render(){
-    console.log(this.state)
+    const {thread} = this.props // const thread = this.props.thread (same thing written differently)
+    console.log('threads prop', this.props)
     return(
       <React.Fragment>
+        <div><button onClick={this.showMessages}>{thread.title}</button></div>
         <div>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              <input type="text" onChange={this.handleChange} value={this.state.title_input} placeholder={"Subject"}/>
-            </label>
-            <input type="submit" value="submit" />
-          </form>
-          <ThreadList threads={this.state.threads} />
+          {this.state.showMessages && <MessageList messages={this.state.messages} sendMessage={this.sendMessage}/>}
         </div>
-      </React.Fragment>
+        <div> 
+          <input type="text" placeholder="type here" /> 
+          <button onClick={this.sendMessage}>Send</button>
+        </div>
+    </React.Fragment>
     )
   }
 }
