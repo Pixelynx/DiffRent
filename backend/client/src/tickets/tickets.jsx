@@ -10,26 +10,44 @@ class Tickets extends Component {
   //   super()
   // }
 
-  // state = {
-  //   apt: 2,
-  //   ticketModalOpen: false,
-  //   ticketsUnresolved: [],
-  //   ticketsResolved: [],
-  //   landlordMarkedInProgress: false,
-  //   landlordMarkedResolved: false,
-  //   tenantMarkedResolved: false,
-  //   creatingTicket: false
+  state = {
+    // apt: 2,
+    ticketModalOpen: false,
+    ticketsUnresolved: [],
+    ticketsResolved: [],
+    landlordMarkedInProgress: false,
+    landlordMarkedResolved: false,
+    tenantMarkedResolved: false,
+    creatingTicket: false,
+    hover: false
+  }
+
+  componentDidMount = () => {
+    // this.fetchProps();
+    this.handleSetState();
+  }
+
+  // fetchProps = () => {
+  //   console.log(this.props);
   // }
 
-  // componentDidMount = () => {
-  //   this.handleSetState()
-  // }
+  handleSetState = () => {
+    const { user } = this.props;
+    
+    axios.get(`/tickets/${user.aptid}`)
+    .then(res => {
+      this.setState({ ticketsUnresolved: res.data.data})
+    })
+  }
 
-  // handleSetState = () => {
-  //   axios.get(`/tickets/${this.props.user.apt}`)
-  //   .then(res => {
-  //     this.setState({ ticketsUnresolved: res.data.data})
-  //   })
+  handleHover = () => {
+    this.setState({
+      hover: !this.state.hover
+    })
+  }
+
+  // handleMouseOver = () => {
+  //   this.handleHover()
   // }
 
   // hacky fix to get the modal to ONLY close when the outer div is clicked
@@ -52,50 +70,54 @@ class Tickets extends Component {
 
   // }
 
-  // displayUnresolvedTickets = () => {
-  //   // need to change up ticket resolve -- append resolve to tenants and landlord tickets
-  //   const { ticketsUnresolved, ticketsResolved, ticketModalOpen, tenantMarkedResolved } = this.state
-  //   let status = 'URESOLVED';
-  //   if(ticketsUnresolved || ticketsResolved && ticketModalOpen) {
-  //     return ticketsUnresolved.map(ticket => {
-  //       let date = ticket.appt_date
-  //       let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
-  //         return(
-  //           <>
-  //           <div key={ticket.id} className='ticket-window'>
-  //             <div className='ticket-front'>
-  //               <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
-  //               <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-  //               <p>{tenantMarkedResolved ? 'UNRESOLVED' : 'RESOLVED'}</p>
-  //             </div>
-  //             <div key={ticket.id} className='ticket-back'>
-  //               <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
-  //               <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
-  //               <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
-  //               <button onClick={this.tenantHandleStatus} className='status-btn'>{status}</button>
-  //             </div>
-  //           </div>
-  //           </>
-  //       )
-  //     })
-  //   }
-  // }
+  displayUnresolvedTickets = () => {
+    // need to change up ticket resolve -- append resolve to tenants and landlord tickets
+    const { ticketsUnresolved, ticketsResolved, ticketModalOpen, tenantMarkedResolved } = this.state
+    let status = 'URESOLVED';
+    if(ticketsUnresolved || ticketsResolved && ticketModalOpen) {
+      return ticketsUnresolved.map(ticket => {
+        let date = ticket.appt_date
+        let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
+          return(
+            <div>
+            <div key={ticket.id} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover}>
+              {this.state.hover ? 
+              <div key={ticket.id} >
+              <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
+              <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
+              <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
+              <button onClick={this.tenantHandleStatus} className='status-btn'>{status}</button>
+            </div>
+           :   <div >
+           <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
+           <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
+           <p>{tenantMarkedResolved ? 'UNRESOLVED' : 'RESOLVED'}</p>
+         </div>
+              }
+            </div>
+            </div>
+        )
+      })
+    }
+  }
 
   render() {
-    debugger
-return (<h1>hello corey</h1>)}
 //     // if(this.state.ticketModalOpen) {
-//       return(
-//         <>
-//           <div onClick={this.handleModalOpen} className='modal-container'>
-//             <div className='ticket-window-container'>
-//               {this.displayUnresolvedTickets()}
-//               <button onClick={this.handleCreateTicketBtn} className='create-ticket-btn'>Create New Ticket</button>
-//             </div>
-//           </div>
-//         </>
-//       )
-//     // }
+  return(
+    <>
+          <div 
+          // onClick={this.handleModalOpen} 
+          // className='modal-container'
+          >
+            <div 
+            className='ticket-window-container'
+            >
+              {this.displayUnresolvedTickets()}
+              <button onClick={this.handleCreateTicketBtn} className='create-ticket-btn'>Create New Ticket</button>
+            </div>
+          </div>
+        </>
+      )
 
 //     return(
 //       <>
@@ -104,7 +126,7 @@ return (<h1>hello corey</h1>)}
 //         createTicket={this.state.creatingTicket} />
 //       </>
 //     )
-//   }
+  }
 }
 
 export default Tickets;
