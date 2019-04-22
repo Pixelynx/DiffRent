@@ -102,7 +102,7 @@ class AuthForm extends Component {
     let password = 'abc';
 
     if (path === '/tenants/login'){
-      let username = 'zGoulding@gmail.com'
+      let username = 'nRyder@gmail.com'
     return axios
         .post("/tenants/login", { username, password })
         .then((res) => {
@@ -124,7 +124,7 @@ class AuthForm extends Component {
           });
         });
     } else if (path === '/landlords/login'){
-      let username = 'jBennet@gmail.com' 
+      let username = 'rHerbert@gmail.com' 
        return axios
       .post("/landlords/login", { username, password })
       .then((res) => {
