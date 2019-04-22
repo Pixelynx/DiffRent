@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 //import CreateTicketForm from './tenantTickets/createTicketForm.jsx';
 import '../styles/colorScheme.css';
-import '../styles/tickets/tickets.css';
+import '../styles/tenantTickets/tickets.css';
 
 class Tickets extends Component {
 
