@@ -1,9 +1,4 @@
-@font-face {
-  font-family: 'Zillah';
-  src: url('../../fonts/zillah/ZILLM.ttf');
-}
-
-.form-modal-container {
+/* .form-modal-container {
   display: flex;
   position: absolute;
   justify-content: center;
@@ -12,56 +7,6 @@
   transform: translate(-50%, -50%);
   height: 100vh;
   width: 100vw;
+  background-color: red;
   z-index: 2;
-  background-color: var(--form-modal-container);
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  /* justify-content: space-around; */
-  align-self: center;
-  width: 400px;
-  height: 600px;
-  background-color: var(--light-purple);
-}
-
-.create-tik-notice {
-  width: 300px;
-  /* padding-bottom: 100px; */
-  font-size: 40px;
-  font-family: 'Zillah';
-  color: var(--medium-blue);
-}
-
-#form-subject {
-  width: 300px;
-  height: 50px;
-  border: none;
-}
-
-#form-descr {
-  display: flex;
-  flex-wrap: wrap;
-  width: 300px;
-  height: 200px;
-  border: none;
-
-}
-
-/* #form-descr::input-placeholder {
-  margin-left:
 } */
-
-.submit-ticket-btn {
-  height: 50px;
-  width: 250px;
-  border: none;
-  margin-bottom: 50px;
-  background-color: var(--dark-purple);
-  font-family: 'Zillah';
-  font-size: 30px;
-  color: var(--medium-blue);
-}

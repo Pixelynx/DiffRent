@@ -2,17 +2,17 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Tickets from '../TenantDash/tickets.jsx';
 import logo from "../logo/DiffRent_logo_official.png";
-
 let styles = {
     width: '250px',
    height: '180px',
  };
 
 const NavBar = (props) => {
-  const { isLoggedIn, toggleNavbar, logoutButton, user } = props;
+  const { isLoggedIn } = props;
   return(
     <>
       { isLoggedIn ?
+
           toggleNavbar ?
           <nav>
             <div>
