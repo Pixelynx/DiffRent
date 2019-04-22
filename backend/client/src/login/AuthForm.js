@@ -8,7 +8,12 @@ import Form from "./Form";
 class AuthForm extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    name: '',
+    email: '',
+    phone: '',
+    dob: '',
+    userType: false 
   };
 
   handleChange = e => {
@@ -17,43 +22,49 @@ class AuthForm extends Component {
     });
   };
 
+  handleUserType = () => {
+    this.setState({
+      userType: !this.state.userType
+    })
+  }
+
   
 
-  // registerUser = async e => {
-  //   e.preventDefault();
-  //   const { username, password } = this.state;
+  registerUser = async e => {
+    e.preventDefault();
+    const { username, password , name, email, phone, dob, userType } = this.state;
 
-  //   await axios.post("/users/new", { username, password });
+    await axios.post("/users/new", { username, password });
 
-  //   Auth.authenticateUser(username);
+    Auth.authenticateUser(username);
 
-  //   await axios.post("/users/login", { username, password });
+    await axios.post("/users/login", { username, password });
 
-  //   await this.props.checkAuthenticateStatus();
+    await this.props.checkAuthenticateStatus();
 
-  //   this.setState({
-  //     username: "",
-  //     password: ""
-  //   });
-  //   axios.post("/users/new", { username, password }).then(() => {
-  //     Auth.authenticateUser(username);
-  //     axios
-  //       .post("/users/login", { username, password })
-  //       .then(() => {
-  //         this.props.checkAuthenticateStatus();
-  //       })
-  //       .then(() => {
-  //         this.setState({
-  //           username: "",
-  //           password: ""
-  //         });
-  //       });
-  //   });
-  // };
+    this.setState({
+      username: "",
+      password: ""
+    });
+    axios.post("/users/new", { username, password }).then(() => {
+      Auth.authenticateUser(username);
+      axios
+        .post("/users/login", { username, password })
+        .then(() => {
+          this.props.checkAuthenticateStatus();
+        })
+        .then(() => {
+          this.setState({
+            username: "",
+            password: ""
+          });
+        });
+    });
+  };
 
   loginUser = e => {
     e.preventDefault();
-    const { username, password } = this.state;
+    const { username, password} = this.state;
     const { getUserAptInfo, getUserInfo, user } = this.props;
 
     if (e.target[2].value === 'landlord')
@@ -143,7 +154,7 @@ class AuthForm extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, name, email, phone, dob, userType } = this.state;
     const { isLoggedIn } = this.props;
 
     return (
@@ -185,12 +196,17 @@ class AuthForm extends Component {
           render={() => {
             return (
               <Form
-                username={username}
+                name={name}
                 password={password}
+                email={email}
+                phone={phone}
+                dob={dob}
+                userType={userType}
                 isLoggedIn={isLoggedIn}
                 loginUser={this.loginUser}
                 registerUser={this.registerUser}
                 handleChange={this.handleChange}
+                handleUserType={this.handleUserType}
               />
             );
           }}

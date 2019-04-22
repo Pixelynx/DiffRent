@@ -1,19 +1,17 @@
 import React from "react";
-import { withRouter } from "react-router";
+import { withRouter, Link } from "react-router-dom";
 import '../styles/logins/login.css'
 
 const Form = ({
-  match,
-  username,
-  password,
-  isLoggedIn,
-  loginUser,
-  handleChange,
-  demoLogin
+  match, username, password, isLoggedIn, loginUser, handleChange,
+  demoLogin, name, email, phone, dob, userType, handleUserType,
+  registerUser
   }) => {
   const path = match.path;
 
   let loginForm = <div className='formContainer'>
+                  <Link to='/register'><button>SignUp</button></Link>
+                  <div className='formContainer'>
                     <h1>DiffRent</h1>
                     <h1> {path === "/landlords/login" ? "Landlord Login" : "Tenant Login"} </h1>
                     <form onSubmit={loginUser}>
@@ -46,6 +44,7 @@ const Form = ({
                       </button>
                     </a>
                   </div>
+                  </div>
 
   let signupForm = <>
                   <h1>signupForm</h1>
@@ -53,7 +52,7 @@ const Form = ({
 
   return (
     <div className='loginForm'>
-      {path === '/tenant/login' || '/landlords/login' ? loginForm : signupForm}
+      {path === '/tenants/login' || path === '/landlords/login' ? loginForm : null}
       {path === '/register' ? signupForm : null}
       <p>{isLoggedIn ? "Logged In!" : ""}</p>
     </div>
