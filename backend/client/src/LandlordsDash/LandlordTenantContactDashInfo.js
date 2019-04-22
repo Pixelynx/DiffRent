@@ -3,21 +3,29 @@ import React from 'react';
 
 const TenantContactInfo = (props) => {
 
+if(props.selectedApt) {
+  let selectedTenant = props.tenantInfo.find(tenant => {
+    return String(tenant.apartment_id) === props.selectedApt
+  });
 
-  return(
-    <>
+    return(
+      <>
 
-    <div className={props.isShowing ? 'show-modal' : 'hide-modal'}>
-      <div className='tenant-info'>
-        <p>Name: {props.tenantInfo.name}</p>
-        <p>Address: {props.tenantInfo.address}</p>
-        <p>Apt #: {props.tenantInfo.apartment_id}</p>
-        <p>Phone: {props.tenantInfo.phone}</p>
-        <p>Email: {props.tenantInfo.email}</p>
+      <div className={props.isShowing ? 'show-modal' : 'hide-modal'}>
+        <div className='tenant-info'>
+          <p>Name: {selectedTenant.name}</p>
+          <p>Address: {selectedTenant.address}</p>
+          <p>Apt #: {selectedTenant.apartment_id}</p>
+          <p>Phone: {selectedTenant.phone}</p>
+          <p>Email: {selectedTenant.email}</p>
+        </div>
       </div>
-    </div>
-    </>
+      </>
   )
+} return null
+
+
+
 }
 
 export default TenantContactInfo;
