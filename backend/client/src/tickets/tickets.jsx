@@ -6,9 +6,6 @@ import '../styles/colorScheme.css';
 import '../styles/tickets/tickets.css';
 
 class Tickets extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   state = {
     ticketModalOpen: false,
