@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 import TenantLandlordContactDashInfo from './TenantLandlordContactDashInfo.js';
-import TenantTicketDashInfo from './TenantTicketDashInfo.js';
+import Tickets from './tickets.jsx';
+// import TenantTicketDashInfo from './TenantTicketDashInfo.js';
 
 class TenantDash extends Component {
   constructor(){
@@ -72,16 +73,20 @@ class TenantDash extends Component {
   }
 
   render(){
-    // console.log(this.props)
+    console.log(this.props, "TENANT DASH PROPS")
      const {landlordInfo, tickets} = this.state;
+     const { user } = this.props;
     return(
       <>
         <h1>Welcome, {this.state.name}</h1>
         <TenantLandlordContactDashInfo landlordInfo={landlordInfo}/>
-        <TenantTicketDashInfo tickets={tickets} />
+          <div className="ticket-dash-info">
+            <h2>Tickets Information</h2>
+              <Tickets user={user}/>
+          </div>
       </>
     )
   }
 }
 
-export default TenantDash
+export default TenantDash;
