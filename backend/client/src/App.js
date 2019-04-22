@@ -179,7 +179,7 @@ class App extends Component {
                 <Thread
                   tenant_id={this.state.user.tenant_id}
                   landlord_id={this.state.user.landlord_id}
-                  
+                  threadId={props.match.params.thread_id}
                 />
               )
             }} />

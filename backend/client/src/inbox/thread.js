@@ -8,7 +8,8 @@ class Thread extends React.Component {
     this.state = {
       messages: [],
       showMessages: false,
-      messageBody: ''
+      messageBody: '',
+      threadInfo: [],
     }
   }
 
