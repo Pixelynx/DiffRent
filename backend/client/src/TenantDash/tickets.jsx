@@ -10,8 +10,6 @@ class Tickets extends Component {
     ticketModalOpen: false,
     ticketsUnresolved: [],
     ticketsResolved: [],
-    landlordMarkedInProgress: false,
-    landlordMarkedResolved: false,
     tenantMarkedResolved: false,
     creatingTicket: false
   }
