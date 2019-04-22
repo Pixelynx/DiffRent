@@ -6,12 +6,11 @@ import '../styles/colorScheme.css';
 import '../styles/tickets/tickets.css';
 
 class Tickets extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
   state = {
-    apt: 2,
     ticketModalOpen: false,
     ticketsUnresolved: [],
     ticketsResolved: [],
@@ -26,7 +25,9 @@ class Tickets extends Component {
   }
 
   handleSetState = () => {
-    axios.get(`/tickets/${this.state.apt}`)
+    const { user } = this.props;
+
+    axios.get(`/tickets/${user.aptid}`)
     .then(res => {
       this.setState({ ticketsUnresolved: res.data.data})
     })
@@ -81,7 +82,7 @@ class Tickets extends Component {
     }
   }
   render() {
-    console.log(this.state)
+    console.log(this.props, 'PROPS')
     if(this.state.ticketModalOpen) {
       return(
         <>

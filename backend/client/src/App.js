@@ -99,6 +99,7 @@ class App extends Component {
 
   render() {
     const { isLoggedIn, user, navbar } = this.state;
+    console.log('STATE',this.state)
 
     let logoutButton = isLoggedIn ? <button onClick={this.logoutUser}>Logout</button> : null;
 
@@ -112,7 +113,7 @@ class App extends Component {
           >
             {isLoggedIn ? <div >=</div> : null}
           <div >
-          {navbar ? <Navbar isLoggedIn={isLoggedIn} toggleNavbar={this.toggleNavbar} logoutButton={logoutButton}/>: null}
+          {navbar ? <Navbar isLoggedIn={isLoggedIn} toggleNavbar={this.toggleNavbar} logoutButton={logoutButton} user={user}/>: null}
           </div>
           </div>
           <Switch>
