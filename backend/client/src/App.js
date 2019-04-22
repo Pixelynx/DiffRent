@@ -11,6 +11,7 @@ import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
 import Inbox from './inbox/inbox';
 import Thread from './inbox/thread';
+import Profile from './profiles/Profile.js';
 
 import PrivateRoute from "./utils/AuthRouting";
 import './styles/index.css';
@@ -101,7 +102,7 @@ class App extends Component {
   render() {
     const { isLoggedIn, user, navbar } = this.state;
     console.log('STATE',this.state)
-
+    console.log('MY LOCAL STORAGE', localStorage)
     let logoutButton = isLoggedIn ? <button onClick={this.logoutUser}>Logout</button> : null;
 
     return (
@@ -150,6 +151,9 @@ class App extends Component {
                 );
               }}
             />
+
+            <PrivateRoute path='/landlord/profile/:id' component={Profile} />
+            <PrivateRoute path='/tenants/profile/:id' component={Profile} />
             <PrivateRoute path='/landlord/:id' component={LandlordDash} />
             <PrivateRoute path='/tenant/:id' user={user} component={TenantDash} />
             <Route exact path='/' render={() => {

@@ -9,6 +9,7 @@ let styles = {
 
 const NavBar = (props) => {
   const { isLoggedIn, toggleNavbar, logoutButton } = props;
+  console.log("loggedIn:", isLoggedIn)
   return(
     <>
       { isLoggedIn ?
@@ -19,6 +20,7 @@ const NavBar = (props) => {
               <ul>
                 <li><NavLink to={"/"}><img className='logo_official' src={logo} style={styles} /> </NavLink></li>
                 <li><NavLink to={"/inbox"}> Inbox </NavLink></li>
+                <li><NavLink to={`/landlord/profile/2`}> Profile </NavLink></li>
                 <li><NavLink to={"/about"}>About </NavLink></li>
                 <li><NavLink to={"/faq"}>FAQ </NavLink></li>
                 {logoutButton}
