@@ -174,7 +174,7 @@ class App extends Component {
                 )
               }}
             />
-            <Route exact path='/inbox/threads/:thread_id' render={(props) => {
+            <Route path='/inbox/threads/:thread_id' render={(props) => {
               return(
                 <Thread
                   tenant_id={this.state.user.tenant_id}
