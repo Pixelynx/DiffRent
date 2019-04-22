@@ -22,9 +22,15 @@ class AuthForm extends Component {
     });
   };
 
-  handleUserType = () => {
+  selectLandlord = () => {
     this.setState({
-      userType: !this.state.userType
+      userType: false
+    })
+  }
+
+  selectTenant = () => {
+    this.setState({
+      userType: true
     })
   }
 
@@ -206,7 +212,8 @@ class AuthForm extends Component {
                 loginUser={this.loginUser}
                 registerUser={this.registerUser}
                 handleChange={this.handleChange}
-                handleUserType={this.handleUserType}
+                selectLandlord={this.selectLandlord}
+                selectTenant={this.selectTenant}
               />
             );
           }}

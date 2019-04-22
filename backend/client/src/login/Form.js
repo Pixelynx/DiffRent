@@ -1,11 +1,13 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
+import { MuiPickersUtilsProvider } from 'material-ui-pickers';
+import DateFnsUtils from "@date-io/date-fns";
 import '../styles/logins/login.css'
 
 const Form = ({
   match, username, password, isLoggedIn, loginUser, handleChange,
-  demoLogin, name, email, phone, dob, userType, handleUserType,
-  registerUser
+  demoLogin, name, email, phone, dob, userType, selectTenant,
+  registerUser, selectLandlord
   }) => {
   const path = match.path;
 
@@ -46,16 +48,53 @@ const Form = ({
                   </div>
                   </div>
 
+
+
   let signupForm = <>
-                  <h1>signupForm</h1>
+                    <div>
+                      <button onClick={selectLandlord}>Landlord</button>
+                      <button onClick={selectTenant}>Tenant</button>
+                      <form onSubmit={registerUser}>
+                        <label>Full Name</label>
+                        <input 
+                        required
+                        placeholder='full name'
+                        type='text' />
+
+                        <label>Email</label>
+                        <input 
+                        required
+                        placeholder='email@domain.com'
+                        type='text' />
+
+                        <label>Password</label>
+                        <input 
+                        required
+                        placeholder='password'
+                        type='password' />
+
+                        <label>Date of Birth</label>
+                        <input 
+                        required
+                        placeholder='' />
+
+                        <label>User Type</label>
+                        <input 
+                        required
+                        placeholder='' />
+                      </form>
+                    </div>
+                  
                   </>
 
   return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
     <div className='loginForm'>
       {path === '/tenants/login' || path === '/landlords/login' ? loginForm : null}
       {path === '/register' ? signupForm : null}
       <p>{isLoggedIn ? "Logged In!" : ""}</p>
     </div>
+    </MuiPickersUtilsProvider>
   );
 };
 
