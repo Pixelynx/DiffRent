@@ -151,11 +151,11 @@ class App extends Component {
                 );
               }}
             />
-            <PrivateRoute path='/tickets' component={Tickets} user={this.state.user} isLoggedIn={isLoggedIn} />
-            <PrivateRoute exact path='/landlord/:id' component={LandlordDash} />
+
             <PrivateRoute path='/landlord/profile/:id' component={Profile} />
-            <PrivateRoute path='/tenant/:id' component={TenantDash} />
             <PrivateRoute path='/tenants/profile/:id' component={Profile} />
+            <PrivateRoute path='/landlord/:id' component={LandlordDash} />
+            <PrivateRoute path='/tenant/:id' user={user} component={TenantDash} />
             <Route exact path='/' render={() => {
               return !user ? <Homepage />
               : <Redirect to={user.user_type === 'landlord' ? `/landlord/${user.userid}` : `/tenant/${user.userid}`} />
