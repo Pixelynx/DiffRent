@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import '../styles/dashboards/dashboards.css'
+import React, { Component } from 'react';
+import axios from 'axios';
+import '../styles/dashboards/dashboards.css';
+import '../styles/landlordTickets/tickets.css';
 
 import TenantContactInfo from './LandlordTenantContactDashInfo.js';
+import Tickets from './tickets.jsx';
 import TicketDashInfo from './LandlordTicketDashInfo.js';
 
 class LandlordDash extends Component {
@@ -14,11 +16,11 @@ class LandlordDash extends Component {
       age:'',
       tenantInfo: {
         name: '',
-        apartment: null
+        apartment: null,
       },
       address: null,
       appointments: [],
-      tickets: []
+      tenantInfoIsShowing: false
     }
   }
 
@@ -31,9 +33,9 @@ class LandlordDash extends Component {
   getLandlordInfo = () => {
     axios.get(`/landlords/${this.props.match.params.id}`)
     .then(res => {
-      console.log('landlord: ', res.data.data)
+      console.log('GET LANDLORD INFO FUNCTION ', res.data.data)
       this.setState({
-        id: res.data.data.id,
+        id: res.data.data.landlord_id,
         name: res.data.data.name
       })
     })
@@ -66,14 +68,18 @@ class LandlordDash extends Component {
     })
   }
 
+  handleTenantInfoShowing = (e) => {
+    this.setState({ tenantInfoIsShowing: !this.state.tenantInfoIsShowing })
+  }
+
   render(){
-    console.log(this.props)
+    console.log(this.state, 'LANDLORD DASH INFO')
      const {tenantInfo, tickets} = this.state;
     return(
       <>
         <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
-        <TenantContactInfo tenantInfo={tenantInfo}/>
-        <TicketDashInfo tickets={tickets} />
+        <TenantContactInfo tenantInfo={tenantInfo} onClick={this.handleTenantInfoShowing}
+          />
       </>
     )
   }
