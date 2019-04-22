@@ -11,6 +11,7 @@ import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
 import Inbox from './inbox/inbox';
 import Thread from './inbox/thread';
+import Profile from './profiles/Profile.js';
 
 import PrivateRoute from "./utils/AuthRouting";
 import './styles/index.css';
@@ -101,7 +102,7 @@ class App extends Component {
   render() {
     const { isLoggedIn, user, navbar } = this.state;
     console.log('STATE',this.state)
-
+    console.log('MY LOCAL STORAGE', localStorage)
     let logoutButton = isLoggedIn ? <button onClick={this.logoutUser}>Logout</button> : null;
 
     return (
@@ -151,8 +152,10 @@ class App extends Component {
               }}
             />
             <PrivateRoute path='/tickets' component={Tickets} user={this.state.user} isLoggedIn={isLoggedIn} />
-            <PrivateRoute path='/landlord/:id' component={LandlordDash} />
+            <PrivateRoute exact path='/landlord/:id' component={LandlordDash} />
+            <PrivateRoute path='/landlord/profile/:id' component={Profile} />
             <PrivateRoute path='/tenant/:id' component={TenantDash} />
+            <PrivateRoute path='/tenants/profile/:id' component={Profile} />
             <Route exact path='/' render={() => {
               return !user ? <Homepage />
               : <Redirect to={user.user_type === 'landlord' ? `/landlord/${user.userid}` : `/tenant/${user.userid}`} />
