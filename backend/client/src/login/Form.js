@@ -47,9 +47,14 @@ const Form = ({
                     </a>
                   </div>
 
+  let signupForm = <>
+                  <h1>signupForm</h1>
+                  </>
+
   return (
     <div className='loginForm'>
-      {loginForm}
+      {path === '/tenant/login' || '/landlords/login' ? loginForm : signupForm}
+      {path === '/register' ? signupForm : null}
       <p>{isLoggedIn ? "Logged In!" : ""}</p>
     </div>
   );

@@ -128,16 +128,7 @@ class App extends Component {
                     : <Redirect to={`/landlord/${user.userid}`}/>
               }}
             />
-            <Route path="/landlords/register" render={() => {
-                return (<AuthForm
-                    checkAuthenticateStatus={this.checkAuthenticateStatus}
-                    getUserInfo={this.getUserInfo}
-                    getUserAptInfo={this.getUserAptInfo}
-                    user={user}
-                    isLoggedIn={isLoggedIn}/>
-                );
-              }}
-            />
+
             <Route path="/tenants/login" render={() => {
                return !user ? <AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
@@ -148,14 +139,15 @@ class App extends Component {
                     : <Redirect to={`/tenant/${user.userid}`}/>
               }}
             />
-            <Route path="/tenants/register" render={() => {
-                return !user ? <AuthForm
+
+            <Route path="/register" render={() => {
+                return (<AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
                     getUserInfo={this.getUserInfo}
                     getUserAptInfo={this.getUserAptInfo}
                     user={user}
                     isLoggedIn={isLoggedIn}/>
-                    : <Redirect to={`/tenants/${user.userid}`}/>
+                );
               }}
             />
             <PrivateRoute path='/tickets' component={Tickets} user={this.state.user} isLoggedIn={isLoggedIn} />

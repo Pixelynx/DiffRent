@@ -181,7 +181,7 @@ class AuthForm extends Component {
           }}
         />
         <Route
-          exact path="/tenants/register"
+          exact path="/register"
           render={() => {
             return (
               <Form
