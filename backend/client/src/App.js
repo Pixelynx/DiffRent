@@ -158,8 +158,9 @@ class App extends Component {
                     : <Redirect to={`/tenants/${user.userid}`}/>
               }}
             />
+            <PrivateRoute path='/tickets' component={Tickets} user={this.state.user} isLoggedIn={isLoggedIn} />
             <PrivateRoute path='/landlord/:id' component={LandlordDash} />
-            <PrivateRoute path='/tenant/:id' user={user} component={TenantDash} />
+            <PrivateRoute path='/tenant/:id' component={TenantDash} />
             <Route exact path='/' render={() => {
               return !user ? <Homepage />
               : <Redirect to={user.user_type === 'landlord' ? `/landlord/${user.userid}` : `/tenant/${user.userid}`} />
@@ -173,17 +174,16 @@ class App extends Component {
                 )
               }}
             />
-            <Route exact path='/inbox/threads/:thread_id' render={(props) => {
+            <Route path='/inbox/threads/:thread_id' render={(props) => {
               return(
                 <Thread
                   tenant_id={this.state.user.tenant_id}
                   landlord_id={this.state.user.landlord_id}
-
+                  
                 />
               )
             }} />
           </Switch>
-
         </>
       </div>
     );

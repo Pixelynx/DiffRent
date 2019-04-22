@@ -13,10 +13,11 @@ class Thread extends React.Component {
   }
 
   componentDidMount(){
-    axios.get(`/threads/${this.props.thread.id}/messages`)
-    .then(res => {
-      this.setState({messages: res.data.data})
-    })
+    // axios.get(`/threads/${this.props.thread.id}/messages`)
+    // .then(res => {
+    //   this.setState({messages: res.data.data})
+    // })
+    console.log(this.props)
   }
 
   sendMessage = (body) => {
@@ -43,14 +44,15 @@ class Thread extends React.Component {
     console.log('threads prop', this.props)
     return(
       <React.Fragment>
-        <div><button onClick={this.showMessages}>{thread.title}</button></div>
+        {/* <div><button onClick={this.showMessages}>{thread.title}</button></div>
         <div>
           {this.state.showMessages && <MessageList messages={this.state.messages} sendMessage={this.sendMessage}/>}
         </div>
         <div> 
           <input type="text" placeholder="type here" /> 
           <button onClick={this.sendMessage}>Send</button>
-        </div>
+        </div> */}
+        <h1>Hi I am Here</h1>
     </React.Fragment>
     )
   }
