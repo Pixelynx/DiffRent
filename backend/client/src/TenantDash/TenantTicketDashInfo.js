@@ -1,4 +1,5 @@
 import React from 'react';
+import Tickets from './tickets.jsx';
 
 const TenantTicketDashInfo = (props) => {
   return(
