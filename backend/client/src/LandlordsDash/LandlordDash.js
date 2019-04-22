@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../styles/dashboards/dashboards.css';
 import '../styles/landlordTickets/tickets.css';
+import '../styles/colorScheme.css';
 
 import TenantContactInfo from './LandlordTenantContactDashInfo.js';
 import Tickets from './tickets.jsx';
@@ -14,13 +15,13 @@ class LandlordDash extends Component {
       id: null,
       name: '',
       age:'',
-      tenantInfo: {
+      tenantInfo: [{
         name: '',
-        apartment: null,
-      },
+        apartment: null
+      }],
       address: null,
       appointments: [],
-      tenantInfoIsShowing: false
+      isShowing: false
     }
   }
 
@@ -33,7 +34,6 @@ class LandlordDash extends Component {
   getLandlordInfo = () => {
     axios.get(`/landlords/${this.props.match.params.id}`)
     .then(res => {
-      console.log('GET LANDLORD INFO FUNCTION ', res.data.data)
       this.setState({
         id: res.data.data.landlord_id,
         name: res.data.data.name
@@ -46,13 +46,13 @@ class LandlordDash extends Component {
     .then(res => {
       res.data.data.map(info => {
         this.setState({
-          tenantInfo: {
+          tenantInfo: [{
             name: info.name,
             apartment_id: info.apartment_id,
             address: info.address,
             email: info.email,
             phone: info.phone,
-          }
+          }]
         })
       })
     })
@@ -61,7 +61,6 @@ class LandlordDash extends Component {
   getAllTickets = (landlordId) => {
     axios.get(`/tickets/landlord/${this.props.match.params.id}`)
       .then(res => {
-        console.log("landlordTicket", res.data)
       this.setState({
         tickets: res.data.data
       })
@@ -69,16 +68,30 @@ class LandlordDash extends Component {
   }
 
   handleTenantInfoShowing = (e) => {
-    this.setState({ tenantInfoIsShowing: !this.state.tenantInfoIsShowing })
+    this.setState({ isShowing: !this.state.isShowing })
+  }
+
+  mapTenantApts = () => {
+    if(this.state.tenantInfo) {
+      return this.state.tenantInfo.map(tenant => {
+        return tenant.address
+      })
+    }
   }
 
   render(){
     console.log(this.state, 'LANDLORD DASH INFO')
      const {tenantInfo, tickets} = this.state;
+
+
     return(
       <>
         <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
-        <TenantContactInfo tenantInfo={tenantInfo} onClick={this.handleTenantInfoShowing}
+          <div className='tenant-contacts'>
+            <h2>Apartments</h2>
+            <button onClick={this.handleTenantInfoShowing}>{this.mapTenantApts()}</button>
+          </div>
+            <TenantContactInfo tenantInfo={tenantInfo} onClick={this.handleTenantInfoShowing} isShowing={this.state.isShowing}
           />
       </>
     )

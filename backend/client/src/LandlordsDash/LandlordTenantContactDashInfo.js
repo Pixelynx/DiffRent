@@ -2,15 +2,12 @@ import React from 'react';
 
 
 const TenantContactInfo = (props) => {
-  // let visibility = {props.tenantInfoIsShowing ? 'show' : 'hide'}
+
 
   return(
     <>
-    <div className='tenant-contacts'>
-      <h2>Apartments</h2>
-      <button onClick={props.onClick}>{props.tenantInfo.address}</button>
-    </div>
-    <div  id='tenant-info-modal-container'>
+
+    <div className={props.isShowing ? 'show-modal' : 'hide-modal'}>
       <div className='tenant-info'>
         <p>Name: {props.tenantInfo.name}</p>
         <p>Address: {props.tenantInfo.address}</p>
