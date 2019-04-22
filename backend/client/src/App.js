@@ -35,7 +35,7 @@ class App extends Component {
             isLoggedIn: Auth.isUserAuthenticated(),
           })
             &
-            this.getUserInfo2(user.data.username)  
+            this.getUserInfo2(user.data.username)
           }
       } else {
         if (user.data.username) {
@@ -69,10 +69,10 @@ class App extends Component {
     if(!this.state.user){
       return this.getUserAptInfo(user)} else if (!this.state.user) {
         return this.getUserInfo(user)
-      } 
+      }
   }
 
-  toggleNavbar = () => {
+  toggleNavbar = (e) => {
     this.setState({
       navbar: !this.state.navbar
     })
@@ -106,9 +106,9 @@ class App extends Component {
       <div className="App">
         <>
           <div
+
           className={navbar ? "openNavbar" : "closedNavbar"}
-          onClick={this.toggleNavbar} 
-          // onMouseEnter={this.toggleNavbar} onMouseLeave={this.toggleNavbar}
+          onMouseEnter={this.toggleNavbar} onMouseLeave={this.toggleNavbar}
           >
             {isLoggedIn ? <div >=</div> : null}
           <div >
@@ -142,7 +142,7 @@ class App extends Component {
                     getUserInfo={this.getUserInfo}
                     getUserAptInfo={this.getUserAptInfo}
                     user={user}
-                    isLoggedIn={isLoggedIn}/> 
+                    isLoggedIn={isLoggedIn}/>
                     : <Redirect to={`/tenant/${user.userid}`}/>
               }}
             />
@@ -165,19 +165,19 @@ class App extends Component {
             }} />
             <Route exact path='/inbox' render={() => {
               return(
-                  <Inbox 
-                    tenant_id={this.state.user.tenant_id} 
+                  <Inbox
+                    tenant_id={this.state.user.tenant_id}
                     landlord_id={this.state.user.landlord_id}
                   />
                 )
-              }} 
+              }}
             />
             <Route exact path='/inbox/threads/:thread_id' render={(props) => {
               return(
                 <Thread
-                  tenant_id={this.state.user.tenant_id} 
+                  tenant_id={this.state.user.tenant_id}
                   landlord_id={this.state.user.landlord_id}
-                   
+
                 />
               )
             }} />
