@@ -38,6 +38,7 @@ class AuthForm extends Component {
 
   registerUser = async e => {
     e.preventDefault();
+    debugger
     const { username, password , name, email, phone, dob, userType } = this.state;
 
     await axios.post("/users/new", { username, password });
