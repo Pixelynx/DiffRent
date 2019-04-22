@@ -160,7 +160,7 @@ class App extends Component {
             />
             <PrivateRoute path='/tickets' component={Tickets} user={this.state.user} isLoggedIn={isLoggedIn} />
             <PrivateRoute path='/landlord/:id' component={LandlordDash} />
-            <PrivateRoute path='/tenant/:id' component={TenantDash} />
+            <PrivateRoute path='/tenant/:id' user={user} component={TenantDash} />
             <Route exact path='/' render={() => {
               return !user ? <Homepage />
               : <Redirect to={user.user_type === 'landlord' ? `/landlord/${user.userid}` : `/tenant/${user.userid}`} />
@@ -174,7 +174,7 @@ class App extends Component {
                 )
               }}
             />
-            <Route path='/inbox/threads/:thread_id' render={(props) => {
+            <Route exact path='/inbox/threads/:thread_id' render={(props) => {
               return(
                 <Thread
                   tenant_id={this.state.user.tenant_id}
@@ -184,6 +184,7 @@ class App extends Component {
               )
             }} />
           </Switch>
+
         </>
       </div>
     );
