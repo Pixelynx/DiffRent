@@ -22,9 +22,15 @@ class AuthForm extends Component {
     });
   };
 
-  handleUserType = () => {
+  selectLandlord = () => {
     this.setState({
-      userType: !this.state.userType
+      userType: false
+    })
+  }
+
+  selectTenant = () => {
+    this.setState({
+      userType: true
     })
   }
 
@@ -32,6 +38,7 @@ class AuthForm extends Component {
 
   registerUser = async e => {
     e.preventDefault();
+    debugger
     const { username, password , name, email, phone, dob, userType } = this.state;
 
     await axios.post("/users/new", { username, password });
@@ -206,7 +213,8 @@ class AuthForm extends Component {
                 loginUser={this.loginUser}
                 registerUser={this.registerUser}
                 handleChange={this.handleChange}
-                handleUserType={this.handleUserType}
+                selectLandlord={this.selectLandlord}
+                selectTenant={this.selectTenant}
               />
             );
           }}
