@@ -8,7 +8,7 @@ let styles = {
  };
 
 const NavBar = (props) => {
-  const { isLoggedIn } = props;
+  const { isLoggedIn, toggleNavbar, logoutButton } = props;
   return(
     <>
       { isLoggedIn ?
