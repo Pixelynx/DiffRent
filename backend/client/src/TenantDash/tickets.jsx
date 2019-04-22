@@ -78,7 +78,7 @@ class Tickets extends Component {
     }
   }
   render() {
-    console.log(this.props, 'PROPS')
+    console.log(this.props.user, 'USER PROPS')
     if(this.state.ticketModalOpen) {
       return(
         <>
