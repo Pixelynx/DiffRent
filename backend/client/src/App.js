@@ -5,7 +5,7 @@ import Navbar from '../src/navbar/Navbar';
 import LandlordDash from './LandlordsDash/LandlordDash.js';
 import TenantDash from './TenantDash/TenantDash.js';
 import AuthForm from "./login/AuthForm";
-import Tickets from './tickets/tickets';
+import Tickets from './TenantDash/tickets.jsx';
 import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
 import Inbox from './inbox/inbox';
