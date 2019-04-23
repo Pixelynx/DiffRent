@@ -8,48 +8,94 @@ class Profile extends Component {
       defaultVals: {
           id: null,
           name: '',
-          email: '',
+          dob: '',
           phone: '',
+          email: '',
           password: '',
           apt_Id: null,
+          user_type: 'landlord'
         },
         newVals: {
           name: '',
-          email: '',
           phone: '',
+          email: '',
           password: ''
         }
     }
   }
 
   componentWillMount(){
-    this.getUserInfo()
+    this.getLandlordInfo()
   }
 
-  getUserInfo = () => {
+  getLandlordInfo = () => {
     axios.get(`/landlords/${this.props.match.params.id}`)
       .then(response => {
         console.log("response is: ",response)
         this.setState({ defaultVals : {
-          id: response.data.landlord_id,
-          name: response.data.name,
-          email: response.data.email,
-          phone: response.data.phone,
-          password: response.data.password_digest,
-          apt_Id: response.data.apartmentId
+          id: response.data.data.landlord_id,
+          name: response.data.data.name,
+          dob: response.data.data.dob,
+          phone: response.data.data.phone,
+          email: response.data.data.email,
+          password: response.data.data.password_digest,
+          apt_Id: response.data.data.apartmentId
         }
       })
     })
+    .catch(err => console.log('GET LANDLORD FAILED', err))
   }
 
-  handleChange = (event) => {
-    event.target.name = event.target.value
-    console.log(event.target.value)
+  handleChange = event => {
+  const value = event.target.value;
+  this.setState({
+    newVals:{
+    [event.target.name] : event.target.value,
+
+    }
+  })
+};
+
+handleSubmit = event => {
+  const {defaultVals, newVals} = this.state;
+  event.preventDefault();
+  let putRequestInfo = {
+    id: defaultVals.id,
+    name: newVals.name,
+    email: newVals.email,
+    phone: newVals.phone,
+    password_digest: newVals.passport,
+    apt_Id: defaultVals.apt_Id
+  };
+  if(!newVals.name){
+    putRequestInfo.name = defaultVals.name
   }
+  if(!newVals.email){
+    putRequestInfo.email = defaultVals.email
+  }
+  if(!newVals.phone){
+    putRequestInfo.phone = defaultVals.phone
+  }
+  if(!newVals.password){
+    putRequestInfo.password_digest = defaultVals.password
+  }
+
+  axios.put(`/landlords/2`, putRequestInfo)
+    .then(() => console.log('This updated'))
+  .catch(err => console.log('GET LANDLORD FAILED', err))
+}
+
   render(){
     return(
       <>
-        <input type='text' onChange={this.handleChange} name='name' defaultValue={this.state.newVals.name}/>
+        <form onSubmit={this.handleSubmit}>
+          <input type='text' onChange={this.handleChange} name='name' defaultValue={this.state.defaultVals.name}/>
+          <input type='email' onChange={this.handleChange} name='email' defaultValue={this.state.defaultVals.email} />
+          <input type='text' onChange={this.handleChange} name='phone' defaultValue={this.state.defaultVals.phone} />
+          {/*<input type='password' onChange={this.handleChange} name='password' defaultValue={this.state.defaultVals.password} />*/}
+          <input type='submit' value="Submit Changes"/>
+        </form>
+
       </>
     )
   }
