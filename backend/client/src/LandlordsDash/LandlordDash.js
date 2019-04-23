@@ -4,7 +4,7 @@ import '../styles/dashboards/dashboards.css';
 import '../styles/landlordTickets/tickets.css';
 import '../styles/colorScheme.css';
 
-import TenantContactInfo from './LandlordTenantContactDashInfo.js';
+import TenantContactInfo from './TenantContactInfo.js';
 import Tickets from './tickets.jsx';
 import TicketDashInfo from './LandlordTicketDashInfo.js';
 
@@ -70,8 +70,10 @@ class LandlordDash extends Component {
   }
 
   handleTenantInfoShowing = (e) => {
-    this.setState({ selectedApt: e.target.id })
-    this.setState({ isShowing: !this.state.isShowing })
+    if(e.target.className === 'apts-btn' || e.target.className === 'show-modal') {
+      this.setState({ selectedApt: e.target.id })
+      this.setState({ isShowing: !this.state.isShowing })
+    }
 
   }
 
@@ -83,8 +85,16 @@ class LandlordDash extends Component {
         return (
           <>
             <div className='apts-btn-container'>
-              <button className='apts-btn' id={tenant.apartment_id} onClick={this.handleTenantInfoShowing}>{tenant.address}</button>
-              <button className='open-tiks-btn'>{this.state.tickets.length}</button>
+              <button
+                className='apts-btn'
+                id={tenant.apartment_id}
+                onClick={this.handleTenantInfoShowing}>
+                {tenant.address}
+              </button>
+              <button
+                className='open-tiks-btn'>
+                {this.state.tickets.length}
+              </button>
             </div>
           </>
         )
@@ -100,7 +110,7 @@ class LandlordDash extends Component {
 
     return(
       <>
-        <div className='dash-container'>
+        <div className='dash-container' >
           <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
             <div className='tenant-contacts'>
               <h2>Apartments</h2>
@@ -110,6 +120,7 @@ class LandlordDash extends Component {
               selectedApt={this.state.selectedApt}
               tenantInfo={tenantInfo}
               isShowing={this.state.isShowing}
+              modalShowing={this.handleTenantInfoShowing}
           />
         </div>
       </>

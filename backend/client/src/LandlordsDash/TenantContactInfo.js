@@ -11,7 +11,9 @@ if(props.selectedApt) {
     return(
       <>
 
-      <div className={props.isShowing ? 'show-modal' : 'hide-modal'}>
+      <div
+      className={props.isShowing ? 'show-modal' : 'hide-modal'}
+      onClick={props.modalShowing}>
         <div className='tenant-info'>
           <p>Name: {selectedTenant.name}</p>
           <p>Address: {selectedTenant.address}</p>
