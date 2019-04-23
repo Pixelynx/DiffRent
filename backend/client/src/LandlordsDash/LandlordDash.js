@@ -75,14 +75,16 @@ class LandlordDash extends Component {
 
   }
 
+  // can consider this as preparation for future iteration of one to many relationship
   mapTenantApts = () => {
 
     if(this.state.tenantInfo) {
       return this.state.tenantInfo.map(tenant => {
         return (
           <>
-            <div className='apts-container'>
-              <button id={tenant.apartment_id} onClick={this.handleTenantInfoShowing}>{tenant.address}</button>
+            <div className='apts-btn-container'>
+              <button className='apts-btn' id={tenant.apartment_id} onClick={this.handleTenantInfoShowing}>{tenant.address}</button>
+              <button className='open-tiks-btn'>{this.state.tickets.length}</button>
             </div>
           </>
         )
@@ -98,17 +100,18 @@ class LandlordDash extends Component {
 
     return(
       <>
-        <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
-          <div className='tenant-contacts'>
-            <h2>Apartments</h2>
-            {this.mapTenantApts()}
-          </div>
-          <TenantContactInfo
-            selectedApt={this.state.selectedApt}
-            tenantInfo={tenantInfo}
-            isShowing={this.state.isShowing}
-        />
-
+        <div className='dash-container'>
+          <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
+            <div className='tenant-contacts'>
+              <h2>Apartments</h2>
+              {this.mapTenantApts()}
+            </div>
+            <TenantContactInfo
+              selectedApt={this.state.selectedApt}
+              tenantInfo={tenantInfo}
+              isShowing={this.state.isShowing}
+          />
+        </div>
       </>
     )
   }
