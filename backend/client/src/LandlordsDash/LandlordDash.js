@@ -22,7 +22,8 @@ class LandlordDash extends Component {
       address: null,
       appointments: [],
       isShowing: false,
-      selectedApt: null
+      selectedApt: null,
+      tickets: []
     }
   }
 
@@ -75,16 +76,23 @@ class LandlordDash extends Component {
   }
 
   mapTenantApts = () => {
+
     if(this.state.tenantInfo) {
       return this.state.tenantInfo.map(tenant => {
-        return <button id={tenant.apartment_id} onClick={this.handleTenantInfoShowing}>{tenant.address}</button>
+        return (
+          <>
+            <div className='apts-container'>
+              <button id={tenant.apartment_id} onClick={this.handleTenantInfoShowing}>{tenant.address}</button>
+            </div>
+          </>
+        )
       })
     }
   }
 
 
   render(){
-    console.log(this.state, 'LANDLORD DASH INFO')
+    console.log(this.state, 'STATE')
      const {tenantInfo, tickets} = this.state;
 
 
