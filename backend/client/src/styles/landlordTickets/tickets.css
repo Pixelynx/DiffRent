@@ -1,3 +1,40 @@
+.dash-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tenant-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 190px;
+  width: 500px;
+  padding-top: 10px;
+}
+
+.apts-btn-container {
+  display: flex;
+}
+
+.apts-btn, .open-tiks-btn {
+  height: 50px;
+  background-color: var(--dark-purple);
+  border: 1px solid var(--light-blue);
+}
+
+.apts-btn {
+  width: 300px;
+  margin-right: 10px;
+}
+
+.open-tiks-btn {
+  width: 100px;
+}
+
 .hide-modal {
   visibility: hidden;
   transition: visibility 1s, opacity 1s linear;
