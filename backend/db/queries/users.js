@@ -2,8 +2,8 @@ const db = require('../../db/index.js');
 
 
 const getSingleUser = (req, res, next) => {
-    email= req.params.id;
-  db.one("SELECT id, name, email, phone, user_type FROM users WHERE users.email = $1", email)
+    userid= req.params.id;
+  db.one("SELECT id, name, email, phone, password_digest, user_type FROM users WHERE users.id = $1", userid)
     .then(data => {
       res.status(200)
          .json({
