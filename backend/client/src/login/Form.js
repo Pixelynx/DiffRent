@@ -4,6 +4,7 @@ import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
 import DateFnsUtils from "@date-io/date-fns";
 import '../styles/logins/login.css'
 import { subYears } from "date-fns/esm";
+import MaskedInput from 'react-text-mask'
 
 const Form = (props) => {
   const {
@@ -13,7 +14,6 @@ const Form = (props) => {
     } = props;
   const path = match.path;
   const [selectedDate, handleDateChange] = useState(new Date());
-    console.log(props)
 
   let loginForm = <div className='formContainer'>
                   <Link to='/register'><button>SignUp</button></Link>
@@ -64,27 +64,45 @@ const Form = (props) => {
                         <label>Full Name</label>
                         <input 
                         autoFocus
-                        // required
+                        required
+                        name='name'
+                        value={name}
                         placeholder='full name'
                         type='text' />
 
                         <label>Email</label>
                         <input 
-                        // required
+                        required
+                        name='email'
+                        value={email}
                         placeholder='email@domain.com'
-                        type='text' />
+                        type='email' />
+                        
+                        <label>Phone</label>
+                        <MaskedInput 
+                        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                        required
+                        value={phone}
+                        onChange={handleChange}
+                        name='phone'
+                        // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                        placeholder='(123)-456-7890'
+                        type='tel' />
 
                         <label>Password</label>
                         <input 
-                        // required
+                        required
                         placeholder='password'
                         type='password' />
 
-                        <label>Date of Birth</label>
+                        <label>Date of Birth (mm/dd/yyyy)</label>
                         <DatePicker
+                        required
+                          mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
                           keyboard
-                          autoOk
-                          value={subYears(new Date, 18)}
+                          allowKeyboardControl
+                          maxDateMessage='Select a valid date'
+                          value={selectedDate}
                           maxDate={subYears(new Date, 18)}
                           disableFuture
                           openTo="year"
@@ -93,18 +111,17 @@ const Form = (props) => {
                           onChange={handleDateChange}
                         />
 
-                        <label>User Type</label>
-                        <span>{userType ? 'Tenant' : 'Landlord'}</span>
+                        <label>User Type:{userType ? ' Tenant' : ' Landlord'} </label>
                         <input 
                         hidden
                         readOnly={true}
                         value={userType ? 'Tenant' : 'Landlord'} />
                         <input type='submit' />
+                        
                       </form>
                     </div>
                   
                   </>
-
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
     <div className='loginForm'>
