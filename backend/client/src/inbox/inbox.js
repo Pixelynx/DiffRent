@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import ThreadList from './threadList';
 import '../styles/inbox/threads.css'
+import { Route } from 'react-router-dom';
+import ThreadItem from './threadItem';
 
 class Inbox extends React.Component {
   constructor() {
@@ -15,8 +17,8 @@ class Inbox extends React.Component {
   // let landlord_id = this.props.landlord_id; props from app.js passing to threads 
 
   componentDidMount() {
-    let landlord_id = this.props.landlord_id
-    let tenant_id = this.props.tenant_id
+    let landlord_id = this.props.user.landlord_id
+    let tenant_id = this.props.user.tenant_id
     axios.get(`/threads/${landlord_id}/${tenant_id}`).then(res => {
       this.setState({threads: res.data.threads})
     })
@@ -33,8 +35,8 @@ class Inbox extends React.Component {
     e.preventDefault()
     axios.post(`/threads/newthread`, {
       title: this.state.title_input,
-      landlord_id: this.props.landlord_id,
-      tenant_id: this.props.tenant_id
+      landlord_id: this.props.user.landlord_id,
+      tenant_id: this.props.user.tenant_id
     }).then(res => {
       let newThread = res.data.thread
       this.setState({
@@ -45,7 +47,6 @@ class Inbox extends React.Component {
   }
 
   render(){
-    console.log(this.state)
     return(
       <React.Fragment>
         <div>
@@ -55,7 +56,10 @@ class Inbox extends React.Component {
             </label>
             <input type="submit" value="submit" />
           </form>
-          <ThreadList threads={this.state.threads} />
+          <ThreadList 
+            threads={this.state.threads} 
+            user = {this.props.user}
+          />
         </div>
       </React.Fragment>
     )

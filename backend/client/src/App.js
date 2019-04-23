@@ -10,11 +10,14 @@ import Tickets from './TenantDash/tickets.jsx';
 import Auth from "./utils/Auth";
 import Homepage from './components/Homepage';
 import Inbox from './inbox/inbox';
-import Thread from './inbox/thread';
+import ThreadItem from './inbox/threadItem';
 import Profile from './profiles/Profile.js';
+
 
 import PrivateRoute from "./utils/AuthRouting";
 import './styles/index.css';
+
+const NoMatch = () => <h1>404</h1>
 
 class App extends Component {
   state = {
@@ -160,24 +163,11 @@ class App extends Component {
               return !user ? <Homepage />
               : <Redirect to={user.user_type === 'landlord' ? `/landlord/${user.userid}` : `/tenant/${user.userid}`} />
             }} />
-            <Route exact path='/inbox' render={() => {
-              return(
-                  <Inbox
-                    tenant_id={this.state.user.tenant_id}
-                    landlord_id={this.state.user.landlord_id}
-                  />
-                )
-              }}
-            />
-            <Route path='/inbox/threads/:thread_id' render={(props) => {
-              return(
-                <Thread
-                  tenant_id={this.state.user.tenant_id}
-                  landlord_id={this.state.user.landlord_id}
-                  threadId={props.match.params.thread_id}
-                />
-              )
-            }} />
+            <Route exact path='/inbox' render={() => <Inbox user={this.state.user}/>} />
+        <Route path="/inbox/threads/:id" component={ThreadItem} />
+            
+            <Route component={NoMatch} />
+            
           </Switch>
         </>
       </div>
