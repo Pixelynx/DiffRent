@@ -13,7 +13,7 @@ const Form = (props) => {
     } = props;
   const path = match.path;
   const [selectedDate, handleDateChange] = useState(new Date());
-  const birthday = subYears(new Date(), 18);
+    console.log(props)
 
   let loginForm = <div className='formContainer'>
                   <Link to='/register'><button>SignUp</button></Link>
@@ -55,12 +55,15 @@ const Form = (props) => {
 
 
   let signupForm = <>
-                    <div>
-                      <button onClick={selectLandlord}>Landlord</button>
-                      <button onClick={selectTenant}>Tenant</button>
+                    <div className='signupForm'>
+                      <div>
+                        <button onClick={selectLandlord}>Landlord</button>
+                        <button onClick={selectTenant}>Tenant</button>
+                      </div>
                       <form onSubmit={registerUser}>
                         <label>Full Name</label>
                         <input 
+                        autoFocus
                         // required
                         placeholder='full name'
                         type='text' />
@@ -77,22 +80,18 @@ const Form = (props) => {
                         placeholder='password'
                         type='password' />
 
-                        {/* <label>Date of Birth</label> */}
-                        <div className="picker">
-        <DatePicker
-          label="Date of birth"
-          autoOk
-          value={subYears(selectedDate, 18)}
-          disableFuture
-          openTo="day"
-          // format={props.getFormatString({
-          //   moment: "DD/MM/YYYY",
-          //   dateFns: "dd/MM/yyyy",
-          // })}
-          views={["year", "month", "day"]}
-          onChange={handleDateChange}
-        />
-      </div>
+                        <label>Date of Birth</label>
+                        <DatePicker
+                          keyboard
+                          autoOk
+                          value={subYears(new Date, 18)}
+                          maxDate={subYears(new Date, 18)}
+                          disableFuture
+                          openTo="year"
+                          format="MM/dd/yyyy"
+                          views={["year", "month", "day"]}
+                          onChange={handleDateChange}
+                        />
 
                         <label>User Type</label>
                         <span>{userType ? 'Tenant' : 'Landlord'}</span>
