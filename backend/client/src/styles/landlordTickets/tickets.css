@@ -1,4 +1,4 @@
-.dash-container {
+.dash-container, #show {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -49,30 +49,42 @@
 }
 
 @keyframes fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-@keyframes fadeout {
-  from { opacity: 1; }
-  to { opacity: 0; }
+.close-modal-btn {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  height: 50px;
+  width: 50px;
+  background-color: var(--medium-blue);
+  border: 1px solid var(--light-purple);
+  font-size: 20px;
+  color: var(--light-purple);
+}
+
+.close-modal-btn:hover {
+  background-color: var(--dark-purple);
+  border: 1px solid var(--medium-blue);
+  color: var(--medium-blue);
+  transition: .1s linear;
 }
 
 .hide-modal {
-  opacity: 0;
-  visibility: hidden;
-  animation: fadeout .1s linear;
-
+  /* animation: fadeout .5s linear; */
 }
 
 .show-modal {
   display: flex;
-  visibility: visible;
   position: absolute;
+  visibility: visible;
   justify-content: center;
+  margin-top: 5em;
+  align-items: center;
   background-color: var(--form-modal-container);
   width: 900px;
   height: 500px;
-  /* opacity: 1; */
   animation: fadein .5s linear;
 }
