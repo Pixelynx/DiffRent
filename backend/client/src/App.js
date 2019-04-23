@@ -156,7 +156,7 @@ class App extends Component {
             />
 
           <PrivateRoute path='/landlord/profile/:id' user={this.state.user} component={Profile} />
-            <PrivateRoute path='/tenants/profile/:id' user={this.state.user} component={Profile} />
+            <PrivateRoute path='/tenant/profile/:id' user={this.state.user} component={Profile} />
             <PrivateRoute path='/landlord/:id' component={LandlordDash} />
             <PrivateRoute path='/tenant/:id' user={user} component={TenantDash} />
             <Route exact path='/' render={() => {

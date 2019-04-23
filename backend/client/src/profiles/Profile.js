@@ -29,11 +29,12 @@ class Profile extends Component {
   }
 
   getLandlordInfo = () => {
-    axios.get(`/landlords/${this.props.match.params.id}`)
+    axios.get(`/users/${this.props.match.params.id}`)
       .then(response => {
+        debugger;
         console.log("response is: ",response)
         this.setState({ defaultVals : {
-          id: response.data.data.landlord_id,
+          id: response.data.data.id,
           name: response.data.data.name,
           dob: response.data.data.dob,
           phone: response.data.data.phone,
