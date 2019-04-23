@@ -5,7 +5,7 @@ import '../styles/landlordTickets/tickets.css';
 import '../styles/colorScheme.css';
 
 import TenantContactInfo from './TenantContactInfo.js';
-import Tickets from './tickets.jsx';
+import {Tickets} from './tickets.jsx';
 import TicketDashInfo from './LandlordTicketDashInfo.js';
 
 class LandlordDash extends Component {
@@ -21,7 +21,8 @@ class LandlordDash extends Component {
       }],
       address: null,
       appointments: [],
-      isShowing: false,
+      tenantInfoIsShowing: false,
+      tenantTiksIsShowing: false,
       selectedApt: null,
       tickets: []
     }
@@ -70,11 +71,11 @@ class LandlordDash extends Component {
   }
 
   handleTenantInfoShowing = (e) => {
-    if(e.target.className === 'apts-btn' || e.target.className === 'show-modal') {
+    if(e.target.className === 'apts-btn' || e.target.className === 'close-modal-btn') {
       this.setState({ selectedApt: e.target.id })
-      this.setState({ isShowing: !this.state.isShowing })
+      this.setState({ tenantInfoIsShowing: !this.state.tenantInfoIsShowing })
     }
-
+    console.log(e.target.className)
   }
 
   // can consider this as preparation for future iteration of one to many relationship
@@ -102,6 +103,12 @@ class LandlordDash extends Component {
     }
   }
 
+  handleTenantTiksShowing = (e) => {
+    if(e.target.className === 'open-tiks-btn' || e.target.className === 'landlord-tiks-container') {
+      this.setState({ tenantTiksIsShowing: !this.state.tenantTiksIsShowing })
+    }
+  }
+
 
   render(){
     console.log(this.state, 'STATE')
@@ -110,7 +117,7 @@ class LandlordDash extends Component {
 
     return(
       <>
-        <div className='dash-container' >
+        <div className='dash-container' id={ !this.state.tenantInfoIsShowing ? 'show' : 'hide'} style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : null }>
           <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
             <div className='tenant-contacts'>
               <h2>Apartments</h2>
@@ -119,8 +126,11 @@ class LandlordDash extends Component {
             <TenantContactInfo
               selectedApt={this.state.selectedApt}
               tenantInfo={tenantInfo}
-              isShowing={this.state.isShowing}
-              modalShowing={this.handleTenantInfoShowing}
+              tenantModalShowing={this.state.tenantInfoIsShowing}
+              closeModal={this.handleTenantInfoShowing}
+          />
+        <Tickets
+          toggleModal={this.handleTenantTiksShowing}
           />
         </div>
       </>

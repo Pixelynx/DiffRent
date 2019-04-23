@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Tickets extends Component {
-  state = {
-    apts: {
-      unresolvedTickets: []
-    }
-  }
-  render() {
+export const Tickets = (props) => {
+
+  // const renderUnresolvedTiks = () => {
+  //
+  // }
+
     return(
       <>
-       <button>You have unresolved XXX tickets.</button>
+       <div className='landlord-tiks-container'>
+        <div className='landlord-tiks-window'>
+        </div>
+       </div>
       </>
     )
-  }
 }
