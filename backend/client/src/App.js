@@ -155,8 +155,8 @@ class App extends Component {
               }}
             />
 
-            <PrivateRoute path='/landlord/profile/:id' component={Profile} />
-            <PrivateRoute path='/tenants/profile/:id' component={Profile} />
+          <PrivateRoute path='/landlord/profile/:id' user={this.state.user} component={Profile} />
+            <PrivateRoute path='/tenants/profile/:id' user={this.state.user} component={Profile} />
             <PrivateRoute path='/landlord/:id' component={LandlordDash} />
             <PrivateRoute path='/tenant/:id' user={user} component={TenantDash} />
             <Route exact path='/' render={() => {
@@ -165,9 +165,9 @@ class App extends Component {
             }} />
             <Route exact path='/inbox' render={() => <Inbox user={this.state.user}/>} />
         <Route path="/inbox/threads/:id" component={ThreadItem} />
-            
+
             <Route component={NoMatch} />
-            
+
           </Switch>
         </>
       </div>
