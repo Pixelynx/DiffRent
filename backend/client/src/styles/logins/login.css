@@ -26,3 +26,59 @@
 .signupForm label{
     display: block
 }
+
+.tButtonA{
+    height: 30px;
+    width: 85px;
+    background-color: #84CEEB;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.lButtonA{
+    height: 30px;
+    width: 85px;
+    background-color: #84CEEB;
+    border-radius: 10px 0px 0px 10px;
+}
+.tButtonD{
+    height: 30px;
+    width: 85px;
+    background-color: #8860D0;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.lButtonD{
+    height: 30px;
+    width: 85px;
+    background-color: #8860D0;
+    border-radius: 10px 0px 0px 10px;
+}
+
+button:focus{
+    outline: 0;
+}
+
+input{
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 100%;
+    padding-left: 15px;
+    text-align: center
+}
+
+input::placeholder{
+    /* color: rgba(63, 63, 63);
+    color: rgb(232, 162, 162); */
+    color: rgba(19, 17, 17, 0.61)
+}
+
+input:active{
+    border-bottom: 1px solid;
+}
+
+input:focus{
+    outline: 0;
+    border-bottom: 1px solid;
+}
+
