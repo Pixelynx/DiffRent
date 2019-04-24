@@ -51,7 +51,7 @@ const updateTenant = (req, res, next) => {
     res.status(200)
        .json({
          status: "success",
-         message: "Updated A Landlord!"
+         message: "Updated a tenant!"
        })
   })
   .catch(err => {
@@ -62,7 +62,7 @@ const updateTenant = (req, res, next) => {
 
 
 
-const deleteTanant = (req, res, next) => {
+const deleteTenant = (req, res, next) => {
   userT="tenant"
   tenantId = Number(req.params.id)
   console.log(tenantId, userT)
@@ -88,7 +88,7 @@ res.json(req.user);
 module.exports = {
   getAllTenants: getAllTenants,
   getSingleTenant: getSingleTenant,
-  updateTanant: updateTanant,
-  deleteTanant: deleteTanant,
+  updateTenant: updateTenant,
+  deleteTenant: deleteTenant,
   loginUser: loginUser
 }
