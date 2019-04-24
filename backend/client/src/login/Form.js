@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
 import DateFnsUtils from "@date-io/date-fns";
@@ -10,7 +10,7 @@ const Form = (props) => {
   const {
     match, username, password, isLoggedIn, loginUser, handleChange,
     demoLogin, name, email, phone, dob, userType, selectTenant,
-    registerUser, selectLandlord, getDat
+    registerUser, selectLandlord
     } = props;
   const path = match.path;
   const [selectedDate, handleDateChange] = useState(new Date());
@@ -105,7 +105,7 @@ const Form = (props) => {
                         <label>Date of Birth (mm/dd/yyyy)</label>
                         <DatePicker
                         required
-                          // mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
+                          mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
                           keyboard
                           allowKeyboardControl
                           maxDateMessage='Select a valid date'
@@ -113,7 +113,7 @@ const Form = (props) => {
                           maxDate={subYears(new Date, 18)}
                           disableFuture
                           openTo="year"
-                          format="yyyy-MM-dd"
+                          format="MM/dd/yyyy"
                           views={["year", "month", "day"]}
                           onChange={handleDateChange}
                         />

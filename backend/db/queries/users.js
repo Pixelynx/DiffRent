@@ -1,9 +1,9 @@
 const db = require('../../db/index.js');
-
+const authHelpers = require("../../auth/helpers");
 
 const getSingleUser = (req, res, next) => {
     userid= req.params.id;
-  db.one("SELECT id, name, email, phone, password_digest, user_type FROM users WHERE users.id = $1", userid)
+  db.one("SELECT id, name, email, phone, password_digest, user_type FROM users WHERE users.email = $1", userid)
     .then(data => {
       res.status(200)
          .json({
@@ -41,7 +41,7 @@ const addNewUser = (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
-    dob: req.body.dob,
+    dob: req.body.date,
     password_digest: hash,
     user_type: req.body.user_type
   })
