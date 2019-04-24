@@ -145,13 +145,13 @@ class App extends Component {
             />
 
             <Route path="/register" render={() => {
-                return (<AuthForm
+                return !user ? <AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
                     getUserInfo={this.getUserInfo}
                     getUserAptInfo={this.getUserAptInfo}
                     user={user}
                     isLoggedIn={isLoggedIn}/>
-                );
+                    : <Redirect to={ user.user_type === 'tenant' ? `/tenant/${user.id}` : `/landlord/${user.id}`} />
               }}
             />
 

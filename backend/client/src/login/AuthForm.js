@@ -6,6 +6,7 @@ import Auth from "../utils/Auth";
 import Form from "./Form";
 import { format } from "date-fns";
 
+
 class AuthForm extends Component {
   state = {
     username: "",
@@ -36,7 +37,7 @@ class AuthForm extends Component {
     })
   }
 
-  getDat = (date) => {
+  handleDate = (date) => {
     this.setState({
       dob: date
     })
@@ -45,42 +46,35 @@ class AuthForm extends Component {
 
   registerUser = async e => {
     e.preventDefault();
-    const {password , name, email, phone, dob, userType } = this.state;
+    const {password , name, email, phone, userType } = this.state;
     let user_type = userType ? 'tenant' : 'landlord';
     let password_digest = password;
-    let date = e.target[4].value;
-    this.getDat(date)
-    if (userType){
-      return await axios.post("/tenants/", { name, email, phone, dob, user_type, password_digest })
-      // Auth.authenticateUser(email);
-      // debugger
-      // let username = email;
-      // await axios.post("/users/login", { username, password });
-      // debugger
-      // await this.props.checkAuthenticateStatus();
-    } else if (!userType) {
-      return await axios.post("/landlords/", { name, email, phone, dob, user_type, password_digest })
+    let input = e.target[4].value;
+    let date = input.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2");
+    let username = email;
+
+    
+    await axios.post("/users/", { name, email, phone, date, user_type, password_digest })
+      Auth.authenticateUser(email);
+    if(user_type === 'tenant'){
+      return await axios
+      .post("/tenants/login", { username, password })
+      .then((res) => {
+          this.props.getUserInfo(res.data.email)
+      })
+      .then(() => {
+        this.props.checkAuthenticateStatus()
+      })
+    } else if(user_type === 'landlord'){
+      return await axios
+      .post("/landlords/login", { username, password })
+      .then((res) => {
+          this.props.getUserInfo(res.data.email)
+      })
+      .then(() => {
+        this.props.checkAuthenticateStatus()
+      })
     }
-
-
-    // this.setState({
-    //   username: "",
-    //   password: ""
-    // });
-    // axios.post("/users/new", { username, password }).then(() => {
-    //   Auth.authenticateUser(username);
-    //   axios
-    //     .post("/users/login", { username, password })
-    //     .then(() => {
-    //       this.props.checkAuthenticateStatus();
-    //     })
-    //     .then(() => {
-    //       this.setState({
-    //         username: "",
-    //         password: ""
-    //       });
-    //     });
-    // });
   };
 
   loginUser = e => {
@@ -174,10 +168,10 @@ class AuthForm extends Component {
     }
   }
 
+  
   render() {
     const { username, password, name, email, phone, dob, userType } = this.state;
     const { isLoggedIn } = this.props;
-    console.log(dob)
     return (
       <Switch>
         <Route
@@ -229,7 +223,7 @@ class AuthForm extends Component {
                 handleChange={this.handleChange}
                 selectLandlord={this.selectLandlord}
                 selectTenant={this.selectTenant}
-                getDat={this.getDat}
+                handleDate={this.handleDate}
               />
             );
           }}
