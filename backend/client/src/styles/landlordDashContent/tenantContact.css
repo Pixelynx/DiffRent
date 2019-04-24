@@ -14,21 +14,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 190px;
+  height: 250px;
   width: 500px;
   padding-top: 10px;
 }
 
 .apts-btn-container {
   display: flex;
+  flex-direction: column;
 }
 
 .apts-btn, .open-tiks-btn {
-  height: 5em;
   background-color: var(--dark-purple);
   border: 1px solid var(--light-blue);
   font-family: sans-serif;
-  color: #fff;
   letter-spacing: 0.2em;
   font-size: 15px;
 }
@@ -40,12 +39,17 @@
 }
 
 .apts-btn {
-  width: 300px;
+  width: 400px;
   margin-right: 10px;
+  height: 5em;
+  color: #fff;
 }
 
 .open-tiks-btn {
-  width: 100px;
+  margin-top: 1em;
+  width: 400px;
+  height: 3em;
+  color: red;
 }
 
 @keyframes fadein {
