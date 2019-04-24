@@ -56,32 +56,11 @@ const getAllAptsByLandlord = (req, res, next) => {
     })
 }
 
-const addNewLandlord = (req, res, next) => {
-  const hash = authHelpers.createHash(req.body.password_digest);
-  db.none("INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES(${name}, ${email}, ${phone}, ${dob}, ${password_digest}, ${user_type})",
-  {
-    name: req.body.name,
-    email: req.body.email,
-    phone: req.body.phone,
-    dob: req.body.dob,
-    password_digest: hash,
-    user_type: "landlord"
-  })
-  .then(() => {
-    res.status(200)
-       .json({
-         status: 'success',
-         message: 'New Landlord Added'
-       })
-  })
-  .catch(err => {
-    console.log('error: ', err)
-    return next(err)
-  })
-}
+
 
 const updateLandlord = (req, res, next) => {
   userId = Number(req.params.id)
+  const hash = authHelpers.createHash(req.body.password_digest);
   db.none("UPDATE users SET name=${name}, email=${email}, phone=${phone}, dob=${dob}, password_digest=${password_digest}, user_type=${user_type} WHERE id=${id}",
   {
     id: req.params.id,
@@ -89,7 +68,7 @@ const updateLandlord = (req, res, next) => {
     email: req.body.email,
     phone: req.body.phone,
     dob: req.body.dob,
-    password_digest: req.body.password_digest,
+    password_digest: hash,
     user_type: "landlord"
   })
     .then(() => {
@@ -130,7 +109,6 @@ module.exports = {
   getAllLandlords: getAllLandlords,
   getSingleLandlord: getSingleLandlord,
   getAllAptsByLandlord: getAllAptsByLandlord,
-  addNewLandlord: addNewLandlord,
   updateLandlord: updateLandlord,
   deleteLandlord: deleteLandlord,
   loginUser: loginUser,

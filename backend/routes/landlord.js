@@ -8,7 +8,6 @@ router.get('/', queries.getAllLandlords);
 router.get('/:id', queries.getSingleLandlord);
 router.get('/:id/apartments', queries.getAllAptsByLandlord);
 
-router.post('/', queries.addNewLandlord);
 router.delete('/:id', queries.deleteLandlord);
 router.put('/:id', queries.updateLandlord);
 
