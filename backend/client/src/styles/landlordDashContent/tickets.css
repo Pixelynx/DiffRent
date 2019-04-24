@@ -7,7 +7,7 @@
   visibility: visible;
   height: 100vh;
   width: 100vw;
-  background-color: var(--light-purple);
+  background-color: var(--landlord-tik-modal-container);
 }
 
 .hide-landlord-tiks-container {
@@ -15,7 +15,32 @@
 }
 
 .landlord-tiks-window {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
   height: 500px;
   width: 900px;
+  color: var(--medium-blue);
+  font-weight: bold;
   background-color: var(--dark-purple);
+}
+
+.landlord-tik-front, .landlord-tik-back {
+  background-color: var(--light-purple);
+  height: 300px;
+  width: 190px;
+}
+
+.landlord-tik-front {
+  z-index: 1;
+}
+
+.landlord-tik-back {
+  z-index: 0;
+}
+
+.landlord-tik-front, p {
+  margin: .5em 1em .5em 1em;
 }

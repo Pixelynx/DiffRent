@@ -56,15 +56,15 @@ const Form = (props) => {
   let signupForm = <>
                     <div className='signupForm'>
                       <div>
-                        <button onClick={selectLandlord}>Landlord</button>
-                        <button onClick={selectTenant}>Tenant</button>
+                        <button className={userType ? 'lButtonD' : 'lButtonA'} onClick={selectLandlord}>Landlord</button>
+                        <button className={userType ? 'tButtonA' : 'tButtonD'} onClick={selectTenant}>Tenant</button>
                       </div>
                       <form onSubmit={registerUser}>
                         <label>Full Name</label>
                         <input 
                         autoFocus
                         autoComplete='off'
-                        // required
+                        required
                         name='name'
                         value={name}
                         onChange={handleChange}
@@ -73,7 +73,7 @@ const Form = (props) => {
 
                         <label>Email</label>
                         <input 
-                        // required
+                        required
                         autoComplete='off'
                         name='email'
                         value={email}
@@ -84,7 +84,7 @@ const Form = (props) => {
                         <label>Phone</label>
                         <MaskedInput 
                         mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-                        // required
+                        required
                         autoComplete='off'
                         value={phone}
                         onChange={handleChange}
@@ -95,7 +95,7 @@ const Form = (props) => {
 
                         <label>Password</label>
                         <input 
-                        // required
+                        required
                         name='password'
                         value={password}
                         onChange={handleChange}
@@ -104,7 +104,6 @@ const Form = (props) => {
 
                         <label>Date of Birth (mm/dd/yyyy)</label>
                         <DatePicker
-                        required
                           mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
                           keyboard
                           allowKeyboardControl
