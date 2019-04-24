@@ -6,7 +6,7 @@ import '../styles/landlordDashContent/tickets.css';
 import '../styles/colorScheme.css';
 
 import TenantContactInfo from './TenantContactInfo.js';
-import { Tickets } from './tickets.jsx';
+import Tickets from './tickets.jsx';
 import TicketDashInfo from './LandlordTicketDashInfo.js';
 
 class LandlordDash extends Component {
@@ -88,7 +88,7 @@ class LandlordDash extends Component {
               <button
                 className='open-tiks-btn'
                 onClick={this.handleTenantTiksShowing}>
-                You have {this.state.tickets.length} open tickets.
+                You have {this.state.tickets.length} open tickets. (DON'T CLICK)
               </button>
             </div>
           </>
@@ -133,6 +133,7 @@ class LandlordDash extends Component {
         <Tickets
           toggleModal={this.handleTenantTiksShowing}
           tenantTiksShow={this.state.tenantTiksIsShowing}
+          tickets={this.state.tickets}
           />
         </div>
       </>
