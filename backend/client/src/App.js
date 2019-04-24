@@ -163,8 +163,8 @@ class App extends Component {
               return !user ? <Homepage />
               : <Redirect to={user.user_type === 'landlord' ? `/landlord/${user.userid}` : `/tenant/${user.userid}`} />
             }} />
-            <Route exact path='/inbox' render={() => <Inbox user={this.state.user} />} />
-        <Route path="/inbox/threads/:id" render={(props) => <ThreadItem {...props} user={this.state.user} />} />
+            <PrivateRoute path='/inbox' user={user} component={Inbox} />} />
+        <PrivateRoute path="/inbox/threads/:id" user={user} component={ThreadItem}  />} />
 
             <Route component={NoMatch} />
 
