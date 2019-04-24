@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import '../styles/profiles/profiles.css';
+import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 
 class Profile extends Component {
@@ -20,7 +22,8 @@ class Profile extends Component {
           phone: '',
           email: '',
           password: ''
-        }
+        },
+      formSubmitted: false
     }
   }
 
@@ -50,10 +53,10 @@ class Profile extends Component {
   handleChange = event => {
   const value = event.target.value;
   this.setState({
-    newVals:{
+    newVals:{...this.state.newVals,
     [event.target.name] : event.target.value,
-
-    }
+  },
+    formSubmitted: true
   })
 };
 
@@ -88,16 +91,17 @@ handleSubmit = event => {
 
   render(){
     return(
-      <>
+      <div>
         <form onSubmit={this.handleSubmit}>
-          <input type='text' onChange={this.handleChange} name='name' defaultValue={this.state.defaultVals.name}/>
-          <input type='email' onChange={this.handleChange} name='email' defaultValue={this.state.defaultVals.email} />
-          <input type='text' onChange={this.handleChange} name='phone' defaultValue={this.state.defaultVals.phone} />
-          {/*<input type='password' onChange={this.handleChange} name='password' defaultValue={this.state.defaultVals.password} />*/}
-          <input type='submit' value="Submit Changes"/>
+          Name: <input type='text' className='name-input' onChange={this.handleChange} name='name' defaultValue={this.state.defaultVals.name}/>
+          Email Address: <input type='email' className='email-input' onChange={this.handleChange} name='email' defaultValue={this.state.defaultVals.email} />
+          Phone Number: <input type='text' className='phone-input' onChange={this.handleChange} name='phone' defaultValue={this.state.defaultVals.phone} />
+          Password: <input type='password' onChange={this.handleChange} name='password' placeholder='' value='' />
+          <input type='submit' className='submit-btn' value="Submit Changes"/>
         </form>
+        {/*}<button><Redirect to='/landlord/:id' /></button>*/}
 
-      </>
+      </div>
     )
   }
 }
