@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import MessageList from './messageList';
+import {withRouter} from 'react-router-dom'
 
 class ThreadItem extends React.Component {
   constructor(){
@@ -50,6 +51,7 @@ class ThreadItem extends React.Component {
   
 
   render() {
+    console.log('props', this.props)
     return (
       <div>
         <div>{this.state.title}</div>
@@ -65,4 +67,4 @@ class ThreadItem extends React.Component {
   }
 }
 
-export default ThreadItem;
+export default withRouter(ThreadItem);
