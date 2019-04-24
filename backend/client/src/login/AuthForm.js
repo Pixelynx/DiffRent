@@ -6,90 +6,93 @@ import Auth from "../utils/Auth";
 import Form from "./Form";
 import { format } from "date-fns";
 
-
 class AuthForm extends Component {
   state = {
     username: "",
     password: "",
-    name: '',
-    email: '',
-    phone: '',
-    dob: '',
-    userType: false 
+    name: "",
+    email: "",
+    phone: "",
+    dob: "",
+    userType: false,
   };
-  
 
   handleChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   selectLandlord = () => {
     this.setState({
-      userType: false
-    })
-  }
+      userType: false,
+    });
+  };
 
   selectTenant = () => {
     this.setState({
-      userType: true
-    })
-  }
+      userType: true,
+    });
+  };
 
-  handleDate = (date) => {
+  handleDate = date => {
     this.setState({
-      dob: date
-    })
-  }
-  
+      dob: date,
+    });
+  };
 
   registerUser = async e => {
     e.preventDefault();
-    const {password , name, email, phone, userType } = this.state;
-    let user_type = userType ? 'tenant' : 'landlord';
+    const { password, name, email, phone, userType } = this.state;
+    let user_type = userType ? "tenant" : "landlord";
     let password_digest = password;
     let input = e.target[4].value;
     let date = input.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2");
     let username = email;
 
-    
-    await axios.post("/users/", { name, email, phone, date, user_type, password_digest })
-      Auth.authenticateUser(email);
-    if(user_type === 'tenant'){
+    await axios.post("/users/", {
+      name,
+      email,
+      phone,
+      date,
+      user_type,
+      password_digest,
+    });
+    Auth.authenticateUser(email);
+    if (user_type === "tenant") {
       return await axios
-      .post("/tenants/login", { username, password })
-      .then((res) => {
-          this.props.getUserInfo(res.data.email)
-      })
-      .then(() => {
-        this.props.checkAuthenticateStatus()
-      })
-    } else if(user_type === 'landlord'){
+        .post("/tenants/login", { username, password })
+        .then(res => {
+          this.props.getUserInfo(res.data.email);
+        })
+        .then(() => {
+          this.props.checkAuthenticateStatus();
+        });
+    } else if (user_type === "landlord") {
       return await axios
-      .post("/landlords/login", { username, password })
-      .then((res) => {
-          this.props.getUserInfo(res.data.email)
-      })
-      .then(() => {
-        this.props.checkAuthenticateStatus()
-      })
+        .post("/landlords/login", { username, password })
+        .then(res => {
+          this.props.getUserInfo(res.data.email);
+        })
+        .then(() => {
+          this.props.checkAuthenticateStatus();
+        });
     }
   };
 
   loginUser = e => {
     e.preventDefault();
-    const { username, password} = this.state;
+    const { username, password } = this.state;
     const { getUserAptInfo, getUserInfo, user } = this.props;
 
-    if (e.target[2].value === 'landlord')
-      { return axios
+    if (e.target[2].value === "landlord") {
+      return axios
         .post("/landlords/login", { username, password })
-        .then((res) => {
-          getUserInfo(res.data.email)
-      })
+        .then(res => {
+          getUserInfo(res.data.email);
+        })
         .then(() => {
-          Auth.authenticateUser(username)
+          Auth.authenticateUser(username);
         })
         .then(() => {
           this.props.checkAuthenticateStatus();
@@ -97,17 +100,17 @@ class AuthForm extends Component {
         .then(() => {
           this.setState({
             username: "",
-            password: ""
+            password: "",
           });
         });
-      } else if (e.target[2]. value === 'tenant')
-      { return axios
+    } else if (e.target[2].value === "tenant") {
+      return axios
         .post("/tenants/login", { username, password })
-        .then((res) => {
-            getUserInfo(res.data.email)
+        .then(res => {
+          getUserInfo(res.data.email);
         })
         .then(() => {
-          Auth.authenticateUser(username)
+          Auth.authenticateUser(username);
         })
         .then(() => {
           this.props.checkAuthenticateStatus();
@@ -115,30 +118,31 @@ class AuthForm extends Component {
         .then(() => {
           this.setState({
             username: "",
-            password: ""
+            password: "",
           });
         });
-      }
+    }
   };
 
-  demoLogin = (e) => {
+  demoLogin = e => {
     e.preventDefault();
     const { match, getUserAptInfo, getUserInfo, user } = this.props;
     const path = match.path;
-    let password = 'abc';
+    let password = "abc";
 
-    if (path === '/tenants/login'){
-      let username = 'nRyder@gmail.com'
-    return axios
+    if (path === "/tenants/login") {
+      let username = "nRyder@gmail.com";
+      return axios
         .post("/tenants/login", { username, password })
-        .then((res) => {
-            if(!user){
-              return getUserAptInfo(res.data.email)} else if (!user) {
-                return getUserInfo(res.data.email)
-              }
+        .then(res => {
+          if (!user) {
+            return getUserAptInfo(res.data.email);
+          } else if (!user) {
+            return getUserInfo(res.data.email);
+          }
         })
         .then(() => {
-          Auth.authenticateUser(username)
+          Auth.authenticateUser(username);
         })
         .then(() => {
           this.props.checkAuthenticateStatus();
@@ -146,36 +150,45 @@ class AuthForm extends Component {
         .then(() => {
           this.setState({
             username: "",
-            password: ""
+            password: "",
           });
         });
-    } else if (path === '/landlords/login'){
-      let username = 'rHerbert@gmail.com' 
-       return axios
-      .post("/landlords/login", { username, password })
-      .then((res) => {
-          if(!user){
-            return getUserAptInfo(res.data.email)} else if (!user) {
-              return getUserInfo(res.data.email)
-            }
-      })
-      .then(() => {
-        Auth.authenticateUser(username)
-      })
-      .then(() => {
-        this.props.checkAuthenticateStatus();
-      })
+    } else if (path === "/landlords/login") {
+      let username = "rHerbert@gmail.com";
+      return axios
+        .post("/landlords/login", { username, password })
+        .then(res => {
+          if (!user) {
+            return getUserAptInfo(res.data.email);
+          } else if (!user) {
+            return getUserInfo(res.data.email);
+          }
+        })
+        .then(() => {
+          Auth.authenticateUser(username);
+        })
+        .then(() => {
+          this.props.checkAuthenticateStatus();
+        });
     }
-  }
+  };
 
-  
   render() {
-    const { username, password, name, email, phone, dob, userType } = this.state;
+    const {
+      username,
+      password,
+      name,
+      email,
+      phone,
+      dob,
+      userType,
+    } = this.state;
     const { isLoggedIn } = this.props;
     return (
       <Switch>
         <Route
-          exact path="/tenants/login"
+          exact
+          path="/tenants/login"
           render={() => {
             return (
               <Form
@@ -191,7 +204,8 @@ class AuthForm extends Component {
           }}
         />
         <Route
-          exact path="/landlords/login"
+          exact
+          path="/landlords/login"
           render={() => {
             return (
               <Form
@@ -207,7 +221,8 @@ class AuthForm extends Component {
           }}
         />
         <Route
-          exact path="/register"
+          exact
+          path="/register"
           render={() => {
             return (
               <Form
@@ -229,7 +244,8 @@ class AuthForm extends Component {
           }}
         />
         <Route
-          exact path="/landlords/register"
+          exact
+          path="/landlords/register"
           render={() => {
             return (
               <Form
