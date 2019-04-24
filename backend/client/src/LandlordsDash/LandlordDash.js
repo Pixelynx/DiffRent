@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../styles/dashboards/dashboards.css';
-import '../styles/landlordTickets/tickets.css';
+import '../styles/landlordDashContent/tenantContact.css';
 import '../styles/colorScheme.css';
 
 import TenantContactInfo from './TenantContactInfo.js';
-import {Tickets} from './tickets.jsx';
+import { Tickets } from './tickets.jsx';
 import TicketDashInfo from './LandlordTicketDashInfo.js';
 
 class LandlordDash extends Component {
@@ -70,14 +70,6 @@ class LandlordDash extends Component {
     })
   }
 
-  handleTenantInfoShowing = (e) => {
-    if(e.target.className === 'apts-btn' || e.target.className === 'close-modal-btn') {
-      this.setState({ selectedApt: e.target.id })
-      this.setState({ tenantInfoIsShowing: !this.state.tenantInfoIsShowing })
-    }
-    console.log(e.target.className)
-  }
-
   // can consider this as preparation for future iteration of one to many relationship
   mapTenantApts = () => {
 
@@ -93,13 +85,21 @@ class LandlordDash extends Component {
                 {tenant.address}
               </button>
               <button
-                className='open-tiks-btn'>
-                {this.state.tickets.length}
+                className='open-tiks-btn'
+                onClick={this.handleTenantTiksShowing}>
+                You have {this.state.tickets.length} open tickets.
               </button>
             </div>
           </>
         )
       })
+    }
+  }
+
+  handleTenantInfoShowing = (e) => {
+    if(e.target.className === 'apts-btn' || e.target.className === 'close-modal-btn') {
+      this.setState({ selectedApt: e.target.id })
+      this.setState({ tenantInfoIsShowing: !this.state.tenantInfoIsShowing })
     }
   }
 
@@ -117,7 +117,7 @@ class LandlordDash extends Component {
 
     return(
       <>
-        <div className='dash-container' id={ !this.state.tenantInfoIsShowing ? 'show' : 'hide'} style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : null }>
+        <div className='dash-container' id={ !this.state.tenantInfoIsShowing || !this.state.tenantTiksIsShowing ? 'show' : 'hide'} style={ this.state.tenantInfoIsShowing || this.state.tenantTiksIsShowing ? {visibility: 'hidden'} : null }>
           <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
             <div className='tenant-contacts'>
               <h2>Apartments</h2>
