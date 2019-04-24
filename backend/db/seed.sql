@@ -54,7 +54,7 @@ CREATE TABLE messages(
 
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('James Bennett', 'jBennet@gmail.com', '(458)201-9297', '1992-01-01', '$2a$10$ljQkp/aLpymNrrlFrtsEY.MdCn5wxvhwbAjRKxt3fgN/DWddHTc12', 'landlord');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Reya Herbert', 'rHerbert@gmail.com', '(562)298-3280', '1992-04-05', '$2a$10$ljQkp/aLpymNrrlFrtsEY.MdCn5wxvhwbAjRKxt3fgN/DWddHTc12', 'landlord');
-INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Ricardo Sheridan', 'Ricardosheridan@gmail.com', '(321)402-7158', '1978-10-05', '123abc', 'landlord');
+INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Ricardo Sheridan', 'Ricardosheridan@gmail.com', '(321)402-7158', '1978-10-05', '$2a$10$ljQkp/aLpymNrrlFrtsEY.MdCn5wxvhwbAjRKxt3fgN/DWddHTc12', 'landlord');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Jim Sears', 'Jimsears@gmail.com', '(316)755-8390', '1983-01-26', '456xyz', 'landlord');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Rick Nixon', 'rNixon@gmail.com', '(321)861-7901', '1990-02-02', '123abc', 'landlord');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Jamie Cummings', 'Jamiecummings@gmail.com', '(480)927-7470', '1959-04-10', 'cookie123', 'landlord');
@@ -65,7 +65,7 @@ INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('
 
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Zoe Goulding', 'zGoulding@gmail.com', '(609)367-5162', '1998-10-01',  '$2a$10$ljQkp/aLpymNrrlFrtsEY.MdCn5wxvhwbAjRKxt3fgN/DWddHTc12', 'tenant');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Nikola Ryder', 'nRyder@gmail.com', '(319)471-7363', '1995-12-02',  '$2a$10$ljQkp/aLpymNrrlFrtsEY.MdCn5wxvhwbAjRKxt3fgN/DWddHTc12', 'tenant');
-INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Kylie Thomas', 'kThomas@gmail.com', '(440)685-5383', '1996-06-03', '456xyz', 'tenant');
+INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Kylie Thomas', 'kThomas@gmail.com', '(440)685-5383', '1996-06-03', '$2a$10$ljQkp/aLpymNrrlFrtsEY.MdCn5wxvhwbAjRKxt3fgN/DWddHTc12', 'tenant');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Brody Welsh', 'bWelsh@gmail.com', '(312)600-6147', '1991-04-05',  'xyz456', 'tenant');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Karol Lu', 'kLu@gmail.com', '(206)213-6903', '1980-09-02', '987abc' , 'tenant');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Kamil Penn', 'Kamilpenn@gmail.com', '(248)943-5521', '1985-09-08', 'ABCD1234', 'tenant');

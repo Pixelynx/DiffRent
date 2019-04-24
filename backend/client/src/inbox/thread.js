@@ -1,7 +1,4 @@
 import React from 'react';
-import MessageList from './messageList';
-import { Route } from 'react-router-dom'
-import axios from 'axios';
 
 class Thread extends React.Component {
   constructor(){

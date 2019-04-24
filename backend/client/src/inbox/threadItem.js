@@ -25,7 +25,8 @@ class ThreadItem extends React.Component {
   }
 
   sendMessage = () => {
-    const owner_id = this.props.user.id
+    const owner_id = this.props.user.userid
+    console.log('props:', this.props)
     const threads_id = this.props.match.params.id
     // const message_date = new Date()
     axios.post(`/messages/newmessage`, {
