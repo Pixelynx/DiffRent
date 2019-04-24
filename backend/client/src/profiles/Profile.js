@@ -32,7 +32,7 @@ class Profile extends Component {
   }
 
   getLandlordInfo = () => {
-    axios.get(`/users/${this.props.match.params.id}`)
+    axios.get(`/users/${this.props.user.email}`)
       .then(response => {
         debugger;
         console.log("response is: ",response)
@@ -84,19 +84,23 @@ handleSubmit = event => {
     putRequestInfo.password_digest = defaultVals.password
   }
 
-  axios.put(`/landlords/2`, putRequestInfo)
+  axios.put(`/users/${this.props.user.userid}`, putRequestInfo)
     .then(() => console.log('This updated'))
   .catch(err => console.log('GET LANDLORD FAILED', err))
 }
 
   render(){
     return(
-      <div>
+      <div className='profile-form'>
         <form onSubmit={this.handleSubmit}>
           Name: <input type='text' className='name-input' onChange={this.handleChange} name='name' defaultValue={this.state.defaultVals.name}/>
+        <hr/>
           Email Address: <input type='email' className='email-input' onChange={this.handleChange} name='email' defaultValue={this.state.defaultVals.email} />
+        <hr/>
           Phone Number: <input type='text' className='phone-input' onChange={this.handleChange} name='phone' defaultValue={this.state.defaultVals.phone} />
+        <hr/>
           Password: <input type='password' onChange={this.handleChange} name='password' placeholder='' value='' />
+        <hr/>
           <input type='submit' className='submit-btn' value="Submit Changes"/>
         </form>
         {/*}<button><Redirect to='/landlord/:id' /></button>*/}
