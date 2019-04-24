@@ -1,6 +1,5 @@
 import React from 'react';
-import ThreadItem from './threadItem';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const ThreadList = (props) => {

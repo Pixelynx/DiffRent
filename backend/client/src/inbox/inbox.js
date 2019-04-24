@@ -2,8 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import ThreadList from './threadList';
 import '../styles/inbox/threads.css'
-import { Route } from 'react-router-dom';
-import ThreadItem from './threadItem';
 
 class Inbox extends React.Component {
   constructor() {
