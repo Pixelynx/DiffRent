@@ -34,6 +34,30 @@ const getUserAptInfo = (req, res, next) => {
     })
 }
 
+const addNewUser = (req, res, next) => {
+  const hash = authHelpers.createHash(req.body.password_digest);
+  db.none("INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES(${name}, ${email}, ${phone}, ${dob}, ${password_digest}, ${user_type})",
+  {
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    dob: req.body.dob,
+    password_digest: hash,
+    user_type: req.body.user_type
+  })
+  .then(() => {
+    res.status(200)
+       .json({
+         status: 'success',
+         message: 'New user Added'
+       })
+  })
+  .catch(err => {
+    console.log('error: ', err)
+    return next(err)
+  })
+}
+
 const logoutUser = (req, res, next) => {
     req.logout();
     res.status(200).send("log out success");
@@ -50,6 +74,7 @@ const isLoggedIn = (req, res) => {
 module.exports = {
     getSingleUser: getSingleUser,
     getUserAptInfo: getUserAptInfo,
+    addNewUser: addNewUser,
     logoutUser: logoutUser,
     isLoggedIn: isLoggedIn
   }

@@ -10,7 +10,7 @@ const Form = (props) => {
   const {
     match, username, password, isLoggedIn, loginUser, handleChange,
     demoLogin, name, email, phone, dob, userType, selectTenant,
-    registerUser, selectLandlord
+    registerUser, selectLandlord, getDat
     } = props;
   const path = match.path;
   const [selectedDate, handleDateChange] = useState(new Date());
@@ -53,7 +53,6 @@ const Form = (props) => {
                   </div>
 
 
-
   let signupForm = <>
                     <div className='signupForm'>
                       <div>
@@ -64,24 +63,29 @@ const Form = (props) => {
                         <label>Full Name</label>
                         <input 
                         autoFocus
-                        required
+                        autoComplete='off'
+                        // required
                         name='name'
                         value={name}
+                        onChange={handleChange}
                         placeholder='full name'
                         type='text' />
 
                         <label>Email</label>
                         <input 
-                        required
+                        // required
+                        autoComplete='off'
                         name='email'
                         value={email}
+                        onChange={handleChange}
                         placeholder='email@domain.com'
                         type='email' />
                         
                         <label>Phone</label>
                         <MaskedInput 
                         mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-                        required
+                        // required
+                        autoComplete='off'
                         value={phone}
                         onChange={handleChange}
                         name='phone'
@@ -91,14 +95,17 @@ const Form = (props) => {
 
                         <label>Password</label>
                         <input 
-                        required
+                        // required
+                        name='password'
+                        value={password}
+                        onChange={handleChange}
                         placeholder='password'
                         type='password' />
 
                         <label>Date of Birth (mm/dd/yyyy)</label>
                         <DatePicker
                         required
-                          mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
+                          // mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
                           keyboard
                           allowKeyboardControl
                           maxDateMessage='Select a valid date'
@@ -106,7 +113,7 @@ const Form = (props) => {
                           maxDate={subYears(new Date, 18)}
                           disableFuture
                           openTo="year"
-                          format="MM/dd/yyyy"
+                          format="yyyy-MM-dd"
                           views={["year", "month", "day"]}
                           onChange={handleDateChange}
                         />

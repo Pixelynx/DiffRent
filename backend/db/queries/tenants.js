@@ -34,47 +34,24 @@ const getSingleTenant = (req, res, next) => {
     })
 }
 
-const addNewTenant = (req, res, next) => {
+const updateTenant = (req, res, next) => {
+  userId = Number(req.params.id)
   const hash = authHelpers.createHash(req.body.password_digest);
-  db.none("INSERT INTO users(name, dob, email, phone, password_digest, user_type) VALUES(${name},${dob}, ${email}, ${phone}, ${password_digest}, ${user_type})",
-  {
-    name: req.body.name,
-    dob: req.body.dob,
-    email: req.body.email,
-    phone: req.body.phone,
-    password_digest: hash,
-    user_type: "tenant"
-  })
-  .then(() => {
-    res.status(200)
-       .json({
-         status: 'success',
-         message: 'New Tenant Added'
-       })
-  })
-  .catch(err => {
-    console.log('error: ', err)
-    return next(err)
-  })
-}
-
-const updateTanant = (req, res, next) => {
-  tenantId= Number(req.params.id)
-  db.none("UPDATE users SET name=${name}, dob=${dob}, email=${email}, phone=${phone}, password_digest=${password_digest}, user_type=${user_type} WHERE id=${id}",
+  db.none("UPDATE users SET name=${name}, email=${email}, phone=${phone}, dob=${dob}, password_digest=${password_digest}, user_type=${user_type} WHERE id=${id}",
   {
     id: req.params.id,
     name:req.body.name,
-    dob: req.body.dob,
     email: req.body.email,
     phone: req.body.phone,
-    password_digest: req.body.password_digest, 
+    dob: req.body.dob,
+    password_digest: hash,
     user_type: "tenant"
   })
     .then(() => {
     res.status(200)
        .json({
          status: "success",
-         message: "Updated A Tenant!"
+         message: "Updated A Landlord!"
        })
   })
   .catch(err => {
@@ -82,6 +59,8 @@ const updateTanant = (req, res, next) => {
   return next(err)
   })
 }
+
+
 
 const deleteTanant = (req, res, next) => {
   userT="tenant"
@@ -92,7 +71,7 @@ const deleteTanant = (req, res, next) => {
       res.status(200)
          .json({
            status: 'Success!',
-           message: 'Landlord has been Deleted'
+           message: 'Tenant has been Deleted'
          })
     })
     .catch(err => {
@@ -109,7 +88,6 @@ res.json(req.user);
 module.exports = {
   getAllTenants: getAllTenants,
   getSingleTenant: getSingleTenant,
-  addNewTenant: addNewTenant,
   updateTanant: updateTanant,
   deleteTanant: deleteTanant,
   loginUser: loginUser

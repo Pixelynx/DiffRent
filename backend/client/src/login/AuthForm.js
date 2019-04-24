@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { Route, Switch } from "react-router-dom";
 import Auth from "../utils/Auth";
 import Form from "./Form";
+import { format } from "date-fns";
 
 class AuthForm extends Component {
   state = {
@@ -15,6 +16,7 @@ class AuthForm extends Component {
     dob: '',
     userType: false 
   };
+  
 
   handleChange = e => {
     this.setState({
@@ -34,39 +36,51 @@ class AuthForm extends Component {
     })
   }
 
+  getDat = (date) => {
+    this.setState({
+      dob: date
+    })
+  }
   
 
   registerUser = async e => {
     e.preventDefault();
-    debugger
-    const { username, password , name, email, phone, dob, userType } = this.state;
+    const {password , name, email, phone, dob, userType } = this.state;
+    let user_type = userType ? 'tenant' : 'landlord';
+    let password_digest = password;
+    let date = e.target[4].value;
+    this.getDat(date)
+    if (userType){
+      return await axios.post("/tenants/", { name, email, phone, dob, user_type, password_digest })
+      // Auth.authenticateUser(email);
+      // debugger
+      // let username = email;
+      // await axios.post("/users/login", { username, password });
+      // debugger
+      // await this.props.checkAuthenticateStatus();
+    } else if (!userType) {
+      return await axios.post("/landlords/", { name, email, phone, dob, user_type, password_digest })
+    }
 
-    await axios.post("/users/new", { username, password });
 
-    Auth.authenticateUser(username);
-
-    await axios.post("/users/login", { username, password });
-
-    await this.props.checkAuthenticateStatus();
-
-    this.setState({
-      username: "",
-      password: ""
-    });
-    axios.post("/users/new", { username, password }).then(() => {
-      Auth.authenticateUser(username);
-      axios
-        .post("/users/login", { username, password })
-        .then(() => {
-          this.props.checkAuthenticateStatus();
-        })
-        .then(() => {
-          this.setState({
-            username: "",
-            password: ""
-          });
-        });
-    });
+    // this.setState({
+    //   username: "",
+    //   password: ""
+    // });
+    // axios.post("/users/new", { username, password }).then(() => {
+    //   Auth.authenticateUser(username);
+    //   axios
+    //     .post("/users/login", { username, password })
+    //     .then(() => {
+    //       this.props.checkAuthenticateStatus();
+    //     })
+    //     .then(() => {
+    //       this.setState({
+    //         username: "",
+    //         password: ""
+    //       });
+    //     });
+    // });
   };
 
   loginUser = e => {
@@ -163,7 +177,7 @@ class AuthForm extends Component {
   render() {
     const { username, password, name, email, phone, dob, userType } = this.state;
     const { isLoggedIn } = this.props;
-
+    console.log(dob)
     return (
       <Switch>
         <Route
@@ -215,6 +229,7 @@ class AuthForm extends Component {
                 handleChange={this.handleChange}
                 selectLandlord={this.selectLandlord}
                 selectTenant={this.selectTenant}
+                getDat={this.getDat}
               />
             );
           }}
