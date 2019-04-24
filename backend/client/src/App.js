@@ -1,29 +1,27 @@
-
-import React, { Component } from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom';
-import axios from 'axios';
-import Navbar from '../src/navbar/Navbar';
-import LandlordDash from './LandlordsDash/LandlordDash.js';
-import TenantDash from './TenantDash/TenantDash.js';
+import React, { Component } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import axios from "axios";
+import Navbar from "../src/navbar/Navbar";
+import LandlordDash from "./LandlordsDash/LandlordDash.js";
+import TenantDash from "./TenantDash/TenantDash.js";
 import AuthForm from "./login/AuthForm";
-import Tickets from './TenantDash/tickets.jsx';
+import Tickets from "./TenantDash/tickets.jsx";
 import Auth from "./utils/Auth";
-import Homepage from './components/Homepage';
-import Inbox from './inbox/inbox';
-import ThreadItem from './inbox/threadItem';
-import Profile from './profiles/Profile.js';
-
+import Homepage from "./components/Homepage";
+import Inbox from "./inbox/inbox";
+import ThreadItem from "./inbox/threadItem";
+import Profile from "./profiles/Profile.js";
 
 import PrivateRoute from "./utils/AuthRouting";
-import './styles/index.css';
+import "./styles/index.css";
 
-const NoMatch = () => <h1>404</h1>
+const NoMatch = () => <h1>404</h1>;
 
 class App extends Component {
   state = {
     navbar: false,
     isLoggedIn: false,
-    user: ''
+    user: "",
   };
 
   componentDidMount() {
@@ -32,16 +30,15 @@ class App extends Component {
   }
 
   checkAuthenticateStatus = () => {
-    axios.post("/users/isLoggedIn")
-    .then((user) => {
+    axios.post("/users/isLoggedIn").then(user => {
       if (user.data.username === Auth.getToken()) {
-        if (user.data.username !== null)
-          {return this.setState({
-            isLoggedIn: Auth.isUserAuthenticated(),
-          })
-            &
-            this.getUserInfo2(user.data.username)
-          }
+        if (user.data.username !== null) {
+          return (
+            this.setState({
+              isLoggedIn: Auth.isUserAuthenticated(),
+            }) & this.getUserInfo2(user.data.username)
+          );
+        }
       } else {
         if (user.data.username) {
           this.logoutUser();
@@ -52,37 +49,35 @@ class App extends Component {
     });
   };
 
-  getUserInfo = (email) => {
-    axios.get('/users/'+ email)
-    .then((res) => {
+  getUserInfo = email => {
+    axios.get("/users/" + email).then(res => {
       this.setState({
-        user: res.data.data
-      })
-    })
-  }
+        user: res.data.data,
+      });
+    });
+  };
 
-  getUserAptInfo = (email) => {
-    axios.get('/users/apt/'+ email)
-    .then((res) => {
+  getUserAptInfo = email => {
+    axios.get("/users/apt/" + email).then(res => {
       this.setState({
-        user: res.data.data
-      })
-    })
-  }
+        user: res.data.data,
+      });
+    });
+  };
 
-  getUserInfo2 = (user) => {
-    if(!this.state.user){
-      return this.getUserAptInfo(user)} else if (!this.state.user) {
-        return this.getUserInfo(user)
-      }
-  }
+  getUserInfo2 = user => {
+    if (!this.state.user) {
+      return this.getUserAptInfo(user);
+    } else if (!this.state.user) {
+      return this.getUserInfo(user);
+    }
+  };
 
-  toggleNavbar = (e) => {
+  toggleNavbar = e => {
     this.setState({
-      navbar: !this.state.navbar
-    })
-  }
-
+      navbar: !this.state.navbar,
+    });
+  };
 
   logoutUser = () => {
     axios
@@ -92,82 +87,157 @@ class App extends Component {
       })
       .then(() => {
         this.setState({
-          user: '',
-          isLoggedIn: false
-        })
+          user: "",
+          isLoggedIn: false,
+        });
       })
       .then(() => {
         this.checkAuthenticateStatus();
       });
   };
 
-
   render() {
     const { isLoggedIn, user, navbar } = this.state;
-    console.log('STATE',this.state)
-    console.log('MY LOCAL STORAGE', localStorage)
-    let logoutButton = isLoggedIn ? <button onClick={this.logoutUser}>Logout</button> : null;
+    console.log("STATE", this.state);
+    console.log("MY LOCAL STORAGE", localStorage);
+    let logoutButton = isLoggedIn ? (
+      <button onClick={this.logoutUser}>Logout</button>
+    ) : null;
 
     return (
       <div className="App">
         <>
           <div
-
-          className={navbar ? "openNavbar" : "closedNavbar"}
-          onMouseEnter={this.toggleNavbar} onMouseLeave={this.toggleNavbar}
+            className={navbar ? "openNavbar" : "closedNavbar"}
+            onMouseEnter={this.toggleNavbar}
+            onMouseLeave={this.toggleNavbar}
           >
-            {isLoggedIn ? <div >=</div> : null}
-          <div >
-          {navbar ? <Navbar isLoggedIn={isLoggedIn} toggleNavbar={this.toggleNavbar} logoutButton={logoutButton} user={user}/>: null}
-          </div>
+            {isLoggedIn ? <div>=</div> : null}
+            <div>
+              {navbar ? (
+                <Navbar
+                  isLoggedIn={isLoggedIn}
+                  toggleNavbar={this.toggleNavbar}
+                  logoutButton={logoutButton}
+                  user={user}
+                />
+              ) : null}
+            </div>
           </div>
           <Switch>
-            <Route path="/landlords/login" render={() => {
-                return !user ? <AuthForm
+            <Route
+              path="/landlords/login"
+              render={() => {
+                return !user ? (
+                  <AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
                     getUserInfo={this.getUserInfo}
                     getUserAptInfo={this.getUserAptInfo}
                     user={user}
-                    isLoggedIn={isLoggedIn}/>
-                    : <Redirect to={`/landlord/${user.userid}`}/>
+                    isLoggedIn={isLoggedIn}
+                  />
+                ) : (
+                  <Redirect to={`/landlord/${user.userid}`} />
+                );
               }}
             />
-
-            <Route path="/tenants/login" render={() => {
-               return !user ? <AuthForm
+            <Route
+              path="/tenants/login"
+              render={() => {
+                return !user ? (
+                  <AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
                     getUserInfo={this.getUserInfo}
                     getUserAptInfo={this.getUserAptInfo}
                     user={user}
-                    isLoggedIn={isLoggedIn}/>
-                    : <Redirect to={`/tenant/${user.userid}`}/>
+                    isLoggedIn={isLoggedIn}
+                  />
+                ) : (
+                  <Redirect to={`/tenant/${user.userid}`} />
+                );
               }}
             />
-
-            <Route path="/register" render={() => {
-                return !user ? <AuthForm
+            <Route
+              path="/register"
+              render={() => {
+                return !user ? (
+                  <AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
                     getUserInfo={this.getUserInfo}
                     getUserAptInfo={this.getUserAptInfo}
                     user={user}
-                    isLoggedIn={isLoggedIn}/>
-                    : <Redirect to={ user.user_type === 'tenant' ? `/tenant/${user.id}` : `/landlord/${user.id}`} />
+                    isLoggedIn={isLoggedIn}
+                  />
+                ) : (
+                  <Redirect
+                    to={
+                      user.user_type === "tenant"
+                        ? `/tenant/${user.id}`
+                        : `/landlord/${user.id}`
+                    }
+                  />
+                );
               }}
             />
-
-          <PrivateRoute path='/landlord/profile/:id' user={this.state.user} component={Profile} />
-            <PrivateRoute path='/tenant/profile/:id' user={this.state.user} component={Profile} />
-            <PrivateRoute path='/landlord/:id' component={LandlordDash} />
-            <PrivateRoute path='/tenant/:id' user={user} component={TenantDash} />
-            <Route exact path='/' render={() => {
-              return !user ? <Homepage />
-              : <Redirect to={user.user_type === 'landlord' ? `/landlord/${user.userid}` : `/tenant/${user.userid}`} />
-            }} />
-            <PrivateRoute path='/inbox' user={user} component={Inbox} />} />
-        <PrivateRoute path="/inbox/threads/:id" user={user} component={ThreadItem}  />} />
-
+            <PrivateRoute
+              path="/landlord/profile/:id"
+              user={this.state.user}
+              component={Profile}
+            />
+            <PrivateRoute
+              path="/tenant/profile/:id"
+              user={this.state.user}
+              component={Profile}
+            />
+            <PrivateRoute
+              path="/landlord/:id"
+              user={user}
+              component={LandlordDash}
+            />
+            <PrivateRoute
+              path="/tenant/:id"
+              user={user}
+              component={TenantDash}
+            />
+            <Route
+              exact
+              path="/"
+              render={() => {
+                return !user ? (
+                  <Homepage />
+                ) : (
+                  <Redirect
+                    to={
+                      user.user_type === "landlord"
+                        ? `/landlord/${user.userid}`
+                        : `/tenant/${user.userid}`
+                    }
+                  />
+                );
+              }}
+            />
+            <Route
+              path="/inbox"
+              render={props =>
+                user ? (
+                  <Inbox {...props} user={user} />
+                ) : (
+                  <Redirect to="/" />
+                )
+              }
+            />
+            <Route
+              path="/inbox/threads/:id"
+              render={props =>
+                user ? (
+                  <ThreadItem {...props} user={user} />
+                ) : (
+                  <Redirect to="/" />
+                )
+              }
+            />
+            } />
             <Route component={NoMatch} />
-
           </Switch>
         </>
       </div>
