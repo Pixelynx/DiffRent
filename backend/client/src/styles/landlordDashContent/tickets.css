@@ -1,0 +1,21 @@
+.show-landlord-tiks-container {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  visibility: visible;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--light-purple);
+}
+
+.hide-landlord-tiks-container {
+  /* visibility: hidden; */
+}
+
+.landlord-tiks-window {
+  height: 500px;
+  width: 900px;
+  background-color: var(--dark-purple);
+}

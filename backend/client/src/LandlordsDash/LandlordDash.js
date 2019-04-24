@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../styles/dashboards/dashboards.css';
 import '../styles/landlordDashContent/tenantContact.css';
+import '../styles/landlordDashContent/tickets.css';
 import '../styles/colorScheme.css';
 
 import TenantContactInfo from './TenantContactInfo.js';
@@ -104,7 +105,7 @@ class LandlordDash extends Component {
   }
 
   handleTenantTiksShowing = (e) => {
-    if(e.target.className === 'open-tiks-btn' || e.target.className === 'landlord-tiks-container') {
+    if(e.target.className === 'open-tiks-btn' || e.target.className === 'show-landlord-tiks-container') {
       this.setState({ tenantTiksIsShowing: !this.state.tenantTiksIsShowing })
     }
   }
@@ -131,6 +132,7 @@ class LandlordDash extends Component {
           />
         <Tickets
           toggleModal={this.handleTenantTiksShowing}
+          tenantTiksShow={this.state.tenantTiksIsShowing}
           />
         </div>
       </>
