@@ -6,6 +6,7 @@ const queries = require('../db/queries/users.js');
 
 router.get("/apt/:id", queries.getUserAptInfo)
 router.get("/:id", queries.getSingleUser)
+router.put("/:id", queries.updateUser)
 router.post("/", queries.addNewUser)
 router.post("/isLoggedIn", queries.isLoggedIn);
 router.post("/logout", loginRequired, queries.logoutUser);
