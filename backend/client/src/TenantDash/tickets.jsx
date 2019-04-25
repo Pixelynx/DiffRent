@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import CreateTicketForm from './tenantTickets/createTicketForm.jsx';
+import CreateTicketForm from './createTicketForm.jsx';
 import '../styles/colorScheme.css';
 import '../styles/tenantTickets/tickets.css';
 
@@ -92,11 +92,10 @@ class Tickets extends Component {
     return(
       <>
       <button className='tickets-btn' onClick={this.handleModalOpen}>You have {this.state.ticketsUnresolved.length} unresolved tickets.</button>
+      <CreateTicketForm
+        createTicket={this.state.creatingTicket} />
       </>
     )
   }
 }
 export default Tickets;
-
-// <CreateTicketForm
-// createTicket={this.state.creatingTicket} />

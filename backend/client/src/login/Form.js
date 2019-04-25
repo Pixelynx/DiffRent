@@ -9,7 +9,7 @@ import MaskedInput from 'react-text-mask'
 const Form = (props) => {
   const {
     match, username, password, isLoggedIn, loginUser, handleChange,
-    demoLogin, name, email, phone, dob, userType, selectTenant,
+    demoLogin, name, email, phone, userType, selectTenant,
     registerUser, selectLandlord
     } = props;
   const path = match.path;
@@ -61,7 +61,7 @@ const Form = (props) => {
                       </div>
                       <form onSubmit={registerUser}>
                         <label>Full Name</label>
-                        <input 
+                        <input
                         autoFocus
                         autoComplete='off'
                         required
@@ -72,7 +72,7 @@ const Form = (props) => {
                         type='text' />
 
                         <label>Email</label>
-                        <input 
+                        <input
                         required
                         autoComplete='off'
                         name='email'
@@ -80,9 +80,9 @@ const Form = (props) => {
                         onChange={handleChange}
                         placeholder='email@domain.com'
                         type='email' />
-                        
+
                         <label>Phone</label>
-                        <MaskedInput 
+                        <MaskedInput
                         mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                         required
                         autoComplete='off'
@@ -94,7 +94,7 @@ const Form = (props) => {
                         type='tel' />
 
                         <label>Password</label>
-                        <input 
+                        <input
                         required
                         name='password'
                         value={password}
@@ -118,15 +118,15 @@ const Form = (props) => {
                         />
 
                         <label>User Type:{userType ? ' Tenant' : ' Landlord'} </label>
-                        <input 
+                        <input
                         hidden
                         readOnly={true}
                         value={userType ? 'Tenant' : 'Landlord'} />
                         <input type='submit' />
-                        
+
                       </form>
                     </div>
-                  
+
                   </>
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
