@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { SetApptCal } from './setApptCal.jsx';
 
 class Tickets extends Component {
   state = {
-    hover: false
+    hover: false,
+    apptFormOpened: false
   }
 
   renderLandlordTiks = () => {
@@ -28,6 +30,7 @@ class Tickets extends Component {
               >
               <p>{ticket.subject}</p>
               <p>{ticket.body}</p>
+              <button onClick={this.handleApptForm}>Set Appointment</button>
             </div>
           </>
       )
@@ -44,6 +47,10 @@ class Tickets extends Component {
     this.setState(prevState => ({ hover: !prevState.hover }))
   }
 
+  handleApptForm = (e) => {
+    this.setState(prevState => ({ apptFormOpened: !prevState.apptFormOpened }))
+  }
+
 
   render() {
     console.log(this.state, 'LANDLORD TIKS STATE')
@@ -58,6 +65,10 @@ class Tickets extends Component {
             {this.renderLandlordTiks()}
           </div>
          </div>
+         <SetApptCal
+           hover={this.state.hover}
+           apptFormOpened={this.state.apptFormOpened}
+           />
         </>
       )
     }

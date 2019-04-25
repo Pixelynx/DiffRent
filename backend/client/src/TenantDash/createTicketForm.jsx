@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../../styles/tenantTickets/createTicketForm.css';
+import '../styles/tenantTickets/tickets.css';
 
 class CreateTicketForm extends Component {
   state = {

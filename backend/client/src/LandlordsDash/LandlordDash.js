@@ -7,7 +7,6 @@ import '../styles/colorScheme.css';
 
 import TenantContactInfo from './TenantContactInfo.js';
 import Tickets from './tickets.jsx';
-import TicketDashInfo from './LandlordTicketDashInfo.js';
 
 class LandlordDash extends Component {
   constructor(){
@@ -89,7 +88,7 @@ class LandlordDash extends Component {
                 className='open-tiks-btn'
                 onClick={this.handleTenantTiksShowing}
                 >
-                You have {this.state.tickets.length} open tickets. (DON'T CLICK)
+                You have {this.state.tickets.length} open ticket(s).
               </button>
             </div>
           </>
