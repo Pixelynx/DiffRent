@@ -46,6 +46,8 @@ class Profile extends Component {
           apt_Id: response.data.data.apartmentId
         }
       })
+      console.log("defaultVals are:", this.state.defaultVals)
+
     })
     .catch(err => console.log('GET LANDLORD FAILED', err))
   }
@@ -68,9 +70,12 @@ handleSubmit = event => {
     name: newVals.name,
     email: newVals.email,
     phone: newVals.phone,
-    password_digest: newVals.passport,
+    password_digest: newVals.password,
     apt_Id: defaultVals.apt_Id
   };
+  if(!newVals.apt_id){
+    putRequestInfo.apt_Id = defaultVals.apt_id
+  }
   if(!newVals.name){
     putRequestInfo.name = defaultVals.name
   }
@@ -85,27 +90,34 @@ handleSubmit = event => {
   }
 
   axios.put(`/users/${this.props.user.userid}`, putRequestInfo)
+  .then(console.log("the puts", putRequestInfo))
     .then(() => console.log('This updated'))
   .catch(err => console.log('GET LANDLORD FAILED', err))
 }
 
   render(){
     return(
-      <div className='profile-form'>
-        <form onSubmit={this.handleSubmit}>
-          Name: <input type='text' className='name-input' onChange={this.handleChange} name='name' defaultValue={this.state.defaultVals.name}/>
-        <hr/>
-          Email Address: <input type='email' className='email-input' onChange={this.handleChange} name='email' defaultValue={this.state.defaultVals.email} />
-        <hr/>
-          Phone Number: <input type='text' className='phone-input' onChange={this.handleChange} name='phone' defaultValue={this.state.defaultVals.phone} />
-        <hr/>
-          Password: <input type='password' onChange={this.handleChange} name='password' placeholder='' value='' />
-        <hr/>
-          <input type='submit' className='submit-btn' value="Submit Changes"/>
-        </form>
-        {/*}<button><Redirect to='/landlord/:id' /></button>*/}
+      <>
+        <h2 className='titile'>Edit Your Profile</h2>
 
-      </div>
+          <form onSubmit={this.handleSubmit}>
+            <div className='profile-form'>
+            Name: <input type='text' className='name-input' onChange={this.handleChange} name='name' defaultValue={this.state.defaultVals.name}/>
+          <hr/>
+            Email Address: <input type='email' className='email-input' onChange={this.handleChange} name='email' defaultValue={this.state.defaultVals.email} />
+          <hr/>
+            Phone Number: <input type='text' className='phone-input' onChange={this.handleChange} name='phone' defaultValue={this.state.defaultVals.phone} />
+          <hr/>
+            Password: <input type='password' onChange={this.handleChange} name='password' placeholder='' value='' />
+          <hr/>
+            <input type='submit' className='submit-btn' value="Submit Changes"/>
+        </div>
+        </form>
+
+          {/*<button><Redirect to='/landlord/:id' /></button>*/}
+
+
+      </>
     )
   }
 }

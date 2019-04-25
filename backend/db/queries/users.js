@@ -3,7 +3,7 @@ const authHelpers = require("../../auth/helpers");
 
 const getSingleUser = (req, res, next) => {
     userid= req.params.id;
-  db.one("SELECT id, name, email, phone, user_type FROM users WHERE users.email = $1", userid)
+  db.one("SELECT * FROM users WHERE users.email = $1", userid)
     .then(data => {
       res.status(200)
          .json({
@@ -32,6 +32,34 @@ const getUserAptInfo = (req, res, next) => {
       console.log("error: ", err)
       next(err)
     })
+}
+
+const updateUser = (req, res, next) => {
+  const hash = authHelpers.createHash(req.body.password_digest);
+  console.log(req.body)
+  db.none(`UPDATE users SET name=$[name], email=$[email],
+     phone=$[phone], dob=$[dob], password_digest=$[password_digest],
+     user_type=$[user_type] WHERE users.id=$[id]`,
+  {
+    id: req.params.id,
+    name:req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    dob: req.body.dob,
+    password_digest: hash,
+    user_type: req.body.user_type
+  })
+    .then(() => {
+    res.status(200)
+       .json({
+         status: "success",
+         message: "Updated a User!"
+       })
+  })
+  .catch(err => {
+  console.log('error:', err)
+  return next(err)
+  })
 }
 
 const addNewUser = (req, res, next) => {
@@ -71,10 +99,12 @@ const isLoggedIn = (req, res) => {
     }
 }
 
+
 module.exports = {
     getSingleUser: getSingleUser,
     getUserAptInfo: getUserAptInfo,
     addNewUser: addNewUser,
+    updateUser: updateUser,
     logoutUser: logoutUser,
     isLoggedIn: isLoggedIn
   }
