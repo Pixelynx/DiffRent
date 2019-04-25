@@ -8,33 +8,40 @@ class Tickets extends Component {
   renderLandlordTiks = () => {
     if(this.props.tickets) {
       return this.props.tickets.map(ticket => {
+        if(!this.state.hover) {
         return(
           <>
             <div
               onMouseEnter={this.mouseEnter}
               className='landlord-tik-front'
               >
-              <p>{ ticket.subject }</p>
+              <p>{ticket.subject}</p>
             </div>
+            </>
+        )
+          } else {
+            return(
+              <>
             <div
               onMouseLeave={this.mouseLeave}
               className='landlord-tik-back'
               >
-              <p>{ ticket.subject }</p>
-              <p>{ ticket.body }</p>
+              <p>{ticket.subject}</p>
+              <p>{ticket.body}</p>
             </div>
           </>
-        )
+      )
+      }
       })
     }
   }
 
   mouseEnter = () => {
-    this.setState({ hover: !this.state.hover })
+    this.setState(prevState => ({ hover: !prevState.hover }))
   }
 
   mouseLeave = () => {
-    this.setState({ hover: !this.state.hover })
+    this.setState(prevState => ({ hover: !prevState.hover }))
   }
 
 
