@@ -15,7 +15,7 @@ class Profile extends Component {
           email: '',
           password: '',
           apt_Id: null,
-          user_type: 'landlord'
+          user_type: ""
         },
         newVals: {
           name: '',
@@ -34,6 +34,7 @@ class Profile extends Component {
   getLandlordInfo = () => {
     axios.get(`/users/${this.props.user.email}`)
       .then(response => {
+        console.log("response", response)
         this.setState({ defaultVals : {
           id: response.data.data.userId,
           name: response.data.data.name,
@@ -41,7 +42,8 @@ class Profile extends Component {
           phone: response.data.data.phone,
           email: response.data.data.email,
           password: response.data.data.password_digest,
-          apt_Id: response.data.data.apartmentId
+          apt_Id: response.data.data.apartmentId,
+          user_type: response.data.data.user_type
         }
       })
 
@@ -65,16 +67,21 @@ handleSubmit = event => {
   let putRequestInfo = {
     id: defaultVals.id,
     name: newVals.name,
+    dob: newVals.dob,
     email: newVals.email,
     phone: newVals.phone,
     password_digest: newVals.password,
-    apt_Id: defaultVals.apt_Id
+    apt_Id: defaultVals.apt_Id,
+    user_type: defaultVals.Id
   };
   if(!newVals.apt_id){
     putRequestInfo.apt_Id = defaultVals.apt_id
   }
   if(!newVals.name){
     putRequestInfo.name = defaultVals.name
+  }
+  if(!newVals.dob){
+    putRequestInfo.dob = defaultVals.dob
   }
   if(!newVals.email){
     putRequestInfo.email = defaultVals.email
@@ -84,6 +91,9 @@ handleSubmit = event => {
   }
   if(!newVals.password){
     putRequestInfo.password_digest = defaultVals.password
+  }
+  if(!newVals.user_type) {
+    putRequestInfo.user_type = defaultVals.user_type
   }
 
   axios.put(`/users/${this.props.user.userid}`, putRequestInfo)
