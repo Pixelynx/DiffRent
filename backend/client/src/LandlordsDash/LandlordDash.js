@@ -88,7 +88,7 @@ class LandlordDash extends Component {
                 className='open-tiks-btn'
                 onClick={this.handleTenantTiksShowing}
                 >
-                You have {this.state.tickets.length} open ticket(s).
+                <p className='total-open-tiks'>You have {this.state.tickets.length} open ticket(s).</p>
               </button>
             </div>
           </>
