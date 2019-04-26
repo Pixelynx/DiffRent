@@ -3,7 +3,7 @@ const authHelpers = require("../../auth/helpers");
 
 const getSingleUser = (req, res, next) => {
     userid= req.params.id;
-  db.one("SELECT * FROM users WHERE users.email = $1", userid)
+  db.one("SELECT users.id AS userId, name, email, phone, dob, user_type FROM users WHERE users.email = $1", userid)
     .then(data => {
       res.status(200)
          .json({

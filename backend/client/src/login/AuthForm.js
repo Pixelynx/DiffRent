@@ -89,6 +89,7 @@ class AuthForm extends Component {
       return axios
         .post("/landlords/login", { username, password })
         .then(res => {
+          debugger
           getUserInfo(res.data.email);
         })
         .then(() => {
@@ -135,9 +136,7 @@ class AuthForm extends Component {
       return axios
         .post("/tenants/login", { username, password })
         .then(res => {
-          if (!user) {
-            return getUserAptInfo(res.data.email);
-          } else if (!user) {
+        if (!user) {
             return getUserInfo(res.data.email);
           }
         })
@@ -159,8 +158,6 @@ class AuthForm extends Component {
         .post("/landlords/login", { username, password })
         .then(res => {
           if (!user) {
-            return getUserAptInfo(res.data.email);
-          } else if (!user) {
             return getUserInfo(res.data.email);
           }
         })
