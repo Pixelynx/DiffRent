@@ -22,7 +22,7 @@ class Homepage extends Component{
          boder: '0px',
        }
         return(
-            <>
+            <div className='landingPage'>
                 <img className='home1' src={home1} style={bgImgStyle} />
                 <div className="arrow-bounce bounce">
 
@@ -75,7 +75,7 @@ class Homepage extends Component{
                 <footer className='footer'>
                 <p>footer</p>
                 </footer>
-            </>
+            </div>
         )
     }
 }
