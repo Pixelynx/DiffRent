@@ -7,12 +7,12 @@ export const SetApptCal = (props) => {
   const [currDate, newDate] = useState(new Date());
 
   let apptDate = <>
-  <label>Date of Birth (mm/dd/yyyy)</label>
+  <label>Set date for Appointment (mm/dd/yyyy)</label>
   <DatePicker
     mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
     keyboard
     allowKeyboardControl
-    maxDateMessage='Must be after today'
+    minDateMessage='Must be after today'
     disableFuture
     openTo="year"
     format="MM/dd/yyyy"

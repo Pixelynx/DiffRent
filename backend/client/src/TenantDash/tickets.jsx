@@ -11,7 +11,8 @@ class Tickets extends Component {
     ticketsUnresolved: [],
     ticketsResolved: [],
     tenantMarkedResolved: false,
-    creatingTicket: false
+    creatingTicket: false,
+    hover: false
   }
 
   componentDidMount = () => {
@@ -47,6 +48,14 @@ class Tickets extends Component {
 
   }
 
+  mouseEnter = () => {
+    this.setState(prevState => ({ hover: !prevState.hover }))
+  }
+
+  mouseLeave = () => {
+    this.setState(prevState => ({ hover: !prevState.hover }))
+  }
+
   displayUnresolvedTickets = () => {
     // need to change up ticket resolve -- append resolve to tenants and landlord tickets
     const { ticketsUnresolved, ticketsResolved, ticketModalOpen, tenantMarkedResolved } = this.state
@@ -55,23 +64,34 @@ class Tickets extends Component {
       return ticketsUnresolved.map(ticket => {
         let date = ticket.appt_date
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
+        if(!this.state.hover) {
           return(
             <>
-            <div key={ticket.id} className='ticket-window'>
-              <div className='ticket-front'>
+              <div
+                key={ticket.id}
+                className='ticket-front'
+                onMouseEnter={this.mouseEnter}>
                 <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
                 <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
                 <p>{tenantMarkedResolved ? 'UNRESOLVED' : 'RESOLVED'}</p>
               </div>
-              <div key={ticket.id} className='ticket-back'>
-                <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
-                <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
-                <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
+              </>
+          )
+            } else {
+              return (
+                <>
+                <div
+                  key={ticket.id}
+                  className='ticket-back'
+                  onMouseLeave={this.mouseLeave}>
+                  <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
+                  <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
+                  <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
                 <button onClick={this.tenantHandleStatus} className='status-btn'>{status}</button>
               </div>
-            </div>
             </>
-        )
+          )
+        }
       })
     }
   }
