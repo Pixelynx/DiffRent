@@ -55,21 +55,39 @@ class CreateTicketForm extends Component {
     }
   }
 
+  handleSubmit = (e) => {
+    this.handlePostTicket()
+  }
+
   render() {
     console.log(this.state)
     if(this.props.createTicket && this.state.formModalOpen) {
     return(
       <>
-        <div onClick={this.handleModalOpen} className='form-modal-container'>
-          <form className='form-container' onSubmit={this.handlePostTicket}>
-            <p className='create-tik-notice'>Please provide a detailed description of the issue within the household.</p>
-            <input type='text' onChange={this.handleSubjectInput} name='subjectInput' placeholder='subject' id='form-subject'/>
+          <form  className='form-container' onSubmit={this.handlePostTicket}>
+            <p className='create-tik-notice'>
+              Please provide a detailed description of the issue within the household.
+            </p>
+            <input
+              type='text'
+              onChange={this.handleSubjectInput}
+              name='subjectInput'
+              value={this.state.subjectInput}
+              placeholder='subject'
+              id='form-subject'
+              />
             <br/>
-            <input type='text' onChange={this.handleBodyInput} name='bodyInput' placeholder='Details...' id='form-descr'/>
+            <input
+              type='text'
+              onChange={this.handleBodyInput}
+              name='bodyInput'
+              value={this.state.bodyInput}
+              placeholder='Details...'
+              id='form-descr'
+              />
             <br/>
-            <input className='submit-ticket-btn' name='subjectInput' type='submit' value='Submit Ticket'/>
+            <button className='submit-ticket-btn' type='submit'>Submit Ticket</button>
           </form>
-        </div>
 
       </>
     )
