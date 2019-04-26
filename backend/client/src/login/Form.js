@@ -21,7 +21,9 @@ const Form = (props) => {
                     <h1> {path === "/landlords/login" ? "Landlord Login" : "Tenant Login"} </h1>
                     <form onSubmit={loginUser}>
                       <label>Email</label>
-                      <input
+                      <input  
+                        autoFocus
+                        required
                         type="text"
                         autoComplete='off'
                         value={username}
@@ -32,6 +34,7 @@ const Form = (props) => {
 
                       <label>Password</label>
                       <input
+                        required
                         type="password"
                         value={password}
                         name="password"
@@ -138,7 +141,19 @@ const Form = (props) => {
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
     <div className='loginForm'>
-    {path !== '/register' ? <Link className='signup' to='/register'><button>SignUp</button></Link> : null}
+    {path !== '/register' ? <Link className='signup' to='/register'><button>SignUp</button></Link> 
+    : <div className='login'>
+        <Link to='/landlords/login'>
+          <button>
+            Log in as Landlord
+          </button>
+        </Link>
+        <Link to='/tenants/login'>
+          <button>
+            Log in as Tenant
+          </button>
+        </Link>
+      </div>}
                           <div className='signupForm2'>
       {path === '/tenants/login' || path === '/landlords/login' ? loginForm : null}
       {path === '/register' ? signupForm : null}
