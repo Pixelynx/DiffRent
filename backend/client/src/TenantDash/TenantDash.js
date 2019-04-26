@@ -8,9 +8,8 @@ import Tickets from './tickets.jsx';
 import '../styles/tenantTickets/tickets.css';
 
 class TenantDash extends Component {
-  constructor(){
-    super();
-    this.state = {
+
+    state = {
       name: '',
       age:'',
       landlordInfo: {
@@ -24,12 +23,10 @@ class TenantDash extends Component {
       appointments: [],
       tickets: []
     }
-  }
 
-  componentDidMount(){
-    this.getTenantInfo();
-    // this.getLandlordInfo();
-    // this.getAllTickets();
+
+  componentDidMount = () => {
+    this.getTenantInfo()
   }
 
   getTenantInfo = () => {
@@ -74,7 +71,7 @@ class TenantDash extends Component {
     })
   }
 
-  render(){
+  render() {
     console.log(this.props, "TENANT DASH PROPS")
      const {landlordInfo, tickets} = this.state;
      const { user } = this.props;

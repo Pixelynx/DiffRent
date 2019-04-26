@@ -113,7 +113,9 @@ class Tickets extends Component {
       <>
       <button className='tickets-btn' onClick={this.handleModalOpen}>You have {this.state.ticketsUnresolved.length} unresolved tickets.</button>
       <CreateTicketForm
-        createTicket={this.state.creatingTicket} />
+        createTicket={this.state.creatingTicket}
+        user={this.props.user}
+        />
       </>
     )
   }

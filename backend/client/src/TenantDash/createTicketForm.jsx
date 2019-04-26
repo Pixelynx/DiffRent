@@ -31,13 +31,25 @@ class CreateTicketForm extends Component {
   }
 
   handlePostTicket = (e) => {
+    // because the first change didn't seem to get pushed properly...
     e.preventDefault()
+    debugger
     const { subjectInput, bodyInput } = this.state
+    let apartment_id = this.props.user.aptid
+    let subject = subjectInput
+    let body = bodyInput
 
     if(subjectInput && bodyInput) {
+      debugger
     axios.post('/tickets', {
-      subject: subjectInput,
-      body: bodyInput
+      apartment_id,
+      subject,
+      body
+    })
+    .then(res => {
+      debugger
+      this.setState({ subjectInput: '' })
+      this.setState({ bodyInput: '' })
     })
       .catch(err => console.log(err))
     }
@@ -55,7 +67,7 @@ class CreateTicketForm extends Component {
             <br/>
             <input type='text' onChange={this.handleBodyInput} name='bodyInput' placeholder='Details...' id='form-descr'/>
             <br/>
-            <input className='submit-ticket-btn' onClick={this.handleSubmitTicket} name='subjectInput' type='submit' value='Submit Ticket'/>
+            <input className='submit-ticket-btn' name='subjectInput' type='submit' value='Submit Ticket'/>
           </form>
         </div>
 
