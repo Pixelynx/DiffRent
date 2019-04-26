@@ -31,6 +31,7 @@ class CreateTicketForm extends Component {
   }
 
   handlePostTicket = (e) => {
+    // because the first change didn't seem to get pushed properly...
     e.preventDefault()
     debugger
     const { subjectInput, bodyInput } = this.state
