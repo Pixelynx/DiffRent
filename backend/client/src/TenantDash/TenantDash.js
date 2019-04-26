@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import TenantLandlordContactDashInfo from './TenantLandlordContactDashInfo.js';
 import Tickets from './tickets.jsx';
+import '../styles/dashboards/dashboards.css';
 // import TenantTicketDashInfo from './TenantTicketDashInfo.js';
 
 import '../styles/tenantTickets/tickets.css';
