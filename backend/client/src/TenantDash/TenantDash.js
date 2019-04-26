@@ -5,6 +5,8 @@ import TenantLandlordContactDashInfo from './TenantLandlordContactDashInfo.js';
 import Tickets from './tickets.jsx';
 // import TenantTicketDashInfo from './TenantTicketDashInfo.js';
 
+import '../styles/tenantTickets/tickets.css';
+
 class TenantDash extends Component {
   constructor(){
     super();

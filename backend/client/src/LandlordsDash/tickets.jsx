@@ -7,6 +7,7 @@ class Tickets extends Component {
     apptFormOpened: false
   }
 
+  // component for card and put event handler in component 
   renderLandlordTiks = () => {
     if(this.props.tickets) {
       return this.props.tickets.map(ticket => {

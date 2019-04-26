@@ -2,6 +2,14 @@
   font-family: 'Zillah';
   src: url('../../fonts/zillah/ZILLM.ttf');
 }
+/* .tickets-btn {
+  text-align: center;
+} */
+
+.tenant-dash-info {
+  /* display: flex;
+  align-content: flex-end; */
+}
 
 .modal-container {
   display: flex;
@@ -37,10 +45,6 @@
   position: relative;
 }
 
-.ticket-window:hover {
-  transform: rotateY(180deg);
-}
-
 .ticket-front, .ticket-back {
   padding-left: 10px;
   font-family: sans-serif;
@@ -53,13 +57,11 @@
   list-style: none;
 }
 
-.ticket-front {
+/* .ticket-front {
   position: absolute;
-}
+} */
 
-.ticket-back {
-  transform: rotateY(180deg);
-}
+
 
 .ticket-item {
   margin-bottom: 5px;
@@ -67,6 +69,7 @@
 
 .status-btn {
   color: red;
+  margin: 0;
 }
 
 .create-ticket-btn {
