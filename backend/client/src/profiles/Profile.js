@@ -34,10 +34,8 @@ class Profile extends Component {
   getLandlordInfo = () => {
     axios.get(`/users/${this.props.user.email}`)
       .then(response => {
-        debugger;
-        console.log("response is: ",response)
         this.setState({ defaultVals : {
-          id: response.data.data.id,
+          id: response.data.data.userId,
           name: response.data.data.name,
           dob: response.data.data.dob,
           phone: response.data.data.phone,
@@ -46,7 +44,6 @@ class Profile extends Component {
           apt_Id: response.data.data.apartmentId
         }
       })
-      console.log("defaultVals are:", this.state.defaultVals)
 
     })
     .catch(err => console.log('GET LANDLORD FAILED', err))
