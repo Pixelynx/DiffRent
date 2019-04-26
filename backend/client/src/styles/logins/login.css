@@ -27,6 +27,13 @@ label{
     position: absolute;
     left: 40px;
     margin-top: 40px;
+}
+.login{
+    position: absolute;
+    left: 40px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
 
 }
 
@@ -96,10 +103,6 @@ input{
 
  input::placeholder{ 
     color: #880000;
-}
-
-input:active{
-    border-bottom: 1px solid ;
 }
 
 input:focus{
