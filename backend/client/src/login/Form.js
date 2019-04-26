@@ -16,19 +16,21 @@ const Form = (props) => {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   let loginForm = <div className='formContainer'>
-                  <Link to='/register'><button>SignUp</button></Link>
                   <div className='formContainer'>
                     <h1>DiffRent</h1>
                     <h1> {path === "/landlords/login" ? "Landlord Login" : "Tenant Login"} </h1>
                     <form onSubmit={loginUser}>
+                      <label>Email</label>
                       <input
                         type="text"
                         autoComplete='off'
                         value={username}
                         name="username"
-                        placeholder="username"
+                        placeholder="email"
                         onChange={handleChange}
                       />
+
+                      <label>Password</label>
                       <input
                         type="password"
                         value={password}
@@ -37,7 +39,7 @@ const Form = (props) => {
                         onChange={handleChange}
                       />
                       <input type="hidden" readOnly={true} value={path === "/landlords/login" ? "landlord" : "tenant"} />
-                      <button type="submit">Submit</button>
+                      <input type='submit'/>
                     </form>
 
                     <form onSubmit={demoLogin}>
@@ -54,12 +56,15 @@ const Form = (props) => {
 
 
   let signupForm = <>
+                    
+
                     <div className='signupForm'>
                       <div>
                         <button className={userType ? 'lButtonD' : 'lButtonA'} onClick={selectLandlord}>Landlord</button>
                         <button className={userType ? 'tButtonA' : 'tButtonD'} onClick={selectTenant}>Tenant</button>
                       </div>
-                      <form onSubmit={registerUser}>
+                      
+                      <form className='registerForm' onSubmit={registerUser}>
                         <label>Full Name</label>
                         <input
                         autoFocus
@@ -71,6 +76,7 @@ const Form = (props) => {
                         placeholder='full name'
                         type='text' />
 
+                        
                         <label>Email</label>
                         <input
                         required
@@ -80,6 +86,7 @@ const Form = (props) => {
                         onChange={handleChange}
                         placeholder='email@domain.com'
                         type='email' />
+                        
 
                         <label>Phone</label>
                         <MaskedInput
@@ -123,17 +130,20 @@ const Form = (props) => {
                         readOnly={true}
                         value={userType ? 'Tenant' : 'Landlord'} />
                         <input type='submit' />
-
+                        
                       </form>
-                    </div>
-
+                      </div>
                   </>
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
     <div className='loginForm'>
+    {path !== '/register' ? <Link className='signup' to='/register'><button>SignUp</button></Link> : null}
+                          <div className='signupForm2'>
       {path === '/tenants/login' || path === '/landlords/login' ? loginForm : null}
       {path === '/register' ? signupForm : null}
       <p>{isLoggedIn ? "Logged In!" : ""}</p>
+    </div>
     </div>
     </MuiPickersUtilsProvider>
   );
