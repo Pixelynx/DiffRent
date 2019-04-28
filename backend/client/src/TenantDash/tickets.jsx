@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import CreateTicketForm from './tenantTickets/createTicketForm.jsx';
+import CreateTicketForm from './createTicketForm.jsx';
 import '../styles/colorScheme.css';
 import '../styles/tenantTickets/tickets.css';
 
@@ -11,7 +11,8 @@ class Tickets extends Component {
     ticketsUnresolved: [],
     ticketsResolved: [],
     tenantMarkedResolved: false,
-    creatingTicket: false
+    creatingTicket: false,
+    hover: false
   }
 
   componentDidMount = () => {
@@ -37,14 +38,34 @@ class Tickets extends Component {
 
   // needs to be adjused to identify whether it's a tenant or landlord logged in and update the state respectively
   tenantHandleStatus = (e) => {
-    let currentState = this.state.tenantMarkedResolved;
-    this.setState({ tenantMarkedResolved: !currentState })
+    // console.log(e.target.id)
+
+    let completed_tenant = `${this.state.tenantMarkedResolved ? '0' : '1'}`;
+
+    let id = 4;
+    let apartment_id = this.props.user.aptid;
+
+    axios.put(`/tickets/${id}`, {
+      apartment_id,
+      completed_tenant
+    })
+    .then(res => {
+      this.setState(prevState => ({ tenantMarkedResolved: !prevState.tenantMarkedResolved }))
+    }).catch(err => console.log(err))
   }
 
   handleCreateTicketBtn = (e) => {
     this.setState({ creatingTicket: true })
     this.setState({ ticketModalOpen: false })
 
+  }
+
+  mouseEnter = () => {
+    this.setState(prevState => ({ hover: !prevState.hover }))
+  }
+
+  mouseLeave = () => {
+    this.setState(prevState => ({ hover: !prevState.hover }))
   }
 
   displayUnresolvedTickets = () => {
@@ -55,28 +76,39 @@ class Tickets extends Component {
       return ticketsUnresolved.map(ticket => {
         let date = ticket.appt_date
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
+        if(!this.state.hover) {
           return(
             <>
-            <div key={ticket.id} className='ticket-window'>
-              <div className='ticket-front'>
+              <div
+                key={ticket.id}
+                className='ticket-front'
+                onMouseEnter={this.mouseEnter}>
                 <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
                 <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
                 <p>{tenantMarkedResolved ? 'UNRESOLVED' : 'RESOLVED'}</p>
               </div>
-              <div key={ticket.id} className='ticket-back'>
-                <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
-                <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
-                <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
-                <button onClick={this.tenantHandleStatus} className='status-btn'>{status}</button>
+              </>
+          )
+            } else {
+              return (
+                <>
+                <div
+                  key={ticket.id}
+                  className='ticket-back'
+                  onMouseLeave={this.mouseLeave}>
+                  <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
+                  <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
+                  <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
+                <button id={ticket.id} onClick={this.tenantHandleStatus} className='status-btn'>{status}</button>
               </div>
-            </div>
             </>
-        )
+          )
+        }
       })
     }
   }
   render() {
-    console.log(this.props.user, 'USER PROPS')
+    console.log(this.state)
     if(this.state.ticketModalOpen) {
       return(
         <>
@@ -92,11 +124,12 @@ class Tickets extends Component {
     return(
       <>
       <button className='tickets-btn' onClick={this.handleModalOpen}>You have {this.state.ticketsUnresolved.length} unresolved tickets.</button>
+      <CreateTicketForm
+        createTicket={this.state.creatingTicket}
+        user={this.props.user}
+        />
       </>
     )
   }
 }
 export default Tickets;
-
-// <CreateTicketForm
-// createTicket={this.state.creatingTicket} />
