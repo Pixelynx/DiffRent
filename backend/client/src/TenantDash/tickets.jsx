@@ -70,7 +70,7 @@ class Tickets extends Component {
   displayUnresolvedTickets = () => {
     // need to change up ticket resolve -- append resolve to tenants and landlord tickets
     const { ticketsUnresolved, ticketsResolved, ticketModalOpen, tenantMarkedResolved } = this.state
-    let status = 'URESOLVED';
+    let status = `${this.state.tenantMarkedResolved ? 'RESOLVED' : 'URESOLVED'}`;
     if(ticketsUnresolved || ticketsResolved && ticketModalOpen) {
       return ticketsUnresolved.map(ticket => {
         let date = ticket.appt_date
@@ -84,7 +84,7 @@ class Tickets extends Component {
                 onMouseEnter={this.mouseEnter}>
                 <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
                 <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-                <p>{tenantMarkedResolved ? 'UNRESOLVED' : 'RESOLVED'}</p>
+                <p>{!tenantMarkedResolved ? 'UNRESOLVED' : 'RESOLVED'}</p>
               </div>
               </>
           )
