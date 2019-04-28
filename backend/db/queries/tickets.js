@@ -27,7 +27,7 @@ const getTicketsByLandlord = (req, res, next) => {
            message: 'Received All Tickets',
            data: data
          })
-    })   
+    })
     .catch(err => {
       console.log('error:', err)
       next(err)
@@ -62,12 +62,12 @@ const addNewTicket = (req, res, next) => {
 
 const updateTicket = (req, res, next) => {
   ticketId = Number(req.params.id)
-  db.none("UPDATE tickets SET apartment_id=${apartment_id}, subject=${subject}, body=${body}, completed_tenant=${completed_tenant}, completed_landlord=${completed_landlord}, in_progress=${in_progress}, appt_date=${appt_date}, appt_time=${appt_time} WHERE id=${id}",
+  db.none("UPDATE tickets SET apartment_id=${apartment_id}, completed_tenant=${completed_tenant}, completed_landlord=${completed_landlord}, in_progress=${in_progress}, appt_date=${appt_date}, appt_time=${appt_time} WHERE id=${id}",
   {
     id: ticketId,
     apartment_id:req.body.apartment_id,
-    subject: req.body.subject,
-    body: req.body.body,
+    // subject: req.body.subject,
+    // body: req.body.body,
     completed_tenant: req.body.completed_tenant,
     completed_landlord: req.body.completed_landlord,
     in_progress: req.body.in_progress,

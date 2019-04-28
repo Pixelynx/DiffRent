@@ -40,6 +40,21 @@ class Tickets extends Component {
   tenantHandleStatus = (e) => {
     let currentState = this.state.tenantMarkedResolved;
     this.setState({ tenantMarkedResolved: !currentState })
+    // console.log(e.target.id)
+
+    let completed_tenant = '1';
+
+    let id = 4;
+    let apartment_id = this.props.match.params.id
+    debugger
+
+    axios.put(`/tickets/${id}`, {
+      apartment_id,
+      completed_tenant
+    })
+    .then(res => {
+      debugger
+    }).catch(err => console.log(err))
   }
 
   handleCreateTicketBtn = (e) => {
@@ -87,7 +102,7 @@ class Tickets extends Component {
                   <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
                   <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
                   <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
-                <button onClick={this.tenantHandleStatus} className='status-btn'>{status}</button>
+                <button id={ticket.id} onClick={this.tenantHandleStatus} className='status-btn'>{status}</button>
               </div>
             </>
           )
