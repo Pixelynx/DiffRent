@@ -46,8 +46,6 @@ class Tickets extends Component {
 
     let id = 4;
     let apartment_id = this.props.user.aptid;
-    // let completed_landlord = `${'0' ? '1' : '0'}`;
-    // debugger
 
     axios.put(`/tickets/${id}`, {
       apartment_id,
