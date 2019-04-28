@@ -36,7 +36,6 @@ class Tickets extends Component {
     }
   }
 
-  // needs to be adjused to identify whether it's a tenant or landlord logged in and update the state respectively
   tenantHandleStatus = (e) => {
     // console.log(e.target.id)
 
