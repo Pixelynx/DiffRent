@@ -38,11 +38,9 @@ class Tickets extends Component {
 
   // needs to be adjused to identify whether it's a tenant or landlord logged in and update the state respectively
   tenantHandleStatus = (e) => {
-    let currentState = this.state.tenantMarkedResolved;
-    this.setState({ tenantMarkedResolved: !currentState })
     // console.log(e.target.id)
 
-    let completed_tenant = `${'0' ? '1' : '0'}`;
+    let completed_tenant = `${this.state.tenantMarkedResolved ? '0' : '1'}`;
 
     let id = 4;
     let apartment_id = this.props.user.aptid;
@@ -52,7 +50,7 @@ class Tickets extends Component {
       completed_tenant
     })
     .then(res => {
-      this.setState({ completed_tenant: completed_tenant })
+      this.setState(prevState => ({ tenantMarkedResolved: !prevState.tenantMarkedResolved }))
     }).catch(err => console.log(err))
   }
 
