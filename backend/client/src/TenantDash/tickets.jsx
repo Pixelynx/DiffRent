@@ -42,18 +42,19 @@ class Tickets extends Component {
     this.setState({ tenantMarkedResolved: !currentState })
     // console.log(e.target.id)
 
-    let completed_tenant = '1';
+    let completed_tenant = `${'0' ? '1' : '0'}`;
 
     let id = 4;
-    let apartment_id = this.props.match.params.id
-    debugger
+    let apartment_id = this.props.user.aptid;
+    // let completed_landlord = `${'0' ? '1' : '0'}`;
+    // debugger
 
     axios.put(`/tickets/${id}`, {
       apartment_id,
       completed_tenant
     })
     .then(res => {
-      debugger
+      this.setState({ completed_tenant: completed_tenant })
     }).catch(err => console.log(err))
   }
 
@@ -111,7 +112,7 @@ class Tickets extends Component {
     }
   }
   render() {
-    console.log(this.props.user, 'USER PROPS')
+    console.log(this.state)
     if(this.state.ticketModalOpen) {
       return(
         <>
