@@ -38,22 +38,19 @@ class Tickets extends Component {
 
   // needs to be adjused to identify whether it's a tenant or landlord logged in and update the state respectively
   tenantHandleStatus = (e) => {
-    let currentState = this.state.tenantMarkedResolved;
-    this.setState({ tenantMarkedResolved: !currentState })
     // console.log(e.target.id)
 
-    let completed_tenant = '1';
+    let completed_tenant = `${this.state.tenantMarkedResolved ? '0' : '1'}`;
 
     let id = 4;
-    let apartment_id = this.props.match.params.id
-    debugger
+    let apartment_id = this.props.user.aptid;
 
     axios.put(`/tickets/${id}`, {
       apartment_id,
       completed_tenant
     })
     .then(res => {
-      debugger
+      this.setState(prevState => ({ tenantMarkedResolved: !prevState.tenantMarkedResolved }))
     }).catch(err => console.log(err))
   }
 
@@ -111,7 +108,7 @@ class Tickets extends Component {
     }
   }
   render() {
-    console.log(this.props.user, 'USER PROPS')
+    console.log(this.state)
     if(this.state.ticketModalOpen) {
       return(
         <>
