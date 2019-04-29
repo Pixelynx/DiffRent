@@ -26,7 +26,10 @@ const getSingleApt = (req, res, next) => {
 }
 
 const addApt = (req, res, next) => {
-  db.none("INSERT INTO apartments(name, address, landlord_id) VALUES(${name}, ${address}, ${landlord_id})", req.body)
+  db.none("INSERT INTO apartments(apt, address, landlord_id) VALUES(${apt}, ${address}, ${landlord_id})", 
+  {apt: req.body.apt,
+  address: req.body.address,
+  landlord_id: req.body.landlord_id})
   .then(() => {
     res.status(200).json({
       status: "Success",
