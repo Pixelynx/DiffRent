@@ -44,6 +44,7 @@ class AuthForm extends Component {
   registerUser = async e => {
     e.preventDefault();
     const { password, name, email, phone, userType } = this.state;
+    const { getUserAptInfo, getUserInfo, user } = this.props;
     let user_type = userType ? "tenant" : "landlord";
     let password_digest = password;
     let input = e.target[4].value;
@@ -63,7 +64,11 @@ class AuthForm extends Component {
       return await axios
         .post("/tenants/login", { username, password })
         .then(res => {
-          this.props.getUserInfo(res.data.email);
+          if (!user) {
+            return getUserAptInfo(res.data.email);
+          } else if (!user) {
+            return getUserInfo(res.data.email);
+          }
         })
         .then(() => {
           this.props.checkAuthenticateStatus();
@@ -72,7 +77,11 @@ class AuthForm extends Component {
       return await axios
         .post("/landlords/login", { username, password })
         .then(res => {
-          this.props.getUserInfo(res.data.email);
+          if (!user) {
+            return getUserAptInfo(res.data.email);
+          } else if (!user) {
+            return getUserInfo(res.data.email);
+          }
         })
         .then(() => {
           this.props.checkAuthenticateStatus();
@@ -82,15 +91,23 @@ class AuthForm extends Component {
 
   loginUser = e => {
     e.preventDefault();
-    const { username, password } = this.state;
-    const { getUserAptInfo, getUserInfo, user } = this.props;
-
-    if (e.target[2].value === "landlord") {
+    const { match, getUserAptInfo, getUserInfo, user } = this.props;
+    const path = match.path
+    let username = this.state.username;
+    let password = this.state.password;
+    debugger
+    if (path === "/tenants/login") {
       return axios
-        .post("/landlords/login", { username, password })
-        .then(res => {
-          debugger
-          getUserInfo(res.data.email);
+        .post("/tenants/login", { username, password })
+        .then(() => {
+          if (!user) {
+            return getUserAptInfo(username);
+          } 
+        })
+        .then(() => {
+          if (!user) {
+            return getUserInfo(username);
+          }
         })
         .then(() => {
           Auth.authenticateUser(username);
@@ -104,23 +121,24 @@ class AuthForm extends Component {
             password: "",
           });
         });
-    } else if (e.target[2].value === "tenant") {
+    } else if (path === "/landlords/login") {
       return axios
-        .post("/tenants/login", { username, password })
-        .then(res => {
-          getUserInfo(res.data.email);
+        .post("/landlords/login", { username, password })
+        .then(() => {
+          if (!user) {
+            return getUserAptInfo(username);
+          } 
+        })
+        .then(() => {
+          if (!user) {
+            return getUserInfo(username);
+          }
         })
         .then(() => {
           Auth.authenticateUser(username);
         })
         .then(() => {
           this.props.checkAuthenticateStatus();
-        })
-        .then(() => {
-          this.setState({
-            username: "",
-            password: "",
-          });
         });
     }
   };
@@ -135,9 +153,11 @@ class AuthForm extends Component {
       let username = "nRyder@gmail.com";
       return axios
         .post("/tenants/login", { username, password })
-        .then(res => {
-        if (!user) {
-            return getUserInfo(res.data.email);
+        .then(() => {
+          if (!user) {
+            return getUserAptInfo(username);
+          } else if (!user) {
+            return getUserInfo(username);
           }
         })
         .then(() => {
@@ -158,7 +178,9 @@ class AuthForm extends Component {
         .post("/landlords/login", { username, password })
         .then(res => {
           if (!user) {
-            return getUserInfo(res.data.email);
+            return getUserAptInfo(username);
+          } else if (!user) {
+            return getUserInfo(username);
           }
         })
         .then(() => {
