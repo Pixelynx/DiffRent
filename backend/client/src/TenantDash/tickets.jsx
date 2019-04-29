@@ -11,7 +11,6 @@ class Tickets extends Component {
     ticketModalOpen: false,
     ticketsUnresolved: [],
     ticketsResolved: [],
-    tenantMarkedResolved: false,
     creatingTicket: false,
   }
 
@@ -25,7 +24,7 @@ class Tickets extends Component {
     axios.get(`/tickets/${user.aptid}`)
     .then(res => {
       res.data.data.map(ticket => {
-        this.setState({ defaultValue: {
+        return Object.assign(this.state.defaultValue, [{
           ticketid: ticket.id,
           apartment_id: ticket.apartment_id,
           completed_tenant: ticket.completed_tenant,
@@ -35,12 +34,10 @@ class Tickets extends Component {
           in_progress: ticket.in_progress,
           appt_date: ticket.appt_date,
           appt_time: ticket.appt_time
-          }
-        })
+        }])
       })
-    })
-
-  }
+      })
+      }
 
   // hacky fix to get the modal to ONLY close when the outer div is clicked
   handleModalOpen = (e) => {
@@ -51,19 +48,25 @@ class Tickets extends Component {
   }
 
   tenantHandleStatus = (e) => {
+    const { defaultValue } = this.state
     e.preventDefault();
 
-    let completed_tenant = `${this.state.tenantMarkedResolved ? '0' : '1'}`;
-
+    let completed_tenant = `${defaultValue.completed_tenant ? '0' : '1'}`;
     let id = 4;
-    let apartment_id = this.props.user.aptid;
 
-    axios.patch(`/tickets/${id}`, {
-      apartment_id,
-      completed_tenant
+    axios.put(`/tickets/${id}`, {
+      ticketid: id,
+      apartment_id: defaultValue.apartment_id,
+      completed_tenant: completed_tenant,
+      completed_landlord: defaultValue.completed_landlord,
+      subject: defaultValue.subject,
+      body: defaultValue.body,
+      in_progress: defaultValue.in_progress,
+      appt_date: defaultValue.appt_date,
+      appt_time: defaultValue.appt_time
     })
     .then(res => {
-      this.setState(prevState => ({ tenantMarkedResolved: !prevState.tenantMarkedResolved }))
+      this.setState(prevState => ({ completed_tenant: !prevState.completed_tenant }))
     }).catch(err => console.log(err))
   }
 
@@ -83,10 +86,11 @@ class Tickets extends Component {
 
   displayUnresolvedTickets = () => {
     // need to change up ticket resolve -- append resolve to tenants and landlord tickets
-    const { ticketsUnresolved, ticketsResolved, ticketModalOpen, tenantMarkedResolved } = this.state
+    const { defaultValue, ticketsUnresolved, ticketsResolved, ticketModalOpen, completed_tenant } = this.state
     let status = 'URESOLVED';
-    if(ticketsUnresolved || ticketsResolved && ticketModalOpen) {
-      return ticketsUnresolved.map(ticket => {
+    if(defaultValue && ticketModalOpen) {
+      return defaultValue.map(ticket => {
+
         let date = ticket.appt_date
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
 
@@ -99,7 +103,7 @@ class Tickets extends Component {
                 onMouseEnter={this.mouseEnter}>
                 <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
                 <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-                <p>{tenantMarkedResolved ? 'UNRESOLVED' : 'RESOLVED'}</p>
+                <p>{completed_tenant ? 'UNRESOLVED' : 'RESOLVED'}</p>
               </div>
               </>
           )
@@ -140,7 +144,7 @@ class Tickets extends Component {
     }
     return(
       <>
-      <button className='tickets-btn' onClick={this.handleModalOpen}>You have {this.state.ticketsUnresolved.length} unresolved tickets.</button>
+      <button className='tickets-btn' onClick={this.handleModalOpen}>You have {this.state.defaultValue.length} unresolved tickets.</button>
       <CreateTicketForm
         createTicket={this.state.creatingTicket}
         user={this.props.user}
