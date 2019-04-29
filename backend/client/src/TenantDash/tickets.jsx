@@ -7,6 +7,14 @@ import '../styles/tenantTickets/tickets.css';
 class Tickets extends Component {
 
   state = {
+    defaultValue: {
+      apartment_id: null,
+      completed_tenant: '',
+      completed_landlord: '',
+      in_progress: '',
+      appt_date: '',
+      appt_time: ''
+    },
     ticketModalOpen: false,
     ticketsUnresolved: [],
     ticketsResolved: [],
@@ -18,18 +26,22 @@ class Tickets extends Component {
     this.handleSetState()
   }
 
-  handleSetState = async() => {
+  handleSetState = () => {
     const { user } = this.props;
-    let ticketsUnresolved = [];
 
-    await axios.get(`/tickets/${user.aptid}`)
+    axios.get(`/tickets/${user.aptid}`)
     .then(res => {
       res.data.data.forEach(ticket => {
-        ticketsUnresolved.push(Object.assign(ticket, { hovered: false }))
+
       })
     })
-    await this.setState({ ticketsUnresolved: ticketsUnresolved })
-
+    // id: ticketId,
+    // apartment_id: req.body.apartment_id,
+    // completed_tenant: req.body.completed_tenant,
+    // completed_landlord: req.body.completed_landlord,
+    // in_progress: req.body.in_progress,
+    // appt_date: req.body.appt_date,
+    // appt_time: req.body.appt_time
 
   }
 
@@ -42,14 +54,14 @@ class Tickets extends Component {
   }
 
   tenantHandleStatus = (e) => {
-    // console.log(e.target.id)
+    e.preventDefault();
 
     let completed_tenant = `${this.state.tenantMarkedResolved ? '0' : '1'}`;
 
     let id = 4;
     let apartment_id = this.props.user.aptid;
 
-    axios.put(`/tickets/${id}`, {
+    axios.patch(`/tickets/${id}`, {
       apartment_id,
       completed_tenant
     })
@@ -104,7 +116,10 @@ class Tickets extends Component {
                   <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
                   <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
                   <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
-                <button id={ticket.id} onClick={this.tenantHandleStatus} className='status-btn'>{status}</button>
+                <button
+                  id={ticket.id}
+                  onClick={this.tenantHandleStatus}
+                  className='status-btn'>{status}</button>
               </div>
             </>
           )

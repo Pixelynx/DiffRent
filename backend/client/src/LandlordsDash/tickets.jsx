@@ -10,18 +10,14 @@ class Tickets extends Component {
   }
 
   landlordHandleStatus = (e) => {
-    this.setState(prevState => ({ landlordMarkedResolved: !prevState.landlordMarkedResolved }))
-  }
-
-  landlordHandleStatus = (e) => {
-    // console.log(e.target.id)
+    e.preventDefault();
 
     let completed_landlord = `${this.state.landlordHandleStatus ? '0' : '1'}`;
 
     let id = 4;
     let apartment_id = 2;
 
-    axios.put(`/tickets/${id}`, {
+    axios.patch(`/tickets/${id}`, {
       apartment_id,
       completed_landlord
     })
@@ -44,31 +40,32 @@ class Tickets extends Component {
         if(!this.state.hover) {
         return(
           <>
-            <div
+            <form
               onMouseEnter={this.mouseEnter}
               className='landlord-tik-front'
               >
               <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
               <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
               <p>{landlordMarkedResolved ? 'RESOLVED' : 'UNRESOLVED'}</p>
-            </div>
+            </form>
             </>
         )
           } else {
             return(
               <>
-            <div
+            <form
               onMouseLeave={this.mouseLeave}
               className='landlord-tik-back'
               >
               <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
               <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
               <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
+              <input type='hidden' readOnly='true' value={ticket.completed_tenant} />
               <button
                 id={ticket.id}
                 onClick={this.landlordHandleStatus}
                 className='status-btn'>{landlordMarkedResolved ? 'RESOLVED' : 'UNRESOLVED'}</button>
-            </div>
+            </form>
           </>
       )
       }

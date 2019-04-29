@@ -9,4 +9,3 @@ router.put('/:id', queries.updateTicket);
 router.delete('/:id', queries.deleteTicket);
 
 module.exports = router;
- 
