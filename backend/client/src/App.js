@@ -164,7 +164,8 @@ class App extends Component {
                 return !user ? (
                   <AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
-
+                    getUserAptInfo={this.getUserAptInfo}
+                    getUserInfo={this.getUserInfo}
                     user={user}
                     isLoggedIn={isLoggedIn}
                   />

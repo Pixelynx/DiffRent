@@ -63,11 +63,14 @@ class AuthForm extends Component {
     if (user_type === "tenant") {
       return await axios
         .post("/tenants/login", { username, password })
-        .then(res => {
+        .then(() => {
           if (!user) {
-            return getUserAptInfo(res.data.email);
-          } else if (!user) {
-            return getUserInfo(res.data.email);
+            return getUserAptInfo(username);
+          } 
+        })
+        .then(() => {
+          if (!user) {
+            return getUserInfo(username);
           }
         })
         .then(() => {
@@ -76,11 +79,14 @@ class AuthForm extends Component {
     } else if (user_type === "landlord") {
       return await axios
         .post("/landlords/login", { username, password })
-        .then(res => {
+        .then(() => {
           if (!user) {
-            return getUserAptInfo(res.data.email);
-          } else if (!user) {
-            return getUserInfo(res.data.email);
+            return getUserAptInfo(username);
+          } 
+        })
+        .then(() => {
+          if (!user) {
+            return getUserInfo(username);
           }
         })
         .then(() => {
