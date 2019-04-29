@@ -9,27 +9,19 @@ class AddApartment extends Component{
     }
 
     componentDidMount() { 
-        // this.props.getUserInformation(Auth.getToken())
+        // this.props.checkAuthenticateStatus()
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         const { user } = this.props;
-        const { getUserAptInfo, getUserInfo } = this.props;
+        const { getUserInformation } = this.props;
         let apt = this.state.name;
         let address = this.state.address;
         let landlord_id = user.userid;
-        debugger;
         axios.post('/apartments/', { apt, address, landlord_id })
         .then(() => {
-            if (!user) {
-              return getUserAptInfo(user.email);
-            } 
-          })
-          .then(() => {
-            if (!user) {
-              return getUserInfo(user.email);
-            }
+            return getUserInformation(Auth.getToken())
           })
     }
 
@@ -44,12 +36,14 @@ class AddApartment extends Component{
                 <form onSubmit={this.handleSubmit}>
                     <input
                     autoFocus
+                    required
                     type='text'
                     name='name'
                     value={name}
                     onChange={this.handleInputs} />
                     <input
                     type='text'
+                    required
                     name='address'
                     value={address}
                     onChange={this.handleInputs} />

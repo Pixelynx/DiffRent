@@ -19,8 +19,8 @@ const getAllLandlords = (req, res, next) => {
 }
 
 const getSingleLandlord = (req, res, next) => {
-  userId = Number(req.params.id)
-  db.one(`SELECT name, email, phone, dob, password_digest, user_type, apartments.id AS apartmentId, apt, address, landlord_id FROM users JOIN apartments ON (users.id=apartments.landlord_id) WHERE apartments.landlord_id=$1
+  userId = req.params.id
+  db.one(`SELECT users.id AS userId, name, email, phone, dob, user_type, apartments.id AS aptId, apt, address FROM users JOIN apartments ON (users.id=apartments.landlord_id) WHERE users.email=$1 GROUP BY (users.id, apartments.id)
           `, userId)
   .then(data => {
     res.status(200)
