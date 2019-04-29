@@ -22,7 +22,7 @@ class LandlordDash extends Component {
       address: null,
       appointments: [],
       tenantInfoIsShowing: false,
-      tenantTiksIsShowing: false,
+      landlordTiksIsShowing: false,
       selectedApt: null,
       tickets: []
     }
@@ -86,7 +86,7 @@ class LandlordDash extends Component {
               </button>
               <button
                 className='open-tiks-btn'
-                onClick={this.handleTenantTiksShowing}
+                onClick={this.handlelandlordTiksShowing}
                 >
                 <p className='total-open-tiks'>You have {this.state.tickets.length} open ticket(s).</p>
               </button>
@@ -104,9 +104,9 @@ class LandlordDash extends Component {
     }
   }
 
-  handleTenantTiksShowing = (e) => {
+  handlelandlordTiksShowing = (e) => {
     if(e.target.className === 'open-tiks-btn' || e.target.className === 'show-landlord-tiks-container') {
-      this.setState({ tenantTiksIsShowing: !this.state.tenantTiksIsShowing })
+      this.setState({ landlordTiksIsShowing: !this.state.landlordTiksIsShowing })
     }
   }
 
@@ -118,7 +118,7 @@ class LandlordDash extends Component {
 
     return(
       <>
-        <div className='dash-container' id={ !this.state.tenantInfoIsShowing || !this.state.tenantTiksIsShowing ? 'show' : 'hide'} style={ this.state.tenantInfoIsShowing || this.state.tenantTiksIsShowing ? {visibility: 'hidden'} : null }>
+        <div className='dash-container' id={ !this.state.tenantInfoIsShowing || !this.state.landlordTiksIsShowing ? 'show' : 'hide'} style={ this.state.tenantInfoIsShowing || this.state.landlordTiksIsShowing ? {visibility: 'hidden'} : null }>
           <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
             <div className='tenant-contacts'>
               <h2>Apartments</h2>
@@ -131,9 +131,10 @@ class LandlordDash extends Component {
               closeModal={this.handleTenantInfoShowing}
           />
         <Tickets
-          toggleModal={this.handleTenantTiksShowing}
-          tenantTiksShow={this.state.tenantTiksIsShowing}
+          toggleModal={this.handlelandlordTiksShowing}
+          landlordTiksShow={this.state.landlordTiksIsShowing}
           tickets={this.state.tickets}
+          user={this.props.user}
           />
         </div>
       </>
