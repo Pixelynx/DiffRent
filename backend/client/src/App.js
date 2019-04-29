@@ -31,8 +31,8 @@ class App extends Component {
   }
 
   checkAuthenticateStatus = () => {
-    axios.post("/users/isLoggedIn").then(user => {
-      debugger
+    axios.post("/users/isLoggedIn")
+    .then(user => {
       if (user.data.username === Auth.getToken()) {
         if (user.data.username !== null) {
           return (
@@ -52,17 +52,14 @@ class App extends Component {
   };
 
   
-  getUserInformation = user => {
-    if (!this.state.user) {
-      return this.getUserAptInfo(user);
-    } else if (!this.state.user) {
-      return this.getUserInfo(user);
+  getUserInformation = email => {
+    const { user } = this.state;
+    if (!user) { return this.getUserAptInfo(email) }
+    if (!user) { return this.getUserInfo(email) }
     }
-  };
 
   getUserInfo = email => {
     axios.get("/users/" + email).then(res => {
-      debugger
       this.setState({
         user: res.data.data,
       });
@@ -71,7 +68,6 @@ class App extends Component {
 
   getUserAptInfo = email => {
     axios.get("/users/apt/" + email).then(res => {
-      debugger
       this.setState({
         user: res.data.data,
       });
@@ -104,8 +100,7 @@ class App extends Component {
 
   render() {
     const { isLoggedIn, user, navbar } = this.state;
-    console.log("STATE", this.state);
-    console.log("MY LOCAL STORAGE", localStorage);
+    console.log("STATE", this.state.user);
     let logoutButton = isLoggedIn ? (
       <button onClick={this.logoutUser.bind(this)}>Logout</button>
     ) : null;
@@ -137,7 +132,8 @@ class App extends Component {
                 return !user ? (
                   <AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
-                    getUserInfo={this.getUserInformation}
+                    getUserInfo={this.getUserInfo}
+                    getUserAptInfo={this.getUserAptInfo}
                     user={user}
                     isLoggedIn={isLoggedIn}
                   />
@@ -152,7 +148,8 @@ class App extends Component {
                 return !user ? (
                   <AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
-                    getUserInfo={this.getUserInformation}
+                    getUserInfo={this.getUserInfo}
+                    getUserAptInfo={this.getUserAptInfo}
                     user={user}
                     isLoggedIn={isLoggedIn}
                   />
