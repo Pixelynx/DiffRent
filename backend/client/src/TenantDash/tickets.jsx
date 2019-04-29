@@ -14,7 +14,7 @@ class Tickets extends Component {
       in_progress: '',
       appt_date: '',
       appt_time: ''
-    }
+    },
     ticketModalOpen: false,
     ticketsUnresolved: [],
     ticketsResolved: [],
@@ -35,13 +35,13 @@ class Tickets extends Component {
 
       })
     })
-    id: ticketId,
-    apartment_id: req.body.apartment_id,
-    completed_tenant: req.body.completed_tenant,
-    completed_landlord: req.body.completed_landlord,
-    in_progress: req.body.in_progress,
-    appt_date: req.body.appt_date,
-    appt_time: req.body.appt_time
+    // id: ticketId,
+    // apartment_id: req.body.apartment_id,
+    // completed_tenant: req.body.completed_tenant,
+    // completed_landlord: req.body.completed_landlord,
+    // in_progress: req.body.in_progress,
+    // appt_date: req.body.appt_date,
+    // appt_time: req.body.appt_time
 
   }
 
