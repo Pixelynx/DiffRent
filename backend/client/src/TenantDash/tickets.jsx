@@ -7,14 +7,7 @@ import '../styles/tenantTickets/tickets.css';
 class Tickets extends Component {
 
   state = {
-    defaultValue: {
-      apartment_id: null,
-      completed_tenant: '',
-      completed_landlord: '',
-      in_progress: '',
-      appt_date: '',
-      appt_time: ''
-    },
+    defaultValue: [],
     ticketModalOpen: false,
     ticketsUnresolved: [],
     ticketsResolved: [],
@@ -31,17 +24,21 @@ class Tickets extends Component {
 
     axios.get(`/tickets/${user.aptid}`)
     .then(res => {
-      res.data.data.forEach(ticket => {
-
+      res.data.data.map(ticket => {
+        this.setState({ defaultValue: {
+          ticketid: ticket.id,
+          apartment_id: ticket.apartment_id,
+          completed_tenant: ticket.completed_tenant,
+          completed_landlord: ticket.completed_landlord,
+          subject: ticket.subject,
+          body: ticket.body,
+          in_progress: ticket.in_progress,
+          appt_date: ticket.appt_date,
+          appt_time: ticket.appt_time
+          }
+        })
       })
     })
-    // id: ticketId,
-    // apartment_id: req.body.apartment_id,
-    // completed_tenant: req.body.completed_tenant,
-    // completed_landlord: req.body.completed_landlord,
-    // in_progress: req.body.in_progress,
-    // appt_date: req.body.appt_date,
-    // appt_time: req.body.appt_time
 
   }
 
