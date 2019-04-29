@@ -12,20 +12,25 @@ class Tickets extends Component {
     ticketsResolved: [],
     tenantMarkedResolved: false,
     creatingTicket: false,
-    hover: false
   }
 
   componentDidMount = () => {
     this.handleSetState()
   }
 
-  handleSetState = () => {
+  handleSetState = async() => {
     const { user } = this.props;
+    let ticketsUnresolved = [];
 
-    axios.get(`/tickets/${user.aptid}`)
+    await axios.get(`/tickets/${user.aptid}`)
     .then(res => {
-      this.setState({ ticketsUnresolved: res.data.data})
+      res.data.data.forEach(ticket => {
+        ticketsUnresolved.push(Object.assign(ticket, { hovered: false }))
+      })
     })
+    await this.setState({ ticketsUnresolved: ticketsUnresolved })
+
+
   }
 
   // hacky fix to get the modal to ONLY close when the outer div is clicked
@@ -60,11 +65,11 @@ class Tickets extends Component {
   }
 
   mouseEnter = () => {
-    this.setState(prevState => ({ hover: !prevState.hover }))
+    this.setState(prevState => ({ hovered: !prevState.hovered }))
   }
 
   mouseLeave = () => {
-    this.setState(prevState => ({ hover: !prevState.hover }))
+    this.setState(prevState => ({ hovered: !prevState.hovered }))
   }
 
   displayUnresolvedTickets = () => {
@@ -75,7 +80,8 @@ class Tickets extends Component {
       return ticketsUnresolved.map(ticket => {
         let date = ticket.appt_date
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
-        if(!this.state.hover) {
+
+        if(!this.state.hovered) {
           return(
             <>
               <div
