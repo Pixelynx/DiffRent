@@ -1,16 +1,46 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { SetApptCal } from './setApptCal.jsx';
 
 class Tickets extends Component {
   state = {
     hover: false,
-    apptFormOpened: false
+    apptFormOpened: false,
+    landlordMarkedResolved: false
   }
 
-  // component for card and put event handler in component 
+  landlordHandleStatus = (e) => {
+    this.setState(prevState => ({ landlordMarkedResolved: !prevState.landlordMarkedResolved }))
+  }
+
+  landlordHandleStatus = (e) => {
+    // console.log(e.target.id)
+
+    let completed_landlord = `${this.state.landlordHandleStatus ? '0' : '1'}`;
+
+    let id = 4;
+    let apartment_id = 2;
+
+    axios.put(`/tickets/${id}`, {
+      apartment_id,
+      completed_landlord
+    })
+    .then(res => {
+      this.setState(prevState => ({ landlordHandleStatus: !prevState.landlordHandleStatus }))
+    }).catch(err => console.log(err))
+  }
+
+  // component for card and put event handler in component
   renderLandlordTiks = () => {
-    if(this.props.tickets) {
-      return this.props.tickets.map(ticket => {
+    let status;
+    const { landlordMarkedResolved } = this.state
+    const { tickets, landlordTiksIsShowing } = this.props
+    console.log(status)
+
+    if(tickets) {
+      return tickets.map(ticket => {
+        let date = ticket.appt_date
+        let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
         if(!this.state.hover) {
         return(
           <>
@@ -18,7 +48,9 @@ class Tickets extends Component {
               onMouseEnter={this.mouseEnter}
               className='landlord-tik-front'
               >
-              <p>{ticket.subject}</p>
+              <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
+              <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
+              <p>{landlordMarkedResolved ? 'RESOLVED' : 'UNRESOLVED'}</p>
             </div>
             </>
         )
@@ -29,9 +61,13 @@ class Tickets extends Component {
               onMouseLeave={this.mouseLeave}
               className='landlord-tik-back'
               >
-              <p>{ticket.subject}</p>
-              <p>{ticket.body}</p>
-              <button onClick={this.handleApptForm}>Set Appointment</button>
+              <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
+              <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
+              <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
+              <button
+                id={ticket.id}
+                onClick={this.landlordHandleStatus}
+                className='status-btn'>{landlordMarkedResolved ? 'RESOLVED' : 'UNRESOLVED'}</button>
             </div>
           </>
       )
@@ -55,12 +91,13 @@ class Tickets extends Component {
 
   render() {
     console.log(this.state, 'LANDLORD TIKS STATE')
-    if(this.props.tenantTiksShow) {
+    console.log(this.props, 'LANDLORD TIKS PROPS')
+    if(this.props.landlordTiksShow) {
 
       return(
         <>
          <div
-           className={this.props.tenantTiksShow ? 'show-landlord-tiks-container' : 'hide-landlord-tiks-container'}
+           className={this.props.landlordTiksShow ? 'show-landlord-tiks-container' : 'hide-landlord-tiks-container'}
            onClick={this.props.toggleModal}>
           <div className='landlord-tiks-window'>
             {this.renderLandlordTiks()}
