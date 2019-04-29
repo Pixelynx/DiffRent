@@ -12,20 +12,25 @@ class Tickets extends Component {
     ticketsResolved: [],
     tenantMarkedResolved: false,
     creatingTicket: false,
-    hover: false
   }
 
   componentDidMount = () => {
     this.handleSetState()
   }
 
-  handleSetState = () => {
+  handleSetState = async() => {
     const { user } = this.props;
+    let ticketsUnresolved = [];
 
-    axios.get(`/tickets/${user.aptid}`)
+    await axios.get(`/tickets/${user.aptid}`)
     .then(res => {
-      this.setState({ ticketsUnresolved: res.data.data})
+      res.data.data.forEach(ticket => {
+        ticketsUnresolved.push(Object.assign(ticket, { hovered: false }))
+      })
     })
+    await this.setState({ ticketsUnresolved: ticketsUnresolved })
+
+
   }
 
   // hacky fix to get the modal to ONLY close when the outer div is clicked
@@ -60,22 +65,23 @@ class Tickets extends Component {
   }
 
   mouseEnter = () => {
-    this.setState(prevState => ({ hover: !prevState.hover }))
+    this.setState(prevState => ({ hovered: !prevState.hovered }))
   }
 
   mouseLeave = () => {
-    this.setState(prevState => ({ hover: !prevState.hover }))
+    this.setState(prevState => ({ hovered: !prevState.hovered }))
   }
 
   displayUnresolvedTickets = () => {
     // need to change up ticket resolve -- append resolve to tenants and landlord tickets
     const { ticketsUnresolved, ticketsResolved, ticketModalOpen, tenantMarkedResolved } = this.state
-    let status = `${this.state.tenantMarkedResolved ? 'RESOLVED' : 'URESOLVED'}`;
+    let status = 'URESOLVED';
     if(ticketsUnresolved || ticketsResolved && ticketModalOpen) {
       return ticketsUnresolved.map(ticket => {
         let date = ticket.appt_date
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
-        if(!this.state.hover) {
+
+        if(!this.state.hovered) {
           return(
             <>
               <div
@@ -84,7 +90,7 @@ class Tickets extends Component {
                 onMouseEnter={this.mouseEnter}>
                 <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
                 <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-                <p>{!tenantMarkedResolved ? 'UNRESOLVED' : 'RESOLVED'}</p>
+                <p>{tenantMarkedResolved ? 'UNRESOLVED' : 'RESOLVED'}</p>
               </div>
               </>
           )
