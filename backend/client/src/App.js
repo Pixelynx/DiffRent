@@ -31,6 +31,7 @@ class App extends Component {
   }
 
   checkAuthenticateStatus = () => {
+    const { isLoggedIn } = this.state;
     axios.post("/users/isLoggedIn")
     .then(user => {
       if (user.data.username === Auth.getToken()) {
@@ -49,13 +50,41 @@ class App extends Component {
         }
       }
     });
+    console.log(isLoggedIn)  
+  //   axios.post("/users/isLoggedIn")
+  //   .then(user => {
+  //     if (user.data.username === Auth.getToken()) {
+  //       if (user.data.username !== null) {
+  //         return this.getUserInformation(user.data.username)
+  //       }
+  //     } else {
+  //       if (user.data.username) {
+  //         this.logoutUser();
+  //       } else {
+  //         Auth.deauthenticateUser();
+  //       }
+  //     }
+  //   })
+  //   .then((user) => {
+  //     if(this.state.isLoggedIn){
+  //     if (!this.state.user) {
+  //       return this.getUserAptInfo(user.data.username);
+  //     } 
+  //   })
+  // }
+  //   .then((user) => {
+  //     if (!this.state.user) {
+  //       return this.getUserInfo(user.data.username);
+  //     }
+  //   })
+  // }
   };
 
   
   getUserInformation = email => {
     const { user } = this.state;
-    if (!user) { return this.getUserAptInfo(email) }
     if (!user) { return this.getUserInfo(email) }
+    if (!user) { return this.getUserAptInfo(email) } 
     }
 
   getUserInfo = email => {
@@ -173,8 +202,8 @@ class App extends Component {
                   <Redirect
                     to={
                       user.user_type === "tenant"
-                        ? `/tenant/${user.id}`
-                        : `/landlord/${user.id}`
+                        ? `/tenant/${user.userid}`
+                        : `/landlord/${user.userid}`
                     }
                   />
                 );
@@ -193,7 +222,9 @@ class App extends Component {
             <PrivateRoute
               path="/landlord/:id"
               user={user}
-              component={LandlordDash}
+              getUserAptInfo={this.getUserAptInfo}
+              getUserInfo={this.getUserInfo}
+              component={ user.aptid ? LandlordDash : AddApartment }
             />
             <PrivateRoute
               path="/tenant/:id"
