@@ -20,10 +20,14 @@ const NavBar = (props) => {
             <div className='nav'>
               <ul>
                 <li><NavLink to={"/"}><img className='logo_official' src={logo} style={styles} /> </NavLink></li>
-                <li><NavLink to={"/inbox"}> Inbox </NavLink></li>
-                <li><NavLink to={`/landlord/profile/${user.userid}`}> Profile </NavLink></li>
-                <li><NavLink to={"/about"}>About </NavLink></li>
-                <li><NavLink to={"/faq"}>FAQ </NavLink></li>
+                <li class="far fa-comments"><NavLink to={"/inbox"}>  Inbox </NavLink></li>
+                <br/>
+                <li class="far fa-user"><NavLink to={`/landlord/profile/${user.userid}`}> Profile </NavLink></li>
+                <br/>
+                <li class="fas fa-info-circle"><NavLink to={"/about"}>About </NavLink></li>
+                <br/>
+                <li class="far fa-question-circle"><NavLink to={"/faq"}>FAQ </NavLink></li>
+                <br/>
                 {logoutButton}
               </ul>
             </div>
