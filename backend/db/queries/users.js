@@ -19,7 +19,7 @@ const getSingleUser = (req, res, next) => {
 }
 const getUserAptInfo = (req, res, next) => {
     userId= req.params.id;
-  db.one("SELECT users.id AS userId, name, email, phone, dob, user_type, apartments.id AS aptId, apt, address, tenant_id, landlord_id, COUNT(tickets.id) AS openTickets FROM users JOIN apartments ON (users.id = apartments.landlord_id OR users.id = apartments.tenant_id) JOIN tickets ON (apartments.id = tickets.apartment_id AND (completed_landlord='0' OR completed_tenant='0')) WHERE users.email=$1 GROUP BY (users.id, apartments.id)", userId)
+  db.one("SELECT users.id AS userid, name, email, phone, dob, USER_type, apartments.id AS aptid, apt, address, landlord_id, tenant_id FROM users JOIN apartments ON (users.id=apartments.landlord_id OR users.id = apartments.tenant_id) WHERE users.email=$1", userId)
     .then(data => {
       res.status(200)
          .json({

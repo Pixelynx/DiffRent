@@ -101,7 +101,6 @@ class AuthForm extends Component {
     const path = match.path
     let username = this.state.username;
     let password = this.state.password;
-    debugger
     if (path === "/tenants/login") {
       return axios
         .post("/tenants/login", { username, password })
@@ -182,7 +181,7 @@ class AuthForm extends Component {
       let username = "rHerbert@gmail.com";
       return axios
         .post("/landlords/login", { username, password })
-        .then(res => {
+        .then(() => {
           if (!user) {
             return getUserAptInfo(username);
           } else if (!user) {
