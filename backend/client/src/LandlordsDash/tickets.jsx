@@ -10,26 +10,34 @@ class Tickets extends Component {
   }
 
   landlordHandleStatus = (e) => {
+    const { defaultValue, completed_tenant } = this.props
     e.preventDefault();
 
-    let completed_landlord = `${this.state.landlordHandleStatus ? '0' : '1'}`;
+    let completed_landlord = `${defaultValue.completed_landlord ? '0' : '1'}`;
 
     let id = 4;
     let apartment_id = 2;
 
-    axios.patch(`/tickets/${id}`, {
-      apartment_id,
-      completed_landlord
+    axios.put(`/tickets/${id}`, {
+      ticketid: id,
+      apartment_id: defaultValue.apartment_id,
+      completed_tenant: completed_tenant,
+      completed_landlord: defaultValue.completed_landlord,
+      subject: defaultValue.subject,
+      body: defaultValue.body,
+      in_progress: defaultValue.in_progress,
+      appt_date: defaultValue.appt_date,
+      appt_time: defaultValue.appt_time
     })
     .then(res => {
-      this.setState(prevState => ({ landlordHandleStatus: !prevState.landlordHandleStatus }))
+      this.setState(prevState => ({ completed_landlord: !prevState.completed_landlord }))
     }).catch(err => console.log(err))
   }
 
   // component for card and put event handler in component
   renderLandlordTiks = () => {
     let status;
-    const { landlordMarkedResolved } = this.state
+    const { completed_landlord } = this.state
     const { tickets, landlordTiksIsShowing } = this.props
     console.log(status)
 
@@ -46,7 +54,7 @@ class Tickets extends Component {
               >
               <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
               <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-              <p>{landlordMarkedResolved ? 'RESOLVED' : 'UNRESOLVED'}</p>
+              <p>{completed_landlord ? 'RESOLVED' : 'UNRESOLVED'}</p>
             </form>
             </>
         )
@@ -63,8 +71,8 @@ class Tickets extends Component {
               <input type='hidden' readOnly='true' value={ticket.completed_tenant} />
               <button
                 id={ticket.id}
-                onClick={this.landlordHandleStatus}
-                className='status-btn'>{landlordMarkedResolved ? 'RESOLVED' : 'UNRESOLVED'}</button>
+                onClick={this.completed_landlord}
+                className='status-btn'>{completed_landlord ? 'RESOLVED' : 'UNRESOLVED'}</button>
             </form>
           </>
       )

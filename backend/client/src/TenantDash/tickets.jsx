@@ -7,7 +7,6 @@ import '../styles/tenantTickets/tickets.css';
 class Tickets extends Component {
 
   state = {
-    defaultValue: [],
     ticketModalOpen: false,
     ticketsUnresolved: [],
     ticketsResolved: [],
@@ -23,21 +22,24 @@ class Tickets extends Component {
 
     axios.get(`/tickets/${user.aptid}`)
     .then(res => {
-      res.data.data.map(ticket => {
-        return Object.assign(this.state.defaultValue, [{
-          ticketid: ticket.id,
-          apartment_id: ticket.apartment_id,
-          completed_tenant: ticket.completed_tenant,
-          completed_landlord: ticket.completed_landlord,
-          subject: ticket.subject,
-          body: ticket.body,
-          in_progress: ticket.in_progress,
-          appt_date: ticket.appt_date,
-          appt_time: ticket.appt_time
-        }])
+      this.setState({
+        defaultValue: res.data.data.map(ticket => (
+          {
+            ticketid: ticket.id,
+            apartment_id: ticket.apartment_id,
+            completed_tenant: ticket.completed_tenant,
+            completed_landlord: ticket.completed_landlord,
+            subject: ticket.subject,
+            body: ticket.body,
+            in_progress: ticket.in_progress,
+            appt_date: ticket.appt_date,
+            appt_time: ticket.appt_time
+          }
+        ))
       })
-      })
-      }
+    })
+  }
+
 
   // hacky fix to get the modal to ONLY close when the outer div is clicked
   handleModalOpen = (e) => {
@@ -144,7 +146,7 @@ class Tickets extends Component {
     }
     return(
       <>
-      <button className='tickets-btn' onClick={this.handleModalOpen}>You have {this.state.defaultValue.length} unresolved tickets.</button>
+      <button className='tickets-btn' onClick={this.handleModalOpen}>You have  unresolved tickets.</button>
       <CreateTicketForm
         createTicket={this.state.creatingTicket}
         user={this.props.user}
