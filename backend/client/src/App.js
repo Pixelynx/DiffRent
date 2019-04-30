@@ -15,6 +15,7 @@ import Profile from "./profiles/Profile.js";
 import PrivateRoute from "./utils/AuthRouting";
 import "./styles/index.css";
 import AddApartment from "./LandlordsDash/addApartment";
+import { addISOWeekYears } from "date-fns/esm";
 
 const NoMatch = () => <h1>404</h1>;
 
@@ -22,7 +23,8 @@ class App extends Component {
   state = {
     navbar: false,
     isLoggedIn: false,
-    user: "",
+    user: '',
+    tenant: ''
   };
 
   componentDidMount() {
@@ -59,7 +61,8 @@ class App extends Component {
     }
 
   getUserInfo = email => {
-    axios.get("/users/" + email).then(res => {
+    axios.get("/users/" + email)
+    .then(res => {
       this.setState({
         user: res.data.data,
       });
@@ -67,12 +70,27 @@ class App extends Component {
   };
 
   getUserAptInfo = email => {
-    axios.get("/users/apt/" + email).then(res => {
+    axios.get("/users/apt/" + email)
+    .then(res => {
       this.setState({
         user: res.data.data,
       });
-    });
+    })
+    .then(() => {
+      if (this.state.user.aptid){
+        return this.getTenantInfo(this.state.user.aptid)
+      }
+    })
   };
+
+  getTenantInfo = (aptid) => {
+    axios.get(`/apartments/tenant/${aptid}`)
+    .then((res) => {
+      this.setState({
+        tenant: res.data.apartment
+      })
+    })
+  }
 
   toggleNavbar = e => {
     this.setState({

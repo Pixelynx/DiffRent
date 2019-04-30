@@ -59,9 +59,30 @@ const getLandlordByApt = (req, res, next) => {
   })
 }
 
+const getTenantByApt = (req, res, next) => {
+  aptId = Number(req.params.id)
+  db.one(`SELECT users.id, users.name, users.email, users.phone, users.dob FROM apartments
+  JOIN users
+  ON apartments.tenant_id = users.id
+  WHERE apartments.id=$1 AND users.user_type='tenant'`, aptId)
+  .then(apartment => {
+    res.status(200)
+      .json({
+        status: "Success",
+        apartment,
+        message: "Receive Tenant info"
+      })
+  })
+  .catch(err => {
+    console.log('error:', err)
+    next(err)
+  })
+}
+
 module.exports = {
   getAllApts,
   getSingleApt,
   addApt,
-  getLandlordByApt
+  getLandlordByApt,
+  getTenantByApt
 }
