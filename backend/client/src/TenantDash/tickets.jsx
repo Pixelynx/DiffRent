@@ -10,28 +10,24 @@ class Tickets extends Component {
     creatingTicket: false,
   }
 
-  componentDidMount = () => {
-  }
-
   tenantHandleStatus = async(e) => {
-    const { defaultValue, user } = this.props
+    const { ticket, user } = this.props
     e.preventDefault();
 
     let id = e.target.id;
-    await defaultValue.map(ticket => {
-    axios.put(`/tickets/${id}`, {
-      ticketid: id,
-      apartment_id: user.aptid,
-      completed_tenant: `${ticket.completed_tenant === '1' ? '0' : '1'}`,
-      completed_landlord: ticket.completed_landlord,
-      in_progress: ticket.in_progress,
-      appt_date: ticket.appt_date,
-      appt_time: ticket.appt_time
-    })
-    .then(res => {
-      this.setState(prevState => ({ completed_tenant: !prevState.completed_tenant }))
-    }).catch(err => console.log("put request: ", err))
-    })
+
+      axios.put(`/tickets/${id}`, {
+        ticketid: id,
+        apartment_id: user.aptid,
+        completed_tenant: `${ticket.completed_tenant === '1' ? '0' : '1'}`,
+        completed_landlord: ticket.completed_landlord,
+        in_progress: ticket.in_progress,
+        appt_date: ticket.appt_date,
+        appt_time: ticket.appt_time
+      })
+      .then(res => {
+        this.setState(prevState => ({ completed_tenant: !prevState.completed_tenant }))
+      }).catch(err => console.log("put request: ", err))
   }
 
 
