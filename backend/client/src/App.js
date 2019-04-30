@@ -51,10 +51,10 @@ class App extends Component {
     });
   };
 
-  
+
   getUserInformation = email => {
     const { user } = this.state;
-    if (!user) { return this.getUserAptInfo(email) } 
+    if (!user) { return this.getUserAptInfo(email) }
     if (!user) { return this.getUserInfo(email) }
     }
 
@@ -113,7 +113,8 @@ class App extends Component {
             onMouseEnter={this.toggleNavbar}
             onMouseLeave={this.toggleNavbar}
           >
-            {isLoggedIn ? <div>=</div> : null}
+            {isLoggedIn ? <div><i class="fas fa-bars"></i>
+          </div> : null}
             <div>
               {navbar ? (
                 <Navbar
