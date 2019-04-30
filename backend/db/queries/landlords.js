@@ -38,7 +38,7 @@ const getSingleLandlord = (req, res, next) => {
 
 const getAllAptsByLandlord = (req, res, next) => {
   landlord_id = Number(req.params.id)
-  db.any(`SELECT  apartments.id AS apartment_id, apartments.address, apartments.apt, users.name, users.email, users.phone FROM apartments
+  db.any(`SELECT apartments.id AS apartment_id, apartments.address, apartments.apt, users.name, users.email, users.phone FROM apartments
           JOIN users
           ON apartments.tenant_id = users.id
           WHERE apartments.landlord_id=$1`, landlord_id)
