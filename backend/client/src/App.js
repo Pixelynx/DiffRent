@@ -16,6 +16,7 @@ import PrivateRoute from "./utils/AuthRouting";
 import "./styles/index.css";
 import AddApartment from "./LandlordsDash/addApartment";
 import { addISOWeekYears } from "date-fns/esm";
+import searchApartment from "./TenantDash/searchApartment";
 
 const NoMatch = () => <h1>404</h1>;
 
@@ -218,7 +219,7 @@ class App extends Component {
             <PrivateRoute
               path="/tenant/:id"
               user={user}
-              component={TenantDash}
+              component={ user.aptid ? TenantDash : searchApartment }
             />
             <Route
               exact
