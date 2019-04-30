@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment'
+
 
 class MessageItem extends React.Component {
   constructor(){
@@ -10,11 +12,16 @@ class MessageItem extends React.Component {
 
 
   render(){
+    
     const {message} = this.props // const thread = this.props.thread (same thing written differently)
+    console.log('message',message)
     return(
       <React.Fragment>
-        <div style={{padding: 4, border:'1px darkgrey solid'}}>
-          <p><span>{message.message_date}</span>-{message.owner_id}</p> 
+        <div>
+          <p><span>
+          
+          {moment().format(`MMMM Do YYYY, ${message.message_date}`)}
+         </span>-{message.owner_id}</p> 
           <p>{message.body}</p>
         </div>
       </React.Fragment>
