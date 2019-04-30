@@ -12,6 +12,18 @@ const getAllApts = (req, res, next) => {
   .catch(err => next(err));
 };
 
+const getAvailableApts = (req, res, next) => {
+  db.any("SELECT apartments.id AS aptid, apt, address, landlord_id, tenant_id, name, email, phone, user_type FROM apartments JOIN users ON (apartments.landlord_id = users.id) WHERE apartments.tenant_id IS NULL")
+  .then(apartments => {
+    res.status(200).json({
+      status: "Success",
+      data: apartments,
+      message: "Received all apartments"
+    });
+  })
+  .catch(err => next(err));
+};
+
 const getSingleApt = (req, res, next) => {
   let aptId = parseInt(req.params.id);
   db.one("SELECT * FROM apartments WHERE id=$1", aptId)
@@ -79,10 +91,36 @@ const getTenantByApt = (req, res, next) => {
   })
 }
 
+const updateApartment = (req, res, next) => {
+  id = Number(req.params.id)
+  const hash = authHelpers.createHash(req.body.password_digest);
+  db.none("UPDATE apartments SET apt=${apt}, address=${address}, landlord_id=${landlord_id}, tenant_id=${tenant_id} WHERE apartments.id=${id}",
+  {
+    id: id,
+    apt:req.body.apt,
+    address: req.body.address,
+    landlord_id: req.body.landlord_id,
+    tenant_id: req.body.tenant_id
+  })
+    .then(() => {
+    res.status(200)
+       .json({
+         status: "success",
+         message: "Updated an apartment!"
+       })
+  })
+  .catch(err => {
+  console.log('error:', err)
+  return next(err)
+  })
+}
+
 module.exports = {
   getAllApts,
   getSingleApt,
   addApt,
   getLandlordByApt,
-  getTenantByApt
+  getTenantByApt,
+  getAvailableApts,
+  updateApartment
 }
