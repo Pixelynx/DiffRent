@@ -41,8 +41,8 @@ class TenantDash extends Component {
       this.setState({
         defaultValue: res.data.data.map(ticket => (
           {
-            ticketid: ticket.id,
-            apartment_id: ticket.apartment_id,
+            ticketid: ticket.ticketid,
+            apartment_id: user.aptid,
             completed_tenant: ticket.completed_tenant,
             completed_landlord: ticket.completed_landlord,
             subject: ticket.subject,
@@ -54,12 +54,12 @@ class TenantDash extends Component {
         ))
       })
     })
+    .catch(err => console.log(err))
   }
 
   getTenantInfo = () => {
     axios.get(`/tenants/${this.props.match.params.id}`)
     .then(res => {
-      console.log("tenantIfo", res.data)
       this.setState({
         name: res.data.data.name,
         landlordInfo: {
@@ -85,13 +85,9 @@ class TenantDash extends Component {
       })
   }
 
-
-
-
   getAllTickets = (apartmentId) => {
     axios.get(`/tickets/${apartmentId}`)
       .then(res => {
-        console.log("tickets for: ", res.data)
       this.setState({
         tickets: res.data.data
       })
@@ -110,10 +106,11 @@ class TenantDash extends Component {
     const { defaultValue, ticketsUnresolved, ticketsResolved, ticketModalOpen, completed_tenant } = this.state
     const { user } = this.props
 
-    if(defaultValue && ticketModalOpen) {
+    if(defaultValue.length && ticketModalOpen) {
       return defaultValue.map(ticket => {
         return (
           <Tickets
+          defaultValue={defaultValue}
           handleModalOpen={this.handleModalOpen}
           ticketModalOpen={ticketModalOpen}
           user={user}
@@ -125,8 +122,7 @@ class TenantDash extends Component {
   }
 
   render() {
-    console.log(this.state.defaultValue, "TENANT DASH PROPS")
-     const { landlordInfo, tickets, ticketModalOpen } = this.state;
+     const { landlordInfo, tickets, ticketModalOpen, defaultValue } = this.state;
      const { user } = this.props;
 
      if(this.state.ticketModalOpen) {
@@ -149,7 +145,7 @@ class TenantDash extends Component {
             <h2>Tickets Information</h2>
               <button
                 className='tickets-btn'
-                onClick={this.handleModalOpen}>You have  unresolved tickets.</button>
+                onClick={this.handleModalOpen}>You have {defaultValue.length} unresolved tickets.</button>
           </div>
       </>
     )
