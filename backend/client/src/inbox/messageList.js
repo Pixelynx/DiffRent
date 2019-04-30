@@ -10,7 +10,7 @@ const MessageList = (props) => {
   
   return(
     <>
-      <div style={{padding: 5, border:'1px red solid'}}>{messagesMap}</div>
+      <div>{messagesMap}</div>
     </>
   )
 }

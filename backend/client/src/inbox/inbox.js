@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ThreadList from './threadList';
-import '../styles/inbox/threads.css'
+import '../styles/inbox/inbox.css'
 
 class Inbox extends React.Component {
   constructor() {
@@ -47,13 +47,15 @@ class Inbox extends React.Component {
   render(){
     return(
       <React.Fragment>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              <input type="text" onChange={this.handleChange} value={this.state.title_input} placeholder={"Subject"}/>
-            </label>
-            <input type="submit" value="submit" />
-          </form>
+        <div className="inboxContainer">
+          <div className="threadContainer">
+            <form onSubmit={this.handleSubmit}>
+            <div className="inputs-div" >
+              <input type="text" onChange={this.handleChange} value={this.state.title_input} placeholder="Subject"/>
+              <input type="submit" value="submit" />
+              </div>
+            </form>
+          </div>
           <ThreadList 
             threads={this.state.threads} 
             user = {this.props.user}
