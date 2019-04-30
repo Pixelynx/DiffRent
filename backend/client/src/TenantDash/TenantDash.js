@@ -22,7 +22,8 @@ class TenantDash extends Component {
       },
       address: null,
       appointments: [],
-      tickets: []
+      tickets: [],
+      ticketModalOpen: false,
     }
 
 
@@ -72,17 +73,58 @@ class TenantDash extends Component {
     })
   }
 
+  // hacky fix to get the modal to ONLY close when the outer div is clicked
+  handleModalOpen = (e) => {
+    if(e.target.className === 'modal-container' || e.target.className === 'tickets-btn') {
+      this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
+    }
+  }
+
+  displayUnresolvedTickets = () => {
+    // need to change up ticket resolve -- append resolve to tenants and landlord tickets
+    const { defaultValue, ticketsUnresolved, ticketsResolved, ticketModalOpen, completed_tenant } = this.state
+    const { user } = this.props
+
+    if(defaultValue && ticketModalOpen) {
+      return defaultValue.map(ticket => {
+        return (
+          <Tickets
+          handleModalOpen={this.handleModalOpen}
+          ticketModalOpen={ticketModalOpen}
+          user={user}
+          ticket={ticket}
+          />
+      )
+      })
+    }
+  }
+
   render() {
-    console.log(this.props, "TENANT DASH PROPS")
-     const {landlordInfo, tickets} = this.state;
+    console.log(this.state, "TENANT DASH PROPS")
+     const { landlordInfo, tickets, ticketModalOpen } = this.state;
      const { user } = this.props;
+
+     if(this.state.ticketModalOpen) {
+       return(
+         <>
+           <div onClick={this.handleModalOpen} className='modal-container'>
+             <div className='ticket-window-container'>
+               {this.displayUnresolvedTickets()}
+               <button onClick={this.handleCreateTicketBtn} className='create-ticket-btn'>Create New Ticket</button>
+             </div>
+           </div>
+         </>
+       )
+     }
     return(
       <>
         <h1>Welcome, {this.state.name}</h1>
         <TenantLandlordContactDashInfo landlordInfo={landlordInfo}/>
           <div className="ticket-dash-info">
             <h2>Tickets Information</h2>
-              <Tickets user={user}/>
+              <button
+                className='tickets-btn'
+                onClick={this.handleModalOpen}>You have  unresolved tickets.</button>
           </div>
       </>
     )

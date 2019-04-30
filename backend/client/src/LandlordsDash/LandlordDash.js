@@ -28,10 +28,10 @@ class LandlordDash extends Component {
     }
   }
 
-  componentDidMount(){
-    this.getLandlordInfo();
-    this.getAptsByLandlord();
-    this.getAllTickets();
+  componentDidMount = async() => {
+    await this.getLandlordInfo();
+    await this.getAptsByLandlord();
+    await this.getAllTickets();
   }
 
   getLandlordInfo = () => {
@@ -47,16 +47,20 @@ class LandlordDash extends Component {
   getAptsByLandlord = () => {
     axios.get(`/landlords/${this.props.match.params.id}/apartments`)
     .then(res => {
-      res.data.data.map(info => {
-        this.setState({
-          tenantInfo: [{
-            name: info.name,
-            apartment_id: info.apartment_id,
-            address: info.address,
-            email: info.email,
-            phone: info.phone,
-          }]
-        })
+      this.setState({
+        defaultValue: res.data.data.map(ticket => (
+          {
+            ticketid: ticket.id,
+            apartment_id: ticket.apartment_id,
+            completed_tenant: ticket.completed_tenant,
+            completed_landlord: ticket.completed_landlord,
+            subject: ticket.subject,
+            body: ticket.body,
+            in_progress: ticket.in_progress,
+            appt_date: ticket.appt_date,
+            appt_time: ticket.appt_time
+          }
+        ))
       })
     })
   }
@@ -113,7 +117,7 @@ class LandlordDash extends Component {
 
   render(){
     console.log(this.state, 'STATE')
-     const {tenantInfo, tickets} = this.state;
+     const {tenantInfo, tickets, defaultValue, completed_tenant} = this.state;
 
 
     return(
@@ -131,6 +135,8 @@ class LandlordDash extends Component {
               closeModal={this.handleTenantInfoShowing}
           />
         <Tickets
+          defaultValue={defaultValue}
+          completed_tenant={completed_tenant}
           toggleModal={this.handlelandlordTiksShowing}
           landlordTiksShow={this.state.landlordTiksIsShowing}
           tickets={this.state.tickets}
