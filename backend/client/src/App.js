@@ -50,7 +50,7 @@ class App extends Component {
         }
       }
     });
-    console.log(isLoggedIn)
+    console.log(isLoggedIn)  
   //   axios.post("/users/isLoggedIn")
   //   .then(user => {
   //     if (user.data.username === Auth.getToken()) {
@@ -69,7 +69,7 @@ class App extends Component {
   //     if(this.state.isLoggedIn){
   //     if (!this.state.user) {
   //       return this.getUserAptInfo(user.data.username);
-  //     }
+  //     } 
   //   })
   // }
   //   .then((user) => {
@@ -80,11 +80,11 @@ class App extends Component {
   // }
   };
 
-
+  
   getUserInformation = email => {
     const { user } = this.state;
     if (!user) { return this.getUserInfo(email) }
-    if (!user) { return this.getUserAptInfo(email) }
+    if (!user) { return this.getUserAptInfo(email) } 
     }
 
   getUserInfo = email => {
@@ -142,9 +142,7 @@ class App extends Component {
             onMouseEnter={this.toggleNavbar}
             onMouseLeave={this.toggleNavbar}
           >
-            {isLoggedIn ? <div><i class="fas fa-bars"></i>
-
-            </div> : null}
+            {isLoggedIn ? <div>=</div> : null}
             <div>
               {navbar ? (
                 <Navbar

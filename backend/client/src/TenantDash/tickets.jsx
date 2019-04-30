@@ -7,10 +7,6 @@ import '../styles/tenantTickets/tickets.css';
 class Tickets extends Component {
 
   state = {
-    ticketModalOpen: false,
-    ticketsUnresolved: [],
-    ticketsResolved: [],
-    tenantMarkedResolved: false,
     creatingTicket: false,
   }
 
@@ -18,43 +14,50 @@ class Tickets extends Component {
     this.handleSetState()
   }
 
-  handleSetState = async() => {
+  handleSetState = () => {
     const { user } = this.props;
-    let ticketsUnresolved = [];
 
-    await axios.get(`/tickets/${user.aptid}`)
+    axios.get(`/tickets/${user.aptid}`)
     .then(res => {
-      res.data.data.forEach(ticket => {
-        ticketsUnresolved.push(Object.assign(ticket, { hovered: false }))
+      this.setState({
+        defaultValue: res.data.data.map(ticket => (
+          {
+            ticketid: ticket.id,
+            apartment_id: ticket.apartment_id,
+            completed_tenant: ticket.completed_tenant,
+            completed_landlord: ticket.completed_landlord,
+            subject: ticket.subject,
+            body: ticket.body,
+            in_progress: ticket.in_progress,
+            appt_date: ticket.appt_date,
+            appt_time: ticket.appt_time
+          }
+        ))
       })
     })
-    await this.setState({ ticketsUnresolved: ticketsUnresolved })
-
-
   }
 
-  // hacky fix to get the modal to ONLY close when the outer div is clicked
-  handleModalOpen = (e) => {
-    const currentState = this.state.ticketModalOpen
-    if(e.target.className === 'modal-container' || e.target.className === 'tickets-btn') {
-      this.setState({ ticketModalOpen: !currentState })
-    }
-  }
 
   tenantHandleStatus = (e) => {
-    // console.log(e.target.id)
+    const { defaultValue } = this.state
+    e.preventDefault();
 
-    let completed_tenant = `${this.state.tenantMarkedResolved ? '0' : '1'}`;
-
+    let completed_tenant = `${defaultValue.completed_tenant ? '0' : '1'}`;
     let id = 4;
-    let apartment_id = this.props.user.aptid;
 
     axios.put(`/tickets/${id}`, {
-      apartment_id,
-      completed_tenant
+      ticketid: id,
+      apartment_id: defaultValue.apartment_id,
+      completed_tenant: completed_tenant,
+      completed_landlord: defaultValue.completed_landlord,
+      subject: defaultValue.subject,
+      body: defaultValue.body,
+      in_progress: defaultValue.in_progress,
+      appt_date: defaultValue.appt_date,
+      appt_time: defaultValue.appt_time
     })
     .then(res => {
-      this.setState(prevState => ({ tenantMarkedResolved: !prevState.tenantMarkedResolved }))
+      this.setState(prevState => ({ completed_tenant: !prevState.completed_tenant }))
     }).catch(err => console.log(err))
   }
 
@@ -72,69 +75,52 @@ class Tickets extends Component {
     this.setState(prevState => ({ hovered: !prevState.hovered }))
   }
 
-  displayUnresolvedTickets = () => {
-    // need to change up ticket resolve -- append resolve to tenants and landlord tickets
-    const { ticketsUnresolved, ticketsResolved, ticketModalOpen, tenantMarkedResolved } = this.state
-    let status = 'URESOLVED';
-    if(ticketsUnresolved || ticketsResolved && ticketModalOpen) {
-      return ticketsUnresolved.map(ticket => {
-        let date = ticket.appt_date
-        let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
 
-        if(!this.state.hovered) {
-          return(
-            <>
+  render() {
+    const { completed_tenant } = this.state
+    const { ticket } = this.props
+    console.log(this.state)
+
+      let status = 'URESOLVED';
+      let date = ticket.appt_date
+      let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
+
+      if(!this.state.hovered) {
+        return(
+          <>
+            <div
+              key={ticket.id}
+              className='ticket-front'
+              onMouseEnter={this.mouseEnter}>
+              <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
+              <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
+              <p>{completed_tenant ? 'UNRESOLVED' : 'RESOLVED'}</p>
+            </div>
+            </>
+        )
+          } else {
+            return (
+              <>
               <div
                 key={ticket.id}
-                className='ticket-front'
-                onMouseEnter={this.mouseEnter}>
-                <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
-                <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-                <p>{tenantMarkedResolved ? 'UNRESOLVED' : 'RESOLVED'}</p>
-              </div>
-              </>
-          )
-            } else {
-              return (
-                <>
-                <div
-                  key={ticket.id}
-                  className='ticket-back'
-                  onMouseLeave={this.mouseLeave}>
-                  <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
-                  <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
-                  <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
-                <button id={ticket.id} onClick={this.tenantHandleStatus} className='status-btn'>{status}</button>
-              </div>
-            </>
-          )
-        }
-      })
-    }
-  }
-  render() {
-    console.log(this.state)
-    if(this.state.ticketModalOpen) {
-      return(
-        <>
-          <div onClick={this.handleModalOpen} className='modal-container'>
-            <div className='ticket-window-container'>
-              {this.displayUnresolvedTickets()}
-              <button onClick={this.handleCreateTicketBtn} className='create-ticket-btn'>Create New Ticket</button>
+                className='ticket-back'
+                onMouseLeave={this.mouseLeave}>
+                <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
+                <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
+                <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
+              <button
+                id={ticket.id}
+                onClick={this.tenantHandleStatus}
+                className='status-btn'>{status}</button>
             </div>
-          </div>
-        </>
-      )
-    }
-    return(
-      <>
-      <button className='tickets-btn' onClick={this.handleModalOpen}>You have {this.state.ticketsUnresolved.length} unresolved tickets.</button>
-      <CreateTicketForm
+          </>
+        )
+      }
+      return <CreateTicketForm
         createTicket={this.state.creatingTicket}
         user={this.props.user}
         />
-      </>
-    )
-  }
+
+}
 }
 export default Tickets;

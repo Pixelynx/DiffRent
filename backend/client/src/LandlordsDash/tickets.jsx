@@ -10,30 +10,34 @@ class Tickets extends Component {
   }
 
   landlordHandleStatus = (e) => {
-    this.setState(prevState => ({ landlordMarkedResolved: !prevState.landlordMarkedResolved }))
-  }
+    const { defaultValue, completed_tenant } = this.props
+    e.preventDefault();
 
-  landlordHandleStatus = (e) => {
-    // console.log(e.target.id)
-
-    let completed_landlord = `${this.state.landlordHandleStatus ? '0' : '1'}`;
+    let completed_landlord = `${defaultValue.completed_landlord ? '0' : '1'}`;
 
     let id = 4;
     let apartment_id = 2;
 
     axios.put(`/tickets/${id}`, {
-      apartment_id,
-      completed_landlord
+      ticketid: id,
+      apartment_id: defaultValue.apartment_id,
+      completed_tenant: completed_tenant,
+      completed_landlord: defaultValue.completed_landlord,
+      subject: defaultValue.subject,
+      body: defaultValue.body,
+      in_progress: defaultValue.in_progress,
+      appt_date: defaultValue.appt_date,
+      appt_time: defaultValue.appt_time
     })
     .then(res => {
-      this.setState(prevState => ({ landlordHandleStatus: !prevState.landlordHandleStatus }))
+      this.setState(prevState => ({ completed_landlord: !prevState.completed_landlord }))
     }).catch(err => console.log(err))
   }
 
   // component for card and put event handler in component
   renderLandlordTiks = () => {
     let status;
-    const { landlordMarkedResolved } = this.state
+    const { completed_landlord } = this.state
     const { tickets, landlordTiksIsShowing } = this.props
     console.log(status)
 
@@ -44,31 +48,32 @@ class Tickets extends Component {
         if(!this.state.hover) {
         return(
           <>
-            <div
+            <form
               onMouseEnter={this.mouseEnter}
               className='landlord-tik-front'
               >
               <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
               <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-              <p>{landlordMarkedResolved ? 'RESOLVED' : 'UNRESOLVED'}</p>
-            </div>
+              <p>{completed_landlord ? 'RESOLVED' : 'UNRESOLVED'}</p>
+            </form>
             </>
         )
           } else {
             return(
               <>
-            <div
+            <form
               onMouseLeave={this.mouseLeave}
               className='landlord-tik-back'
               >
               <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
               <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
               <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
+              <input type='hidden' readOnly='true' value={ticket.completed_tenant} />
               <button
                 id={ticket.id}
-                onClick={this.landlordHandleStatus}
-                className='status-btn'>{landlordMarkedResolved ? 'RESOLVED' : 'UNRESOLVED'}</button>
-            </div>
+                onClick={this.completed_landlord}
+                className='status-btn'>{completed_landlord ? 'RESOLVED' : 'UNRESOLVED'}</button>
+            </form>
           </>
       )
       }
