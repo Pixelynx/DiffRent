@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Auth from "../utils/Auth";
+import '../styles/dashboards/addApartments.css';
 
 class AddApartment extends Component{
     state = {
@@ -32,8 +33,10 @@ class AddApartment extends Component{
     render() {
         const { name, address } = this.state;
         return (
-            <>
+            <div className='addApt-container'>
+            <div className='tenant-contacts'>
                 <form onSubmit={this.handleSubmit}>
+                    <label>Apartment Name</label>
                     <input
                     autoFocus
                     required
@@ -41,6 +44,7 @@ class AddApartment extends Component{
                     name='name'
                     value={name}
                     onChange={this.handleInputs} />
+                    <label>Address</label>
                     <input
                     type='text'
                     required
@@ -50,7 +54,8 @@ class AddApartment extends Component{
                     <input
                     type='submit' />
                 </form>
-            </>
+            </div>
+            </div>
         )
     }
 }

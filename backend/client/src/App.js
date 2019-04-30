@@ -26,7 +26,6 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // check if user is logged in on refresh
     this.checkAuthenticateStatus();
   }
 
@@ -222,8 +221,7 @@ class App extends Component {
             <PrivateRoute
               path="/landlord/:id"
               user={user}
-              getUserAptInfo={this.getUserAptInfo}
-              getUserInfo={this.getUserInfo}
+              getUserInformation={this.getUserInformation}
               component={ user.aptid ? LandlordDash : AddApartment }
             />
             <PrivateRoute
