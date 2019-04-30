@@ -49,41 +49,13 @@ class App extends Component {
         }
       }
     });
-    console.log(isLoggedIn)  
-  //   axios.post("/users/isLoggedIn")
-  //   .then(user => {
-  //     if (user.data.username === Auth.getToken()) {
-  //       if (user.data.username !== null) {
-  //         return this.getUserInformation(user.data.username)
-  //       }
-  //     } else {
-  //       if (user.data.username) {
-  //         this.logoutUser();
-  //       } else {
-  //         Auth.deauthenticateUser();
-  //       }
-  //     }
-  //   })
-  //   .then((user) => {
-  //     if(this.state.isLoggedIn){
-  //     if (!this.state.user) {
-  //       return this.getUserAptInfo(user.data.username);
-  //     } 
-  //   })
-  // }
-  //   .then((user) => {
-  //     if (!this.state.user) {
-  //       return this.getUserInfo(user.data.username);
-  //     }
-  //   })
-  // }
   };
 
   
   getUserInformation = email => {
     const { user } = this.state;
-    if (!user) { return this.getUserInfo(email) }
     if (!user) { return this.getUserAptInfo(email) } 
+    if (!user) { return this.getUserInfo(email) }
     }
 
   getUserInfo = email => {
