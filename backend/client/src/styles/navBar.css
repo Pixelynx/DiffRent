@@ -4,3 +4,8 @@
   position: absolute;
   height: 100vh;
 }
+
+li {
+  font-size: 25px;
+  padding: 5%;
+}
