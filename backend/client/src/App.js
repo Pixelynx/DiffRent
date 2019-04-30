@@ -219,6 +219,7 @@ class App extends Component {
             <PrivateRoute
               path="/tenant/:id"
               user={user}
+              getUserInformation={this.getUserInformation}
               component={ user.aptid ? TenantDash : searchApartment }
             />
             <Route
