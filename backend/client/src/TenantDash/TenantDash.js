@@ -24,11 +24,36 @@ class TenantDash extends Component {
       appointments: [],
       tickets: [],
       ticketModalOpen: false,
+      defaultValue: []
     }
 
 
-  componentDidMount = () => {
-    this.getTenantInfo()
+  componentDidMount = async() => {
+    await this.getTenantInfo()
+    await this.handleSetState()
+  }
+
+  handleSetState = () => {
+    const { user } = this.props;
+
+    axios.get(`/tickets/${user.aptid}`)
+    .then(res => {
+      this.setState({
+        defaultValue: res.data.data.map(ticket => (
+          {
+            ticketid: ticket.id,
+            apartment_id: ticket.apartment_id,
+            completed_tenant: ticket.completed_tenant,
+            completed_landlord: ticket.completed_landlord,
+            subject: ticket.subject,
+            body: ticket.body,
+            in_progress: ticket.in_progress,
+            appt_date: ticket.appt_date,
+            appt_time: ticket.appt_time
+          }
+        ))
+      })
+    })
   }
 
   getTenantInfo = () => {
@@ -100,7 +125,7 @@ class TenantDash extends Component {
   }
 
   render() {
-    console.log(this.state, "TENANT DASH PROPS")
+    console.log(this.state.defaultValue, "TENANT DASH PROPS")
      const { landlordInfo, tickets, ticketModalOpen } = this.state;
      const { user } = this.props;
 

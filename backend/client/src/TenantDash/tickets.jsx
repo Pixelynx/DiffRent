@@ -11,55 +11,8 @@ class Tickets extends Component {
   }
 
   componentDidMount = () => {
-    this.handleSetState()
   }
 
-  handleSetState = () => {
-    const { user } = this.props;
-
-    axios.get(`/tickets/${user.aptid}`)
-    .then(res => {
-      this.setState({
-        defaultValue: res.data.data.map(ticket => (
-          {
-            ticketid: ticket.id,
-            apartment_id: ticket.apartment_id,
-            completed_tenant: ticket.completed_tenant,
-            completed_landlord: ticket.completed_landlord,
-            subject: ticket.subject,
-            body: ticket.body,
-            in_progress: ticket.in_progress,
-            appt_date: ticket.appt_date,
-            appt_time: ticket.appt_time
-          }
-        ))
-      })
-    })
-  }
-
-
-  tenantHandleStatus = (e) => {
-    const { defaultValue } = this.state
-    e.preventDefault();
-
-    let completed_tenant = `${defaultValue.completed_tenant ? '0' : '1'}`;
-    let id = 4;
-
-    axios.put(`/tickets/${id}`, {
-      ticketid: id,
-      apartment_id: defaultValue.apartment_id,
-      completed_tenant: completed_tenant,
-      completed_landlord: defaultValue.completed_landlord,
-      subject: defaultValue.subject,
-      body: defaultValue.body,
-      in_progress: defaultValue.in_progress,
-      appt_date: defaultValue.appt_date,
-      appt_time: defaultValue.appt_time
-    })
-    .then(res => {
-      this.setState(prevState => ({ completed_tenant: !prevState.completed_tenant }))
-    }).catch(err => console.log(err))
-  }
 
   handleCreateTicketBtn = (e) => {
     this.setState({ creatingTicket: true })
@@ -84,7 +37,6 @@ class Tickets extends Component {
       let status = 'URESOLVED';
       let date = ticket.appt_date
       let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
-
       if(!this.state.hovered) {
         return(
           <>
