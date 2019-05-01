@@ -18,10 +18,8 @@ class MessageItem extends React.Component {
     return(
       <React.Fragment>
         <div>
-          <p><span>
-
-          {moment().format(`MMMM Do YYYY, ${message.message_date}`)}
-         </span>-{message.owner_id}</p>
+          <p>{message.name}-
+          {moment(message.message_date).format(`MMMM Do YYYY, h:mm:ss a`)}</p>
           <p>{message.body}</p>
         </div>
       </React.Fragment>
