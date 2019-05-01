@@ -81,8 +81,8 @@ class searchApartment extends Component {
         })
         return (
             <div className='searchApt-container'>
-                <h3>Search for apartment!</h3>
                 <div className='apartment-list'>
+                <h3>Search for apartment!</h3>
                     {apartmentList}
                 </div>
             </div>

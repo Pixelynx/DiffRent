@@ -37,27 +37,71 @@ label{
 
 }
 
-.signupForm{
+/* .signupForm{
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 .signupForm2{
     margin: auto;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     background-color: white;
-    opacity: 0.6;
     padding: 14px;
     border-radius: 10px;
+    height: 400px;
+    width: 600px;
 }
 
-form {
+
+.nameField{
+    grid-area: name;
+    display: flex;
+    flex-direction: column;
+}
+.emailField{
+    grid-area: email;
+    display: flex;
+    flex-direction: column;
+}
+
+.phoneField{
+    grid-area: phone;
+    display: flex;
+    flex-direction: column;
+}
+.passwordField{
+    grid-area: password;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar{
+    grid-area: dob;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.submitButton{
+    grid-area: submit;
+}
+
+.registerForm form {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "name email "
+    "phone password"
+    "dob dob"
+    "submit submit";
+}
+
+.selectButtons{
     display: flex;
     justify-content: center;
-    flex-direction: column;
 }
 
 .tButtonA{
@@ -87,26 +131,29 @@ form {
     border-radius: 10px 0px 0px 10px;
 }
 
-button:focus{
+.selectButtons button:focus{
     outline: 0;
 }
 
 
 
-input{
+.registerForm input{
     background-color: transparent;
     color: #84CEEB;
-    border: none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid black;
     font-size: 100%;
-    padding-left: 15px;
+    padding-left: 10px;
+    width: 75%;
 }
 
- input::placeholder{ 
+ .registerForm input::placeholder{ 
     color: #880000;
 }
 
-input:focus{
+.registerForm input:focus{
     outline: 0;
-    border-bottom: 1px solid black;
 }
 

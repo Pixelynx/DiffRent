@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/dashboards/dashboards.css';
 import '../styles/landlordDashContent/tenantContact.css';
@@ -209,4 +208,4 @@ class LandlordDash extends Component {
   }
 }
 
-export default withRouter(LandlordDash)
+export default LandlordDash
