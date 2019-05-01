@@ -114,13 +114,17 @@ class TenantDash extends Component {
     }
   }
 
+  handleModalOpen = () => {
+    this.setState((prevState) => ({ticketModalOpen: !prevState.ticketModalOpen}))
+  }
+
 
 
   render() {
      const { landlordInfo, tickets, ticketModalOpen, defaultValue } = this.state;
      const { user } = this.props;
 
-     console.log(this.state.defaultValue)
+     console.log('TENANT DASH', this.state)
 
      if(this.state.ticketModalOpen) {
        return(

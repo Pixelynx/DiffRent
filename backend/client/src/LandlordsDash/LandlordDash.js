@@ -170,6 +170,7 @@ class LandlordDash extends Component {
 
   render(){
     console.log(this.props.user, 'LANDLORD PROPS')
+    console.log('LANDLORD DASH', this.state)
      const { tenantInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
 
