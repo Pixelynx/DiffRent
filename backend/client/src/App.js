@@ -219,6 +219,7 @@ class App extends Component {
             <PrivateRoute
               path="/tenant/:id"
               user={user}
+              getUserInformation={this.getUserInformation}
               component={ user.aptid ? TenantDash : searchApartment }
             />
             <Route
@@ -238,7 +239,7 @@ class App extends Component {
                 );
               }}
             />
-             <Route exact path='/inbox' render={() => <Inbox user={this.state.user} />} />
+             <Route exact path='/inbox' render={() => this.state.user ? <Inbox user={this.state.user} />: null}/>
              <Route path="/inbox/threads/:id" render={(props) => <ThreadItem {...props} user={this.state.user} />} />
             <Route component={NoMatch} />
           </Switch>

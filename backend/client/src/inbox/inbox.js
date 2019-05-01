@@ -17,6 +17,7 @@ class Inbox extends React.Component {
   componentDidMount() {
     let landlord_id = this.props.user.landlord_id
     let tenant_id = this.props.user.tenant_id
+    console.log('inbox componentDidMount', landlord_id,tenant_id)
     axios.get(`/threads/${landlord_id}/${tenant_id}`).then(res => {
       this.setState({threads: res.data.threads})
     })
@@ -49,10 +50,11 @@ class Inbox extends React.Component {
       <React.Fragment>
         <div className="inboxContainer">
           <div className="threadContainer">
+          <h1>Say Hello!</h1>
             <form onSubmit={this.handleSubmit}>
-            <div className="inputs-div" >
-              <input type="text" onChange={this.handleChange} value={this.state.title_input} placeholder="Subject"/>
-              <input type="submit" value="submit" />
+              <div className="inputs-div" >
+                <input type="text" onChange={this.handleChange} value={this.state.title_input} placeholder="Subject"/>
+                <input type="submit" value="send" />
               </div>
             </form>
           </div>
