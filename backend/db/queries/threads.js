@@ -31,7 +31,7 @@ const addThread = (req, res, next) => {
     
 const getAllMsgsInThread = (req, res, next) => {
   let threadsId = parseInt(req.params.id)
-  db.any("SELECT messages.*, users.name, users.user_type FROM messages JOIN threads ON messages.threads_id = threads.id JOIN users ON messages.owner_id = users.id WHERE threads.id=$1", threadsId)
+  db.any("SELECT messages.*, users.name, users.user_type FROM messages JOIN threads ON messages.threads_id = threads.id JOIN users ON messages.owner_id = users.id WHERE threads.id=$1 ORDER BY message_date", threadsId)
   .then(messages => {
     res.status(200).json({
       status: "Success", 

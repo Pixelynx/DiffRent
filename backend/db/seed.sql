@@ -100,10 +100,19 @@ INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_lan
 INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(5, 'Building key', 'Lost key for the entrance of the building', '0', '0', '1', '2019-05-09', '4:00 [PM]' );
 
 INSERT INTO threads(title, tenant_id, landlord_id)
-VALUES('Will be on vacation', 11, 1), ('Quick question regarding heat', 12, 2);
+VALUES
+('Will be on vacation', 11, 1), 
+('Quick question regarding heat', 12, 2),
+('Follow Up on Ticket', 12, 2),
+('On Vacation next week', 12, 2),
+('Question about rent', 12, 2) ;
 
 INSERT INTO messages(owner_id, threads_id, body, message_date)
-VALUES('11', '1', 'Please fix this','1995-12-17T03:24:00');
+VALUES('11', '1', 'Please fix this','1995-12-17T03:24:00'),
+('12', '2', 'Hi Reya','2019-05-01 08:13:20'),
+('12', '2', 'Just checking in with you on the heat problem','2019-05-01 08:14:10'),
+('2', '2', 'Hi Nikola','2019-05-01 09:26:40'),
+('2', '2', 'I apologize for the inconvenience but it will be fixed this afternoon','2019-05-01 09:28:40');
 
 
 
