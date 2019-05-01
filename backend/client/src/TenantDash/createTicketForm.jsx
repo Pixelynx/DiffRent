@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../styles/tenantTickets/tickets.css';
+import '../styles/tenantTickets/createTicketForm.css';
+
 
 class CreateTicketForm extends Component {
   state = {
@@ -62,6 +63,7 @@ class CreateTicketForm extends Component {
     return(
       <>
           <form className='form-container' onSubmit={this.handlePostTicket}>
+            <div>
             <p className='create-tik-notice'>
               Please provide a detailed description of the issue within the household.
             </p>
@@ -84,6 +86,7 @@ class CreateTicketForm extends Component {
               />
             <br/>
             <button className='submit-ticket-btn' type='submit'>Submit Ticket</button>
+            </div>
           </form>
 
       </>

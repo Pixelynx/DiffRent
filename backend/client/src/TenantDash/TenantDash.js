@@ -122,8 +122,9 @@ class TenantDash extends Component {
 
   handleCreateTicketBtn = (e) => {
     this.setState(prevState => ({ creatingTicket: !prevState.creatingTicket }))
-    this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
-
+    if(this.state.creatingTicket) {
+      this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
+    }
   }
 
   render() {
