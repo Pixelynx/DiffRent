@@ -45,8 +45,9 @@ class Tickets extends Component {
 
 
   render() {
-    const { ticket } = this.props
+    const { ticket, match } = this.props
     const { completed_landlord } = this.state
+    const path = match.path;
     console.log(this.state.settingAppt)
 
         let date = ticket.appt_date
@@ -78,12 +79,17 @@ class Tickets extends Component {
                 id={ticket.ticketid}
                 onClick={this.landlordHandleStatus}
                 className='status-btn'>{completed_landlord ? 'RESOLVED' : 'UNRESOLVED'}</button>
+              <button onClick={this.handleSettingAppt} className='set-appt-btn'>Set Appointment</button>
+
+              {path === `/landlord/:id` &&  this.state.settingAppt === true ?
                 <SetApptCal
                   setAppt={this.handleSettingAppt}
                   settingAppt={this.handleSettingAppt}
+                  setApptForm={this.props.setApptForm}
                   apptFormOpened={this.state.apptFormOpened}
                   ticket={this.props.ticket}
-                  />
+                  /> : null}
+
             </div>
           </>
       )
