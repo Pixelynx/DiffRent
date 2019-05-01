@@ -40,8 +40,8 @@ class App extends Component {
         if (user.data.username !== null) {
           return (
             this.setState({
-              isLoggedIn: Auth.isUserAuthenticated(),
-            }) & this.getUserInformation(user.data.username)
+              isLoggedIn: Auth.isUserAuthenticated()
+            }, () => this.getUserInformation(user.data.username)) 
           );
         }
       } else {

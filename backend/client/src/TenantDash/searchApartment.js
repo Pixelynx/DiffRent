@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import '../styles/dashboards/searchApartments.css'
+import React, { Component } from 'react';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import '../styles/dashboards/searchApartments.css';
 
 class searchApartment extends Component {
     state = {
@@ -20,8 +21,19 @@ class searchApartment extends Component {
         })
     }
 
-    updateApt = (aptid) => {
-        axios.put(`/apartments/${aptid}`)
+    updateApt = (e) => {
+        e.preventDefault();
+        let aptid = e.target.aptid.value;
+        let apt = e.target.apt.value;
+        let address = e.target.address.value;
+        let landlord_id = e.target.landlord_id.value;
+        let tenant_id = e.target.tenant_id.value;
+        axios.put(`/apartments/${aptid}`, {
+            apt, address, landlord_id, tenant_id
+        })
+        .then(() => {
+            return this.props.history.push('/')            
+        })
     }
 
     generateForm = () => {
@@ -36,6 +48,34 @@ class searchApartment extends Component {
                         <p>{apt.email}</p>
                         <p>{apt.phone}</p>
                     </div>
+                    <form onSubmit={this.updateApt}>
+                        <input
+                        name='aptid'
+                        type='hidden'
+                        readOnly={true}
+                        value={apt.aptid} />
+                        <input
+                        name='apt'
+                        type='hidden'
+                        readOnly={true}
+                        value={apt.apt} />
+                        <input
+                        name='address'
+                        type='hidden'
+                        readOnly={true}
+                        value={apt.address} />
+                        <input
+                        name='landlord_id'
+                        type='hidden'
+                        readOnly={true}
+                        value={apt.landlord_id} />
+                        <input
+                        name='tenant_id'
+                        type='hidden'
+                        readOnly={true}
+                        value={user.userid} />
+                        <input type='submit' />
+                    </form>
                 </>
             )
         })
@@ -50,6 +90,7 @@ class searchApartment extends Component {
     }
 
     render() {
+        console.log('SEARCH APARTMENTS', this.props)
         return (
             <>
             {this.generateForm()}
@@ -58,4 +99,4 @@ class searchApartment extends Component {
     }
 }
 
-export default searchApartment;
+export default withRouter(searchApartment);
