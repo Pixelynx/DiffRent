@@ -7,7 +7,7 @@ import MaskedInput from 'react-text-mask'
 
 const SetApptCal = (props) => {
 
-  const { match, ticket } = props;
+  const { match, ticket, setAppt, settingAppt } = props;
   const path = match.path;
   const [selectedDate, handleDateChange] = useState(new Date());
 
@@ -37,10 +37,10 @@ const SetApptCal = (props) => {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <button className='set-appt-btn'>Set Appointment</button>
+      <button onClick={setAppt} className='set-appt-btn'>Set Appointment</button>
 
         <div className='set-appt-form'>
-          {path !== `/landlord/2` ? null : setApptForm }
+          {path === `/landlord/:id` &&  settingAppt === true ? setApptForm : null}
           <p>Appointment Set!(not)</p>
         </div>
     </MuiPickersUtilsProvider>
