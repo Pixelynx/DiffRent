@@ -90,7 +90,6 @@ class searchApartment extends Component {
     }
 
     render() {
-        console.log('SEARCH APARTMENTS', this.props)
         return (
             <>
             {this.generateForm()}
