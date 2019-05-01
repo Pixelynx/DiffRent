@@ -147,6 +147,7 @@ class TenantDash extends Component {
      }
     return(
       <>
+      <div className='tenant-dash-container'>
         <h1>Welcome, {this.state.name}</h1>
         <TenantLandlordContactDashInfo landlordInfo={landlordInfo}/>
           <div className="ticket-dash-info">
@@ -159,6 +160,7 @@ class TenantDash extends Component {
             createTicket={this.state.creatingTicket}
             user={this.props.user}
             />
+        </div>
       </>
     )
   }

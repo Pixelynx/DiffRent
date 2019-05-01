@@ -13,10 +13,10 @@ class CreateTicketForm extends Component {
 
   handleModalOpen = (e) => {
     e.preventDefault();
-    const currentState = this.state.formModalOpen
-    if(e.target.className === 'form-modal-container' || e.target.className === 'submit-ticket-btn') {
-      this.setState({ formModalOpen: !currentState })
+    if(e.target.className === 'form-container' || e.target.className === 'submit-ticket-btn') {
+      this.setState(prevState => ({ formModalOpen: !prevState.formModalOpen }))
     }
+    console.log(e.target.className)
   }
 
   handleSubjectInput = (e) => {
@@ -62,8 +62,8 @@ class CreateTicketForm extends Component {
     if(this.props.createTicket && this.state.formModalOpen) {
     return(
       <>
-          <form className='form-container' onSubmit={this.handlePostTicket}>
-            <div>
+          <form className='form-container' onClick={this.handleModalOpen} onSubmit={this.handlePostTicket}>
+            <div className='form-content'>
             <p className='create-tik-notice'>
               Please provide a detailed description of the issue within the household.
             </p>
