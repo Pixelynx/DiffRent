@@ -7,6 +7,7 @@ import '../styles/colorScheme.css';
 
 import TenantContactInfo from './TenantContactInfo.js';
 import Tickets from './tickets.jsx';
+import { SetApptCal } from './setApptCal.jsx';
 
 class LandlordDash extends Component {
   constructor(){
@@ -22,16 +23,18 @@ class LandlordDash extends Component {
       address: null,
       appointments: [],
       tenantInfoIsShowing: false,
-      landlordTiksIsShowing: false,
       selectedApt: null,
-      tickets: []
+      tickets: [],
+      defaultValue: [],
+      ticketModalOpen:false,
+      apptFormOpened: false
     }
   }
 
   componentDidMount = async() => {
     await this.getLandlordInfo();
     await this.getAptsByLandlord();
-    await this.getAllTickets();
+    await this.getTicketsByLandlord();
   }
 
   getLandlordInfo = () => {
@@ -47,10 +50,30 @@ class LandlordDash extends Component {
   getAptsByLandlord = () => {
     axios.get(`/landlords/${this.props.match.params.id}/apartments`)
     .then(res => {
+
+      res.data.data.map(info => {
+        this.setState({
+          tenantInfo: [{
+            name: info.name,
+            apartment_id: info.apartment_id,
+            address: info.address,
+            email: info.email,
+            phone: info.phone,
+          }]
+        })
+      })
+    })
+  }
+
+  // Needs to be updated to account for one to many relationship
+  getTicketsByLandlord = () => {
+    const { user } = this.props
+    axios.get(`/tickets/landlord/${this.props.match.params.id}`)
+    .then(res => {
       this.setState({
         defaultValue: res.data.data.map(ticket => (
           {
-            ticketid: ticket.id,
+            ticketid: ticket.ticketid,
             apartment_id: ticket.apartment_id,
             completed_tenant: ticket.completed_tenant,
             completed_landlord: ticket.completed_landlord,
@@ -90,9 +113,9 @@ class LandlordDash extends Component {
               </button>
               <button
                 className='open-tiks-btn'
-                onClick={this.handlelandlordTiksShowing}
+                onClick={this.handleModalOpen}
                 >
-                <p className='total-open-tiks'>You have {this.state.tickets.length} open ticket(s).</p>
+                You have {this.state.defaultValue.length} open ticket(s).
               </button>
             </div>
           </>
@@ -108,22 +131,68 @@ class LandlordDash extends Component {
     }
   }
 
-  handlelandlordTiksShowing = (e) => {
-    if(e.target.className === 'open-tiks-btn' || e.target.className === 'show-landlord-tiks-container') {
-      this.setState({ landlordTiksIsShowing: !this.state.landlordTiksIsShowing })
+  // hacky fix to get the modal to ONLY close when the outer div is clicked
+  handleModalOpen = (e) => {
+    if(e.target.className === 'open-tiks-btn' || e.target.className === 'modal-container') {
+      this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
     }
+  }
+
+  displayUnresolvedTickets = () => {
+    // need to change up ticket resolve -- append resolve to tenants and landlord tickets
+    const { defaultValue, ticketModalOpen } = this.state
+    const { user } = this.props
+    console.log(this.state.defaultValue, 'LANDLORD DEFAULT')
+
+    if(defaultValue.length && ticketModalOpen) {
+      return defaultValue.map(ticket => {
+        return (
+          <Tickets
+          defaultValue={defaultValue}
+          handleModalOpen={this.handleModalOpen}
+          ticketModalOpen={ticketModalOpen}
+          user={user}
+          ticket={ticket}
+          />
+      )
+      })
+    }
+  }
+
+  mouseEnter = () => {
+    this.setState(prevState => ({ hovered: !prevState.hovered }))
+  }
+
+  mouseLeave = () => {
+    this.setState(prevState => ({ hovered: !prevState.hovered }))
   }
 
 
   render(){
-    console.log(this.state, 'STATE')
-     const {tenantInfo, tickets, defaultValue, completed_tenant} = this.state;
+    console.log(this.props.user, 'LANDLORD PROPS')
+     const { tenantInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
 
+     if(this.state.ticketModalOpen) {
+       return(
+         <>
+           <div
+             onClick={this.handleModalOpen}
+             className={'modal-container'}>
+             <div className='landlord-tiks-window-container '>
+               {this.displayUnresolvedTickets()}
+               <SetApptCal
+                 apptFormOpened={this.state.apptFormOpened}
+                 />
+             </div>
+           </div>
+         </>
+       )
+     }
 
     return(
       <>
-        <div className='dash-container' id={ !this.state.tenantInfoIsShowing || !this.state.landlordTiksIsShowing ? 'show' : 'hide'} style={ this.state.tenantInfoIsShowing || this.state.landlordTiksIsShowing ? {visibility: 'hidden'} : null }>
+        <div className='dash-container' id={ !this.state.tenantInfoIsShowing || !this.state.ticketModalOpen ? 'show' : 'hide'}>
           <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
             <div className='tenant-contacts'>
               <h2>Apartments</h2>
@@ -136,14 +205,7 @@ class LandlordDash extends Component {
               tenantModalShowing={this.state.tenantInfoIsShowing}
               closeModal={this.handleTenantInfoShowing}
           />
-        <Tickets
-          defaultValue={defaultValue}
-          completed_tenant={completed_tenant}
-          toggleModal={this.handlelandlordTiksShowing}
-          landlordTiksShow={this.state.landlordTiksIsShowing}
-          tickets={this.state.tickets}
-          user={this.props.user}
-          />
+
         </div>
       </>
     )

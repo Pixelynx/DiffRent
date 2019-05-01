@@ -8,18 +8,21 @@ class Tickets extends Component {
 
   state = {
     creatingTicket: false,
+    completed_tenant: false
   }
 
   tenantHandleStatus = async(e) => {
-    const { ticket, user } = this.props
+    const { ticket, user, setCompletedTenantState } = this.props
     e.preventDefault();
 
     let id = e.target.id;
+    let completed_tenant = `${this.state.completed_tenant ? '0' : '1'}`;
+    let aptid = user.aptid;
 
       axios.put(`/tickets/${id}`, {
         ticketid: id,
-        apartment_id: user.aptid,
-        completed_tenant: `${ticket.completed_tenant === '1' ? '0' : '1'}`,
+        apartment_id: aptid,
+        completed_tenant: completed_tenant,
         completed_landlord: ticket.completed_landlord,
         in_progress: ticket.in_progress,
         appt_date: ticket.appt_date,
@@ -49,7 +52,6 @@ class Tickets extends Component {
   render() {
     const { defaultValue } = this.props
     const { ticket } = this.props
-    // console.log(completed_tenant, 'defaultvalue PROPS')
 
       let date = ticket.appt_date
       let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
@@ -61,7 +63,7 @@ class Tickets extends Component {
               onMouseEnter={this.mouseEnter}>
               <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
               <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-              <p>{ticket.completed_tenant === '0' ? 'UNRESOLVED' : 'RESOLVED'}</p>
+              <p>{!this.state.completed_tenant ? 'UNRESOLVED' : 'RESOLVED'}</p>
             </div>
             </>
         )
@@ -77,7 +79,7 @@ class Tickets extends Component {
               <button
                 id={ticket.ticketid}
                 onClick={this.tenantHandleStatus}
-                className='status-btn'>{ticket.completed_tenant === '0' ? 'UNRESOLVED' : 'RESOLVED'}</button>
+                className='status-btn'>{!this.state.completed_tenant ? 'UNRESOLVED' : 'RESOLVED'}</button>
             </div>
           </>
         )
