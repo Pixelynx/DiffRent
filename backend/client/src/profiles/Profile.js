@@ -34,6 +34,7 @@ class Profile extends Component {
   getLandlordInfo = () => {
     axios.get(`/users/${this.props.user.email}`)
       .then(response => {
+        debugger;
         console.log("response", response)
         this.setState({ defaultVals : {
           id: response.data.data.userId,
@@ -115,7 +116,7 @@ handleSubmit = event => {
           <hr/>
             Phone Number: <input type='text' className='phone-input' onChange={this.handleChange} name='phone' defaultValue={this.state.defaultVals.phone} />
           <hr/>
-            Password: <input type='password' onChange={this.handleChange} name='password' placeholder='' value='' />
+            New Password: <input type='password' onChange={this.handleChange} name='password' placeholder='' value='' />
           <hr/>
             <input type='submit' className='submit-btn' value="Submit Changes"/>
         </div>
