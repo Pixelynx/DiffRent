@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Route, Router, Switch } from 'react-router-dom';
+import { Link, NavLink, Route, Router, Switch, withRouter } from 'react-router-dom';
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import Tickets from '../TenantDash/tickets.jsx';
 import logo from "../logo/DiffRent_logo_official.png";
@@ -45,7 +45,7 @@ const NavBar = (props) => {
 // // Be sure to include styles at some point, probably during your bootstraping
 // // import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
-
+const profileURL = `/${user.user_type}/profile/${user.userid}`
   return (
     <>
     { isLoggedIn ?
@@ -55,36 +55,53 @@ const NavBar = (props) => {
                 <div className='nav'>
     <SideNav
         onSelect={(selected) => {
-
+          console.log('I WAS SELECTED?', selected)
+          props.history.push(selected);
         }}
     >
         <SideNav.Toggle />
         <SideNav.Nav defaultSelected="home">
-            <NavItem eventKey="home">
+            <NavItem eventKey="/">
                 <NavIcon>
-                    <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                    <li><NavLink to="/"><img className='logo_official' src={logo} style={styles} /> </NavLink></li>
                 </NavIcon>
                 <NavText>
                     Home
                 </NavText>
             </NavItem>
-            <NavItem eventKey="inbox">
+            <NavItem eventKey="/inbox">
                 <NavIcon>
-                    <li class="far fa-comments"><NavLink to={"/inbox"}> </NavLink></li>
+                    <li class="far fa-comments"><NavLink to="/inbox"> </NavLink></li>
                 </NavIcon>
                 <NavText>
                     Inbox
                 </NavText>
             </NavItem>
-            <NavItem eventKey="profile">
+            <NavItem eventKey={profileURL}>
                 <NavIcon>
-                    <li class="far fa-user"><NavLink to={`/landlord/profile/${user.userid}`}></NavLink></li>
+                    <li class="far fa-user"><NavLink to={`/${user.user_type}/profile/${user.userid}`}></NavLink></li>
                 </NavIcon>
                 <NavText>
                     Profile
                 </NavText>
             </NavItem>
-            <NavItem eventKey="logout">
+            <NavItem eventKey="/about">
+                <NavIcon>
+                  <li class="fas fa-info-circle"><NavLink to={"/about"}></NavLink></li>
+                </NavIcon>
+                <NavText>
+                    About
+                </NavText>
+            </NavItem>
+            <NavItem eventKey="/faq">
+                <NavIcon>
+                    <li class="far fa-question-circle"><NavLink to={"/faq"}></NavLink></li>
+                </NavIcon>
+                <NavText>
+                    FAQ
+                </NavText>
+            </NavItem>
+            <NavItem eventKey="/logout">
                 <NavIcon>
                     <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
                 </NavIcon>
@@ -109,4 +126,4 @@ const NavBar = (props) => {
 
 
 
-export default NavBar;
+export default withRouter(NavBar);
