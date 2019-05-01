@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import SetApptCal from './setApptCal.js';
+
 
 class Tickets extends Component {
   state = {
     hover: false,
-    completed_landlord: false,
-    settingAppt: false
+    completed_landlord: false
   }
 
   mouseEnter = () => {
@@ -39,16 +38,16 @@ class Tickets extends Component {
       }).catch(err => console.log("put request: ", err))
   }
 
-  handleSettingAppt = (e) => {
-    this.setState(prevState => ({ settingAppt: !prevState.settingAppt }))
+  handleApptForm = (e) => {
+    this.setState(prevState => ({ apptFormOpened: !prevState.apptFormOpened }))
   }
 
 
   render() {
     const { ticket } = this.props
     const { completed_landlord } = this.state
-    console.log(this.match)
-
+    console.log(this.state, 'LANDLORD TIKS STATE')
+    console.log(this.props, 'LANDLORD TIKS PROPS')
 
         let date = ticket.appt_date
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
@@ -79,12 +78,6 @@ class Tickets extends Component {
                 id={ticket.ticketid}
                 onClick={this.landlordHandleStatus}
                 className='status-btn'>{completed_landlord ? 'RESOLVED' : 'UNRESOLVED'}</button>
-                <SetApptCal
-                  onClick={this.handleSettingAppt}
-                  settingAppt={this.handleSettingAppt}
-                  apptFormOpened={this.state.apptFormOpened}
-                  ticket={this.props.ticket}
-                  />
             </div>
           </>
       )
