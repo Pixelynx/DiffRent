@@ -6,8 +6,7 @@ import '../styles/landlordDashContent/tickets.css';
 import '../styles/colorScheme.css';
 
 import TenantContactInfo from './TenantContactInfo.js';
-import Tickets from './tickets.jsx';
-import { SetApptCal } from './setApptCal.jsx';
+import Tickets from './tickets.js';
 
 class LandlordDash extends Component {
   constructor(){
@@ -182,9 +181,6 @@ class LandlordDash extends Component {
              className={'modal-container'}>
              <div className='landlord-tiks-window-container '>
                {this.displayUnresolvedTickets()}
-               <SetApptCal
-                 apptFormOpened={this.state.apptFormOpened}
-                 />
              </div>
            </div>
          </>

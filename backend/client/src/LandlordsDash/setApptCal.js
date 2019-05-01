@@ -22,8 +22,11 @@ export const SetApptCal = (props) => {
   </>
 
   return(
+    <>
+    <button>Set Appointment</button>
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       {props.apptFormOpened ? apptDate : null}
     </MuiPickersUtilsProvider>
+    </>
   )
 }
