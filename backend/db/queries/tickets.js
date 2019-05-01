@@ -41,9 +41,9 @@ const addNewTicket = (req, res, next) => {
     apartment_id: req.body.apartment_id,
     subject: req.body.subject,
     body: req.body.body,
-    completed_tenant: req.body.completed_tenant,
-    completed_landlord: req.body.completed_landlord,
-    in_progress: req.body.in_progress,
+    completed_tenant: "0",
+    completed_landlord: "0",
+    in_progress: "1",
     appt_date: req.body.appt_date,
     appt_time: req.body.appt_time
   })
