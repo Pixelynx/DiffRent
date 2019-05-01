@@ -141,12 +141,12 @@ class LandlordDash extends Component {
     // need to change up ticket resolve -- append resolve to tenants and landlord tickets
     const { defaultValue, ticketModalOpen } = this.state
     const { user } = this.props
-    console.log(this.state.defaultValue, 'LANDLORD DEFAULT')
 
     if(defaultValue.length && ticketModalOpen) {
       return defaultValue.map(ticket => {
         return (
           <Tickets
+          match={this.props.match}
           defaultValue={defaultValue}
           handleModalOpen={this.handleModalOpen}
           ticketModalOpen={ticketModalOpen}
@@ -168,10 +168,9 @@ class LandlordDash extends Component {
 
 
   render(){
-    console.log(this.props.user, 'LANDLORD PROPS')
-    console.log('LANDLORD DASH', this.state)
      const { tenantInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
+     console.log(this.props.match.path, 'LANDLORD DASH MATCH')
 
      if(this.state.ticketModalOpen) {
        return(

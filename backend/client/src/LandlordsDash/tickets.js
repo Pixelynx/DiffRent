@@ -47,8 +47,7 @@ class Tickets extends Component {
   render() {
     const { ticket } = this.props
     const { completed_landlord } = this.state
-    console.log(this.match)
-
+    console.log(this.state.settingAppt)
 
         let date = ticket.appt_date
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
@@ -80,7 +79,7 @@ class Tickets extends Component {
                 onClick={this.landlordHandleStatus}
                 className='status-btn'>{completed_landlord ? 'RESOLVED' : 'UNRESOLVED'}</button>
                 <SetApptCal
-                  onClick={this.handleSettingAppt}
+                  setAppt={this.handleSettingAppt}
                   settingAppt={this.handleSettingAppt}
                   apptFormOpened={this.state.apptFormOpened}
                   ticket={this.props.ticket}
