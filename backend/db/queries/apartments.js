@@ -93,7 +93,6 @@ const getTenantByApt = (req, res, next) => {
 
 const updateApartment = (req, res, next) => {
   id = Number(req.params.id)
-  const hash = authHelpers.createHash(req.body.password_digest);
   db.none("UPDATE apartments SET apt=${apt}, address=${address}, landlord_id=${landlord_id}, tenant_id=${tenant_id} WHERE apartments.id=${id}",
   {
     id: id,

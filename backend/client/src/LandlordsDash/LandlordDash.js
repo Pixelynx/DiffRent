@@ -50,6 +50,7 @@ class LandlordDash extends Component {
   getAptsByLandlord = () => {
     axios.get(`/landlords/${this.props.match.params.id}/apartments`)
     .then(res => {
+
       res.data.data.map(info => {
         this.setState({
           tenantInfo: [{
