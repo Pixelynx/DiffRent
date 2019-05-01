@@ -59,59 +59,67 @@ const Form = (props) => {
 
 
   let signupForm = <>
-                    
-
                     <div className='signupForm'>
-                      <div>
+                      <div className='selectButtons'>
                         <button className={userType ? 'lButtonD' : 'lButtonA'} onClick={selectLandlord}>Landlord</button>
                         <button className={userType ? 'tButtonA' : 'tButtonD'} onClick={selectTenant}>Tenant</button>
                       </div>
-                      
-                      <form className='registerForm' onSubmit={registerUser}>
-                        <label>Full Name</label>
-                        <input
-                        autoFocus
-                        autoComplete='off'
-                        required
-                        name='name'
-                        value={name}
-                        onChange={handleChange}
-                        placeholder='full name'
-                        type='text' />
 
+                      <div className='registerForm'>
+                      <form  onSubmit={registerUser}>
+                          <div className='nameField'>
+                            <label>Full Name</label>
+                            <input
+                            autoFocus
+                            autoComplete='off'
+                            required
+                            name='name'
+                            value={name}
+                            onChange={handleChange}
+                            placeholder='full name'
+                            type='text' />
+                          </div>
+                          
+                          <div className='emailField'>
+                            <label>Email</label>
+                            <input
+                            required
+                            autoComplete='off'
+                            name='email'
+                            value={email}
+                            onChange={handleChange}
+                            placeholder='email@domain.com'
+                            type='email' />
+                            </div>
                         
-                        <label>Email</label>
-                        <input
-                        required
-                        autoComplete='off'
-                        name='email'
-                        value={email}
-                        onChange={handleChange}
-                        placeholder='email@domain.com'
-                        type='email' />
+                        <div className='phoneField'>
+                          <label className='phone'>Phone</label>
+                          <MaskedInput
+                          mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                          required
+                          autoComplete='off'
+                          value={phone}
+                          onChange={handleChange}
+                          className='phone'
+                          name='phone'
+                          // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                          placeholder='(123)-456-7890'
+                          type='tel' />
+                        </div>
+
+                        <div className='passwordField'>
+                          <label className='password'>Password</label>
+                          <input
+                          required
+                          className='password'
+                          name='password'
+                          value={password}
+                          onChange={handleChange}
+                          placeholder='password'
+                          type='password' />
+                        </div>
                         
-
-                        <label>Phone</label>
-                        <MaskedInput
-                        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-                        required
-                        autoComplete='off'
-                        value={phone}
-                        onChange={handleChange}
-                        name='phone'
-                        // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                        placeholder='(123)-456-7890'
-                        type='tel' />
-
-                        <label>Password</label>
-                        <input
-                        required
-                        name='password'
-                        value={password}
-                        onChange={handleChange}
-                        placeholder='password'
-                        type='password' />
-
+                        <div className='calendar'>
                         <label>Date of Birth (mm/dd/yyyy)</label>
                         <DatePicker
                           mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
@@ -126,15 +134,17 @@ const Form = (props) => {
                           views={["year", "month", "day"]}
                           onChange={handleDateChange}
                         />
-
+                        
                         <label>User Type:{userType ? ' Tenant' : ' Landlord'} </label>
+                        </div>
                         <input
                         hidden
                         readOnly={true}
                         value={userType ? 'Tenant' : 'Landlord'} />
-                        <input type='submit' />
+                        <input className='submitButton' type='submit' />
                         
                       </form>
+                      </div>
                       </div>
                   </>
   return (
