@@ -94,13 +94,6 @@ class TenantDash extends Component {
     })
   }
 
-  // hacky fix to get the modal to ONLY close when the outer div is clicked
-  handleModalOpen = (e) => {
-    if(e.target.className === 'modal-container' || e.target.className === 'tickets-btn') {
-      this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
-    }
-  }
-
   displayUnresolvedTickets = () => {
     // need to change up ticket resolve -- append resolve to tenants and landlord tickets
     const { defaultValue, ticketsUnresolved, ticketsResolved, ticketModalOpen, completed_tenant } = this.state
@@ -121,9 +114,13 @@ class TenantDash extends Component {
     }
   }
 
+
+
   render() {
      const { landlordInfo, tickets, ticketModalOpen, defaultValue } = this.state;
      const { user } = this.props;
+
+     console.log(this.state.defaultValue)
 
      if(this.state.ticketModalOpen) {
        return(
@@ -145,7 +142,7 @@ class TenantDash extends Component {
             <h2>Tickets Information</h2>
               <button
                 className='tickets-btn'
-                onClick={this.handleModalOpen}>You have {defaultValue.length} unresolved tickets.</button>
+                onClick={this.handleModalOpen}>You have {defaultValue.length} open ticket(s)</button>
           </div>
       </>
     )
