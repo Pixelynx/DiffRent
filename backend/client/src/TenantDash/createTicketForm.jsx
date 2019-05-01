@@ -33,21 +33,18 @@ class CreateTicketForm extends Component {
   handlePostTicket = (e) => {
     // because the first change didn't seem to get pushed properly...
     e.preventDefault()
-    debugger
     const { subjectInput, bodyInput } = this.state
     let apartment_id = this.props.user.aptid
     let subject = subjectInput
     let body = bodyInput
 
     if(subjectInput && bodyInput) {
-      debugger
     axios.post('/tickets', {
       apartment_id,
       subject,
       body
     })
     .then(res => {
-      debugger
       this.setState({ subjectInput: '' })
       this.setState({ bodyInput: '' })
     })
@@ -64,7 +61,7 @@ class CreateTicketForm extends Component {
     if(this.props.createTicket && this.state.formModalOpen) {
     return(
       <>
-          <form  className='form-container' onSubmit={this.handlePostTicket}>
+          <form className='form-container' onSubmit={this.handlePostTicket}>
             <p className='create-tik-notice'>
               Please provide a detailed description of the issue within the household.
             </p>

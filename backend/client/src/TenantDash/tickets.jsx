@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import CreateTicketForm from './createTicketForm.jsx';
 import '../styles/colorScheme.css';
 import '../styles/tenantTickets/tickets.css';
 
 class Tickets extends Component {
 
   state = {
-    creatingTicket: false,
     completed_tenant: false
   }
 
@@ -33,13 +31,6 @@ class Tickets extends Component {
       }).catch(err => console.log("put request: ", err))
   }
 
-
-  handleCreateTicketBtn = (e) => {
-    this.setState({ creatingTicket: true })
-    this.setState({ ticketModalOpen: false })
-
-  }
-
   mouseEnter = () => {
     this.setState(prevState => ({ hovered: !prevState.hovered }))
   }
@@ -52,6 +43,8 @@ class Tickets extends Component {
   render() {
     const { defaultValue } = this.props
     const { ticket } = this.props
+
+    console.log(this.state)
 
       let date = ticket.appt_date
       let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
@@ -84,10 +77,7 @@ class Tickets extends Component {
           </>
         )
       }
-      return <CreateTicketForm
-        createTicket={this.state.creatingTicket}
-        user={this.props.user}
-        />
+
 
 }
 }

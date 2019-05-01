@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import TenantLandlordContactDashInfo from './TenantLandlordContactDashInfo.js';
 import Tickets from './tickets.jsx';
+import CreateTicketForm from './createTicketForm.jsx';
 import '../styles/dashboards/dashboards.css';
 // import TenantTicketDashInfo from './TenantTicketDashInfo.js';
 
@@ -24,6 +25,7 @@ class TenantDash extends Component {
       appointments: [],
       tickets: [],
       ticketModalOpen: false,
+      creatingTicket: false,
       defaultValue: []
     }
 
@@ -118,7 +120,11 @@ class TenantDash extends Component {
     this.setState((prevState) => ({ticketModalOpen: !prevState.ticketModalOpen}))
   }
 
+  handleCreateTicketBtn = (e) => {
+    this.setState(prevState => ({ creatingTicket: !prevState.creatingTicket }))
+    this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
 
+  }
 
   render() {
      const { landlordInfo, tickets, ticketModalOpen, defaultValue } = this.state;
@@ -148,6 +154,10 @@ class TenantDash extends Component {
                 className='tickets-btn'
                 onClick={this.handleModalOpen}>You have {defaultValue.length} open ticket(s)</button>
           </div>
+          <CreateTicketForm
+            createTicket={this.state.creatingTicket}
+            user={this.props.user}
+            />
       </>
     )
   }
