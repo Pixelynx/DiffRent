@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { SetApptCal } from './setApptCal.js';
+
 
 
 class Tickets extends Component {
@@ -38,9 +40,7 @@ class Tickets extends Component {
       }).catch(err => console.log("put request: ", err))
   }
 
-  handleApptForm = (e) => {
-    this.setState(prevState => ({ apptFormOpened: !prevState.apptFormOpened }))
-  }
+
 
 
   render() {
@@ -78,6 +78,9 @@ class Tickets extends Component {
                 id={ticket.ticketid}
                 onClick={this.landlordHandleStatus}
                 className='status-btn'>{completed_landlord ? 'RESOLVED' : 'UNRESOLVED'}</button>
+                <SetApptCal
+                  apptFormOpened={this.state.apptFormOpened}
+                  />
             </div>
           </>
       )
