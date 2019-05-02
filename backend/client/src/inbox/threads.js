@@ -3,7 +3,7 @@ import axios from 'axios';
 import ThreadList from './threadList';
 import '../styles/inbox/inbox.css'
 
-class Inbox extends React.Component {
+class Threads extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -69,4 +69,4 @@ class Inbox extends React.Component {
   }
 }
 
-export default Inbox; 
+export default Threads; 
