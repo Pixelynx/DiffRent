@@ -13,8 +13,8 @@ class AuthForm extends Component {
     name: "",
     email: "",
     phone: "",
-    dob: "",
     userType: false,
+    expanded: false
   };
 
   handleChange = e => {
@@ -35,11 +35,12 @@ class AuthForm extends Component {
     });
   };
 
-  handleDate = date => {
+  handleExpanded = () => {
     this.setState({
-      dob: date,
-    });
-  };
+      expanded: !this.state.expanded
+    })
+  }
+  
 
   registerUser = async e => {
     e.preventDefault();
@@ -204,8 +205,8 @@ class AuthForm extends Component {
       name,
       email,
       phone,
-      dob,
       userType,
+      expanded
     } = this.state;
     const { isLoggedIn } = this.props;
     return (
@@ -218,6 +219,8 @@ class AuthForm extends Component {
               <Form
                 username={username}
                 password={password}
+                expanded={expanded}
+                handleExpanded={this.handleExpanded}
                 isLoggedIn={isLoggedIn}
                 demoLogin={this.demoLogin}
                 loginUser={this.loginUser}
@@ -235,6 +238,8 @@ class AuthForm extends Component {
               <Form
                 username={username}
                 password={password}
+                expanded={expanded}
+                handleExpanded={this.handleExpanded}
                 isLoggedIn={isLoggedIn}
                 demoLogin={this.demoLogin}
                 loginUser={this.loginUser}
@@ -254,7 +259,6 @@ class AuthForm extends Component {
                 password={password}
                 email={email}
                 phone={phone}
-                dob={dob}
                 userType={userType}
                 isLoggedIn={isLoggedIn}
                 loginUser={this.loginUser}
@@ -263,22 +267,6 @@ class AuthForm extends Component {
                 selectLandlord={this.selectLandlord}
                 selectTenant={this.selectTenant}
                 handleDate={this.handleDate}
-              />
-            );
-          }}
-        />
-        <Route
-          exact
-          path="/landlords/register"
-          render={() => {
-            return (
-              <Form
-                username={username}
-                password={password}
-                isLoggedIn={isLoggedIn}
-                loginUser={this.loginUser}
-                registerUser={this.registerUser}
-                handleChange={this.handleChange}
               />
             );
           }}
