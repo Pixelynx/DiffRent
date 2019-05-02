@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
-import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
+import { MuiPickersUtilsProvider, DatePicker, TimePicker } from 'material-ui-pickers';
 import DateFnsUtils from "@date-io/date-fns";
 import { subDays } from "date-fns/esm";
 import MaskedInput from 'react-text-mask';
@@ -19,6 +19,7 @@ const SetApptCal = (props) => {
   } = props;
 
   const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedTime, handleTimeChange] = useState(new Date());
 
   const today = new Date(),
     date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
@@ -34,9 +35,8 @@ const SetApptCal = (props) => {
                         <p>Apartment#: {ticket.apt}</p>
                         <p>Issue: {ticket.subject}</p>
                         <DatePicker
+                          className='date-picker'
                           mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
-                          keyboard
-                          allowKeyboardControl
                           minDateMessage='Date must be at least next day.'
                           value={selectedDate}
                           minDate={subDays(new Date(), 2)}
@@ -45,8 +45,15 @@ const SetApptCal = (props) => {
                           views={["year", "month", "day"]}
                           onChange={handleDateChange}
                         />
+
+                        <TimePicker
+                          value={selectedTime}
+                          onChange={handleTimeChange}
+                          format="hh:mm"
+                        />
                       <input type='submit' value='Submit Appointment' />
                       </div>
+
                       </div>
                       </form>
                       </>
