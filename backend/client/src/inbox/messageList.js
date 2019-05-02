@@ -2,9 +2,12 @@ import React from 'react';
 import MessageItem from './messageItem';
 
 const MessageList = (props) => {
-  const messagesMap = props.messages.map(message => {
+  const justify = {}
+  const messagesMap = props.messages.map((message, index) => {
+    if(index < 1) justify[message.name] = 'flex-end' // can remove {}
+    if(!justify[message.name]) justify[message.name] = 'flex-start'
     return(
-      <MessageItem message={message} key={message.id}/>
+      <MessageItem justify={justify} message={message} key={message.id}/>
     )
   })
   
