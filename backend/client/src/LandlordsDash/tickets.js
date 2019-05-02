@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import SetApptCal from './setApptCal.js';
 
+import '../styles/landlordDashContent/setAppt.css';
+
 class Tickets extends Component {
   state = {
     hover: false,
     completed_landlord: false,
-    settingAppt: false
+    settingAppt: false,
+    apptSubmitted: false,
+    aptApptInfo: []
   }
 
   mouseEnter = () => {
@@ -18,7 +22,7 @@ class Tickets extends Component {
   }
 
   landlordHandleStatus = (e) => {
-    const { ticket, user, setCompletedLandlordState } = this.props
+    const { ticket, setCompletedLandlordState } = this.props
     e.preventDefault();
 
     let id = e.target.id;
@@ -40,15 +44,70 @@ class Tickets extends Component {
   }
 
   handleSettingAppt = (e) => {
+    const { ticket } = this.props
+    let tenant;
+
+    // axios.get(`/apartments/${ticket.apartment_id}`)
+    // .then(res => {
+    //   // debugger
+    //   this.setState({
+    //     aptApptInfo: res.data.apartment.map(apt => (
+    //       {
+    //         tenant: apt.tenant_id,
+    //         aptaddr: apt.address,
+    //         aptNum: apt.apt
+    //       }
+    //     ))
+    //   })
+    // })
     this.setState(prevState => ({ settingAppt: !prevState.settingAppt }))
+  }
+
+  handleSetAppt = (e) => {
+    e.preventDefault();
+    const { ticket } = this.props
+
+    let input = e.target.value;
+
+    let date = input.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2");
+
+      axios.put(`/tickets/${ticket.ticketid}`, {
+        ticketid: ticket.ticketid,
+        apartment_id: ticket.apartment_id,
+        completed_tenant: ticket.completed_tenant,
+        completed_landlord: ticket.completed_landlord,
+        in_progress: '1',
+        appt_date: date,
+        appt_time: ticket.appt_time
+      })
+      .then(res => {
+        this.setState(prevState => ({ apptSubmitted: !prevState.apptSubmitted }))
+      }).catch(err => console.log("put request: ", err))
   }
 
 
   render() {
     const { ticket, match } = this.props
-    const { completed_landlord } = this.state
+    const { completed_landlord, apptSubmitted } = this.state
     const path = match.path;
-    console.log(this.state.settingAppt)
+
+    if(path === `/landlord/:id` &&  this.state.settingAppt === true){
+      return (
+        <>
+        <div className='set-appt-container'>
+          <SetApptCal
+          setAppt={this.handleSettingAppt}
+          settingAppt={this.state.settingAppt}
+          setApptForm={this.props.setApptForm}
+          ticket={this.props.ticket}
+          apptSet={this.handleSetAppt}
+          apptSubmitted={this.state.apptSubmitted}
+          handleSetAppt={this.handleSetAppt}
+          />
+        </div>
+      </>
+      )
+    }
 
         let date = ticket.appt_date
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
@@ -80,23 +139,13 @@ class Tickets extends Component {
                 onClick={this.landlordHandleStatus}
                 className='status-btn'>{completed_landlord ? 'RESOLVED' : 'UNRESOLVED'}</button>
               <button onClick={this.handleSettingAppt} className='set-appt-btn'>Set Appointment</button>
-
-              {path === `/landlord/:id` &&  this.state.settingAppt === true ?
-                <SetApptCal
-                  setAppt={this.handleSettingAppt}
-                  settingAppt={this.handleSettingAppt}
-                  setApptForm={this.props.setApptForm}
-                  apptFormOpened={this.state.apptFormOpened}
-                  ticket={this.props.ticket}
-                  /> : null}
-
             </div>
+
           </>
       )
       }
       return(
         <>
-
 
         </>
       )
