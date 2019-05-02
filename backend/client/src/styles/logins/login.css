@@ -1,4 +1,5 @@
-.loginForm{
+/*//////////Login form////////////*/
+.loginFormContainer{
     position: absolute;
     top: 0;
     left: 0; 
@@ -9,25 +10,132 @@
     align-items: center;
 }
 
-label{
-    color: black;
-    padding-top: 20px;
-}
-
 .formContainer{
-    margin: auto;
+    margin-left: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: deeppink;
 }
 
+.loginForm form {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: auto;
+    grid-column-gap: 5px;
+    grid-row-gap: 25px;
+    justify-items: center;
+    margin-left: 5%;
+    grid-template-areas: 
+    "email password"
+    "submit submit"
+}
+
+.loginForm input{
+    background-color: transparent;
+    color: #84CEEB;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid black;
+    font-size: 100%;
+    padding-left: 10px;
+    width: 75%;
+}
+
+ .loginForm input::placeholder{ 
+    color: #880000;
+}
+
+.loginForm input:focus{
+    outline: 0;
+}
+
+.loginForm input[type=submit]{
+    grid-area: submit;
+    height: 27px;
+    width: 90px;
+    background-color: #8860D0;
+    border: none;
+    color:black;
+    border-radius: 10px;
+}
+.loginForm input[type=submit]:hover{
+    grid-area: submit;
+    background-color: #84CEEB;
+    color: #8860D0;
+    border: none;
+}
+
+.loginButton{
+    grid-area: submit;
+    margin-right: 10%;
+}
+
+.demoForm {
+    display: grid;
+    grid-template-columns: 200px;
+    grid-template-rows: auto;
+    grid-row-gap: 15px;
+    justify-items: center;
+    align-items: center;
+    margin-top: 5%;
+    grid-template-areas: 
+    "demo"
+    "option"
+}
+
+.demoForm input[type=submit]{
+    grid-area: submit;
+    height: 27px;
+    width: 120px;
+    background-color: #84CEEB;
+    border: none;
+    color:black;
+    border-radius: 10px;
+}
+.demoForm input[type=submit]:hover{
+    grid-area: submit;
+    background-color: #8860D0;
+    color: white;
+    border: none;
+}
+.option button{
+    grid-area: submit;
+    height: 27px;
+    width: 120px;
+    background-color: #84CEEB;
+    border: none;
+    color:black;
+    border-radius: 10px;
+}
+.option button:hover{
+    grid-area: submit;
+    background-color: #8860D0;
+    color: white;
+    border: none;
+}
+
+button:focus{
+    outline: 0;
+}
+
+.demoButton{
+    grid-area: demo;
+}
+
+.option{
+    grid-area: option;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .signup{
     position: absolute;
     left: 40px;
     margin-top: 40px;
 }
+
 .login{
     position: absolute;
     left: 40px;
@@ -37,19 +145,28 @@ label{
 
 }
 
-/* .signupForm{
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
+.signup button{
+    height: 40px;
+    width: 90px;
+    background-color: #84CEEB;
+    border: none;
+    color: black;
+    border-radius: 10px;
+    font-size: 100%;
+}
+.signup button:hover{
+    background-color: #8860D0;
+    color: black;
+}
+
+
+/*//////////Register form////////////*/
 .signupForm2{
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
-    padding: 14px;
     border-radius: 10px;
     height: 400px;
     width: 600px;
@@ -83,15 +200,25 @@ label{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: 5%;
 }
 .submitButton{
     grid-area: submit;
+    display: flex;
+    justify-content: center;
+    margin-right: 7%;
+}
+
+.registerForm{
+    margin-left: 5%;
 }
 
 .registerForm form {
     display: grid;
     grid-template-columns: 200px 200px;
     grid-template-rows: auto;
+    grid-column-gap: 30px;
+    grid-row-gap: 25px;
     grid-template-areas: 
     "name email "
     "phone password"
@@ -99,9 +226,19 @@ label{
     "submit submit";
 }
 
+.signupForm{
+    padding-left: 5%;
+}
+
 .selectButtons{
     display: flex;
     justify-content: center;
+    margin-bottom: 5%;
+    margin-left: 5%;
+}
+
+.selectButtons button{
+    font-size: 100%;
 }
 
 .tButtonA{
@@ -157,3 +294,43 @@ label{
     outline: 0;
 }
 
+.registerForm input[type=submit]{
+    grid-area: submit;
+    height: 30px;
+    width: 85px;
+    background-color: #8860D0;
+    border: none;
+    color:black;
+    border-radius: 10px;
+}
+.registerForm input[type=submit]:hover{
+    grid-area: submit;
+    height: 30px;
+    width: 85px;
+    background-color: #84CEEB;
+    color: #8860D0;
+    border: none;
+}
+
+.userType{
+    margin-top: 5%;
+}
+
+.login{
+    align-items: center;
+}
+
+.login button{
+    height: 40px;
+    width: 130px;
+    background-color: #84CEEB;
+    margin-top: 10%;
+    border: none;
+    color: black;
+    border-radius: 10px;
+    font-size: 100%;
+}
+.login button:hover{
+    background-color: #8860D0;
+    color: black;
+}
