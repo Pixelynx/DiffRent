@@ -67,9 +67,10 @@ class Tickets extends Component {
     e.preventDefault();
     const { ticket } = this.props
 
-    let input = e.target.value;
+    let dateInput = e.target[0].value;
+    let timeInput = e.target[1].value;
 
-    let date = input.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2");
+    let date = dateInput.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2");
 
       axios.put(`/tickets/${ticket.ticketid}`, {
         ticketid: ticket.ticketid,
@@ -78,7 +79,7 @@ class Tickets extends Component {
         completed_landlord: ticket.completed_landlord,
         in_progress: '1',
         appt_date: date,
-        appt_time: ticket.appt_time
+        appt_time: timeInput
       })
       .then(res => {
         this.setState(prevState => ({ apptSubmitted: !prevState.apptSubmitted }))
