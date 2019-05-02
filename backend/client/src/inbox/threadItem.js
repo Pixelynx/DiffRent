@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import MessageList from './messageList';
 import {withRouter} from 'react-router-dom'
+import '../styles/inbox/inbox.css'
 
 class ThreadItem extends React.Component {
   constructor(){
@@ -53,8 +54,10 @@ class ThreadItem extends React.Component {
   render() {
     console.log('props', this.props)
     return (
-      <div>
-        <div>{this.state.title}</div>
+      <div className="threadMsgContainer">
+        <div>
+          {this.state.title}
+        </div>
         <div>
           <MessageList messages={this.state.messages} sendMessage={this.sendMessage}/>
         </div>
