@@ -3,7 +3,7 @@ import axios from 'axios';
 import ThreadList from './threadList';
 import '../styles/inbox/inbox.css'
 
-class Inbox extends React.Component {
+class Threads extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -36,7 +36,8 @@ class Inbox extends React.Component {
       title: this.state.title_input,
       landlord_id: this.props.user.landlord_id,
       tenant_id: this.props.user.tenant_id
-    }).then(res => {
+    })
+    .then(res => {
       let newThread = res.data.thread
       this.setState({
         threads: [...this.state.threads, newThread], 
@@ -45,7 +46,7 @@ class Inbox extends React.Component {
     })
   }
 
-  render(){
+  render() {
     return(
       <React.Fragment>
         <div className="inboxContainer">
@@ -60,7 +61,7 @@ class Inbox extends React.Component {
           </div>
           <ThreadList 
             threads={this.state.threads} 
-            user = {this.props.user}
+            user={this.props.user}
           />
         </div>
       </React.Fragment>
@@ -68,4 +69,4 @@ class Inbox extends React.Component {
   }
 }
 
-export default Inbox; 
+export default Threads; 

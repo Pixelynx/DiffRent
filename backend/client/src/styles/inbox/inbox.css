@@ -13,10 +13,11 @@
   width: 50%;
 }
 
-/* Thread Message Container */
+/* Thread Messages Container */
 
 .threadMsgContainer {
-  /* border: red 1px solid; */
+  border: rgba(255, 255, 255, 0.527) 1px solid;
+  border-radius: 10px;
   margin: auto;
   width: 600px;
   font-family: 'Open Sans', sans-serif !important;
@@ -31,27 +32,26 @@
 
 .msgBody {
   /* border: 1px solid black; */
-  border-radius: 5px;
+  border-radius: 8px;
   flex: 1 1 auto;
   margin: 6px 6px 0px 6px;
   padding: 7px 5px 0px 4px;
-  font-size: 16px;
+  font-size: 20px;
   color: rgba(255, 255, 255, 0.644);
 }
 
 .msgName {
   flex: 1 1 auto;
   margin: 0px 6px 0px 6px;
-
+  text-transform: uppercase;
 }
 
 .msgDate {
   flex: 1 1 auto;
   margin: 0px 6px 0px 6px;
-
 }
 
-/* input[type=text], select {
+.msgInput[type=text], select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -59,4 +59,4 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-} */
+}

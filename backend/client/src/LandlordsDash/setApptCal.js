@@ -1,49 +1,85 @@
 import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
-import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
+import { MuiPickersUtilsProvider, DatePicker, TimePicker } from 'material-ui-pickers';
 import DateFnsUtils from "@date-io/date-fns";
-import { subYears } from "date-fns/esm";
-import MaskedInput from 'react-text-mask'
+import { subDays } from "date-fns/esm";
+import MaskedInput from 'react-text-mask';
+
 
 const SetApptCal = (props) => {
 
-  const { match, ticket, setAppt, settingAppt } = props;
+  const {
+    match,
+    ticket,
+    setAppt,
+    settingAppt,
+    apptSet,
+    apptSubmitted,
+    handleSetAppt
+  } = props;
 
   const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedTime, handleTimeChange] = useState(new Date());
 
-  var today = new Date(),
+  const today = new Date(),
     date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
 
   let setApptForm =
                     <>
-                      <div className='calendar'>
-                        <label>Appointment Date (mm/dd/yyyy)</label>
+                      <form onSubmit={handleSetAppt} className='set-appt-container'>
+                      <div className='appt-cal-container'>
+                        <div className='appt-cal'>
+                        <label>Set an Appointment</label>
+                        <p>Tenant: </p>
+                        <p>Address: {ticket.apartment_id}</p>
+                        <p>Apartment#: {ticket.apt}</p>
+                        <p>Issue: {ticket.subject}</p>
                         <DatePicker
+                          className='date-picker'
                           mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
-                          keyboard
-                          allowKeyboardControl
                           minDateMessage='Date must be at least next day.'
                           value={selectedDate}
-                          minDate={new Date()}
-                          disableFuture
+                          minDate={subDays(new Date(), 2)}
                           openTo="year"
                           format="MM/dd/yyyy"
                           views={["year", "month", "day"]}
                           onChange={handleDateChange}
                         />
+
+                        <TimePicker
+                          value={selectedTime}
+                          onChange={handleTimeChange}
+                          format="hh:mm"
+                        />
+                      <input type='submit' value='Submit Appointment' />
                       </div>
 
+                      </div>
+                      </form>
                       </>
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
         <div className='set-appt-form'>
-          {setApptForm}
-          <p>Appointment Set!(not)</p>
+          {apptSubmitted ? <p>Appointment Set!</p> : setApptForm}
         </div>
     </MuiPickersUtilsProvider>
   );
 };
 
 export default withRouter(SetApptCal);
+
+
+// keyboard
+// allowKeyboardControl
+// minDateMessage='Date must be at least next day.'
+// value={selectedDate}
+// minDate={subDays(new Date(), 2)}
+// openTo="year"
+// showtimeselect="true"
+// timeformat="HH:mm"
+// timeintervals={15}
+// timecaption="time"
+// dateformat="MMMM, d, yyyy"
+// onChange={handleDateChange}

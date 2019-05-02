@@ -8,7 +8,7 @@ import AuthForm from "./login/AuthForm";
 import Tickets from "./TenantDash/tickets.jsx";
 import Auth from "./utils/Auth";
 import Homepage from "./components/Homepage";
-import Inbox from "./inbox/inbox";
+import Threads from "./inbox/threads";
 import ThreadItem from "./inbox/threadItem";
 import Profile from "./profiles/Profile.js";
 
@@ -239,7 +239,7 @@ class App extends Component {
                 );
               }}
             />
-             <Route exact path='/inbox' render={() => this.state.user ? <Inbox user={this.state.user} />: null}/>
+             <Route exact path='/inbox' render={() => this.state.user ? <Threads user={this.state.user} />: null}/>
              <Route path="/inbox/threads/:id" render={(props) => <ThreadItem {...props} user={this.state.user} />} />
             <Route component={NoMatch} />
           </Switch>

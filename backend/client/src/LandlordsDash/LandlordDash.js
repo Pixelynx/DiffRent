@@ -26,7 +26,6 @@ class LandlordDash extends Component {
       tickets: [],
       defaultValue: [],
       ticketModalOpen:false,
-      apptFormOpened: false
     }
   }
 
@@ -152,6 +151,7 @@ class LandlordDash extends Component {
           ticketModalOpen={ticketModalOpen}
           user={user}
           ticket={ticket}
+          settingAppt={this.props.settingAppt}
           />
       )
       })
@@ -167,10 +167,12 @@ class LandlordDash extends Component {
   }
 
 
+
+
   render(){
      const { tenantInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
-     console.log(this.props.match.path, 'LANDLORD DASH MATCH')
+     console.log(this.state.defaultValue, 'LANDLORD DEFAULT')
 
      if(this.state.ticketModalOpen) {
        return(
@@ -186,11 +188,13 @@ class LandlordDash extends Component {
        )
      }
 
+
+
     return(
       <>
-        <div className='dash-container' id={ !this.state.tenantInfoIsShowing || !this.state.ticketModalOpen ? 'show' : 'hide'}>
+        <div className='dash-container' style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : {visibility: 'visible'}}>
           <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
-            <div className='tenant-contacts'>
+            <div style={this.state}className='tenant-contacts'>
               <h2>Apartments</h2>
               {this.mapTenantApts()}
             </div>
