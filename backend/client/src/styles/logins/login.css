@@ -1,3 +1,16 @@
+@keyframes glowing {
+    0% { box-shadow: 0 0 -10px #8860D0; }
+    40% { box-shadow: 0 0 20px #8860D0; }
+    60% { box-shadow: 0 0 20px #8860D0; }
+    100% { box-shadow: 0 0 -10px #8860D0; }
+  }
+@keyframes glowing-alt {
+    0% { box-shadow: 0 0 -10px navy; }
+    40% { box-shadow: 0 0 20px navy; }
+    60% { box-shadow: 0 0 20px navy; }
+    100% { box-shadow: 0 0 -10px navy; }
+  }
+
 /*//////////Login form////////////*/
 .loginFormContainer{
     position: absolute;
@@ -64,6 +77,7 @@
     background-color: #84CEEB;
     color: #8860D0;
     border: none;
+    animation: glowing 2000ms infinite;
 }
 
 .loginButton{
@@ -87,7 +101,7 @@
 .demoForm input[type=submit]{
     grid-area: submit;
     height: 27px;
-    width: 120px;
+    width: 130px;
     background-color: #84CEEB;
     border: none;
     color:black;
@@ -98,6 +112,7 @@
     background-color: #8860D0;
     color: white;
     border: none;
+    animation: glowing-alt 2000ms infinite;
 }
 .option button{
     grid-area: submit;
@@ -113,6 +128,7 @@
     background-color: #8860D0;
     color: white;
     border: none;
+    animation: glowing-alt 2000ms infinite;
 }
 
 button:focus{
@@ -246,6 +262,7 @@ button:focus{
     width: 85px;
     background-color: #84CEEB;
     border-radius: 0px 10px 10px 0px;
+    animation: glowing 4000ms infinite;
 }
 
 .lButtonA{
@@ -253,6 +270,8 @@ button:focus{
     width: 85px;
     background-color: #84CEEB;
     border-radius: 10px 0px 0px 10px;
+    animation: glowing 4000ms infinite;
+    
 }
 .tButtonD{
     height: 30px;
@@ -310,6 +329,7 @@ button:focus{
     background-color: #84CEEB;
     color: #8860D0;
     border: none;
+    animation: glowing 2000ms infinite;
 }
 
 .userType{

@@ -1,3 +1,13 @@
 html {
   margin: 0;
 }
+
+.burgerIcon{
+  position: absolute;
+}
+
+.App{
+  width: 100%;
+  height: -webkit-fill-available;
+  display: flex;
+}
