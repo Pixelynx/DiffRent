@@ -192,9 +192,9 @@ class LandlordDash extends Component {
 
     return(
       <>
-        <div className='dash-container' id={ !this.state.tenantInfoIsShowing || !this.state.ticketModalOpen ? 'show' : 'hide'}>
+        <div className='dash-container' style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : {visibility: 'visible'}}>
           <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
-            <div className='tenant-contacts'>
+            <div style={this.state}className='tenant-contacts'>
               <h2>Apartments</h2>
               {this.mapTenantApts()}
             </div>
