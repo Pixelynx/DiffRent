@@ -1,4 +1,4 @@
-.dash-container, #show {
+.dash-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
