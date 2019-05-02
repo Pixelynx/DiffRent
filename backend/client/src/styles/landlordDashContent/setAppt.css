@@ -1,0 +1,38 @@
+.set-appt-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  width: 900px;
+  background-color: var(--form-modal-container);
+  z-index: 2 !important;
+}
+
+.date-time-select {
+  font-size: 50px;
+}
+
+.appt-cal-container {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  height: 80%;
+  width: 80%;
+  margin-top: 5%;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 3;
+}
+
+.appt-cal {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-top: 2em;
+}
+
+.appt-cal label {
+  font-size: 30px;
+  margin-bottom: 1em;
+}
