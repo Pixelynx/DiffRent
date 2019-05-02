@@ -61,9 +61,11 @@ class ThreadItem extends React.Component {
         <div>
           <MessageList messages={this.state.messages} sendMessage={this.sendMessage}/>
         </div>
-        <div> 
-          <input onChange={this.handleChange} value={this.state.body} type="text" placeholder="type here" /> 
-          <button onClick={this.sendMessage}>Send</button>
+        <div>
+          <form> 
+            <input className="msgInput"onChange={this.handleChange} value={this.state.body} type="text" placeholder="Type your message here" /> 
+            <button onClick={this.sendMessage}>Send</button>
+          </form>
         </div>
       </div>
     )
