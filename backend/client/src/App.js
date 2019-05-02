@@ -132,7 +132,7 @@ class App extends Component {
             onMouseEnter={this.toggleNavbar}
             onMouseLeave={this.toggleNavbar}
           >
-            {isLoggedIn ? <div><i class="fas fa-bars"></i>
+            {isLoggedIn ? <div className="burgerIcon"><i class="fas fa-bars"></i>
           </div> : null}
             <div>
               {navbar ? (

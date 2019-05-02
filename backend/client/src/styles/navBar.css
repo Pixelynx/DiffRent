@@ -340,3 +340,9 @@ li {
   -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
+
+.closedNavbar{
+  position: absolute;
+  margin-left: 1%;
+  margin-top: 1%;
+}
