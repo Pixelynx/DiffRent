@@ -32,7 +32,7 @@ class searchApartment extends Component {
             apt, address, landlord_id, tenant_id
         })
         .then(() => {
-            return this.props.history.push('/')            
+            return window.location.reload()           
         })
     }
 
