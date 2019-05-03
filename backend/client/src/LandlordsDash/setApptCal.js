@@ -15,7 +15,9 @@ const SetApptCal = (props) => {
     settingAppt,
     apptSet,
     apptSubmitted,
-    handleSetAppt
+    handleSetAppt,
+    aptInfo,
+    tenantName
   } = props;
 
   const [selectedDate, handleDateChange] = useState(new Date());
@@ -27,23 +29,23 @@ const SetApptCal = (props) => {
   let setApptForm =
                     <>
                       <form onSubmit={handleSetAppt} className='set-appt-container'>
-                      <div className='appt-cal-container'>
-                        <div className='appt-cal'>
-                        <label>Set an Appointment</label>
-                        <p>Tenant: </p>
-                        <p>Address: {ticket.apartment_id}</p>
-                        <p>Apartment#: {ticket.apt}</p>
-                        <p>Issue: {ticket.subject}</p>
-                        <DatePicker
-                          className='date-picker'
-                          mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
-                          minDateMessage='Date must be at least next day.'
-                          value={selectedDate}
-                          minDate={subDays(new Date(), 2)}
-                          openTo="year"
-                          format="MM/dd/yyyy"
-                          views={["year", "month", "day"]}
-                          onChange={handleDateChange}
+                        <div className='appt-cal-container'>
+                          <div className='appt-cal'>
+                          <label>Set an Appointment</label>
+                          <p>Tenant: {tenantName}</p>
+                          <p>Address: {aptInfo.address}</p>
+                          <p>Apartment#: {aptInfo.apt}</p>
+                          <p>Issue: {ticket.subject}</p>
+                          <DatePicker
+                            className='date-picker'
+                            mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
+                            minDateMessage='Date must be at least next day.'
+                            value={selectedDate}
+                            minDate={subDays(new Date(), 2)}
+                            openTo="year"
+                            format="MM/dd/yyyy"
+                            views={["year", "month", "day"]}
+                            onChange={handleDateChange}
                         />
 
                         <TimePicker
