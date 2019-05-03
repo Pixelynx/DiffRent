@@ -5,8 +5,6 @@ import TenantLandlordContactDashInfo from './TenantLandlordContactDashInfo.js';
 import Tickets from './tickets.jsx';
 import CreateTicketForm from './createTicketForm.jsx';
 import '../styles/dashboards/dashboards.css';
-// import TenantTicketDashInfo from './TenantTicketDashInfo.js';
-
 import '../styles/tenantTickets/tickets.css';
 
 class TenantDash extends Component {
@@ -31,8 +29,8 @@ class TenantDash extends Component {
 
 
   componentDidMount = async() => {
-    await this.getTenantInfo()
-    await this.handleSetState()
+    await this.getTenantInfo();
+    await this.handleSetState();
   }
 
   handleSetState = () => {
@@ -130,6 +128,8 @@ class TenantDash extends Component {
   render() {
      const { landlordInfo, tickets, ticketModalOpen, defaultValue } = this.state;
      const { user } = this.props;
+
+     console.log(this.state.defaultValue)
 
      if(this.state.ticketModalOpen) {
        return(
