@@ -4,7 +4,7 @@
 }
 
 .tenant-dash-container h1 {
-  font-family: 'Zillah';
+  font-family: 'Didact Gothic', sans-serif;
   font-size: 30px;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .ticket-dash-info {
-  font-family: 'Zillah';
+  font-family: 'Didact Gothic', sans-serif;
   font-size: 20px;
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@
 }
 
 .tenant-contacts {
-  font-family: 'Zillah';
+  font-family: 'Didact Gothic', sans-serif;
   font-size: 20px;
   /* width: 900px; */
 
