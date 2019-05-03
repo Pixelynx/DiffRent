@@ -16,8 +16,8 @@
 /* Thread Messages Container */
 
 .threadMsgContainer {
-  border: rgba(255, 255, 255, 0.527) 1px solid;
-  border-radius: 10px;
+  /* border: rgba(255, 255, 255, 0.527) 1px solid; */
+  /* border-radius: 10px; */
   margin: auto;
   width: 600px;
   font-family: 'Open Sans', sans-serif !important;
