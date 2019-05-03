@@ -31,7 +31,7 @@ const SetApptCal = (props) => {
                       <form onSubmit={handleSetAppt} className='set-appt-container'>
                         <div className='appt-cal-container'>
                           <div className='appt-cal'>
-                          <label>Set an Appointment</label>
+                          <label>Set an Appointment for:</label>
                           <p>Tenant: {tenantName}</p>
                           <p>Address: {aptInfo.address}</p>
                           <p>Apartment#: {aptInfo.apt}</p>

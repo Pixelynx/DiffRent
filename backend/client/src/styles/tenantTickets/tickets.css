@@ -2,13 +2,52 @@
   font-family: 'Zillah';
   src: url('../../fonts/zillah/ZILLM.ttf');
 }
-/* .tickets-btn {
-  text-align: center;
-} */
+
+.tenant-dash-container h1 {
+  font-family: 'Zillah';
+  font-size: 40px;
+}
+
+.tickets-btn {
+  margin: 0;
+  align-self: center;
+  font-family: 'Zillah';
+  font-size: 25px;
+  margin-bottom: 1em;
+  align-self: center;
+  height: 40px;
+  width: 300px;
+  background-color: #84CEEB;
+  color: #8860D0;
+  border: none;
+  border-radius: 10px;
+}
+
+.tickets-btn:hover {
+  background-color: #8860D0;
+  color: black;
+  border: none;
+  animation: glowing 2000ms infinite;
+}
 
 .tenant-dash-info {
   /* display: flex;
   align-content: flex-end; */
+}
+
+.ticket-dash-info {
+  font-family: 'Zillah';
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.tenant-contacts {
+  font-family: 'Zillah';
+  font-size: 20px;
+  /* width: 900px; */
+
 }
 
 .modal-container {

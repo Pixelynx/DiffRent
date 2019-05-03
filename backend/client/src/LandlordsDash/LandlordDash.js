@@ -142,8 +142,14 @@ class LandlordDash extends Component {
     const { user } = this.props
 
     if(defaultValue.length && ticketModalOpen) {
+      let srtPg = 0;
+      let endPg = 3;
+      let currPg;
+
       return defaultValue.map(ticket => {
         return (
+          <>
+          <div className='tickets-container'>
           <Tickets
           match={this.props.match}
           defaultValue={defaultValue}
@@ -152,7 +158,10 @@ class LandlordDash extends Component {
           user={user}
           ticket={ticket}
           settingAppt={this.props.settingAppt}
+          completed_landlord={this.state.completed_landlord}
           />
+        </div>
+        </>
       )
       })
     }
