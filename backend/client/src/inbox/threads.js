@@ -50,11 +50,12 @@ class Threads extends React.Component {
     return(
       <React.Fragment>
         <div className="inboxContainer">
-          <div className="threadContainer">
-          <h1>Say Hello!</h1>
+          <div>
+          <h1>Say Hello :)</h1>
+          <p>Create a thread and send a message to each other!</p>
             <form onSubmit={this.handleSubmit}>
-              <div className="inputs-div" >
-                <input type="text" onChange={this.handleChange} value={this.state.title_input} placeholder="Subject"/>
+              <div className="threadInputContainer">
+                <input className="threadInput" type="text" onChange={this.handleChange} value={this.state.title_input} placeholder="Subject"/>
                 <input type="submit" value="send" />
               </div>
             </form>
