@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Redirect, withRouter } from 'react-router-dom'
 import Auth from "../utils/Auth";
 import '../styles/dashboards/addApartments.css';
 
@@ -7,10 +8,6 @@ class AddApartment extends Component{
     state = {
         name: '',
         address: ''
-    }
-
-    componentDidMount() { 
-        // this.props.checkAuthenticateStatus()
     }
 
     handleSubmit = (e) => {
@@ -22,7 +19,7 @@ class AddApartment extends Component{
         let landlord_id = user.userid;
         axios.post('/apartments/', { apt, address, landlord_id })
         .then(() => {
-            return getUserInformation(Auth.getToken())
+            return window.location.reload()
           })
     }
 
@@ -60,4 +57,4 @@ class AddApartment extends Component{
     }
 }
 
-export default AddApartment;
+export default withRouter(AddApartment);
