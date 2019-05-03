@@ -45,25 +45,21 @@ class Tickets extends Component {
 
   handleSettingAppt = (e) => {
     const { ticket } = this.props
-    let tenant;
 
-    // axios.get(`/apartments/${ticket.apartment_id}`)
-    // .then(res => {
-    //   // debugger
-    //   this.setState({
-    //     aptApptInfo: res.data.apartment.map(apt => (
-    //       {
-    //         tenant: apt.tenant_id,
-    //         aptaddr: apt.address,
-    //         aptNum: apt.apt
-    //       }
-    //     ))
-    //   })
-    // })
-    this.setState(prevState => ({ settingAppt: !prevState.settingAppt }))
+    axios.get(`/apartments/${ticket.apartment_id}`)
+    .then(res => {
+      this.setState({ aptApptInfo: res.data.apartment })
+    }).then(() => {
+      axios.get(`/tenants/${this.state.aptApptInfo.tenant_id}`)
+        .then(res => {
+          this.setState({ tenantName: res.data.data.name })
+        }).then(() => {
+          this.setState(prevState => ({ settingAppt: !prevState.settingAppt }))
+        })
+    })
   }
 
-  handleSetAppt = (e) => {
+  handleSetAppt = async(e) => {
     e.preventDefault();
     const { ticket } = this.props
 
@@ -72,7 +68,7 @@ class Tickets extends Component {
 
     let date = dateInput.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2");
 
-      axios.put(`/tickets/${ticket.ticketid}`, {
+      await axios.put(`/tickets/${ticket.ticketid}`, {
         ticketid: ticket.ticketid,
         apartment_id: ticket.apartment_id,
         completed_tenant: ticket.completed_tenant,
@@ -83,7 +79,17 @@ class Tickets extends Component {
       })
       .then(res => {
         this.setState(prevState => ({ apptSubmitted: !prevState.apptSubmitted }))
-      }).catch(err => console.log("put request: ", err))
+      })
+      .then(() => {
+      this.setState({ appt_date: date })
+      this.setState({ appt_time: timeInput })
+    })
+      .catch(err => console.log("put request: ", err))
+      await window.location.reload();
+  }
+
+  refreshPage = () => {
+    window.location.reload();
   }
 
 
@@ -91,6 +97,10 @@ class Tickets extends Component {
     const { ticket, match } = this.props
     const { completed_landlord, apptSubmitted } = this.state
     const path = match.path;
+
+    console.log('SET APPT check', this.state)
+    console.log('APPT DATE', this.state.appt_date)
+
 
     if(path === `/landlord/:id` &&  this.state.settingAppt === true){
       return (
@@ -104,13 +114,15 @@ class Tickets extends Component {
           apptSet={this.handleSetAppt}
           apptSubmitted={this.state.apptSubmitted}
           handleSetAppt={this.handleSetAppt}
+          aptInfo={this.state.aptApptInfo}
+          tenantName={this.state.tenantName}
           />
         </div>
       </>
       )
     }
 
-        let date = ticket.appt_date
+        let date = `${this.state.appt_date ? this.state.appt_date + this.state.appt_time : ticket.appt_date}`
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
         if(!this.state.hovered) {
         return(
