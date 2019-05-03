@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Zillah';
+  src: url('../../fonts/zillah/ZILLM.ttf');
+}
+
 .modal-container {
   display: flex;
   position: absolute;
@@ -17,7 +22,7 @@
   justify-content: space-around;
   justify-items: center;
   align-self: center;
-  width: 900px;
+  width: 950px;
   height: 500px;
   background-color: var(--dark-blue);
   perspective: 1000;
@@ -27,7 +32,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-between; */
   height: 500px;
   width: 900px;
   color: var(--medium-blue);
@@ -36,19 +41,54 @@
 }
 
 .landlord-tik-front, .landlord-tik-back {
+  margin: 0;
+  justify-content: center;
+  font-family: 'Zillah';
   background-color: var(--light-purple);
   height: 300px;
-  width: 190px;
+  width: 190px !important;
 }
 
+/* .landlord-tik-front p, .landlord-tik-back p {
+    margin: .5em 1em .5em 1em;
+} */
+
 .landlord-tik-front {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 25px;
   z-index: 1;
 }
 
 .landlord-tik-back {
+  margin-left: 24px;
+  margin-right: 20px;
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
   z-index: 0;
 }
 
 .landlord-tik-front, p {
   margin: .5em 1em .5em 1em;
+}
+
+.set-appt-btn, .status-btn {
+  font-family: 'Zillah';
+  font-size: 20px;
+  margin-top: .5em;
+  align-self: center;
+  height: 44px;
+  width: 105px;
+  background-color: #8860D0;
+  border: none;
+  color: black;
+  border-radius: 10px;
+}
+
+.set-appt-btn:hover, .status-btn:hover {
+  background-color: #84CEEB;
+  color: #8860D0;
+  border: none;
+  animation: glowing 2000ms infinite;
 }

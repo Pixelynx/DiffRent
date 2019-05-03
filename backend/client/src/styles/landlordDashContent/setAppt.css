@@ -1,11 +1,17 @@
+@font-face {
+  font-family: 'Zillah';
+  src: url('../../fonts/zillah/ZILLM.ttf');
+}
+
 .set-appt-container {
   position: absolute;
   display: flex;
   flex-direction: column;
   height: 500px;
-  width: 900px;
+  width: 950px;
   background-color: var(--dark-purple);
   z-index: 2 !important;
+  font-family: 'Zillah';
 }
 
 .date-time-select {
@@ -32,11 +38,37 @@
   margin-top: 2em;
 }
 
+.appt-cal p {
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: .5em;
+}
+
 .appt-cal label {
-  font-size: 30px;
-  margin-bottom: 1em;
+  font-size: 40px;
+  margin-bottom: .5em;
 }
 
 .date-picker {
   text-align: center;
+}
+
+.appt-cal input[type=submit] {
+  font-family: 'Zillah';
+  font-size: 25px;
+  margin-top: 1em;
+  align-self: center;
+  height: 40px;
+  width: 300px;
+  background-color: #8860D0;
+  border: none;
+  color:black;
+  border-radius: 10px;
+}
+
+.appt-cal input[type=submit]:hover {
+  background-color: #84CEEB;
+  color: #8860D0;
+  border: none;
+  animation: glowing 2000ms infinite;
 }
