@@ -28,7 +28,7 @@ const SetApptCal = (props) => {
 
   let setApptForm =
                     <>
-                      <form onSubmit={handleSetAppt} className='set-appt-container'>
+                      <form onSubmit={handleSetAppt} className='appt-form-container'>
                         <div className='appt-cal-container'>
                           <div className='appt-cal'>
                           <label>Set an Appointment for:</label>
