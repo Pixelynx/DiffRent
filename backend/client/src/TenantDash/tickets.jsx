@@ -25,7 +25,6 @@ class Tickets extends Component {
         appt_time: ticket.appt_time
       })
       .then(res => {
-        debugger
         this.setState(prevState => ({ completed_tenant_tiks: !prevState.completed_tenant_tiks }))
       }).catch(err => console.log("put request: ", err))
   }
@@ -42,8 +41,17 @@ class Tickets extends Component {
   render() {
     const { defaultValue } = this.props
     const { ticket } = this.props
+    let resolution;
 
-    console.log(this.state)
+    if((ticket.completed_tenant === '1' || this.state.completed_tenant_tiks) && ticket.in_progress === '0') {
+      resolution = 'Resolved'
+    } else if((ticket.completed_tenant === '1' || this.state.completed_tenant_tiks) && ticket.in_progress === '1') {
+      resolution = 'Waiting for landlord to resolve'
+    } else if(ticket.completed_tenant === '0' || !this.state.completed_tenant_tiks) {
+      resolution = 'Mark Resolved'
+    }
+
+    console.log(ticket.in_progress)
 
       let date = ticket.appt_date
       let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
@@ -55,7 +63,6 @@ class Tickets extends Component {
               onMouseEnter={this.mouseEnter}>
               <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
               <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-              <p>{ticket.completed_tenant === '1' || this.state.completed_tenant_tiks ? 'RESOLVED' : 'UNRESOLVED'}</p>
             </div>
             </>
         )
@@ -71,7 +78,7 @@ class Tickets extends Component {
               <button
                 id={ticket.ticketid}
                 onClick={this.tenantHandleStatus}
-                className='status-btn'>{ticket.completed_tenant === '1' || this.state.completed_tenant_tiks ? 'RESOLVED' : 'UNRESOLVED'}</button>
+                className='status-btn'>{resolution}</button>
             </div>
           </>
         )

@@ -7,7 +7,7 @@ import '../styles/landlordDashContent/setAppt.css';
 class Tickets extends Component {
   state = {
     hover: false,
-    completeConfirm: false,
+    completed_landlord_tiks: false,
     settingAppt: false,
     apptSubmitted: false,
     aptApptInfo: []
@@ -22,24 +22,26 @@ class Tickets extends Component {
   }
 
   landlordHandleStatus = (e) => {
+    debugger
     const { ticket, setCompletedLandlordState } = this.props
     e.preventDefault();
 
     let id = e.target.id;
-    let completeConfirm = `${this.state.completeConfirm ? '0' : '1'}`;
-    let in_progress = `${ticket.completed_tenant === '1' && ticket.completeConfirm === '1' ? '0' : '1'}`
+    let completeConfirm = `${this.state.completed_landlord_tiks ? '0' : '1'}`;
+    let in_progress = `${ticket.completed_tenant === '1' && ticket.completed_landlord === '1' ? '0' : '1'}`
 
       axios.put(`/tickets/${id}`, {
         ticketid: id,
         apartment_id: ticket.apartment_id,
         completed_tenant: ticket.completed_tenant,
-        completeConfirm: completeConfirm,
+        completed_landlord: `${ticket.completed_landlord === null ? '0' : completeConfirm}`,
         in_progress: in_progress,
         appt_date: ticket.appt_date,
         appt_time: ticket.appt_time
       })
       .then(res => {
-        this.setState(prevState => ({ completeConfirm: !prevState.completeConfirm }))
+        debugger
+        this.setState(prevState => ({ completed_landlord_tiks: !prevState.completed_landlord_tiks }))
       }).catch(err => console.log("put request: ", err))
   }
 
@@ -71,8 +73,8 @@ class Tickets extends Component {
       await axios.put(`/tickets/${ticket.ticketid}`, {
         ticketid: ticket.ticketid,
         apartment_id: ticket.apartment_id,
-        completed_tenant: ticket.completed_tenant,
-        completeConfirm: ticket.completeConfirm,
+        completed_tenant: '0',
+        completed_landlord: '0',
         in_progress: '1',
         appt_date: date,
         appt_time: timeInput
@@ -90,11 +92,11 @@ class Tickets extends Component {
 
   render() {
     const { ticket, match, defaultValue } = this.props
-    const { completeConfirm, apptSubmitted, settingAppt } = this.state
+    const { completed_landlord_tiks, apptSubmitted, settingAppt } = this.state
     const path = match.path;
 
     console.log('SET APPT check', this.state)
-    console.log(ticket.completed_landlord, 'completeConfirm props')
+    console.log(ticket.completed_landlord, 'completed_landlord_tiks props')
 
 
     if(path === `/landlord/:id` &&  this.state.settingAppt === true){
@@ -121,11 +123,12 @@ class Tickets extends Component {
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
         let resolution;
 
-        //making variable to grab whether completeConfirm
-        if(ticket.completed_landlord === '0' || ticket.completed_landlord === null) {
-          resolution = 'UNRESOLVED'
-        } else if(ticket.completed_landlord === '1') {
-          resolution = 'RESOLVED'
+        if((ticket.completed_tenant === '1' || this.state.completed_tenant_tiks) && ticket.in_progress === '0') {
+          resolution = 'Resolved'
+        } else if((ticket.completed_tenant === '1' || this.state.completed_tenant_tiks) && ticket.in_progress === '1') {
+          resolution = 'Waiting for tenant to resolve'
+        } else if(ticket.completed_tenant === '0' || !this.state.completed_tenant_tiks) {
+          resolution = 'Mark Resolved'
         }
 
         if(!this.state.hovered) {
@@ -137,7 +140,6 @@ class Tickets extends Component {
               >
               <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
               <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-              <p>{completeConfirm ? 'RESOLVED' : resolution}</p>
             </div>
             </>
         )
@@ -154,7 +156,7 @@ class Tickets extends Component {
               <button
                 id={ticket.ticketid}
                 onClick={this.landlordHandleStatus}
-                className='status-btn'>{completeConfirm ? 'RESOLVED' : resolution}</button>
+                className='status-btn'>{resolution}</button>
               <button onClick={this.handleSettingAppt} className='set-appt-btn'>Set Appointment</button>
             </div>
 
