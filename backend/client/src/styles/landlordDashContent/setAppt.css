@@ -5,13 +5,15 @@
 
 .set-appt-container {
   position: absolute;
-  display: flex;
   flex-direction: column;
+  display: flex;
   height: 500px;
   width: 950px;
   background-color: var(--dark-purple);
-  z-index: 2 !important;
+  z-index: 2 ;
   font-family: 'Zillah';
+  bottom: 0;
+  right: 0;
 }
 
 .date-time-select {
@@ -20,11 +22,12 @@
 
 .appt-cal-container {
   display: flex;
-  align-self: center;
+  /* align-self: center; */
   justify-content: center;
   height: 80%;
   width: 80%;
-  margin-top: 5%;
+  margin-top: 8%;
+  margin-left: 10%;
   text-align: center;
   background-color: white;
   border-radius: 5px;
@@ -33,6 +36,7 @@
 
 .appt-cal {
   display: flex;
+  align-self: center;
   flex-direction: column;
   width: 50%;
   margin-top: 2em;
