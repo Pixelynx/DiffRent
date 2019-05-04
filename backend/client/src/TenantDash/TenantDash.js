@@ -114,8 +114,10 @@ class TenantDash extends Component {
     }
   }
 
-  handleModalOpen = () => {
-    this.setState((prevState) => ({ticketModalOpen: !prevState.ticketModalOpen}))
+  handleModalOpen = (e) => {
+    if(e.target.className === 'modal-container' || e.target.className === 'tickets-btn') {
+      this.setState(prevState => ({ticketModalOpen: !prevState.ticketModalOpen}))
+    }
   }
 
   handleCreateTicketBtn = (e) => {

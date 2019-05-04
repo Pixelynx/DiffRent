@@ -5,14 +5,14 @@ import '../styles/tenantTickets/tickets.css';
 
 class Tickets extends Component {
   state = {
-    completedTenant: false
+    completed_tenant_tiks: false
   }
 
   tenantHandleStatus = async(e) => {
     const { ticket, user, setCompletedTenantState } = this.props
 
     let id = e.target.id;
-    let completedTenant = `${ticket.completed_tenant ? '0' : '1'}`;
+    let completedTenant = `${ticket.completed_tenant === '1' ? '0' : '1'}`;
     let aptid = user.aptid;
 
       await axios.put(`/tickets/${id}`, {
@@ -25,7 +25,8 @@ class Tickets extends Component {
         appt_time: ticket.appt_time
       })
       .then(res => {
-        this.setState(prevState => ({ completedTenant: !prevState.completedTenant }))
+        debugger
+        this.setState(prevState => ({ completed_tenant_tiks: !prevState.completed_tenant_tiks }))
       }).catch(err => console.log("put request: ", err))
   }
 
@@ -54,7 +55,7 @@ class Tickets extends Component {
               onMouseEnter={this.mouseEnter}>
               <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
               <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-              <p>{!this.state.completedTenant ? 'UNRESOLVED' : 'RESOLVED'}</p>
+              <p>{ticket.completed_tenant === '1' || this.state.completed_tenant_tiks ? 'RESOLVED' : 'UNRESOLVED'}</p>
             </div>
             </>
         )
@@ -70,7 +71,7 @@ class Tickets extends Component {
               <button
                 id={ticket.ticketid}
                 onClick={this.tenantHandleStatus}
-                className='status-btn'>{!this.state.completedTenant ? 'UNRESOLVED' : 'RESOLVED'}</button>
+                className='status-btn'>{ticket.completed_tenant === '1' || this.state.completed_tenant_tiks ? 'RESOLVED' : 'UNRESOLVED'}</button>
             </div>
           </>
         )
