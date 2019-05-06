@@ -7,6 +7,7 @@ import '../styles/colorScheme.css';
 
 import TenantContactInfo from './TenantContactInfo.js';
 import Tickets from './tickets.jsx';
+import { ApartmentInfo } from './ApartmentInfo';
 
 class LandlordDash extends Component {
   constructor(){
@@ -47,10 +48,9 @@ class LandlordDash extends Component {
 
   getAptsByLandlord = () => {
     const { tenant } = this.props;
-    if(!tenant) return null;
+    // if(!tenant) return null;
     axios.get(`/landlords/${this.props.match.params.id}/apartments`)
     .then(res => {
-      if(res.data.data.length !== 0){
         res.data.data.map(info => {
           this.setState({
             tenantInfo: [{
@@ -62,12 +62,13 @@ class LandlordDash extends Component {
             }]
           })
         })
-      } else {
+    })
+    .then(() => {
+      if(!this.state.tenantInfo.apartment){
         this.setState({
           tenantInfo: [{
             name: null,
-            apartment_id: tenant.id,
-            address: tenant.address,
+            address: tenant
           }]
         })
       }
@@ -191,8 +192,7 @@ class LandlordDash extends Component {
 
   render(){
      const { tenantInfo, tickets, defaultValue } = this.state;
-     const { user } = this.props;
-     console.log(this.state.defaultValue, 'LANDLORD DEFAULT')
+     const { user, tenant } = this.props;
 
      if(this.state.ticketModalOpen) {
        return(
@@ -208,25 +208,34 @@ class LandlordDash extends Component {
        )
      }
 
+     let tenantInformation = <div className='dash-container' style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : {visibility: 'visible'}}>
+                              <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
+                                <div style={this.state}className='tenant-contacts'>
+                                  <h2>Apartments</h2>
+                                  {this.mapTenantApts()}
+                                </div>
+                                <TenantContactInfo
+                                  user={user}
+                                  selectedApt={this.state.selectedApt}
+                                  tenantInfo={tenantInfo}
+                                  tenantModalShowing={this.state.tenantInfoIsShowing}
+                                  closeModal={this.handleTenantInfoShowing}
+                              />
+                            </div>
 
+     let apartmentInformation = <div className='dash-container' style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : {visibility: 'visible'}}>
+                              <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
+                                <div style={this.state}className='tenant-contacts'>
+                                  <h2>Apartments</h2>
+                                  {this.mapTenantApts()}
+                                </div>
+                                <ApartmentInfo 
+                                tenant={tenant}/>
+                            </div>
 
     return(
       <>
-        <div className='dash-container' style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : {visibility: 'visible'}}>
-          <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
-            <div style={this.state}className='tenant-contacts'>
-              <h2>Apartments</h2>
-              {this.mapTenantApts()}
-            </div>
-            <TenantContactInfo
-              user={user}
-              selectedApt={this.state.selectedApt}
-              tenantInfo={tenantInfo}
-              tenantModalShowing={this.state.tenantInfoIsShowing}
-              closeModal={this.handleTenantInfoShowing}
-          />
-
-        </div>
+        { !tenantInfo.apartment ? tenantInformation : apartmentInformation}
       </>
     )
   }

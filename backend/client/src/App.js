@@ -182,6 +182,13 @@ class App extends Component {
                 );
               }}
             />
+            <Route
+              path="/addApartment"
+              render={(props) => { return user ? !user.aptid ? <AddApartment user={user}
+                                          getUserInformation={this.getUserInformation} />
+                                        : <Redirect to={`/landlord/${user.userid}`} />
+                                        : <Redirect to='/' /> }}
+            />
             <PrivateRoute
               path="/landlord/profile/:id"
               user={this.state.user}
@@ -192,12 +199,13 @@ class App extends Component {
               user={this.state.user}
               component={Profile}
             />
-            <PrivateRoute
+            <Route
               path="/landlord/:id"
-              user={user}
-              tenant={this.state.tenant}
-              getUserInformation={this.getUserInformation}
-              component={ user.aptid ? LandlordDash : AddApartment }
+              render={(props) => {return user ? user.aptid ? <LandlordDash {...props} user={user}
+                                                              tenant={this.state.tenant}
+                                                              getUserInformation={this.getUserInformation} /> 
+                                                            : <Redirect to='/addApartment' /> 
+                                                            : <Redirect to='/' /> }}
             />
             <PrivateRoute
               path="/tenant/:id"
