@@ -42,7 +42,7 @@ class App extends Component {
           return (
             this.setState({
               isLoggedIn: Auth.isUserAuthenticated()
-            }, () => this.getUserInformation(user.data.username)) 
+            }, () => this.getUserInformation(user.data.username))
           );
         }
       } else {
@@ -114,20 +114,19 @@ class App extends Component {
         <>
           <div
             className={navbar ? "openNavbar" : "closedNavbar"}
-            onMouseEnter={this.toggleNavbar}
-            onMouseLeave={this.toggleNavbar}
+
           >
-            {isLoggedIn ? <div className="burgerIcon"><i class="fas fa-bars"></i>
-          </div> : null}
+            
             <div>
-              {navbar ? (
+
                 <Navbar
                   isLoggedIn={isLoggedIn}
                   toggleNavbar={this.toggleNavbar}
                   logoutButton={logoutButton}
+                  logoutFunc={this.logoutUser}
                   user={user}
                 />
-              ) : null}
+
             </div>
           </div>
           <Switch>
@@ -203,8 +202,8 @@ class App extends Component {
               path="/landlord/:id"
               render={(props) => {return user ? user.aptid ? <LandlordDash {...props} user={user}
                                                               tenant={this.state.tenant}
-                                                              getUserInformation={this.getUserInformation} /> 
-                                                            : <Redirect to='/addApartment' /> 
+                                                              getUserInformation={this.getUserInformation} />
+                                                            : <Redirect to='/addApartment' />
                                                             : <Redirect to='/' /> }}
             />
             <PrivateRoute

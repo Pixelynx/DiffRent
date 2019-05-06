@@ -3,7 +3,11 @@ html {
 }
 
 .burgerIcon{
-  position: absolute;
+  font-size: 20px;
+  position: relative;
+  top: 6px;
+  left: 7px;
+
 }
 
 .App{
