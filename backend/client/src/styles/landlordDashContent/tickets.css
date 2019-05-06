@@ -80,3 +80,7 @@
   border: none;
   animation: glowing 2000ms infinite;
 }
+
+.landlord-status-btn:disabled {
+  background-color: gray;
+}
