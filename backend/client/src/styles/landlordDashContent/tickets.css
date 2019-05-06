@@ -25,7 +25,6 @@
   width: 80%;
   height: 70%;
   background-color: var(--dark-blue);
-  perspective: 1000;
   overflow-x: scroll;
 }
 
@@ -58,11 +57,11 @@
   z-index: 0;
 }
 
-.landlord-tik-front, p, .landlord-tik-back, p {
+.landlord-tik-front p, .landlord-tik-back p {
   margin: .3em;
 }
 
-.set-appt-btn, .status-btn {
+.set-appt-btn, .landlord-status-btn {
   font-family: 'Zillah';
   font-size: 20px;
   margin-top: .5em;
@@ -75,7 +74,7 @@
   border-radius: 10px;
 }
 
-.set-appt-btn:hover, .status-btn:hover {
+.set-appt-btn:hover, .landlord-status-btn:hover {
   background-color: #84CEEB;
   color: #8860D0;
   border: none;
