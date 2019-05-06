@@ -47,8 +47,6 @@ class LandlordDash extends Component {
   }
 
   getAptsByLandlord = () => {
-    const { tenant } = this.props;
-    // if(!tenant) return null;
     axios.get(`/landlords/${this.props.match.params.id}/apartments`)
     .then(res => {
         res.data.data.map(info => {
@@ -62,16 +60,6 @@ class LandlordDash extends Component {
             }]
           })
         })
-    })
-    .then(() => {
-      if(!this.state.tenantInfo.apartment){
-        this.setState({
-          tenantInfo: [{
-            name: null,
-            address: tenant
-          }]
-        })
-      }
     })
   }
 
@@ -132,6 +120,23 @@ class LandlordDash extends Component {
         )
       })
     }
+  }
+
+  showLandlordApts = () => {
+    const { tenant } = this.props;
+
+      return (
+        <>
+            <div className='apts-btn-container'>
+              <button
+                className='apts-btn'
+                id={tenant.id}
+                onClick={this.handleTenantInfoShowing}>
+                {tenant.address}
+              </button>
+            </div>
+        </>
+      )
   }
 
   handleTenantInfoShowing = (e) => {
@@ -227,15 +232,18 @@ class LandlordDash extends Component {
                               <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
                                 <div style={this.state}className='tenant-contacts'>
                                   <h2>Apartments</h2>
-                                  {this.mapTenantApts()}
+                                  {this.showLandlordApts()}
                                 </div>
                                 <ApartmentInfo 
-                                tenant={tenant}/>
+                                tenant={tenant}
+                                tenantModalShowing={this.state.tenantInfoIsShowing}
+                                closeModal={this.handleTenantInfoShowing}
+                                />
                             </div>
 
     return(
       <>
-        { !tenantInfo.apartment ? tenantInformation : apartmentInformation}
+        { !tenant.name ? apartmentInformation : tenantInformation}
       </>
     )
   }

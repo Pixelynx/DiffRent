@@ -2,7 +2,6 @@ import React from 'react';
 
 
 export const ApartmentInfo = (props) => {
-
 if(props.tenant) return null;
 
     return(
