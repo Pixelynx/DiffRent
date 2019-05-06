@@ -6,7 +6,7 @@ import '../styles/landlordDashContent/tickets.css';
 import '../styles/colorScheme.css';
 
 import TenantContactInfo from './TenantContactInfo.js';
-import Tickets from './tickets.js';
+import Tickets from './tickets.jsx';
 
 class LandlordDash extends Component {
   constructor(){

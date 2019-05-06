@@ -91,17 +91,17 @@ INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('3', '10 Ea
 
 
 INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '0', '1', '2019-05-05', '12:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door not closing right', '1', '1', '1', '2019-05-07', '1:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door STILL not closing right', '0', '0', '0', NULL, NULL );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door not closing right', '1', '1', '0', '2019-05-07', '1:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door STILL not closing right', '0', '0', '1', NULL, NULL );
 INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'key broke in door', '1', '1', '0', '2019-05-07', '1:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'gas leak', '0', '0', '0', NULL, NULL );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'gas leak', '0', '0', '1', NULL, NULL );
 INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(3, 'Ceiling', 'Living room ceiling needs small repair', '0', '0', '1', '2019-05-08', '2:00 [PM]' );
 INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(4, 'Window', 'Window lock not working', '0', '0', '0', NULL, NULL );
 INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(5, 'Building key', 'Lost key for the entrance of the building', '0', '0', '1', '2019-05-09', '4:00 [PM]' );
 
 INSERT INTO threads(title, tenant_id, landlord_id)
 VALUES
-('Will be on vacation', 11, 1), 
+('Will be on vacation', 11, 1),
 ('Quick question regarding heat', 12, 2),
 ('Follow Up on Ticket', 12, 2),
 ('On Vacation next week', 12, 2),
