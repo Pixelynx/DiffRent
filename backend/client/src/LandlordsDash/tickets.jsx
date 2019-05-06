@@ -13,6 +13,8 @@ class Tickets extends Component {
     aptApptInfo: []
   }
 
+
+
   mouseEnter = () => {
     this.setState(prevState => ({ hovered: !prevState.hovered }))
   }
@@ -22,9 +24,7 @@ class Tickets extends Component {
   }
 
   landlordHandleStatus = (e) => {
-    debugger
     const { ticket, setCompletedLandlordState } = this.props
-    e.preventDefault();
 
     let id = e.target.id;
     let completeConfirm = `${this.state.completed_landlord_tiks ? '0' : '1'}`;
@@ -34,13 +34,12 @@ class Tickets extends Component {
         ticketid: id,
         apartment_id: ticket.apartment_id,
         completed_tenant: ticket.completed_tenant,
-        completed_landlord: `${ticket.completed_landlord === null ? '0' : completeConfirm}`,
+        completed_landlord: completeConfirm,
         in_progress: in_progress,
         appt_date: ticket.appt_date,
         appt_time: ticket.appt_time
       })
       .then(res => {
-        debugger
         this.setState(prevState => ({ completed_landlord_tiks: !prevState.completed_landlord_tiks }))
       }).catch(err => console.log("put request: ", err))
   }
@@ -119,15 +118,15 @@ class Tickets extends Component {
       )
     }
 
-        let date = `${this.state.appt_date ? this.state.appt_date + this.state.appt_time : ticket.appt_date}`
-        let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
+        let date = ticket.appt_date;
+        let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date));
         let resolution;
 
-        if((ticket.completed_tenant === '1' || this.state.completed_tenant_tiks) && ticket.in_progress === '0') {
+        if((ticket.completed_landlord === '1' || this.state.completed_landlord_tiks) && ticket.in_progress === '0') {
           resolution = 'Resolved'
-        } else if((ticket.completed_tenant === '1' || this.state.completed_tenant_tiks) && ticket.in_progress === '1') {
+        } else if((ticket.completed_landlord === '1' || this.state.completed_landlord_tiks) && ticket.in_progress === '1') {
           resolution = 'Waiting for tenant to resolve'
-        } else if(ticket.completed_tenant === '0' || !this.state.completed_tenant_tiks) {
+        } else if(ticket.completed_landlord === '0') {
           resolution = 'Mark Resolved'
         }
 
