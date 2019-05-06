@@ -138,9 +138,9 @@ class TenantDash extends Component {
            <div onClick={this.handleModalOpen} className='modal-container'>
              <div className='ticket-window-container'>
                {this.displayUnresolvedTickets()}
-               <button onClick={this.handleCreateTicketBtn} className='create-ticket-btn'>Create New Ticket</button>
              </div>
            </div>
+           <button onClick={this.handleCreateTicketBtn} className='create-ticket-btn'>Create New Ticket</button>
          </>
        )
      }
