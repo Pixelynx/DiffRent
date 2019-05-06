@@ -12,8 +12,7 @@ class CreateTicketForm extends Component {
   }
 
   handleModalOpen = (e) => {
-    e.preventDefault();
-    if(e.target.className === 'form-container' || e.target.className === 'submit-ticket-btn') {
+    if(e.target.className === 'form-container' || e.target.className === 'create-ticket-btn') {
       this.setState(prevState => ({ formModalOpen: !prevState.formModalOpen }))
     }
     console.log(e.target.className)
@@ -32,7 +31,6 @@ class CreateTicketForm extends Component {
   }
 
   handlePostTicket = (e) => {
-    // because the first change didn't seem to get pushed properly...
     e.preventDefault()
     const { subjectInput, bodyInput } = this.state
     let apartment_id = this.props.user.aptid
@@ -51,6 +49,7 @@ class CreateTicketForm extends Component {
     })
       .catch(err => console.log(err))
     }
+    window.location.reload();
   }
 
   handleSubmit = (e) => {
