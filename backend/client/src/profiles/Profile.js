@@ -106,7 +106,7 @@ handleSubmit = event => {
   render(){
     return(
       <>
-        <h2 className='titile'>Edit Your Profile</h2>
+        <h2 className='title'>Edit Your Profile</h2>
 
           <form onSubmit={this.handleSubmit}>
             <div className='profile-form'>
@@ -116,7 +116,7 @@ handleSubmit = event => {
           <hr/>
             Phone Number: <input type='text' className='phone-input' onChange={this.handleChange} name='phone' defaultValue={this.state.defaultVals.phone} />
           <hr/>
-            New Password: <input type='password' onChange={this.handleChange} name='password' placeholder='' value='' />
+            New Password: <input type='password' className='password-input' onChange={this.handleChange} name='password' placeholder='' value='' />
           <hr/>
             <input type='submit' className='submit-btn' value="Submit Changes"/>
         </div>
