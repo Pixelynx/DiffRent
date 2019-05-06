@@ -29,10 +29,11 @@
 
 .landlord-tik-front, .landlord-tik-back {
   margin: 0;
-  font-family: 'Zillah';
+  font-family: sans-serif;
   background-color: var(--light-purple);
   height: 350px;
   width: 200px ;
+  justify-content: center;
   overflow-y: scroll;
 }
 
@@ -41,14 +42,14 @@
   flex-direction: column;
   margin-left: 20px;
   margin-right: 20px;
-  font-size: 2em;
+  font-size: 1.5em;
   z-index: 1;
 }
 
 .landlord-tik-back {
   margin-left: 24px;
   margin-right: 20px;
-  font-size: 1.8em;
+  font-size: 1.4em;
   display: flex;
   flex-direction: column;
   z-index: 0;

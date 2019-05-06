@@ -35,7 +35,8 @@
 .apts-btn:hover, .open-tiks-btn:hover {
   background-color: var(--light-purple);
   color: var(--medium-blue);
-  transition: .1s linear;
+  border: none;
+  animation: glowing 2000ms infinite;
 }
 
 .apts-btn {
