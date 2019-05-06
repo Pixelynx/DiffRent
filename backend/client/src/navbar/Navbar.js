@@ -103,7 +103,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
             </NavItem>
             <NavItem eventKey="/logout">
                 <NavIcon>
-                    <li className="fas fa-sign-out-alt"><NavLink to={"/faq"}></NavLink></li>
+                    <li className="fas fa-sign-out-alt"><NavLink to={"/logout"}></NavLink></li>
                 </NavIcon>
                 <NavText>
                     {logoutButton}

@@ -27,6 +27,7 @@
 }
 .profile-form {
   font-family: 'Didact Gothic', sans-serif;
+  color: white;
   width: 500px;
   font-size: 24px;
   position: absolute;
@@ -49,6 +50,7 @@
   left: 41%;
   text-align: center;
   align-content: center;
+  color: white;
 }
 .submit-btn{
   font-size: inherit;

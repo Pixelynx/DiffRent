@@ -15,7 +15,7 @@
 .loginFormContainer{
     position: absolute;
     top: 0;
-    left: 0; 
+    left: 0;
     height: 100vh ;
     width: 100%;
     display: flex;
@@ -38,7 +38,7 @@
     grid-row-gap: 25px;
     justify-items: center;
     margin-left: 5%;
-    grid-template-areas: 
+    grid-template-areas:
     "email password"
     "submit submit"
 }
@@ -55,7 +55,7 @@
     width: 75%;
 }
 
- .loginForm input::placeholder{ 
+ .loginForm input::placeholder{
     color: #880000;
 }
 
@@ -93,7 +93,7 @@
     justify-items: center;
     align-items: center;
     margin-top: 5%;
-    grid-template-areas: 
+    grid-template-areas:
     "demo"
     "option"
 }
@@ -235,7 +235,7 @@ button:focus{
     grid-template-rows: auto;
     grid-column-gap: 30px;
     grid-row-gap: 25px;
-    grid-template-areas: 
+    grid-template-areas:
     "name email "
     "phone password"
     "dob dob"
@@ -271,7 +271,7 @@ button:focus{
     background-color: #84CEEB;
     border-radius: 10px 0px 0px 10px;
     animation: glowing 4000ms infinite;
-    
+
 }
 .tButtonD{
     height: 30px;
@@ -305,7 +305,7 @@ button:focus{
     width: 75%;
 }
 
- .registerForm input::placeholder{ 
+ .registerForm input::placeholder{
     color: #880000;
 }
 
