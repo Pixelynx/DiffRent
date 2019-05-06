@@ -140,6 +140,10 @@
   animation: glowing 2000ms infinite;
 }
 
+.status-btn:disabled {
+  background-color: gray;
+}
+
 .create-ticket-btn {
   align-self: flex-end;
   display: inline-block;
