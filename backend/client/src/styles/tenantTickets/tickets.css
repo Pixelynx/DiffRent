@@ -9,23 +9,21 @@
 }
 
 .tickets-btn {
-  margin: 0;
-  align-self: center;
-  font-family: 'Zillah';
-  font-size: 25px;
-  margin-bottom: 1em;
-  align-self: center;
+  background-color: var(--dark-purple);
+  border: 1px solid var(--light-blue);
+  font-family: sans-serif;
+  letter-spacing: 0.2em;
+  font-size: 15px;
   height: 40px;
   width: 300px;
-  background-color: #84CEEB;
-  color: #8860D0;
-  border: none;
-  border-radius: 10px;
+  align-self: center;
+  margin-bottom: 1em;
+  color: yellow;
 }
 
 .tickets-btn:hover {
-  background-color: #8860D0;
-  color: black;
+  background-color: var(--medium-blue);
+  color: var(--dark-purple);
   border: none;
   animation: glowing 2000ms infinite;
 }
@@ -65,10 +63,10 @@
 
 
 .ticket-window-container {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   align-items: center;
   justify-content: space-around;
-  /* justify-items: center; */
   align-self: center;
   width: 900px;
   height: 500px;
@@ -76,16 +74,11 @@
   overflow-x: scroll;
 }
 
-.ticket-window {
-  display: flex;
-  height: 300px;
-  position: relative;
-}
-
 .ticket-front, .ticket-back {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  font-family: 'Zillah';
+  font-family: sans-serif;
   /* padding-left: 10px; */
   height: 350px;
   width: 200px;
@@ -98,9 +91,9 @@
 }
 
 .ticket-front {
-  /* margin-left: 20px;
-  margin-right: 20px; */
-  font-size: 2em;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 1.5em;
   justify-content: center;
   z-index: 1;
 }
@@ -108,14 +101,14 @@
 .ticket-back {
   /* margin-left: 24px;
   margin-right: 20px; */
-  font-size: 1.8em;
+  font-size: 1.4em;
   z-index: 0;
 
 }
 
 .status-btn {
   margin: 0;
-  height: 20%;
+  height: 15%;
   width: 90%;
   font-family: 'Zillah';
   font-size: 20px;
