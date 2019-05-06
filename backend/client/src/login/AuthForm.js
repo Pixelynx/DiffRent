@@ -45,7 +45,7 @@ class AuthForm extends Component {
   registerUser = async e => {
     e.preventDefault();
     const { password, name, email, phone, userType } = this.state;
-    const { getUserAptInfo, getUserInfo, user } = this.props;
+    const { getUserInformation, user } = this.props;
     let user_type = userType ? "tenant" : "landlord";
     let password_digest = password;
     let input = e.target[4].value;
@@ -66,13 +66,8 @@ class AuthForm extends Component {
         .post("/tenants/login", { username, password })
         .then(() => {
           if (!user) {
-            return getUserAptInfo(username);
+            return getUserInformation(username);
           } 
-        })
-        .then(() => {
-          if (!user) {
-            return getUserInfo(username);
-          }
         })
         .then(() => {
           this.props.checkAuthenticateStatus();
@@ -82,13 +77,8 @@ class AuthForm extends Component {
         .post("/landlords/login", { username, password })
         .then(() => {
           if (!user) {
-            return getUserAptInfo(username);
+            return getUserInformation(username);
           } 
-        })
-        .then(() => {
-          if (!user) {
-            return getUserInfo(username);
-          }
         })
         .then(() => {
           this.props.checkAuthenticateStatus();
@@ -98,7 +88,7 @@ class AuthForm extends Component {
 
   loginUser = e => {
     e.preventDefault();
-    const { match, getUserAptInfo, getUserInfo, user } = this.props;
+    const { match, getUserInformation, user } = this.props;
     const path = match.path
     let username = this.state.username;
     let password = this.state.password;
@@ -107,13 +97,8 @@ class AuthForm extends Component {
         .post("/tenants/login", { username, password })
         .then(() => {
           if (!user) {
-            return getUserAptInfo(username);
+            return getUserInformation(username);
           } 
-        })
-        .then(() => {
-          if (!user) {
-            return getUserInfo(username);
-          }
         })
         .then(() => {
           Auth.authenticateUser(username);
@@ -132,13 +117,8 @@ class AuthForm extends Component {
         .post("/landlords/login", { username, password })
         .then(() => {
           if (!user) {
-            return getUserAptInfo(username);
+            return getUserInformation(username);
           } 
-        })
-        .then(() => {
-          if (!user) {
-            return getUserInfo(username);
-          }
         })
         .then(() => {
           Auth.authenticateUser(username);
@@ -151,7 +131,7 @@ class AuthForm extends Component {
 
   demoLogin = e => {
     e.preventDefault();
-    const { match, getUserAptInfo, getUserInfo, user } = this.props;
+    const { match, getUserInformation, user } = this.props;
     const path = match.path;
     let password = "abc";
 
@@ -161,9 +141,7 @@ class AuthForm extends Component {
         .post("/tenants/login", { username, password })
         .then(() => {
           if (!user) {
-            return getUserAptInfo(username);
-          } else if (!user) {
-            return getUserInfo(username);
+            return getUserInformation(username);
           }
         })
         .then(() => {
@@ -184,9 +162,7 @@ class AuthForm extends Component {
         .post("/landlords/login", { username, password })
         .then(() => {
           if (!user) {
-            return getUserAptInfo(username);
-          } else if (!user) {
-            return getUserInfo(username);
+            return getUserInformation(username);
           }
         })
         .then(() => {

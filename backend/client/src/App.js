@@ -55,24 +55,8 @@ class App extends Component {
     });
   };
 
-
   getUserInformation = email => {
-    const { user } = this.state;
-    if (!user) { return this.getUserAptInfo(email) }
-    if (!user) { return this.getUserInfo(email) }
-    }
-
-  getUserInfo = email => {
     axios.get("/users/" + email)
-    .then(res => {
-      this.setState({
-        user: res.data.data,
-      });
-    });
-  };
-
-  getUserAptInfo = email => {
-    axios.get("/users/apt/" + email)
     .then(res => {
       this.setState({
         user: res.data.data,
@@ -153,8 +137,7 @@ class App extends Component {
                 return !user ? (
                   <AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
-                    getUserInfo={this.getUserInfo}
-                    getUserAptInfo={this.getUserAptInfo}
+                    getUserInformation={this.getUserInformation}
                     user={user}
                     isLoggedIn={isLoggedIn}
                   />
@@ -169,8 +152,7 @@ class App extends Component {
                 return !user ? (
                   <AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
-                    getUserInfo={this.getUserInfo}
-                    getUserAptInfo={this.getUserAptInfo}
+                    getUserInformation={this.getUserInformation}
                     user={user}
                     isLoggedIn={isLoggedIn}
                   />
@@ -185,8 +167,7 @@ class App extends Component {
                 return !user ? (
                   <AuthForm
                     checkAuthenticateStatus={this.checkAuthenticateStatus}
-                    getUserAptInfo={this.getUserAptInfo}
-                    getUserInfo={this.getUserInfo}
+                    getUserInformation={this.getUserInformation}
                     user={user}
                     isLoggedIn={isLoggedIn}
                   />

@@ -29,14 +29,13 @@ const getUserAptInfo = (req, res, next) => {
          })
     })
     .catch(err => {
+      next()
       console.log("error: ", err)
-      next(err)
     })
 }
 
 const updateUser = (req, res, next) => {
   const hash = authHelpers.createHash(req.body.password_digest);
-  console.log(req.body)
   db.none(`UPDATE users SET name=$[name], email=$[email],
      phone=$[phone], dob=$[dob], password_digest=$[password_digest],
      user_type=$[user_type] WHERE users.id=$[id]`,

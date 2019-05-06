@@ -73,8 +73,7 @@ INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Marilyn Quinn', 'Marilynquinn@gmail.com', '(620)495-1375', '1992-07-01', 'JFK123', 'tenant');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Ben Guevara', 'Benguevara@gmail.com', '(319)334-7531','1989-06-13', 'qwerty', 'tenant');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Cynthia Tyler', 'Cynthiatyler@gmail.com', '(262)748-9749','1988-08-18', 'cookie123', 'tenant');
-INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Son Goku', 'isdinnerready@gmail.com', '(999)999-9999','1208-04-12', 'ramen123', 'tenant');
-INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Prince Vegeta', 'IAmThePrinceOfAllSaiyans@gmail.com', '(666)666-6666','1202-12-01', 'StrongerThanKakorot', 'tenant');
+
 
 
 INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('4C', '939 Woodycrest Ave, Bronx, NY 10452', 11, 1);
@@ -87,6 +86,16 @@ INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('3D', '85 H
 INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('22B', '280 Park Avenue South, New York, NY 10010', 18, 8);
 INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('5D', '152 Ludlow Street, New York, NY 10002', 19, 9);
 INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('3', '10 East 8th Street, New York, NY 10003', 20, 10);
+-- INSERT INTO apartments(apt, address, landlord_id) VALUES ('4C', '939 Morris Ave, Bronx, NY 10452', 1);
+-- INSERT INTO apartments(apt, address, landlord_id) VALUES ('3', '5959 Bruckner Blvd, Bronx, NY 10463', 2);
+-- INSERT INTO apartments(apt, address, landlord_id) VALUES ('10', '250 Pelham Parkway, Bronx, NY 10458', 3);
+-- INSERT INTO apartments(apt, address, landlord_id) VALUES ('1A', '287 34th Ave, Queens, NY 11385', 4);
+-- INSERT INTO apartments(apt, address, landlord_id) VALUES ('5D', '16-74 Astoria Blvd, Queens, NY 11360', 5);
+-- INSERT INTO apartments(apt, address, landlord_id) VALUES ('2A', '1251 East 10th Street, Brooklyn, NY 11230', 6);
+-- INSERT INTO apartments(apt, address, landlord_id) VALUES ('3D', '85 Flushing Ave, Brooklyn, NY 11222', 7);
+-- INSERT INTO apartments(apt, address, landlord_id) VALUES ('22B', '280 Fulton Ave, New York, NY 10010', 8);
+-- INSERT INTO apartments(apt, address, landlord_id) VALUES ('5D', '152 14th Street, New York, NY 10002', 9);
+-- INSERT INTO apartments(apt, address, landlord_id) VALUES ('3', '10 East 8th Street, New York, NY 10003', 10);
 
 
 
