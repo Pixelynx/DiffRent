@@ -3,7 +3,7 @@ import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../src/navbar/Navbar";
 import LandlordDash from "./LandlordsDash/LandlordDash.js";
-import TenantDash from "./TenantDash/TenantDash.js";
+import TenantDash from "./TenantDash/TenantDash.jsx";
 import AuthForm from "./login/AuthForm";
 import Tickets from "./TenantDash/tickets.jsx";
 import Auth from "./utils/Auth";
