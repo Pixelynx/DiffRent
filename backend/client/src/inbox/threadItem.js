@@ -3,6 +3,8 @@ import axios from 'axios';
 import MessageList from './messageList';
 import {withRouter} from 'react-router-dom'
 import '../styles/inbox/inbox.css'
+import { Link } from 'react-router-dom';
+
 
 class ThreadItem extends React.Component {
   constructor(){
@@ -26,7 +28,8 @@ class ThreadItem extends React.Component {
     console.log(this.props)
   }
 
-  sendMessage = () => {
+  sendMessage = (e) => {
+    e.preventDefault()
     const owner_id = this.props.user.userid
     console.log('props:', this.props)
     const threads_id = this.props.match.params.id
@@ -52,7 +55,7 @@ class ThreadItem extends React.Component {
   
 
   render() {
-    console.log('$props', this.props)
+    console.log('$$props', this.props)
     return (
       <div className="threadMsgContainer">
         <div>
@@ -62,10 +65,13 @@ class ThreadItem extends React.Component {
           <MessageList messages={this.state.messages} sendMessage={this.sendMessage}/>
         </div>
         <div>
-          <form> 
+          <form onSubmit={this.sendMessage}> 
             <input className="msgInput"onChange={this.handleChange} value={this.state.body} type="text" placeholder="Type your message here" /> 
-            <button onClick={this.sendMessage}>Send</button>
+            <button type="submit" >Send</button>
           </form>
+        </div>
+        <div>
+          <Link to={`/inbox`}>Back</Link>
         </div>
       </div>
     )
