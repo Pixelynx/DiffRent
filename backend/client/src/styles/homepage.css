@@ -1,5 +1,6 @@
 body, html {
   height: 100%;
+  width: auto;
   margin: 0;
   background: rgba(100,55,185,0.77);
   background: -moz-linear-gradient(-45deg, rgba(100,55,185,0.77) 0%, rgba(100,55,185,1) 0%, rgba(100,55,185,1) 1%, rgba(119,88,173,1) 28%, rgba(80,113,195,1) 56%, rgba(84,159,196,1) 76%, rgba(114,177,202,1) 91%, rgba(114,177,202,1) 94%);
@@ -24,14 +25,14 @@ body, html {
 
 .home1, .home2, .home3 {
   position: relative;
-  opacity: 0.90;
+  /* opacity: 0.90; */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 /* .home1{
-    /* position: absolute;
+     position: absolute;
     overflow: hidden;]
     max-height: 100%;
 } */
@@ -90,7 +91,7 @@ width: 100%;
   left: 50%;
   top: 750px;
 }
-
+ 
 .arrow-bounce::after {
   content: "";
   width: 40px;
@@ -160,6 +161,7 @@ width: 100%;
     transform: translateY(-15px);
   }
 }
+////////
 /* @-webkit-keyframes bounce {
   0%, 100% {
     top: 50px;
