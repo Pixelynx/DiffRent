@@ -10,7 +10,7 @@ let styles = {
  };
 
 const NavBar = (props) => {
-  const { isLoggedIn, toggleNavbar, logoutButton, user } = props;
+  const { isLoggedIn, toggleNavbar, logoutButton, user, logoutFunc } = props;
 //   console.log("loggedIn:", isLoggedIn)
 //   return(
 //     <>
@@ -50,7 +50,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
     <>
     { isLoggedIn ?
 
-              toggleNavbar ?
+
               <nav>
                 <div className='nav'>
     <SideNav
@@ -101,9 +101,9 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
                     FAQ
                 </NavText>
             </NavItem>
-            <NavItem eventKey="/logout">
+            <NavItem onClick={() => logoutFunc()} eventKey="/logout">
                 <NavIcon>
-                    <li className="fas fa-sign-out-alt"><NavLink to={"/logout"}></NavLink></li>
+                    <li className="fas fa-sign-out-alt"><NavLink to={"/"}></NavLink></li>
                 </NavIcon>
                 <NavText>
                     {logoutButton}
@@ -112,7 +112,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
         </SideNav.Nav>
       </SideNav>
     </div>
-      </nav> : null
+      </nav> 
           :null
         }
       </>
