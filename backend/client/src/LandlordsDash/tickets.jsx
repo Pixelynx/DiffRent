@@ -7,7 +7,7 @@ import '../styles/landlordDashContent/setAppt.css';
 class Tickets extends Component {
   state = {
     hover: false,
-    completed_landlord_tiks: false,
+    completed_landlord_tiks: `${this.props.ticket.completed_landlord === '1' ? '1' : '0'}`,
     settingAppt: false,
     apptSubmitted: false,
     aptApptInfo: []
@@ -27,8 +27,8 @@ class Tickets extends Component {
     const { ticket, setCompletedLandlordState } = this.props
 
     let id = e.target.id;
-    let completeConfirm = `${this.state.completed_landlord_tiks ? '0' : '1'}`;
-    let in_progress = `${ticket.completed_tenant === '1' && ticket.completed_landlord === '1' ? '0' : '1'}`
+    let completeConfirm = `${this.state.completed_landlord_tiks === '1' ? '0' : '1'}`;
+    let in_progress = `${ticket.completed_tenant === '1' && this.state.completed_landlord_tiks === '1' ? '0' : '1'}`
 
       axios.put(`/tickets/${id}`, {
         ticketid: id,
@@ -40,7 +40,7 @@ class Tickets extends Component {
         appt_time: ticket.appt_time
       })
       .then(res => {
-        this.setState(prevState => ({ completed_landlord_tiks: !prevState.completed_landlord_tiks }))
+        this.setState({ completed_landlord_tiks: `${this.state.completed_landlord_tiks === '1' ? '0' : '1'}` })
       }).catch(err => console.log("put request: ", err))
   }
 
@@ -94,8 +94,7 @@ class Tickets extends Component {
     const { completed_landlord_tiks, apptSubmitted, settingAppt } = this.state
     const path = match.path;
 
-    console.log('SET APPT check', this.state)
-    console.log(ticket.completed_landlord, 'completed_landlord_tiks props')
+    console.log(this.state.completed_landlord_tiks, ticket.completed_tenant, 'IN PROGRESS')
 
 
     if(path === `/landlord/:id` &&  this.state.settingAppt === true){
@@ -122,11 +121,11 @@ class Tickets extends Component {
         let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date));
         let resolution;
 
-        if((ticket.completed_landlord === '1' || this.state.completed_landlord_tiks) && ticket.in_progress === '0') {
+        if(this.state.completed_landlord_tiks === '1' && ticket.completed_tenant === '1') {
           resolution = 'Resolved'
-        } else if((ticket.completed_landlord === '1' || this.state.completed_landlord_tiks) && ticket.in_progress === '1') {
+        } else if(this.state.completed_landlord_tiks === '1' && ticket.completed_tenant === '0') {
           resolution = 'Waiting for tenant to resolve'
-        } else if(ticket.completed_landlord === '0') {
+        } else if(this.state.completed_landlord_tiks === '0') {
           resolution = 'Mark Resolved'
         }
 

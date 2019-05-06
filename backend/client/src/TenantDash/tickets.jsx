@@ -5,15 +5,15 @@ import '../styles/tenantTickets/tickets.css';
 
 class Tickets extends Component {
   state = {
-    completed_tenant_tiks: false
+    completed_tenant_tiks: `${this.props.ticket.completed_tenant === '1' ? '1' : '0'}`
   }
 
   tenantHandleStatus = async(e) => {
     const { ticket, user, setCompletedTenantState } = this.props
 
     let id = e.target.id;
-    let completedTenant = `${this.state.completed_tenant_tiks ? '0' : '1'}`;
-    let inProgress = `${ticket.completed_tenant === '1' && ticket.completed_landlord === '1' ? '0' : '1'}`;
+    let completedTenant = `${this.state.completed_tenant_tiks === '1' ? '0' : '1'}`;
+    let in_progress = `${this.state.completed_tenant_tiks === '1' && ticket.completed_landlord === '1' ? '0' : '1'}`;
     let aptid = user.aptid;
 
       await axios.put(`/tickets/${id}`, {
@@ -21,12 +21,12 @@ class Tickets extends Component {
         apartment_id: aptid,
         completed_tenant: completedTenant,
         completed_landlord: ticket.completed_landlord,
-        in_progress: inProgress,
+        in_progress: in_progress,
         appt_date: ticket.appt_date,
         appt_time: ticket.appt_time
       })
       .then(res => {
-        this.setState(prevState => ({ completed_tenant_tiks: !prevState.completed_tenant_tiks }))
+        this.setState({ completed_tenant_tiks: `${this.state.completed_tenant_tiks === '1' ? '0' : '1'}` })
       }).catch(err => console.log("put request: ", err))
   }
 
@@ -44,15 +44,15 @@ class Tickets extends Component {
     const { ticket } = this.props
     let resolution;
 
-    if((ticket.completed_tenant === '1' || this.state.completed_tenant_tiks) && ticket.in_progress === '0') {
+    if(this.state.completed_tenant_tiks === '1' && ticket.completed_landlord === '1') {
       resolution = 'Resolved'
-    } else if((ticket.completed_tenant === '1' || this.state.completed_tenant_tiks) && ticket.in_progress === '1') {
+    } else if(this.state.completed_tenant_tiks === '1' && ticket.completed_landlord === '0') {
       resolution = 'Waiting for landlord to resolve'
-    } else if(ticket.completed_tenant === '0') {
+    } else if(this.state.completed_tenant_tiks === '0') {
       resolution = 'Mark Resolved'
     }
 
-    console.log(ticket.in_progress)
+    console.log(this.state.completed_tenant_tiks, ticket.completed_landlord, 'IN PROGRESS')
 
       let date = ticket.appt_date
       let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
