@@ -86,8 +86,8 @@ const getTenantByApt = (req, res, next) => {
       })
   })
   .catch(err => {
+    next()
     console.log('error:', err)
-    next(err)
   })
 }
 
