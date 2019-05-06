@@ -5,11 +5,10 @@
 
 .modal-container {
   display: flex;
-  position: absolute;
+  /* position: absolute; */
   justify-content: center;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   height: 80%;
   width: 85%;
   z-index: 0;
@@ -20,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  justify-items: center;
+  /* justify-items: center; */
   align-self: center;
   width: 80%;
   height: 70%;
@@ -30,7 +29,6 @@
 
 .landlord-tik-front, .landlord-tik-back {
   margin: 0;
-  /* justify-content: center; */
   font-family: 'Zillah';
   background-color: var(--light-purple);
   height: 350px;
@@ -44,7 +42,6 @@
   margin-left: 20px;
   margin-right: 20px;
   font-size: 2em;
-  justify-content: center;
   z-index: 1;
 }
 
