@@ -108,11 +108,13 @@ VALUES
 ('Question about rent', 12, 2) ;
 
 INSERT INTO messages(owner_id, threads_id, body, message_date)
-VALUES('11', '1', 'Please fix this','1995-12-17T03:24:00'),
+VALUES
+('11', '1', 'Please fix this','1995-12-17T03:24:00'),
 ('12', '2', 'Hi Reya','2019-05-01 08:13:20'),
 ('12', '2', 'Just checking in with you on the heat problem','2019-05-01 08:14:10'),
 ('2', '2', 'Hi Nikola','2019-05-01 09:26:40'),
-('2', '2', 'I apologize for the inconvenience but it will be fixed this afternoon','2019-05-01 09:28:40');
+('2', '2', 'I apologize for the inconvenience but it will be fixed this afternoon','2019-05-01 09:28:40'),
+('2', '3', 'Good afternoon Nikola, just letting you know the problem is resolved', '2019-05-01 09:28:40');
 
 
 
