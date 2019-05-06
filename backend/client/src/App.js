@@ -123,7 +123,6 @@ class App extends Component {
     let logoutButton = isLoggedIn ? (
       <button onClick={this.logoutUser.bind(this)}>Logout</button>
     ) : null;
-
     return (
       <div className="App">
         <>
