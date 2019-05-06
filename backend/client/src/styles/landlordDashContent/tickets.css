@@ -10,8 +10,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 100vh;
-  width: 100vw;
+  height: 80%;
+  width: 85%;
   z-index: 0;
   background-color: var(--landlord-tik-modal-container);
 }
@@ -22,55 +22,44 @@
   justify-content: space-around;
   justify-items: center;
   align-self: center;
-  width: 950px;
-  height: 500px;
+  width: 80%;
+  height: 70%;
   background-color: var(--dark-blue);
   perspective: 1000;
-}
-
-.landlord-tiks-window {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  /* justify-content: space-between; */
-  height: 500px;
-  width: 900px;
-  color: var(--medium-blue);
-  font-weight: bold;
-  background-color: var(--dark-purple);
+  overflow-x: scroll;
 }
 
 .landlord-tik-front, .landlord-tik-back {
   margin: 0;
-  justify-content: center;
+  /* justify-content: center; */
   font-family: 'Zillah';
   background-color: var(--light-purple);
-  height: 300px;
-  width: 190px !important;
+  height: 350px;
+  width: 200px ;
+  overflow-y: scroll;
 }
 
-/* .landlord-tik-front p, .landlord-tik-back p {
-    margin: .5em 1em .5em 1em;
-} */
-
 .landlord-tik-front {
+  display: flex;
+  flex-direction: column;
   margin-left: 20px;
   margin-right: 20px;
-  font-size: 25px;
+  font-size: 2em;
+  justify-content: center;
   z-index: 1;
 }
 
 .landlord-tik-back {
   margin-left: 24px;
   margin-right: 20px;
-  font-size: 22px;
+  font-size: 1.8em;
   display: flex;
   flex-direction: column;
   z-index: 0;
 }
 
-.landlord-tik-front, p {
-  margin: .5em 1em .5em 1em;
+.landlord-tik-front, p, .landlord-tik-back, p {
+  margin: .3em;
 }
 
 .set-appt-btn, .status-btn {
@@ -78,8 +67,8 @@
   font-size: 20px;
   margin-top: .5em;
   align-self: center;
-  height: 44px;
-  width: 105px;
+  height: 13%;
+  width: 90%;
   background-color: #8860D0;
   border: none;
   color: black;
