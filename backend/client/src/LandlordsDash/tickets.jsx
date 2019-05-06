@@ -154,7 +154,8 @@ class Tickets extends Component {
               <button
                 id={ticket.ticketid}
                 onClick={this.landlordHandleStatus}
-                className='landlord-status-btn'>{resolution}</button>
+                className='landlord-status-btn'
+                disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
               <button onClick={this.handleSettingAppt} className='set-appt-btn'>Set Appointment</button>
             </div>
 

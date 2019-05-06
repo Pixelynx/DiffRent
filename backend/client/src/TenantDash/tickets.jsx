@@ -79,7 +79,8 @@ class Tickets extends Component {
               <button
                 id={ticket.ticketid}
                 onClick={this.tenantHandleStatus}
-                className='status-btn'>{resolution}</button>
+                className='status-btn'
+                disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
             </div>
           </>
         )
