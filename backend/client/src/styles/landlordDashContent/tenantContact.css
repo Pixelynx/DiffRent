@@ -58,6 +58,11 @@
   100% { opacity: 1; }
 }
 
+@keyframes fadeout {
+  100% { opacity: 1; }
+  0% { opacity: 0.1; }
+}
+
 .close-modal-btn {
   position: absolute;
   top: 1em;
@@ -78,7 +83,7 @@
 }
 
 .hide-modal {
-  /* animation: fadeout .5s linear; */
+  animation: fadeout .5s linear;
 }
 
 .show-modal {
@@ -92,4 +97,5 @@
   width: 900px;
   height: 500px;
   animation: fadein .5s linear;
+  animetion: fadeout .5s linear;
 }

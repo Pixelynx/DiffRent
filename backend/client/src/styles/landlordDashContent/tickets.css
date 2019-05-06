@@ -5,7 +5,6 @@
 
 .modal-container {
   display: flex;
-  /* position: absolute; */
   justify-content: center;
   top: 50%;
   left: 50%;
@@ -29,7 +28,7 @@
 
 .landlord-tik-front, .landlord-tik-back {
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Didact Gothic', sans-serif;
   background-color: var(--light-purple);
   height: 350px;
   width: 200px ;
