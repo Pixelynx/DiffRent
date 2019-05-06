@@ -11,6 +11,7 @@ import Homepage from "./components/Homepage";
 import Threads from "./inbox/threads";
 import ThreadItem from "./inbox/threadItem";
 import Profile from "./profiles/Profile.js";
+import { View } from './inbox/view';
 
 import PrivateRoute from "./utils/AuthRouting";
 import "./styles/index.css";
@@ -120,6 +121,7 @@ class App extends Component {
   render() {
     const { isLoggedIn, user, navbar } = this.state;
     console.log("STATE", this.state.user);
+    console.log("$$loggedIn", isLoggedIn)
     let logoutButton = isLoggedIn ? (
       <button onClick={this.logoutUser.bind(this)}>Logout</button>
     ) : null;
@@ -213,6 +215,7 @@ class App extends Component {
             <PrivateRoute
               path="/landlord/:id"
               user={user}
+              tenant={this.state.tenant}
               getUserInformation={this.getUserInformation}
               component={ user.aptid ? LandlordDash : AddApartment }
             />
@@ -239,7 +242,7 @@ class App extends Component {
                 );
               }}
             />
-             <Route exact path='/inbox' render={() => this.state.user ? <Threads user={this.state.user} />: null}/>
+             <Route exact path='/inbox' render={()=><View user={this.state.user} />}/>
              <Route path="/inbox/threads/:id" render={(props) => <ThreadItem {...props} user={this.state.user} />} />
             <Route component={NoMatch} />
           </Switch>
