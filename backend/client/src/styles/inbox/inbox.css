@@ -29,6 +29,11 @@
   line-height: 1.3;
 }
 
+.msgList {
+  overflow: scroll;
+  /* height: 580px; */
+}
+
 .msgContainer {
   display: flex;
   flex-direction: column;
