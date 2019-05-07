@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import '../styles/dashboards/searchApartments.css';
+import ApartmentDetails from './apartmentDetails'
 
 class searchApartment extends Component {
     state = {
@@ -37,45 +38,12 @@ class searchApartment extends Component {
     }
 
     generateForm = () => {
-        const { user, getUserInformation } = this.props;
+        const { user } = this.props;
         if(!this.state.availableApts){return 'Loading...'}
         let apartmentList = this.state.availableApts.map((apt) => {
             return (
                 <>
-                    <div>
-                        <p>{apt.name}</p>
-                        <p>{apt.apt} {apt.address}</p>
-                        <p>{apt.email}</p>
-                        <p>{apt.phone}</p>
-                    </div>
-                    <form onSubmit={this.updateApt}>
-                        <input
-                        name='aptid'
-                        type='hidden'
-                        readOnly={true}
-                        value={apt.aptid} />
-                        <input
-                        name='apt'
-                        type='hidden'
-                        readOnly={true}
-                        value={apt.apt} />
-                        <input
-                        name='address'
-                        type='hidden'
-                        readOnly={true}
-                        value={apt.address} />
-                        <input
-                        name='landlord_id'
-                        type='hidden'
-                        readOnly={true}
-                        value={apt.landlord_id} />
-                        <input
-                        name='tenant_id'
-                        type='hidden'
-                        readOnly={true}
-                        value={user.userid} />
-                        <input type='submit' />
-                    </form>
+                    <ApartmentDetails user={user} apt={apt} updateApt={this.updateApt} /> 
                 </>
             )
         })
