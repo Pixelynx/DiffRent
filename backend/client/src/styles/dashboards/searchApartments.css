@@ -1,17 +1,40 @@
 .searchApt-container{
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    flex-direction: column;
-  }
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  flex-direction: column;
+}
   
-  .apartment-list {
-      margin: 0px 300px;
-      overflow: scroll;
-      background-color: #7149B0;
-      margin-bottom: 50px;
-      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    }
+.apartment-list {
+  margin: 0px 300px;
+  overflow: scroll;
+  background-color: #7149B0;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.modalFieldOut{
+
+}
+
+modalInnerField{
+  
+}
+
+.modalButton{
+
+}
+
+.modalAptInfo{
+
+}
+
+.selectAptForm{
+
+}
