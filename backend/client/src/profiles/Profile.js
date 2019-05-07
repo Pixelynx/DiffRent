@@ -34,7 +34,6 @@ class Profile extends Component {
   getLandlordInfo = () => {
     axios.get(`/users/${this.props.user.email}`)
       .then(response => {
-        debugger;
         console.log("response", response)
         this.setState({ defaultVals : {
           id: response.data.data.userId,
@@ -98,7 +97,6 @@ handleSubmit = event => {
   }
 
   axios.put(`/users/${this.props.user.userid}`, putRequestInfo)
-  .then(console.log("the puts", putRequestInfo))
     .then(() => console.log('This updated'))
   .catch(err => console.log('GET LANDLORD FAILED', err))
 }

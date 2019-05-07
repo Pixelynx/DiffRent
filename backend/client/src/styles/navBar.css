@@ -336,8 +336,9 @@
   margin-left: 1%;
   margin-top: 1%;
 }
-.navbar {
-  background: #123C69;
+.nav {
+  height: 375px;
+  color: #123C69;
 }
 /* .fa-home {
   position: relative;
@@ -346,4 +347,5 @@
  a .logo_official{
   position: absolute;
   top: 50px;
+  left: 4%;
 }
