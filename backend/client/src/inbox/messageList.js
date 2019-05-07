@@ -13,7 +13,7 @@ const MessageList = (props) => {
   
   return(
     <>
-      <div>{messagesMap}</div>
+      {messagesMap}
     </>
   )
 }
