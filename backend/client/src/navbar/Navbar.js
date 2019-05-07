@@ -50,10 +50,10 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
     <>
     { isLoggedIn ?
 
-
+        <div clasName='navbar'>
               <nav>
                 <div className='nav'>
-    <SideNav
+    <SideNav className='sidenav'
         onSelect={(selected) => {
           console.log('I WAS SELECTED?', selected)
           props.history.push(selected);
@@ -63,7 +63,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
         <SideNav.Nav defaultSelected="home">
             <NavItem eventKey="/">
                 <NavIcon>
-                    <li><NavLink to="/"><img className='logo_official' src={logo} style={styles} /> </NavLink></li>
+                    <NavLink to="/"><li class="fas fa-home"><img className='logo_official' src={logo} style={styles} /></li> </NavLink>
                 </NavIcon>
                 <NavText>
                     Home
@@ -112,7 +112,8 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
         </SideNav.Nav>
       </SideNav>
     </div>
-      </nav> 
+      </nav>
+    </div>
           :null
         }
       </>

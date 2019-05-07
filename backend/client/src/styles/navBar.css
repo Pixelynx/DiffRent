@@ -1,14 +1,4 @@
-/* .nav {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  height: 100vh;
-}
 
-li {
-  font-size: 25px;
-  padding: 5%;
-} */
 
 .sidenav---sidenav---_2tBP {
   position: absolute;
@@ -345,4 +335,15 @@ li {
   position: absolute;
   margin-left: 1%;
   margin-top: 1%;
+}
+.navbar {
+  background: #123C69;
+}
+/* .fa-home {
+  position: relative;
+  top: -150px;
+} */
+ a .logo_official{
+  position: absolute;
+  top: 50px;
 }
