@@ -61,7 +61,7 @@ class ThreadItem extends React.Component {
         <div>
           {this.state.title}
         </div>
-        <div>
+        <div className="msgList">
           <MessageList messages={this.state.messages} sendMessage={this.sendMessage}/>
         </div>
         <div>

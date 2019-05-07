@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { MuiPickersUtilsProvider, DatePicker, TimePicker } from 'material-ui-pickers';
 import DateFnsUtils from "@date-io/date-fns";
-import { subDays } from "date-fns/esm";
+import { subDays, addDays } from "date-fns/esm";
 import MaskedInput from 'react-text-mask';
 
 
@@ -39,9 +39,11 @@ const SetApptCal = (props) => {
                           <DatePicker
                             className='date-picker'
                             mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
-                            minDateMessage='Date must be at least next day.'
+                            keyboard
+                            allowKeyboardControl
+                            minDateMessage='Invalid date.'
                             value={selectedDate}
-                            minDate={subDays(new Date(), 2)}
+                            minDate={addDays(new Date(), 0)}
                             openTo="year"
                             format="MM/dd/yyyy"
                             views={["year", "month", "day"]}
@@ -73,8 +75,7 @@ const SetApptCal = (props) => {
 export default withRouter(SetApptCal);
 
 
-// keyboard
-// allowKeyboardControl
+
 // minDateMessage='Date must be at least next day.'
 // value={selectedDate}
 // minDate={subDays(new Date(), 2)}
