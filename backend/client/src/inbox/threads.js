@@ -50,20 +50,24 @@ class Threads extends React.Component {
     return(
       <React.Fragment>
         <div className="inboxContainer">
-          <div>
-          <h1>Say Hello :)</h1>
-          <p>Create a thread and send a message to each other!</p>
-            <form onSubmit={this.handleSubmit}>
-              <div className="threadInputContainer">
-                <input className="threadInput" type="text" onChange={this.handleChange} value={this.state.title_input} placeholder="Subject"/>
-                <input type="submit" value="send" />
-              </div>
-            </form>
-          </div>
-          <ThreadList 
-            threads={this.state.threads} 
-            user={this.props.user}
-          />
+          <section className="threadContainer">
+            <div className="thread-header-text">
+            <h1 className="threadHeader">Say Hello :)</h1>
+            <p className="threadSubtext">Create a thread and send a message to each other!</p>
+              <form onSubmit={this.handleSubmit}>
+                <div className="threadInputContainer">
+                  <input className="threadInput" type="text" onChange={this.handleChange} value={this.state.title_input} placeholder="Subject"/>
+                  <input type="submit" value="create" />
+                </div>
+              </form>
+            </div>
+            <div className="threadListContainer">
+            <ThreadList  
+              threads={this.state.threads} 
+              user={this.props.user}
+            />
+            </div>
+          </section>
         </div>
       </React.Fragment>
     )
