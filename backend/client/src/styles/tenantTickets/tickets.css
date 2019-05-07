@@ -71,7 +71,7 @@
   width: 900px;
   height: 500px;
   background-color: #e6e9f4;
-  border: 3px solid var(--medium-blue);
+  border: 3px solid var(--light-purple);
   overflow-x: scroll;
 
 }
@@ -85,6 +85,7 @@
   width: 200px;
   background-color: var(--light-purple);
   border-radius: .2em;
+  color: white;
   overflow-y: scroll;
 }
 
