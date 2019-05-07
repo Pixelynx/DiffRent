@@ -337,7 +337,11 @@
   margin-top: 1%;
 }
 .nav {
-  height: 375px;
+
+  position: relative;
+  left: -20px;
+  margin-top: -15px;
+  height: 820px ;
   color: #123C69;
 }
 /* .fa-home {
