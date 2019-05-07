@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ApartmentForm } from './apartmentForm';
+import '../styles/dashboards/addApartments.css'
 
 class ApartmentDetails extends Component {
     state = {
@@ -19,7 +20,7 @@ class ApartmentDetails extends Component {
         return(
             <>
             {modal ? null : 
-            <div className='aptInfo' onClick={this.handleModal}>
+            <div className='modalClosed' onClick={this.handleModal}>
                 <p>{apt.name}</p>
                 <p>{apt.apt} {apt.address}</p>
             </div>}

@@ -59,9 +59,9 @@ class searchApartment extends Component {
 
     render() {
         return (
-            <>
+            <div className='apartmentContainer'>
             {this.generateForm()}
-            </>
+            </div>
         )
     }
 }

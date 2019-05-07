@@ -7,9 +7,37 @@
 }
 
 .tenant-contacts {
-    margin: 0px 300px;
-    overflow: scroll;
-    background-color: #7149B0;
-    margin-bottom: 50px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  }
+  margin: 0px 300px;
+  overflow: scroll;
+  background-color: #7149B0;
+  margin-bottom: 50px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.apartment-list{
+
+}
+
+.modalClosed{
+  border: 1px solid var(--light-blue);
+  font-family: sans-serif;
+  letter-spacing: 0.1em;
+  margin-bottom: 2%;
+  width: 80%;
+}
+
+.modalClosed:hover{
+  background-color: var(--light-purple);
+  color: var(--medium-blue);
+  animation: glowing 2000ms infinite;
+}
+
+@keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeout {
+  100% { opacity: 1; }
+  0% { opacity: 0.1; }
+}
