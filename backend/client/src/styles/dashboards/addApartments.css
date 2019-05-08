@@ -23,7 +23,9 @@
   font-family: sans-serif;
   letter-spacing: 0.1em;
   margin-bottom: 2%;
-  width: 80%;
+  width: 50%;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .modalClosed:hover{
