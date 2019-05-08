@@ -53,9 +53,9 @@
 }
 
 .threadList {
-  font-size: 28px;
+  font-size: 24px;
   font-family: 'Didact Gothic', sans-serif;
-  padding-top: 5px;
+  /* padding-top: 5px; */
   padding-bottom: 5px;
 }
 
@@ -66,7 +66,8 @@
 
 .threadList p {
   width: 100%;
-  border-bottom: 2px dotted yellow;
+  /* border-bottom: 2px dotted yellow; */
+  margin: 0;
 }
 
 /* .threadList p:hover {
@@ -128,4 +129,8 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.threadList hr {
+  margin: 0;
 }
