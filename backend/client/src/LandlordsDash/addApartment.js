@@ -31,7 +31,7 @@ class AddApartment extends Component{
         const { name, address } = this.state;
         return (
             <div className='addApt-container'>
-            <div className='tenant-contacts'>
+            <div className='addApartmentForm'>
                 <form onSubmit={this.handleSubmit}>
                     <label>Apartment Name</label>
                     <input
@@ -40,6 +40,7 @@ class AddApartment extends Component{
                     type='text'
                     name='name'
                     value={name}
+                    placeholder='2A'
                     onChange={this.handleInputs} />
                     <label>Address</label>
                     <input
@@ -47,6 +48,7 @@ class AddApartment extends Component{
                     required
                     name='address'
                     value={address}
+                    placeholder='47-10 Austell Pl. Long Island City, NY'
                     onChange={this.handleInputs} />
                     <input
                     type='submit' />

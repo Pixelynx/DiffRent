@@ -74,7 +74,6 @@ class TenantDash extends Component {
   getLandlordInfo = (apartmentid) => {
     axios.get(`/apartments/landlord/${apartmentid}`)
     .then(res => {
-        console.log('yoooo', res.data)
         this.setState({
           landlordInfo: {
             name: res.data.apartment.name,
@@ -129,8 +128,6 @@ class TenantDash extends Component {
   render() {
      const { landlordInfo, tickets, ticketModalOpen, defaultValue } = this.state;
      const { user } = this.props;
-
-     console.log(this.state.creatingTicket, 'CREATING TICKET', this.state.ticketModalOpen, 'TICKET MODAL')
 
      if(this.state.ticketModalOpen) {
        return(

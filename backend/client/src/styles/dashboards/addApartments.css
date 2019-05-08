@@ -6,16 +6,70 @@
   width: 100%;
 }
 
-.tenant-contacts {
-  margin: 0px 300px;
-  overflow: scroll;
+.addApartmentForm {
+  width: 45%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
   background-color: #7149B0;
-  margin-bottom: 50px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-.apartment-list{
+.addApartmentForm form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 65%;
+  margin-left: 45px;
+}
 
+.addApartmentForm label{
+  font-family: sans-serif;
+  letter-spacing: 0.1em;
+  margin-bottom: 2%;
+  color: #ddd;
+  margin-top: 13px;
+}
+
+.addApartmentForm input{
+  background-color: transparent;
+  color: rgb(7, 185, 255);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: 1px solid black;
+  font-size: 100%;
+  padding-left: 10px;
+  width: 75%;
+}
+
+.addApartmentForm input::placeholder{
+  color: rgb(144, 223, 255);
+}
+
+.addApartmentForm input:focus{
+  outline: 0;
+}
+
+.addApartmentForm input[type=submit]{
+  grid-area: submit;
+  height: 30px;
+  width: 85px;
+  background-color: #84CEEB;
+  border: none;
+  color:black;
+  border-radius: 10px;
+  margin: 15px 0px 0px 90px;
+}
+
+.addApartmentForm input[type=submit]:hover{
+  grid-area: submit;
+  height: 30px;
+  width: 85px;
+  background-color: var(--medium-blue);
+  color: white;
+  border: none;
+  animation: glowing-alt 2000ms infinite;
 }
 
 .modalClosed{
