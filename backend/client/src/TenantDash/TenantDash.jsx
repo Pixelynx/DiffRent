@@ -66,13 +66,13 @@ class TenantDash extends Component {
           id: res.data.data.landlord_id
         }
       })
-      this.getLandlordInfo(res.data.data.landlord_id)
+      this.getLandlordInfo(res.data.data.apartmentid)
       this.getAllTickets(res.data.data.apartmentid)
     })
   }
 
-  getLandlordInfo = (landlordId) => {
-    axios.get(`/apartments/landlord/${landlordId}`)
+  getLandlordInfo = (apartmentid) => {
+    axios.get(`/apartments/landlord/${apartmentid}`)
     .then(res => {
         console.log('yoooo', res.data)
         this.setState({
