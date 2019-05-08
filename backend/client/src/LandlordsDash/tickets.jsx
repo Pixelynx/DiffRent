@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import axios from 'axios';
 import SetApptCal from './setApptCal.js';
 
@@ -12,8 +13,6 @@ class Tickets extends Component {
     apptSubmitted: false,
     aptApptInfo: []
   }
-
-
 
   mouseEnter = () => {
     this.setState(prevState => ({ hovered: !prevState.hovered }))
@@ -90,12 +89,9 @@ class Tickets extends Component {
   }
 
   render() {
-    const { ticket, match, defaultValue } = this.props
+    const { ticket, match, defaultValue, ticketModalOpen } = this.props
     const { completed_landlord_tiks, apptSubmitted, settingAppt } = this.state
     const path = match.path;
-
-    console.log(this.state.completed_landlord_tiks, ticket.completed_tenant, 'IN PROGRESS')
-
 
     if(path === `/landlord/:id` &&  this.state.settingAppt === true){
       return (
@@ -144,29 +140,27 @@ class Tickets extends Component {
           } else {
             return(
               <>
-            <div
-              onMouseLeave={this.mouseLeave}
-              className='landlord-tik-back'
-              >
-              <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
-              <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
-              <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
-              <button
-                id={ticket.ticketid}
-                onClick={this.landlordHandleStatus}
-                className='landlord-status-btn'
-                disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
-              <button onClick={this.handleSettingAppt} className='set-appt-btn'>Set Appointment</button>
-            </div>
+                  <div
+                    onMouseLeave={this.mouseLeave}
+                    className='landlord-tik-back'
+                    >
+                    <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
+                    <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
+                    <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
+                    <button
+                      id={ticket.ticketid}
+                      onClick={this.landlordHandleStatus}
+                      className='landlord-status-btn'
+                      disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
+                    <button
+                    onClick={this.handleSettingAppt}
+                    className='set-appt-btn'
+                    disabled={resolution === 'Resolved' ? true : false}>Set Appointment</button>
+                  </div>
+              </>
+            )
+          }
 
-          </>
-      )
-      }
-      return(
-        <>
-
-        </>
-      )
   }
 }
 

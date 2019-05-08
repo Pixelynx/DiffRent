@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransitionGroup, CSSTransition, TransitionGroup } from 'react-transition-group';
 import axios from 'axios';
 import '../styles/dashboards/dashboards.css';
 import '../styles/landlordDashContent/tenantContact.css';
@@ -167,16 +168,16 @@ class LandlordDash extends Component {
         return (
           <>
           <div className='tickets-container'>
-          <Tickets
-          match={this.props.match}
-          defaultValue={defaultValue}
-          handleModalOpen={this.handleModalOpen}
-          ticketModalOpen={ticketModalOpen}
-          user={user}
-          ticket={ticket}
-          settingAppt={this.props.settingAppt}
-          completed_landlord={this.state.completed_landlord}
-          />
+              <Tickets
+                match={this.props.match}
+                defaultValue={defaultValue}
+                handleModalOpen={this.handleModalOpen}
+                ticketModalOpen={ticketModalOpen}
+                user={user}
+                ticket={ticket}
+                settingAppt={this.props.settingAppt}
+                completed_landlord={this.state.completed_landlord}
+                />
         </div>
         </>
       )
@@ -204,9 +205,13 @@ class LandlordDash extends Component {
          <>
            <div
              onClick={this.handleModalOpen}
-             className={'modal-container'}>
+             className='modal-container'>
              <div className='landlord-tiks-window-container '>
+
+
                {this.displayUnresolvedTickets()}
+
+
              </div>
            </div>
          </>
@@ -234,7 +239,7 @@ class LandlordDash extends Component {
                                   <h2>Apartments</h2>
                                   {this.showLandlordApts()}
                                 </div>
-                                <ApartmentInfo 
+                                <ApartmentInfo
                                 tenant={tenant}
                                 tenantModalShowing={this.state.tenantInfoIsShowing}
                                 closeModal={this.handleTenantInfoShowing}
@@ -249,4 +254,19 @@ class LandlordDash extends Component {
   }
 }
 
-export default LandlordDash
+export default LandlordDash;
+
+
+// <CSSTransitionGroup
+//
+//   transitionName="example"
+//
+//   transitionAppear={true}
+//
+//   transitionAppearTimeout={500}
+//
+//   transitionEnter={false}
+//
+//   transitionLeave={false}>
+//
+// </CSSTransitionGroup>
