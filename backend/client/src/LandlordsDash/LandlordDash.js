@@ -27,7 +27,7 @@ class LandlordDash extends Component {
       selectedApt: null,
       tickets: [],
       defaultValue: [],
-      ticketModalOpen:false,
+      ticketModalOpen: false,
     }
   }
 
@@ -168,6 +168,16 @@ class LandlordDash extends Component {
         return (
           <>
           <div className='tickets-container'>
+
+            <CSSTransition
+              key={ticket.ticketid}
+              in={this.state.ticketModalOpen}
+              timeout={500}
+              classNames='fade'
+              appear={false}
+              enter={true}
+              exit={true}>
+
               <Tickets
                 match={this.props.match}
                 defaultValue={defaultValue}
@@ -178,6 +188,8 @@ class LandlordDash extends Component {
                 settingAppt={this.props.settingAppt}
                 completed_landlord={this.state.completed_landlord}
                 />
+
+            </CSSTransition>
         </div>
         </>
       )
@@ -208,8 +220,9 @@ class LandlordDash extends Component {
              className='modal-container'>
              <div className='landlord-tiks-window-container '>
 
-
-               {this.displayUnresolvedTickets()}
+              <TransitionGroup className='ticket-transition-group'>
+                {this.displayUnresolvedTickets()}
+              </TransitionGroup>
 
 
              </div>
@@ -230,7 +243,7 @@ class LandlordDash extends Component {
                                   tenantInfo={tenantInfo}
                                   tenantModalShowing={this.state.tenantInfoIsShowing}
                                   closeModal={this.handleTenantInfoShowing}
-                              />
+                                  />
                             </div>
 
      let apartmentInformation = <div className='dash-container' style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : {visibility: 'visible'}}>
@@ -240,9 +253,9 @@ class LandlordDash extends Component {
                                   {this.showLandlordApts()}
                                 </div>
                                 <ApartmentInfo
-                                tenant={tenant}
-                                tenantModalShowing={this.state.tenantInfoIsShowing}
-                                closeModal={this.handleTenantInfoShowing}
+                                  tenant={tenant}
+                                  tenantModalShowing={this.state.tenantInfoIsShowing}
+                                  closeModal={this.handleTenantInfoShowing}
                                 />
                             </div>
 
