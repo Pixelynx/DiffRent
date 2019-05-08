@@ -46,7 +46,7 @@
 }
 
 .threadListContainer {
-  border: solid white;
+  /* border: solid white; */
   border-radius: 4px;
   /* padding-left: 20px; */
   background-color: #7149B0;
@@ -59,11 +59,15 @@
   padding-bottom: 5px;
 }
 
-.threadList a {
+/* div.threadList:nth-child(odd) {
   text-decoration: none;
   color: white;
-}
+} */
 
+.threadListContainer div div.threadList:nth-child(even) {
+  text-decoration: none;
+  color: black;
+}
 .threadList p {
   width: 100%;
   border-bottom: 2px dotted yellow;
