@@ -6,11 +6,18 @@ import ApartmentDetails from './apartmentDetails'
 
 class searchApartment extends Component {
     state = {
-        availableApts: []
+        availableApts: [],
+        modal: false
     }
 
     componentDidMount(){
         this.getApartments();
+    }
+
+    handleModal = () => {
+        this.setState({
+            modal: !this.state.modal
+        })
     }
 
     getApartments = () => {
@@ -43,7 +50,12 @@ class searchApartment extends Component {
         let apartmentList = this.state.availableApts.map((apt) => {
             return (
                 <>
-                    <ApartmentDetails user={user} apt={apt} updateApt={this.updateApt} /> 
+                    <ApartmentDetails 
+                    user={user} 
+                    apt={apt}
+                    modal={this.state.modal}
+                    handleModal={this.handleModal} 
+                    updateApt={this.updateApt} /> 
                 </>
             )
         })

@@ -43,7 +43,7 @@ export const ApartmentForm = (props) => {
                                 type='hidden'
                                 readOnly={true}
                                 value={user.userid} />
-                                <input type='submit' />
+                                <input type='submit' value='Select Apartment' />
                             </form>
                         </div>
                     </div>

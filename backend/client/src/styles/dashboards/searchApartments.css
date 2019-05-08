@@ -30,23 +30,23 @@
   justify-content: center;
   align-items: center;
   z-index: 1;
-  opacity: 0.3;
+  opacity: 0.2;
   background-color: black;
 }
 
 .modalContainer{
   position: absolute;
   z-index: 2;
-  top: 12%;
-  height: 60%;
-  width: 50%;
+  top: 20%;
+  height: 55%;
+  width: 60%;
 }
 
 .modalInnerField{
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: var(--form-modal-container);
+  background-color: var(--dark-blue);
   display: grid;
   grid-template-columns: 5% 90% 5%;
   grid-template-rows: 10% 90%;
@@ -58,10 +58,13 @@
 .modalButton{
   grid-area: esc;
   font-size: 35px;
+  border: 1px solid var(--light-blue);
+  font-family: sans-serif;
 }
 
 .modalButton:hover{
   cursor: pointer;
+  animation: glowing 2000ms infinite;
 }
 
 .modalAptInfo{
@@ -70,4 +73,49 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  font-size: 18px;
+  font-family: 'Didact Gothic', sans-serif;
+  font-weight: 400;
+  line-height: 1.8em;
+  color: #ddd;
+  animation: fadein .5s linear;
+  animation: fadeout .5s linear;
+}
+
+@keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeout {
+  100% { opacity: 1; }
+  0% { opacity: 0.1; }
+}
+
+@keyframes glowing {
+  0% { box-shadow: 0 0 -10px #8860D0; }
+  40% { box-shadow: 0 0 20px #8860D0; }
+  60% { box-shadow: 0 0 20px #8860D0; }
+  100% { box-shadow: 0 0 -10px #8860D0; }
+}
+
+.selectAptForm input[type=submit]{
+  grid-area: submit;
+  height: 27px;
+  width: auto;
+  background-color: #8860D0;
+  border: none;
+  color:black;
+  font-size: 100%;
+  border-radius: 10px;
+  padding: 3px 15px;
+}
+
+.selectAptForm input[type=submit]:hover{
+  grid-area: submit;
+  background-color: #84CEEB;
+  color: #8860D0;
+  border: none;
+  animation: glowing 2000ms infinite;
+  cursor: pointer;
 }

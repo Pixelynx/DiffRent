@@ -33,13 +33,3 @@
   color: var(--medium-blue);
   animation: glowing 2000ms infinite;
 }
-
-@keyframes fadein {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes fadeout {
-  100% { opacity: 1; }
-  0% { opacity: 0.1; }
-}
