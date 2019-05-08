@@ -57,9 +57,13 @@
 
 .modalButton{
   grid-area: esc;
-  font-size: 35px;
+  font-size: 100%;
   border: 1px solid var(--light-blue);
   font-family: sans-serif;
+  background-color: var(--dark-purple);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modalButton:hover{
