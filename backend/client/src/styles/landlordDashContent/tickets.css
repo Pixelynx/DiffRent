@@ -89,11 +89,11 @@
   background-color: gray;
 }
 
-.fade-appear {
+.fade-enter {
   opacity: 0;
 }
 
-.fade-appear-active {
+.fade-enter-active {
   opacity: 1;
   transition: opacity 300ms linear;
 }
