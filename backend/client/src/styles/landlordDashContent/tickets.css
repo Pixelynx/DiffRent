@@ -85,6 +85,24 @@
   animation: glowing 2000ms infinite;
 }
 
-.landlord-status-btn:disabled {
+.landlord-status-btn:disabled, .set-appt-btn:disabled {
   background-color: gray;
+}
+
+.fade-appear {
+  opacity: 0;
+}
+
+.fade-appear-active {
+  opacity: 1;
+  transition: opacity 300ms linear;
+}
+
+.face-exit {
+  opacity: 1;
+}
+
+.fade-leave-active {
+  opacity: 0;
+  transition: opacity 300ms linear;
 }

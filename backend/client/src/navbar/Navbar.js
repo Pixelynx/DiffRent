@@ -21,13 +21,13 @@ const NavBar = (props) => {
 //             <div className='nav'>
 //               <ul>
 //                 <li><NavLink to={"/"}><img className='logo_official' src={logo} style={styles} /> </NavLink></li>
-//                 <li class="far fa-comments"><NavLink to={"/inbox"}>  Inbox </NavLink></li>
+//                 <li className="far fa-comments"><NavLink to={"/inbox"}>  Inbox </NavLink></li>
 //                 <br/>
-//                 <li class="far fa-user"><NavLink to={`/landlord/profile/${user.userid}`}> Profile </NavLink></li>
+//                 <li className="far fa-user"><NavLink to={`/landlord/profile/${user.userid}`}> Profile </NavLink></li>
 //                 <br/>
-//                 <li class="fas fa-info-circle"><NavLink to={"/about"}>About </NavLink></li>
+//                 <li className="fas fa-info-circle"><NavLink to={"/about"}>About </NavLink></li>
 //                 <br/>
-//                 <li class="far fa-question-circle"><NavLink to={"/faq"}>FAQ </NavLink></li>
+//                 <li className="far fa-question-circle"><NavLink to={"/faq"}>FAQ </NavLink></li>
 //                 <br/>
 //                 {logoutButton}
 //               </ul>
@@ -50,7 +50,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
     <>
     { isLoggedIn ?
 
-        <div clasName='navbar'>
+        <div className='navbar'>
               <nav>
                 <div className='nav'>
     <SideNav className='sidenav'
@@ -63,7 +63,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
         <SideNav.Nav defaultSelected="home">
             <NavItem eventKey="/">
                 <NavIcon>
-                    <NavLink to="/"><li class="fas fa-home"><img className='logo_official' src={logo} style={styles} /></li> </NavLink>
+                    <NavLink to="/"><li className="fas fa-home"><img className='logo_official' src={logo} style={styles} /></li> </NavLink>
                 </NavIcon>
                 <NavText>
                     Home
@@ -71,7 +71,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
             </NavItem>
             <NavItem eventKey="/inbox">
                 <NavIcon>
-                    <li class="far fa-comments"><NavLink to="/inbox"> </NavLink></li>
+                    <li className="far fa-comments"><NavLink to="/inbox"> </NavLink></li>
                 </NavIcon>
                 <NavText>
                     Inbox
@@ -79,7 +79,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
             </NavItem>
             <NavItem eventKey={profileURL}>
                 <NavIcon>
-                    <li class="far fa-user"><NavLink to={`/${user.user_type}/profile/${user.userid}`}></NavLink></li>
+                    <li className="far fa-user"><NavLink to={`/${user.user_type}/profile/${user.userid}`}></NavLink></li>
                 </NavIcon>
                 <NavText>
                     Profile
@@ -87,7 +87,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
             </NavItem>
             <NavItem eventKey="/about">
                 <NavIcon>
-                  <li class="fas fa-info-circle"><NavLink to={"/about"}></NavLink></li>
+                  <li className="fas fa-info-circle"><NavLink to={"/about"}></NavLink></li>
                 </NavIcon>
                 <NavText>
                     About
@@ -95,7 +95,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
             </NavItem>
             <NavItem eventKey="/faq">
                 <NavIcon>
-                    <li class="far fa-question-circle"><NavLink to={"/faq"}></NavLink></li>
+                    <li className="far fa-question-circle"><NavLink to={"/faq"}></NavLink></li>
                 </NavIcon>
                 <NavText>
                     FAQ
@@ -118,10 +118,6 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
         }
       </>
   );
-
-
-
-
 
 }
 
