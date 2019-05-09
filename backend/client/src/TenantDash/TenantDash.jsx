@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import TenantLandlordContactDashInfo from './TenantLandlordContactDashInfo.js';
+import LandlordContactInfo from './landlordContactInfo.jsx';
 import Tickets from './tickets.jsx';
 import CreateTicketForm from './createTicketForm.jsx';
-import '../styles/dashboards/dashboards.css';
+import '../styles/tenantDash/dashboard.css';
 import '../styles/tenantTickets/tickets.css';
 
 class TenantDash extends Component {
@@ -132,14 +132,16 @@ class TenantDash extends Component {
   return(
     <>
       <div className='tenant-dash-container'>
-        <h1>Welcome, {this.state.name}</h1>
-          <TenantLandlordContactDashInfo landlordInfo={landlordInfo}/>
-            <div className="ticket-dash-info">
-              <h2>Tickets Information</h2>
+        <div className='tenant-info-container'>
+          <h1>Welcome, {this.state.name}</h1>
+            <LandlordContactInfo landlordInfo={landlordInfo}/>
+        </div>
+              <div className="ticket-dash-info">
+                <h2>Tickets Information</h2>
 
             </div>
         </div>
-        
+
         <CreateTicketForm
           createTicket={this.state.creatingTicket}
           user={this.props.user}
