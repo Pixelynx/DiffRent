@@ -129,37 +129,48 @@ class TenantDash extends Component {
      const { landlordInfo, tickets, ticketModalOpen, defaultValue } = this.state;
      const { user } = this.props;
 
-     if(this.state.ticketModalOpen) {
-       return(
-         <>
-           <div onClick={this.handleModalOpen} className='modal-container'>
-             <div className='ticket-window-container'>
-               {this.displayUnresolvedTickets()}
-             </div>
-           </div>
-           <button onClick={this.handleCreateTicketBtn} className='create-ticket-btn'>Create New Ticket</button>
-         </>
-       )
-     }
-    return(
-      <>
+  return(
+    <>
       <div className='tenant-dash-container'>
         <h1>Welcome, {this.state.name}</h1>
-        <TenantLandlordContactDashInfo landlordInfo={landlordInfo}/>
-          <div className="ticket-dash-info">
-            <h2>Tickets Information</h2>
-              <button
-                className='tickets-btn'
-                onClick={this.handleModalOpen}>You have {defaultValue.length} open ticket(s)</button>
-          </div>
-          <CreateTicketForm
-            createTicket={this.state.creatingTicket}
-            user={this.props.user}
-            />
+          <TenantLandlordContactDashInfo landlordInfo={landlordInfo}/>
+            <div className="ticket-dash-info">
+              <h2>Tickets Information</h2>
+
+            </div>
         </div>
+        
+        <CreateTicketForm
+          createTicket={this.state.creatingTicket}
+          user={this.props.user}
+          />
       </>
-    )
+     )
+
   }
 }
 
 export default TenantDash;
+
+
+// if(this.state.ticketModalOpen) {
+//   return(
+//     <>
+//       <div onClick={this.handleModalOpen} className='modal-container'>
+//         <div className='ticket-window-container'>
+//           <div className='ticket-window'>
+//             {this.displayUnresolvedTickets()}
+//           </div>
+//           <button onClick={this.handleCreateTicketBtn} className='create-ticket-btn'>Create New Ticket</button>
+//         </div>
+//       </div>
+//     </>
+//   )
+// }
+
+
+// <button
+//   className='tickets-btn'
+//   onClick={this.handleModalOpen}>
+//   You have {defaultValue.length} open ticket(s)
+// </button>

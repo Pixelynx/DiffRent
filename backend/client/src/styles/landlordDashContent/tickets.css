@@ -32,18 +32,18 @@
   font-family: 'Didact Gothic', sans-serif;
   background-color: var(--light-purple);
   height: 350px;
-  width: 200px ;
+  width: 200px;
+  margin-left: 20px;
+  margin-right: 20px;
   justify-content: center;
   border-radius: .2em;
   overflow-y: scroll;
-  color:white;
+  color: white;
 }
 
 .landlord-tik-front {
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
-  margin-right: 20px;
   font-size: 1.5em;
   border: 1px solid var(--dark-purple);
   box-shadow: inset 0px 0px 2px #000;
@@ -51,8 +51,6 @@
 }
 
 .landlord-tik-back {
-  margin-left: 24px;
-  margin-right: 20px;
   font-size: 1.4em;
   display: flex;
   flex-direction: column;
@@ -87,22 +85,4 @@
 
 .landlord-status-btn:disabled, .set-appt-btn:disabled {
   background-color: gray;
-}
-
-.fade-enter {
-  opacity: 0;
-}
-
-.fade-enter-active {
-  opacity: 1;
-  transition: opacity 300ms linear;
-}
-
-.face-exit {
-  opacity: 1;
-}
-
-.fade-leave-active {
-  opacity: 0;
-  transition: opacity 300ms linear;
 }

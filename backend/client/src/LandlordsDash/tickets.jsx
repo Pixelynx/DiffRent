@@ -23,7 +23,7 @@ class Tickets extends Component {
   }
 
   landlordHandleStatus = (e) => {
-    const { ticket, setCompletedLandlordState } = this.props
+    const { ticket } = this.props
 
     let id = e.target.id;
     let completeConfirm = `${this.state.completed_landlord_tiks === '1' ? '0' : '1'}`;
@@ -89,8 +89,8 @@ class Tickets extends Component {
   }
 
   render() {
-    const { ticket, match, defaultValue, ticketModalOpen } = this.props
-    const { completed_landlord_tiks, apptSubmitted, settingAppt } = this.state
+    const { ticket, match } = this.props
+    const { apptSubmitted, settingAppt } = this.state
     const path = match.path;
 
     if(path === `/landlord/:id` &&  this.state.settingAppt === true){
@@ -99,11 +99,11 @@ class Tickets extends Component {
         <div className='set-appt-container'>
           <SetApptCal
           setAppt={this.handleSettingAppt}
-          settingAppt={this.state.settingAppt}
+          settingAppt={settingAppt}
           setApptForm={this.props.setApptForm}
           ticket={this.props.ticket}
           apptSet={this.handleSetAppt}
-          apptSubmitted={this.state.apptSubmitted}
+          apptSubmitted={apptSubmitted}
           handleSetAppt={this.handleSetAppt}
           aptInfo={this.state.aptApptInfo}
           tenantName={this.state.tenantName}
