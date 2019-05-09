@@ -3,28 +3,7 @@
   src: url('../../fonts/zillah/ZILLM.ttf');
 }
 
-.tenant-dash-container h1 {
-  font-family: 'Didact Gothic', sans-serif;
-  font-size: 30px;
-}
 
-
-
-.ticket-dash-info {
-  font-family: 'Didact Gothic', sans-serif;
-  text-align: center;
-  font-size: 20px;
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-}
-
-.tenant-contacts {
-  font-family: 'Didact Gothic', sans-serif;
-  font-size: 20px;
-  /* width: 900px; */
-
-}
 
 
 /* .tickets-btn {
