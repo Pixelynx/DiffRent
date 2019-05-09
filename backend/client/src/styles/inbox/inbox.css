@@ -21,7 +21,7 @@
   margin: 0;
 }
 
-.thread-header-text h1, p {
+.thread-header-text h1 {
   margin: 0;
   text-align: center;
 }
@@ -32,17 +32,22 @@
   color: white;
 }
 
-.threadSubtext {
-  font-family: 'Didact Gothic', sans-serif;
-  font-size: 30px;
-  color: white;
-}
 
 .threadInputContainer {
   height: auto;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 35px;
+}
+
+.threadInput[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .threadListContainer {
@@ -66,12 +71,17 @@
 
 .threadListContainer div div.threadList:nth-child(even) {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 .threadList p {
   width: 100%;
   /* border-bottom: 2px dotted yellow; */
   margin: 0;
+  color: white;
+}
+
+.threadList a {
+  color: white;
 }
 
 /* .threadList p:hover {
@@ -92,6 +102,11 @@
   font-family: 'Open Sans', sans-serif !important;
   font-size: 12px;
   line-height: 1.3;
+}
+
+.msg-back-link {
+  color: white;
+  font-size: 17px;
 }
 
 .msgList {
