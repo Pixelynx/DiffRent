@@ -18,6 +18,7 @@ import "./styles/index.css";
 import AddApartment from "./LandlordsDash/addApartment";
 import { addISOWeekYears } from "date-fns/esm";
 import searchApartment from "./TenantDash/searchApartment";
+import About from "./components/About/About";
 
 const NoMatch = () => <h1>404</h1>;
 
@@ -180,6 +181,10 @@ class App extends Component {
                   />
                 );
               }}
+            />
+            <Route
+            path='/about'
+            render={(props) => { return user ? <About /> : <Redirect to='/' /> } } 
             />
             <Route
               path="/addApartment"

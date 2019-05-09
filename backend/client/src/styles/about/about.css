@@ -1,0 +1,74 @@
+.outerAbout{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardGrid{
+    display: grid;
+    grid-template-columns: 75% 75%;
+    grid-template-rows: 40vh 40vh;
+    grid-column-gap: 60px;
+    grid-row-gap: 15px;
+    grid-template-areas: 
+        "one two"
+        "three four"
+}
+
+.cardOne{
+    grid-area: one;
+    background-color: var(--modal-container);
+    transition: all .3s ease-in-out;
+}
+
+.cardOne:hover{
+    transform: scale(1.4);
+}
+
+.cardTwo{
+    grid-area: two;
+    background-color: var(--modal-container);
+    transition: all .3s ease-in-out;
+}
+
+.cardTwo:hover{
+    transform: scale(1.4);
+}
+
+.cardThree{
+    grid-area: three;
+    background-color: var(--modal-container);
+    transition: all .3s ease-in-out;
+}
+
+.cardThree:hover{
+    transform: scale(1.4);
+}
+
+.cardFour{
+    grid-area: four;
+    background-color: var(--modal-container);
+    transition: all .3s ease-in-out;
+}
+
+.cardFour:hover{
+    transform: scale(1.3);
+}
+
+.socialButton{
+    height: 30px;
+}
+
+.profileImage{
+    height: 210px;
+    margin-top: 10px;
+}
+
+.imageContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
