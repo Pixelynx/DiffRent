@@ -52,8 +52,7 @@ class Threads extends React.Component {
         <div className="inboxContainer">
           <section className="threadContainer">
             <div className="thread-header-text">
-            <h1 className="threadHeader">Say Hello :)</h1>
-            <p className="threadSubtext">Create a thread and send a message to each other!</p>
+            <h1 className="threadHeader">Threads</h1>
               <form onSubmit={this.handleSubmit}>
                 <div className="threadInputContainer">
                   <input className="threadInput" type="text" onChange={this.handleChange} value={this.state.title_input} placeholder="Subject"/>
