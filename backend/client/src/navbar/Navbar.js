@@ -63,7 +63,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
         <SideNav.Nav defaultSelected="home">
             <NavItem eventKey="/">
                 <NavIcon>
-                    <NavLink to="/"><li className="fas fa-home"><img className='logo_official' src={logo} style={styles} /></li> </NavLink>
+                    <li><img className='logo_official' src={logo} style={styles} /></li><NavLink to="/"></NavLink>
                 </NavIcon>
                 <NavText>
                     Home

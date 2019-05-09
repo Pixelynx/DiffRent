@@ -341,14 +341,14 @@
   position: relative;
   left: -20px;
   margin-top: -15px;
-  height: 820px ;
+  min-height: 100vh;
   color: #123C69;
 }
 /* .fa-home {
   position: relative;
   top: -150px;
 } */
- a .logo_official{
+ li .logo_official{
   position: absolute;
   top: 50px;
   left: 4%;
