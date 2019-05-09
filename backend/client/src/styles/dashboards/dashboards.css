@@ -6,29 +6,6 @@
    list-style-type: none;
  }
 
- .tenant-dash-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: auto;
-  color: whitesmoke;
- }
-
- .tenant-contacts {
-   margin: 0px 300px;
-   overflow: scroll;
-   background-color: #7149B0;
-   margin-bottom: 50px;
-   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
- }
-
-.ticket-dash-info {
-  margin: 0px 300px;
-  overflow: scroll;
-  background-color: #7149B0;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-
 .dash-container {
   height: 100%;
   width: 100%;
