@@ -51,7 +51,7 @@ class LandlordDash extends Component {
     axios.get(`/landlords/${this.props.match.params.id}/apartments`)
     .then(res => {
         res.data.data.map(info => {
-          this.setState({
+          return this.setState({
             tenantInfo: [{
               name: info.name,
               apartment_id: info.apartment_id,
@@ -169,15 +169,6 @@ class LandlordDash extends Component {
           <>
           <div className='tickets-container'>
 
-            <CSSTransition
-              key={ticket.ticketid}
-              in={this.state.ticketModalOpen}
-              timeout={500}
-              classNames='fade'
-              appear={false}
-              enter={true}
-              exit={true}>
-
               <Tickets
                 match={this.props.match}
                 defaultValue={defaultValue}
@@ -189,7 +180,6 @@ class LandlordDash extends Component {
                 completed_landlord={this.state.completed_landlord}
                 />
 
-            </CSSTransition>
         </div>
         </>
       )
@@ -209,7 +199,7 @@ class LandlordDash extends Component {
 
 
   render(){
-     const { tenantInfo, tickets, defaultValue } = this.state;
+     const { tenantInfo } = this.state;
      const { user, tenant } = this.props;
 
      if(this.state.ticketModalOpen) {
@@ -219,12 +209,7 @@ class LandlordDash extends Component {
              onClick={this.handleModalOpen}
              className='modal-container'>
              <div className='landlord-tiks-window-container '>
-
-              <TransitionGroup className='ticket-transition-group'>
                 {this.displayUnresolvedTickets()}
-              </TransitionGroup>
-
-
              </div>
            </div>
          </>
