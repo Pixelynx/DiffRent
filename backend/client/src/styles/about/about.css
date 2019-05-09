@@ -1,0 +1,59 @@
+.outerAbout{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardGrid{
+    display: grid;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: 300px 300px;
+    grid-column-gap: 60px;
+    grid-row-gap: 15px;
+    grid-template-areas: 
+        "one two"
+        "three four"
+}
+
+.cardOne{
+    grid-area: one;
+    background-color: var(--dark-purple);
+    transition: all .3s ease-in-out;
+}
+
+.cardOne:hover{
+    transform: scale(1.4);
+}
+
+.cardTwo{
+    grid-area: two;
+    background-color: var(--dark-purple);
+    transition: all .3s ease-in-out;
+}
+
+.cardTwo:hover{
+    transform: scale(1.4);
+}
+
+.cardThree{
+    grid-area: three;
+    background-color: var(--dark-purple);
+    transition: all .3s ease-in-out;
+}
+
+.cardThree:hover{
+    transform: scale(1.4);
+}
+
+.cardFour{
+    grid-area: four;
+    background-color: var(--dark-purple);
+    transition: all .3s ease-in-out;
+}
+
+.cardFour:hover{
+    transform: scale(1.4);
+}
