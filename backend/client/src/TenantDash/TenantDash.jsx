@@ -22,7 +22,6 @@ class TenantDash extends Component {
       address: null,
       appointments: [],
       tickets: [],
-      ticketModalOpen: false,
       creatingTicket: false,
       defaultValue: []
     }
@@ -111,20 +110,13 @@ class TenantDash extends Component {
       })
   }
 
-  handleModalOpen = (e) => {
-    if(e.target.className === 'modal-container' || e.target.className === 'tickets-btn') {
-      this.setState(prevState => ({ticketModalOpen: !prevState.ticketModalOpen}))
-      this.setState({ creatingTicket: false })
-    }
-  }
-
   handleCreateTicketBtn = (e) => {
     this.setState(prevState => ({ creatingTicket: !prevState.creatingTicket }))
     this.setState({ ticketModalOpen: false })
   }
 
   render() {
-     const { landlordInfo, tickets, ticketModalOpen, defaultValue } = this.state;
+     const { landlordInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
 
      console.log(this.state)

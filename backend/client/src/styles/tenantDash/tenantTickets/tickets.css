@@ -7,10 +7,17 @@
   display: flex;
   flex-direction: column;
   margin: .5em 1em .5em 1em;
+  font-size: 1em;
   height: 4em;
   color: #000;
   border-radius: .2em;
   background-color: var(--dash-bg);
+}
+
+.td-tik:hover {
+  background-color: var(--light-purple);
+  color: var(--light-blue);
+  border: none;
 }
 
 /* .tickets-btn {
