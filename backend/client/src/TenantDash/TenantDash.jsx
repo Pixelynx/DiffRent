@@ -5,7 +5,7 @@ import LandlordContactInfo from './landlordContactInfo.jsx';
 import Tickets from './tickets.jsx';
 import CreateTicketForm from './createTicketForm.jsx';
 import '../styles/tenantDash/dashboard.css';
-import '../styles/tenantTickets/tickets.css';
+import '../styles/tenantDash/tenantTickets/tickets.css';
 
 class TenantDash extends Component {
 
