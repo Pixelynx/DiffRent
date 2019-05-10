@@ -27,6 +27,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('never gonna give you up'));
+app.use(express.static(path.join(__dirname, './client/build')));
+app.use('*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, './client/build/index.html'));
+})
 app.use(
   session({
     secret: "never gonna give u up",
