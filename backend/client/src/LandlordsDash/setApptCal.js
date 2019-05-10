@@ -1,19 +1,14 @@
 import React, { useState } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { MuiPickersUtilsProvider, DatePicker, TimePicker } from 'material-ui-pickers';
 import DateFnsUtils from "@date-io/date-fns";
-import { subDays, addDays } from "date-fns/esm";
-import MaskedInput from 'react-text-mask';
+import { addDays } from "date-fns/esm";
 
 
 const SetApptCal = (props) => {
 
   const {
-    match,
     ticket,
-    setAppt,
-    settingAppt,
-    apptSet,
     apptSubmitted,
     handleSetAppt,
     aptInfo,
@@ -23,8 +18,8 @@ const SetApptCal = (props) => {
   const [selectedDate, handleDateChange] = useState(new Date());
   const [selectedTime, handleTimeChange] = useState(new Date());
 
-  const today = new Date(),
-    date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+  // const today = new Date(),
+  //   date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
 
   let setApptForm =
                     <>
