@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { CSSTransitionGroup, CSSTransition, TransitionGroup } from 'react-transition-group';
 import axios from 'axios';
 import '../styles/landlordDashContent/dashboard.css';
 import '../styles/landlordDashContent/tenantContact.css';
@@ -63,7 +62,6 @@ class LandlordDash extends Component {
 
   // Needs to be updated to account for one to many relationship
   getTicketsByLandlord = () => {
-    const { user } = this.props
     axios.get(`/tickets/landlord/${this.props.match.params.id}`)
     .then(res => {
       this.setState({
@@ -84,7 +82,7 @@ class LandlordDash extends Component {
     })
   }
 
-  getAllTickets = (landlordId) => {
+  getAllTickets = () => {
     axios.get(`/tickets/landlord/${this.props.match.params.id}`)
       .then(res => {
       this.setState({
@@ -151,9 +149,7 @@ class LandlordDash extends Component {
     const { user } = this.props
 
     if(defaultValue.length && ticketModalOpen) {
-      let srtPg = 0;
-      let endPg = 3;
-      let currPg;
+
 
       return defaultValue.map(ticket => {
         return (
