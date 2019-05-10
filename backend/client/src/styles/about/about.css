@@ -11,8 +11,8 @@
     display: grid;
     justify-content: center;
     z-index: 1;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
+    grid-template-columns: 250px 250px;
+    grid-template-rows: 310px 310px;
     grid-column-gap: 60px;
     grid-row-gap: 15px;
     grid-template-areas: 
@@ -27,7 +27,7 @@
 }
 
 .cardOne:hover{
-    transform: scale(1.4, 1.4);
+    transform: scale(1.2);
 }
 
 .cardTwo{
