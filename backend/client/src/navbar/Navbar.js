@@ -20,7 +20,7 @@ const NavBar = (props) => {
 //           <nav>
 //             <div className='nav'>
 //               <ul>
-//                 <li><NavLink to={"/"}><img className='logo_official' src={logo} style={styles} /> </NavLink></li>
+//                 <li><NavLink to={"/"}><img alt='' className='logo_official' src={logo} style={styles} /> </NavLink></li>
 //                 <li className="far fa-comments"><NavLink to={"/inbox"}>  Inbox </NavLink></li>
 //                 <br/>
 //                 <li className="far fa-user"><NavLink to={`/landlord/profile/${user.userid}`}> Profile </NavLink></li>
@@ -63,7 +63,7 @@ const profileURL = `/${user.user_type}/profile/${user.userid}`
         <SideNav.Nav defaultSelected="home">
             <NavItem eventKey="/">
                 <NavIcon>
-                    <li><img className='logo_official' src={logo} style={styles} /></li><NavLink to="/"></NavLink>
+                    <li><img alt='' className='logo_official' src={logo} style={styles} /></li><NavLink to="/"></NavLink>
                 </NavIcon>
                 <NavText>
                     Home
