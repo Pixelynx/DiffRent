@@ -4,7 +4,6 @@ import { withRouter } from "react-router";
 import { Route, Switch } from "react-router-dom";
 import Auth from "../utils/Auth";
 import Form from "./Form";
-import { format } from "date-fns";
 
 class AuthForm extends Component {
   state = {

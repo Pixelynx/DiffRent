@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/dashboards/searchApartments.css'
 
 export const ApartmentForm = (props) => {
-    const { apt, user, updateApt, modal, handleModal } = props;
+    const { apt, user, updateApt, handleModal } = props;
 
     return(
         <>
