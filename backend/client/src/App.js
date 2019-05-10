@@ -7,7 +7,7 @@ import TenantDash from "./TenantDash/TenantDash.jsx";
 import AuthForm from "./login/AuthForm";
 import Tickets from "./TenantDash/tickets.jsx";
 import Auth from "./utils/Auth";
-import Homepage from "./components/Homepage";
+import Homepage from "./components/Homepage/Homepage";
 import Threads from "./inbox/threads";
 import ThreadItem from "./inbox/threadItem";
 import Profile from "./profiles/Profile.js";
@@ -105,8 +105,6 @@ class App extends Component {
 
   render() {
     const { isLoggedIn, user, navbar } = this.state;
-    console.log("STATE", this.state.user);
-    console.log("$$loggedIn", isLoggedIn)
     let logoutButton = isLoggedIn ? (
       <button onClick={this.logoutUser.bind(this)}>Logout</button>
     ) : null;
