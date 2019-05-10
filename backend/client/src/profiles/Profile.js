@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../styles/profiles/profiles.css';
-import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 
 class Profile extends Component {
@@ -34,7 +33,6 @@ class Profile extends Component {
   getLandlordInfo = () => {
     axios.get(`/users/${this.props.user.email}`)
       .then(response => {
-        console.log("response", response)
         this.setState({ defaultVals : {
           id: response.data.data.userId,
           name: response.data.data.name,
@@ -52,7 +50,6 @@ class Profile extends Component {
   }
 
   handleChange = event => {
-  const value = event.target.value;
   this.setState({
     newVals:{...this.state.newVals,
     [event.target.name] : event.target.value,

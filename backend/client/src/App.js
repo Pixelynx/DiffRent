@@ -5,10 +5,8 @@ import Navbar from "../src/navbar/Navbar";
 import LandlordDash from "./LandlordsDash/LandlordDash.js";
 import TenantDash from "./TenantDash/TenantDash.jsx";
 import AuthForm from "./login/AuthForm";
-import Tickets from "./TenantDash/tickets.jsx";
 import Auth from "./utils/Auth";
 import Homepage from "./components/Homepage/Homepage";
-import Threads from "./inbox/threads";
 import ThreadItem from "./inbox/threadItem";
 import Profile from "./profiles/Profile.js";
 import { View } from './inbox/view';
@@ -16,7 +14,6 @@ import { View } from './inbox/view';
 import PrivateRoute from "./utils/AuthRouting";
 import "./styles/index.css";
 import AddApartment from "./LandlordsDash/addApartment";
-import { addISOWeekYears } from "date-fns/esm";
 import searchApartment from "./TenantDash/searchApartment";
 import About from "./components/About/About";
 
@@ -35,7 +32,6 @@ class App extends Component {
   }
 
   checkAuthenticateStatus = () => {
-    const { isLoggedIn } = this.state;
     axios.post("/users/isLoggedIn")
     .then(user => {
       if (user.data.username === Auth.getToken()) {

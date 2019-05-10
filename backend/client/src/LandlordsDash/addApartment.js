@@ -12,7 +12,6 @@ class AddApartment extends Component{
     handleSubmit = (e) => {
         e.preventDefault();
         const { user } = this.props;
-        const { getUserInformation } = this.props;
         let apt = this.state.name;
         let address = this.state.address;
         let landlord_id = user.userid;

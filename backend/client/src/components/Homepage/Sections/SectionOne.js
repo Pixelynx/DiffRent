@@ -7,7 +7,7 @@ export const SectionOne = () => {
     return(
         <div className='section1'>
 
-            <img alt='' src={logo} alt='' className='logo' /> 
+            <img alt='' src={logo} className='logo' /> 
 
             <div className='loginButtons'>
 
