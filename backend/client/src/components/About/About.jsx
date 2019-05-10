@@ -4,6 +4,8 @@ import insta from '../../assets/logos/insta_logo.png';
 import git from '../../assets/logos/github_logo.png';
 import lnkd from '../../assets/logos/linkedin_logo.png';
 import erick from '../../assets/profileImgs/erick.jpg';
+import tkeya from '../../assets/profileImgs/tjs.png';
+import trey from '../../assets/profileImgs/treagan.jpeg'
 
 class About extends Component {
     state = {
@@ -24,7 +26,7 @@ class About extends Component {
                     
                     <div className='cardOne'>
                         <div className='imageContainer'>
-                            <img className='profileImage' />
+                            <img src={tkeya} className='profileImage' />
                         </div>
                         
                         <div>T'Keya Stevens</div>
@@ -40,7 +42,7 @@ class About extends Component {
 
                     <div className='cardTwo'>
                         <div className='imageContainer'>
-                            <img className='profileImage' />
+                            <img src={trey} className='profileImage' />
                         </div>
                         
                         <div>Treagan Birbal</div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
 import '../../styles/homepage/homepage.css'
 import { SectionOne } from './Sections/SectionOne';
+import { SectionFour } from './Sections/SectionFour';
 
 class HomepageContent extends Component{
 
@@ -39,6 +40,8 @@ class HomepageContent extends Component{
 
                 {/* section four */}
                 <section id='section04'>
+
+                    <SectionFour />
 
                     <span onClick={handleScroll01}></span>
                     <span onClick={handleScroll01}></span>
