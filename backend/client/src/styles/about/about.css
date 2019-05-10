@@ -9,8 +9,10 @@
 
 .cardGrid{
     display: grid;
-    grid-template-columns: 75% 75%;
-    grid-template-rows: 40vh 40vh;
+    justify-content: center;
+    z-index: 1;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
     grid-column-gap: 60px;
     grid-row-gap: 15px;
     grid-template-areas: 
@@ -25,7 +27,7 @@
 }
 
 .cardOne:hover{
-    transform: scale(1.4);
+    transform: scale(1.4, 1.4);
 }
 
 .cardTwo{

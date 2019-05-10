@@ -134,12 +134,11 @@ class TenantDash extends Component {
       <div className='tenant-dash-container'>
         <div className='tenant-info-container'>
           <h1>Welcome, {this.state.name}</h1>
-            <LandlordContactInfo landlordInfo={landlordInfo}/>
+          <LandlordContactInfo landlordInfo={landlordInfo}/>
         </div>
-              <div className="ticket-dash-info">
-                <h2>Tickets Information</h2>
-
-            </div>
+          <div className="ticket-dash-info">
+            <h2>Tickets Information</h2>
+          </div>
         </div>
 
         <CreateTicketForm

@@ -2,14 +2,20 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import '../styles/homepage.css'
 import logo from "../logo/DiffRent_logo_official.png";
-import home1 from "../assets/housesandbuildings.jpg";
+import home1 from "../assets/homepage/section01.jpg";
 
 
 class Homepage extends Component{
-    handleTenant = () => {
-
+    handleScroll = () => {
+      window.scrollTo(0, window.innerHeight)
     }
+
+    handleTwo = () => {
+      window.scrollTo(0, Number(window.innerHeight * 2))
+    }
+
     render(){
+      console.log(window.innerHeight * 2)
       let styles = {
           width: '250px',
          height: '180px',
@@ -23,8 +29,8 @@ class Homepage extends Component{
        }
         return(
             <div className='landingPage'>
-                <img className='home1' src={home1} style={bgImgStyle} />
-                <div className="arrow-bounce bounce">
+                <img alt='' className='home1' src={home1} style={bgImgStyle} />
+                <div className="arrow-bounce bounce" onClick={this.handleScroll}>
 
                 </div>
                 <section className='section-1'>
@@ -32,10 +38,13 @@ class Homepage extends Component{
                   <h2 className='slogan'>
                     The inclusive, user friendly communication platform that streamlines the landlord and tenant interaction.
                   </h2>
-                  <h2>
+                  <h2 onClick={this.handleTwo}>
                     Whether you are a landlord managing multi-family apartments or a tenant looking for an easy uncomplicate
                     a part of life in an ever-growing, complicated world, DiffRent is the right tool for you.
                   </h2>
+                  <div className="arrow-bounce bounce" onClick={this.handleScroll}>
+
+                  </div>
                 </section>
 
                 <div className="home2">
@@ -101,7 +110,7 @@ class Homepage extends Component{
                 <div className='container'>
                   <div className='op'></div>
                     <div className='homepageButtons'>
-                      <img className='logo_official' src={logo} style={styles} />
+                      <img alt='' className='logo_official' src={logo} style={styles} />
                       <a href='/tenants/login'><button className='tenantButton'>Tenant</button></a>
                       <a href='/landlords/login'><button className='landlordButton'>Landlord</button></a>
                   </div>

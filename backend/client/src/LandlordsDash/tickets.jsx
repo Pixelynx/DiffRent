@@ -125,43 +125,44 @@ class Tickets extends Component {
           resolution = 'Mark Resolved'
         }
 
-        if(!this.state.hovered) {
-        return(
-          <>
-            <div
-              onMouseEnter={this.mouseEnter}
-              className='landlord-tik-front'
-              >
-              <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
-              <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-            </div>
-            </>
-        )
-          } else {
-            return(
-              <>
-                  <div
-                    onMouseLeave={this.mouseLeave}
-                    className='landlord-tik-back'
-                    >
-                    <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
-                    <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
-                    <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
-                    <button
-                      id={ticket.ticketid}
-                      onClick={this.landlordHandleStatus}
-                      className='landlord-status-btn'
-                      disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
-                    <button
-                    onClick={this.handleSettingAppt}
-                    className='set-appt-btn'
-                    disabled={resolution === 'Resolved' ? true : false}>Set Appointment</button>
-                  </div>
-              </>
-            )
-          }
-
   }
 }
 
 export default Tickets;
+
+
+// if(!this.state.hovered) {
+// return(
+//   <>
+//     <div
+//       onMouseEnter={this.mouseEnter}
+//       className='landlord-tik-front'
+//       >
+//       <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
+//       <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
+//     </div>
+//     </>
+// )
+//   } else {
+//     return(
+//       <>
+//           <div
+//             onMouseLeave={this.mouseLeave}
+//             className='landlord-tik-back'
+//             >
+//             <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
+//             <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
+//             <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
+//             <button
+//               id={ticket.ticketid}
+//               onClick={this.landlordHandleStatus}
+//               className='landlord-status-btn'
+//               disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
+//             <button
+//             onClick={this.handleSettingAppt}
+//             className='set-appt-btn'
+//             disabled={resolution === 'Resolved' ? true : false}>Set Appointment</button>
+//           </div>
+//       </>
+//     )
+//   }
