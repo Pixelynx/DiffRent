@@ -95,10 +95,9 @@ class TenantDash extends Component {
 
   displayUnresolvedTickets = () => {
     // need to change up ticket resolve -- append resolve to tenants and landlord tickets
-    const { defaultValue, ticketsUnresolved, ticketsResolved, ticketModalOpen, completed_tenant } = this.state
+    const { defaultValue, ticketModalOpen } = this.state
     const { user } = this.props
 
-    if(defaultValue.length && ticketModalOpen) {
       return defaultValue.map(ticket => {
         return (
           <Tickets
@@ -108,9 +107,8 @@ class TenantDash extends Component {
           user={user}
           ticket={ticket}
           />
-      )
+        )
       })
-    }
   }
 
   handleModalOpen = (e) => {
@@ -129,6 +127,8 @@ class TenantDash extends Component {
      const { landlordInfo, tickets, ticketModalOpen, defaultValue } = this.state;
      const { user } = this.props;
 
+     console.log(this.state)
+
   return(
     <>
       <div className='tenant-dash-container'>
@@ -138,6 +138,9 @@ class TenantDash extends Component {
         </div>
           <div className="ticket-dash-info">
             <h2>Tickets Information</h2>
+            <div className='td-tik-ctn'>
+              {this.displayUnresolvedTickets()}
+            </div>
           </div>
         </div>
 
