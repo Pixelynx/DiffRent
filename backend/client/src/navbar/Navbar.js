@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link, NavLink, Route, Router, Switch, withRouter } from 'react-router-dom';
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-import Tickets from '../TenantDash/tickets.jsx';
+import { NavLink, withRouter } from 'react-router-dom';
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import logo from "../logo/DiffRent_logo_official.png";
 import '../styles/navBar.css';
 let styles = {
@@ -10,42 +9,9 @@ let styles = {
  };
 
 const NavBar = (props) => {
-  const { isLoggedIn, toggleNavbar, logoutButton, user, logoutFunc } = props;
-//   console.log("loggedIn:", isLoggedIn)
-//   return(
-//     <>
-//       { isLoggedIn ?
-//
-//           toggleNavbar ?
-//           <nav>
-//             <div className='nav'>
-//               <ul>
-//                 <li><NavLink to={"/"}><img alt='' className='logo_official' src={logo} style={styles} /> </NavLink></li>
-//                 <li className="far fa-comments"><NavLink to={"/inbox"}>  Inbox </NavLink></li>
-//                 <br/>
-//                 <li className="far fa-user"><NavLink to={`/landlord/profile/${user.userid}`}> Profile </NavLink></li>
-//                 <br/>
-//                 <li className="fas fa-info-circle"><NavLink to={"/about"}>About </NavLink></li>
-//                 <br/>
-//                 <li className="far fa-question-circle"><NavLink to={"/faq"}>FAQ </NavLink></li>
-//                 <br/>
-//                 {logoutButton}
-//               </ul>
-//             </div>
-//           </nav> : null
-//         :null
-//       }
-//     </>
-//   )
-// }
-
-// import React from 'react';
-//
-// import { Router, Route, Switch } from 'react-router-dom'
-// // Be sure to include styles at some point, probably during your bootstraping
-// // import '@trendmicro/react-sidenav/dist/react-sidenav.css';
-
-const profileURL = `/${user.user_type}/profile/${user.userid}`
+    const { isLoggedIn, logoutButton, user, logoutFunc } = props;
+    const profileURL = `/${user.user_type}/profile/${user.userid}`;
+    
   return (
     <>
     { isLoggedIn ?
