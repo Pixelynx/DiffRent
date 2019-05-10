@@ -3,6 +3,9 @@
 
 -- \c diffrent;
 
+DROP TABLE users, apartments, tickets, threads, messages;
+DROP TYPE userAcc;
+
 CREATE TYPE userAcc as ENUM('landlord', 'tenant');
 
 CREATE TABLE users(
