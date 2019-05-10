@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../styles/colorScheme.css';
-import '../styles/tenantTickets/tickets.css';
+import '../styles/tenantDash/tenantTickets/tickets.css';
 
 class Tickets extends Component {
   state = {
