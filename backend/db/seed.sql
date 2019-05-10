@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS diffrent;
-CREATE DATABASE diffrent;
+-- DROP DATABASE IF EXISTS diffrent;
+-- CREATE DATABASE diffrent;
 
-\c diffrent;
+-- \c diffrent;
 
 CREATE TYPE userAcc as ENUM('landlord', 'tenant');
 
