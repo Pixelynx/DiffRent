@@ -29,7 +29,7 @@ class Homepage extends Component{
        }
         return(
             <div className='landingPage'>
-                <img className='home1' src={home1} style={bgImgStyle} />
+                <img alt='' className='home1' src={home1} style={bgImgStyle} />
                 <div className="arrow-bounce bounce" onClick={this.handleScroll}>
 
                 </div>
@@ -110,7 +110,7 @@ class Homepage extends Component{
                 <div className='container'>
                   <div className='op'></div>
                     <div className='homepageButtons'>
-                      <img className='logo_official' src={logo} style={styles} />
+                      <img alt='' className='logo_official' src={logo} style={styles} />
                       <a href='/tenants/login'><button className='tenantButton'>Tenant</button></a>
                       <a href='/landlords/login'><button className='landlordButton'>Landlord</button></a>
                   </div>
