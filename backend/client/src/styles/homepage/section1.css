@@ -1,0 +1,38 @@
+.section1{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo{
+    height: 225px;
+    width: auto;
+    margin-bottom: 3%;
+}
+
+.loginButtons{
+    z-index: 1;
+    margin-top: 5%;
+}
+
+.loginButtons button{
+    height: 40px;
+    width: 100px;
+    background-color: #84CEEB;
+    border: none;
+    color:black;
+    font-size: 97%;
+    border-radius: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.loginButtons button:hover{
+    background-color: #8860D0;
+    color: white;
+    animation: glowing 2000ms infinite;
+}
