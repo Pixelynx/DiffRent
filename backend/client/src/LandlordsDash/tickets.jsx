@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import axios from 'axios';
 import SetApptCal from './setApptCal.js';
-
 import '../styles/landlordDashContent/setAppt.css';
 
 class Tickets extends Component {
@@ -113,8 +111,8 @@ class Tickets extends Component {
       )
     }
 
-        let date = ticket.appt_date;
-        let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date));
+        // let date = ticket.appt_date;
+        // let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date));
         let resolution;
 
         if(this.state.completed_landlord_tiks === '1' && ticket.completed_tenant === '1') {
