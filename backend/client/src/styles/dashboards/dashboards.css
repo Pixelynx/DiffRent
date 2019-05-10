@@ -1,44 +1,22 @@
- /* p, h1, h2{
-  text-align: center;
- 
+/* p, h1, h2{
+ text-align: center;
+
 } */
- li {
-   list-style-type: none;
- }
-
- .tenant-dash-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: auto;
-  color: white;
- }
-
- .tenant-contacts {
-   margin: 0px 300px;
-   overflow: scroll;
-   background-color: #7149B0;
-   margin-bottom: 50px;
-   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
- }
-
-.ticket-dash-info {
-  margin: 0px 300px;
-  overflow: scroll;
-  background-color: #7149B0;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+li {
+  list-style-type: none;
 }
 
 .dash-container {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  font-size: 18px;
-  font-family: 'Didact Gothic', sans-serif;
-  font-weight: 400;
-  line-height: 1.8em;
-  color: #ddd;
-  background: rgba(100,55,185,0.77);
+ height: 100%;
+ width: 100%;
+ margin: 0;
+ font-size: 18px;
+ font-family: 'Didact Gothic', sans-serif;
+ font-weight: 400;
+ line-height: 1.8em;
+ color: #ddd;
+ background-color: whitesmoke;
+ background: rgba(100,55,185,0.77);
 background: -moz-linear-gradient(-45deg, rgba(100,55,185,0.77) 0%, rgba(100,55,185,1) 0%, rgba(100,55,185,1) 1%, rgba(119,88,173,1) 28%, rgba(80,113,195,1) 56%, rgba(84,159,196,1) 76%, rgba(114,177,202,1) 91%, rgba(114,177,202,1) 94%);
 background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(100,55,185,0.77)), color-stop(0%, rgba(100,55,185,1)), color-stop(1%, rgba(100,55,185,1)), color-stop(28%, rgba(119,88,173,1)), color-stop(56%, rgba(80,113,195,1)), color-stop(76%, rgba(84,159,196,1)), color-stop(91%, rgba(114,177,202,1)), color-stop(94%, rgba(114,177,202,1)));
 background: -webkit-linear-gradient(-45deg, rgba(100,55,185,0.77) 0%, rgba(100,55,185,1) 0%, rgba(100,55,185,1) 1%, rgba(119,88,173,1) 28%, rgba(80,113,195,1) 56%, rgba(84,159,196,1) 76%, rgba(114,177,202,1) 91%, rgba(114,177,202,1) 94%);
