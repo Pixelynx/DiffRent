@@ -56,6 +56,10 @@ class Tickets extends Component {
 
   return(
     <>
+      <div className='td-tik'>
+        <span className='td-tik-subject'>{ticket.subject}</span>
+        <span className='td-tik-td-appt-dt-tm'>{ticket.appt_date !== null ? apptDate : null} {ticket.appt_time !== null ? ticket.appt_time : null}</span>
+      </div>
     </>
   )
 

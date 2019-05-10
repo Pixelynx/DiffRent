@@ -1,8 +1,6 @@
 import React from 'react';
 
-
 const LandlordContactInfo = (props) => {
-  console.log("propsAddress: ", props.landlordInfo.address)
   return(
     <div className='landlord-contact-info'>
       <h2>Your Landlord's Information</h2>

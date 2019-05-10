@@ -1,3 +1,18 @@
+.td-tik-ctn {
+  display: flex;
+  flex-direction: column;
+}
+
+.td-tik {
+  display: flex;
+  flex-direction: column;
+  margin: .5em 1em .5em 1em;
+  height: 4em;
+  color: #000;
+  border-radius: .2em;
+  background-color: var(--dash-bg);
+}
+
 /* .tickets-btn {
   background-color: var(--dark-purple);
   border: 1px solid var(--light-blue);
