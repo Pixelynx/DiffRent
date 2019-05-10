@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { CSSTransitionGroup, CSSTransition, TransitionGroup } from 'react-transition-group';
 import axios from 'axios';
-import '../styles/dashboards/dashboards.css';
+import '../styles/landlordDashContent/dashboard.css';
 import '../styles/landlordDashContent/tenantContact.css';
 import '../styles/landlordDashContent/tickets.css';
 import '../styles/colorScheme.css';
@@ -11,9 +11,7 @@ import Tickets from './tickets.jsx';
 import { ApartmentInfo } from './ApartmentInfo';
 
 class LandlordDash extends Component {
-  constructor(){
-    super();
-    this.state = {
+    state = {
       id: null,
       name: '',
       age:'',
@@ -29,7 +27,6 @@ class LandlordDash extends Component {
       defaultValue: [],
       ticketModalOpen: false,
     }
-  }
 
   componentDidMount = async() => {
     await this.getLandlordInfo();
@@ -109,12 +106,6 @@ class LandlordDash extends Component {
                 id={tenant.apartment_id}
                 onClick={this.handleTenantInfoShowing}>
                 {tenant.address}
-              </button>
-              <button
-                className='open-tiks-btn'
-                onClick={this.handleModalOpen}
-                >
-                You have {this.state.defaultValue.length} open ticket(s).
               </button>
             </div>
           </>
@@ -205,22 +196,21 @@ class LandlordDash extends Component {
      if(this.state.ticketModalOpen) {
        return(
          <>
-           <div
-             onClick={this.handleModalOpen}
-             className='modal-container'>
              <div className='landlord-tiks-window-container '>
                 {this.displayUnresolvedTickets()}
              </div>
-           </div>
          </>
        )
      }
 
-     let tenantInformation = <div className='dash-container' style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : {visibility: 'visible'}}>
+     let tenantInformation = <div className='landlord-dash-container' style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : {visibility: 'visible'}}>
+                              <div className='tenant-list'>
                               <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
-                                <div style={this.state}className='tenant-contacts'>
                                   <h2>Apartments</h2>
                                   {this.mapTenantApts()}
+                                </div>
+                                <div className="landlord-ticket-dash-info">
+                                  <h2>Tickets Information</h2>
                                 </div>
                                 <TenantContactInfo
                                   user={user}
@@ -231,11 +221,14 @@ class LandlordDash extends Component {
                                   />
                             </div>
 
-     let apartmentInformation = <div className='dash-container' style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : {visibility: 'visible'}}>
-                              <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
-                                <div style={this.state}className='tenant-contacts'>
+     let apartmentInformation = <div className='landlord-dash-container' style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : {visibility: 'visible'}}>
+                                <div className='tenant-list'>
+                                  <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
                                   <h2>Apartments</h2>
                                   {this.showLandlordApts()}
+                                </div>
+                                <div className="landlord-ticket-dash-info">
+                                  <h2>Tickets Information</h2>
                                 </div>
                                 <ApartmentInfo
                                   tenant={tenant}
