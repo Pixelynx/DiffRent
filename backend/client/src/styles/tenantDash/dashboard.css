@@ -5,7 +5,7 @@
   grid-template-columns: 20% 60% 20%;
   align-items: center;
   margin: auto;
-  color: white;
+  background-color: var(--dash-bg);
 }
 
 .tenant-info-container {
@@ -15,10 +15,15 @@
   grid-column: 2;
 }
 
+.tenant-info-container > h1 {
+  color: #000;
+}
+
 .tenant-dash-container h1 {
   align-self: center;
   font-family: 'Didact Gothic', sans-serif;
   font-size: 30px;
+  color: #000;
 }
 
 .landlord-contact-info {
@@ -27,6 +32,7 @@
   width: 90%;
   font-family: 'Didact Gothic', sans-serif;
   font-size: 20px;
+  color: #fff;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
@@ -37,6 +43,7 @@
   font-family: 'Didact Gothic', sans-serif;
   text-align: center;
   font-size: 20px;
+  color: #fff;
   overflow: scroll;
-  background-color: #7149B0;
+  background-color: var(--dark-purple);
 }
