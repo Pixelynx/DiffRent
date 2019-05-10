@@ -4,14 +4,15 @@ import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import logo from "../logo/DiffRent_logo_official.png";
 import '../styles/navBar.css';
 let styles = {
-    width: '250px',
-   height: '180px',
+  width: "51px",
+  height:" 41px"
  };
+
 
 const NavBar = (props) => {
     const { isLoggedIn, logoutButton, user, logoutFunc } = props;
     const profileURL = `/${user.user_type}/profile/${user.userid}`;
-    
+
   return (
     <>
     { isLoggedIn ?
