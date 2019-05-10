@@ -1,15 +1,3 @@
-.dash-container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.welcome-msg {
-  margin-top: 5em;
-  margin-bottom: 50px;
-}
-
 .tenant-contacts {
   display: flex;
   flex-direction: column;
