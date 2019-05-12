@@ -100,11 +100,11 @@ class TenantDash extends Component {
       return defaultValue.map(ticket => {
         return (
           <Tickets
-          defaultValue={defaultValue}
-          handleModalOpen={this.handleModalOpen}
-          ticketModalOpen={ticketModalOpen}
-          user={user}
-          ticket={ticket}
+            defaultValue={defaultValue}
+            handleModalOpen={this.handleModalOpen}
+            ticketModalOpen={ticketModalOpen}
+            user={user}
+            ticket={ticket}
           />
         )
       })
@@ -119,7 +119,6 @@ class TenantDash extends Component {
      const { landlordInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
 
-     console.log(this.state)
 
   return(
     <>

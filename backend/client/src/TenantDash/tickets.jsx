@@ -5,14 +5,13 @@ import '../styles/tenantDash/tenantTickets/tickets.css';
 
 class Tickets extends Component {
   state = {
-    completed_tenant_tiks: `${this.props.ticket.completed_tenant === '1' ? '1' : '0'}`,
+    completed_tenant: `${this.props.ticket.completed_tenant === '1' ? '1' : '0'}`,
     ticketModalOpen: false,
   }
 
   handleModalOpen = (e) => {
     if(e.target.className === 'td-tik') {
       this.setState(prevState => ({ticketModalOpen: !prevState.ticketModalOpen}))
-      this.setState({ creatingTicket: false })
     }
   }
 
@@ -20,8 +19,8 @@ class Tickets extends Component {
     const { ticket, user } = this.props
 
     let id = e.target.id;
-    let completedTenant = `${this.state.completed_tenant_tiks === '1' ? '0' : '1'}`;
-    let in_progress = `${this.state.completed_tenant_tiks === '1' && ticket.completed_landlord === '1' ? '0' : '1'}`;
+    let completedTenant = `${this.state.completed_tenant === '1' ? '0' : '1'}`;
+    let in_progress = `${this.state.completed_tenant === '1' && ticket.completed_landlord === '1' ? '0' : '1'}`;
     let aptid = user.aptid;
 
       await axios.put(`/tickets/${id}`, {
@@ -34,59 +33,56 @@ class Tickets extends Component {
         appt_time: ticket.appt_time
       })
       .then(res => {
-        this.setState({ completed_tenant_tiks: `${this.state.completed_tenant_tiks === '1' ? '0' : '1'}` })
+        this.setState({ completed_tenant: `${this.state.completed_tenant === '1' ? '0' : '1'}` })
       }).catch(err => console.log("put request: ", err))
   }
 
 handleTicketModal = (e) => {
-  const { ticketModalOpen } = this.state;
-  const { defaultValue, ticket } = this.props;
-
-  let resolution;
-  let date = ticket.appt_date
-  let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
-
-  if(ticket.completed_tenant === '1' && ticket.completed_landlord === '1') {
-    resolution = 'Resolved'
-  } else if(ticket.completed_tenant === '1' && ticket.completed_landlord === '0') {
-    resolution = 'Waiting for landlord to resolve'
-  } else if(ticket.completed_tenant === '0') {
-    resolution = 'Mark Resolved'
-  }
-
-  console.log(e.target.id)
-
-  if(ticketModalOpen && e.target.id === defaultValue.ticketid) {
-    return(
-      <>
-        <div
-          className='mdl-indv-tik'>
-            <p className='mdl-tik-item' id='tik-subj'>Issue: {ticket.subject}</p>
-            <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {apptDate} {ticket.appt_time}</p>
-            <p className='mdl-tik-item' id='tik-desc'>Description: {ticket.body}</p>
-              <button
-                id={ticket.ticketid}
-                onClick={this.tenantHandleStatus}
-                className='status-btn'
-                disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
-          </div>
-        </>
-    )
-  }
+  this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
 }
 
   render() {
-    const { ticket, handleTicketModal, ticketModalOpen } = this.props
+    const { ticketModalOpen } = this.state;
+    const { ticket } = this.props;
 
+    let resolution;
     let date = ticket.appt_date
     let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
 
+    if(ticket.completed_tenant === '1' && ticket.completed_landlord === '1') {
+      resolution = 'Resolved'
+    } else if(ticket.completed_tenant === '1' && ticket.completed_landlord === '0') {
+      resolution = 'Waiting for landlord to resolve'
+    } else if(ticket.completed_tenant === '0') {
+      resolution = 'Mark Resolved'
+    }
+
   return(
     <>
-      <button onClick={handleTicketModal} className='td-tik' id={ticket.ticketid}>
-        <span className='td-tik-subject'>{ticket.subject}</span>
-        <span className='td-tik-td-appt-dt-tm'>{ticket.appt_date !== null ? apptDate : null} {ticket.appt_time !== null ? ticket.appt_time : null}</span>
+      <button onClick={this.handleTicketModal} className='td-tik' id={ticket.ticketid}>
+        <div id={ticket.ticketid} className='td-tik-subject'>{ticket.subject}</div>
+        <div id={ticket.ticketid} className='td-tik-td-appt-dt-tm'>{ticket.appt_date !== null ? apptDate : null} {ticket.appt_time !== null ? ticket.appt_time : null}</div>
       </button>
+
+      {ticketModalOpen ?
+
+          <>
+            <div
+              className='mdl-indv-tik'>
+              <div className='indv-tik'>
+                <p className='mdl-tik-item' id='tik-subj'>Issue: {ticket.subject}</p>
+                <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {apptDate} {ticket.appt_time}</p>
+                <p className='mdl-tik-item' id='tik-desc'>Description: {ticket.body}</p>
+                  <button
+                    id={ticket.ticketid}
+                    onClick={this.tenantHandleStatus}
+                    className='status-btn'
+                    disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
+                </div>
+              </div>
+            </>
+          : null
+      }
     </>
   )
 
