@@ -20,6 +20,25 @@
   border: none;
 }
 
+.mdl-indv-tik {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 35%;
+  height: 80%;
+  right: 35%;
+  bottom: 10%;
+  background-color: var(--tik-modal);
+  color: #000;
+}
+
+.indv-tik {
+  align-self: center;
+  background-color: var(--light-purple);
+  width: 70%;
+  height: 80%;
+}
+
 /* .tickets-btn {
   background-color: var(--dark-purple);
   border: 1px solid var(--light-blue);
