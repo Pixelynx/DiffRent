@@ -61,7 +61,6 @@ handleTicketModal = (e) => {
       </button>
 
       { ticketModalOpen ?
-
           <>
             <div className='tik-mdl-ctn' onClick={this.handleTicketModal}>
               <div
