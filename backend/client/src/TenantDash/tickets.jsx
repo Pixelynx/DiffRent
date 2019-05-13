@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../styles/colorScheme.css';
-import '../styles/tenantDash/tenantTickets/tickets.css';
+import '../styles/dashboards/tickets.css';
 
 class Tickets extends Component {
   state = {
     completed_tenant: `${this.props.ticket.completed_tenant === '1' ? '1' : '0'}`,
     ticketModalOpen: false,
-  }
-
-  handleModalOpen = (e) => {
-    if(e.target.className === 'td-tik') {
-      this.setState(prevState => ({ticketModalOpen: !prevState.ticketModalOpen}))
-    }
   }
 
   tenantHandleStatus = async(e) => {
@@ -38,7 +32,9 @@ class Tickets extends Component {
   }
 
 handleTicketModal = (e) => {
-  this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
+  if(e.target.className === 'td-tik' || e.target.className === 'tik-mdl-ctn' || e.target.className === 'mdl-indv-tik') {
+    this.setState(prevState => ({ticketModalOpen: !prevState.ticketModalOpen}))
+  }
 }
 
   render() {
@@ -48,12 +44,12 @@ handleTicketModal = (e) => {
     let resolution;
     let date = ticket.appt_date
     let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
-
-    if(ticket.completed_tenant === '1' && ticket.completed_landlord === '1') {
+    
+    if(this.state.completed_tenant === '1' && ticket.completed_landlord === '1') {
       resolution = 'Resolved'
-    } else if(ticket.completed_tenant === '1' && ticket.completed_landlord === '0') {
+    } else if(this.state.completed_tenant === '1' && ticket.completed_landlord === '0') {
       resolution = 'Waiting for landlord to resolve'
-    } else if(ticket.completed_tenant === '0') {
+    } else if(this.state.completed_tenant === '0') {
       resolution = 'Mark Resolved'
     }
 
@@ -64,59 +60,29 @@ handleTicketModal = (e) => {
         <div id={ticket.ticketid} className='td-tik-td-appt-dt-tm'>{ticket.appt_date !== null ? apptDate : null} {ticket.appt_time !== null ? ticket.appt_time : null}</div>
       </button>
 
-      {ticketModalOpen ?
+      { ticketModalOpen ?
 
           <>
-            <div
-              className='mdl-indv-tik'>
-              <div className='indv-tik'>
-                <p className='mdl-tik-item' id='tik-subj'>Issue: {ticket.subject}</p>
-                <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {apptDate} {ticket.appt_time}</p>
-                <p className='mdl-tik-item' id='tik-desc'>Description: {ticket.body}</p>
-                  <button
-                    id={ticket.ticketid}
-                    onClick={this.tenantHandleStatus}
-                    className='status-btn'
-                    disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
+            <div className='tik-mdl-ctn' onClick={this.handleTicketModal}>
+              <div
+                className='mdl-indv-tik'>
+                <div className='indv-tik'>
+                  <p className='mdl-tik-item' id='tik-subj'>Issue: {ticket.subject}</p>
+                  <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {apptDate} {ticket.appt_time}</p>
+                  <p className='mdl-tik-item' id='tik-desc'>Description: {ticket.body}</p>
+                    <button
+                      id={ticket.ticketid}
+                      onClick={this.tenantHandleStatus}
+                      className='status-btn'
+                      disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
+                  </div>
                 </div>
               </div>
             </>
-          : null
-      }
+          : null }
     </>
   )
 
 }
 }
 export default Tickets;
-
-
-// if(!this.state.hovered) {
-//   return(
-//     <>
-//       <div
-//         className='ticket-front'
-//         onMouseEnter={this.mouseEnter}>
-//         <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
-//         <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-//       </div>
-//       </>
-//   )
-//     } else {
-//       return (
-//         <>
-//         <div
-//           className='ticket-back'
-//           onMouseLeave={this.mouseLeave}>
-//           <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
-//           <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
-//           <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
-//         <button
-//           id={ticket.ticketid}
-//           onClick={this.tenantHandleStatus}
-//           className='status-btn'
-//           disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
-//       </div>
-//     </>
-//   )
-// }

@@ -10,6 +10,7 @@ import Homepage from "./components/Homepage/Homepage";
 import ThreadItem from "./inbox/threadItem";
 import Profile from "./profiles/Profile.js";
 import { View } from './inbox/view';
+import { FAQ } from './faqs/faq.js';
 
 import PrivateRoute from "./utils/AuthRouting";
 import "./styles/index.css";
@@ -111,7 +112,7 @@ class App extends Component {
             className={navbar ? "openNavbar" : "closedNavbar"}
 
           >
-            
+
             <div>
 
                 <Navbar
@@ -178,7 +179,7 @@ class App extends Component {
             />
             <Route
             path='/about'
-            render={(props) => { return user ? <About /> : <Redirect to='/' /> } } 
+            render={(props) => { return user ? <About /> : <Redirect to='/' /> } }
             />
             <Route
               path="/addApartment"
@@ -230,6 +231,7 @@ class App extends Component {
             />
              <Route exact path='/inbox' render={()=><View user={this.state.user} />}/>
              <Route path="/inbox/threads/:id" render={(props) => <ThreadItem {...props} user={this.state.user} />} />
+             <Route path='/faq' component={ FAQ } />
             <Route component={NoMatch} />
           </Switch>
         </>
