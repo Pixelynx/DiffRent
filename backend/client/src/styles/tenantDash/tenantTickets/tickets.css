@@ -1,9 +1,9 @@
-.td-tik-ctn {
+.td-tik-ctn, .ld-tik-ctn {
   display: flex;
   flex-direction: column;
 }
 
-.td-tik {
+.td-tik, .ld-tik {
   display: flex;
   flex-direction: column;
   margin: .5em 1em .5em 1em;
@@ -14,7 +14,7 @@
   background-color: var(--dash-bg);
 }
 
-.td-tik:hover {
+.td-tik:hover, ld-tik:hover {
   background-color: var(--light-purple);
   color: var(--light-blue);
   border: none;

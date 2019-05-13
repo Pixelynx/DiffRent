@@ -80,6 +80,7 @@ class LandlordDash extends Component {
         ))
       })
     })
+    .catch(err => console.log(err))
   }
 
   getAllTickets = () => {
@@ -144,18 +145,11 @@ class LandlordDash extends Component {
   }
 
   displayUnresolvedTickets = () => {
-    // need to change up ticket resolve -- append resolve to tenants and landlord tickets
     const { defaultValue, ticketModalOpen } = this.state
     const { user } = this.props
 
-    if(defaultValue.length && ticketModalOpen) {
-
-
       return defaultValue.map(ticket => {
         return (
-          <>
-          <div className='tickets-container'>
-
               <Tickets
                 match={this.props.match}
                 defaultValue={defaultValue}
@@ -166,13 +160,10 @@ class LandlordDash extends Component {
                 settingAppt={this.props.settingAppt}
                 completed_landlord={this.state.completed_landlord}
                 />
-
-        </div>
-        </>
-      )
-      })
+            )
+          })
     }
-  }
+
 
   mouseEnter = () => {
     this.setState(prevState => ({ hovered: !prevState.hovered }))
@@ -189,16 +180,6 @@ class LandlordDash extends Component {
      const { tenantInfo } = this.state;
      const { user, tenant } = this.props;
 
-     if(this.state.ticketModalOpen) {
-       return(
-         <>
-             <div className='landlord-tiks-window-container '>
-                {this.displayUnresolvedTickets()}
-             </div>
-         </>
-       )
-     }
-
      let tenantInformation = <div className='landlord-dash-container' style={ this.state.tenantInfoIsShowing ? {visibility: 'hidden'} : {visibility: 'visible'}}>
                               <div className='tenant-list'>
                               <h1 className='welcome-msg'>Welcome, {this.state.name}</h1>
@@ -207,6 +188,9 @@ class LandlordDash extends Component {
                                 </div>
                                 <div className="landlord-ticket-dash-info">
                                   <h2>Tickets Information</h2>
+                                  <div className='ld-tik-ctn'>
+                                    {this.displayUnresolvedTickets()}
+                                  </div>
                                 </div>
                                 <TenantContactInfo
                                   user={user}
@@ -242,18 +226,3 @@ class LandlordDash extends Component {
 }
 
 export default LandlordDash;
-
-
-// <CSSTransitionGroup
-//
-//   transitionName="example"
-//
-//   transitionAppear={true}
-//
-//   transitionAppearTimeout={500}
-//
-//   transitionEnter={false}
-//
-//   transitionLeave={false}>
-//
-// </CSSTransitionGroup>

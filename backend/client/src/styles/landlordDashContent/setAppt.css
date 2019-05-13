@@ -1,17 +1,12 @@
-@font-face {
-  font-family: 'Zillah';
-  src: url('../../fonts/zillah/ZILLM.ttf');
-}
-
 .set-appt-container {
   position: absolute;
   flex-direction: column;
   display: flex;
-  height: 80%;
+  height: 70%;
   width: 80%;
   background-color: var(--dark-purple);
   z-index: 2 ;
-  font-family: 'Zillah';
+  font-family: 'Didact Gothic', sans-serif;
   bottom: 11%;
   right: 10%;
 }
@@ -38,6 +33,7 @@
   display: flex;
   align-self: center;
   flex-direction: column;
+  color: #000;
   width: 50%;
   margin-top: 2em;
 }
