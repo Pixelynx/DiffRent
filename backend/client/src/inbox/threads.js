@@ -40,7 +40,7 @@ class Threads extends React.Component {
     .then(res => {
       let newThread = res.data.thread
       this.setState({
-        threads: [...this.state.threads, newThread], 
+        threads: [newThread, ...this.state.threads], 
         title_input: ''
       })
     })

@@ -22,7 +22,7 @@ const NavBar = (props) => {
                 <div className='nav'>
     <SideNav className='sidenav'
         onSelect={(selected) => {
-          console.log('I WAS SELECTED?', selected)
+        
           props.history.push(selected);
         }}
     >

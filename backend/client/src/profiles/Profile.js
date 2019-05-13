@@ -33,7 +33,6 @@ class Profile extends Component {
   getUserInfo = () => {
     axios.get(`/users/user/${this.props.user.email}`)
       .then(response => {
-        debugger;
         this.setState({ defaultVals : {
           id: response.data.data.userId,
           name: response.data.data.name,
