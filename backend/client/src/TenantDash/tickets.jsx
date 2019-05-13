@@ -64,7 +64,7 @@ handleTicketModal = (e) => {
         <div id={ticket.ticketid} className='td-tik-td-appt-dt-tm'>{ticket.appt_date !== null ? apptDate : null} {ticket.appt_time !== null ? ticket.appt_time : null}</div>
       </button>
 
-      {ticketModalOpen ?
+      { ticketModalOpen ?
 
           <>
             <div
@@ -81,8 +81,7 @@ handleTicketModal = (e) => {
                 </div>
               </div>
             </>
-          : null
-      }
+          : null }
     </>
   )
 

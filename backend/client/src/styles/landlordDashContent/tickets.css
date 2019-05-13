@@ -1,4 +1,7 @@
-@font-face {
+
+
+
+/* @font-face {
   font-family: 'Zillah';
   src: url('../../fonts/zillah/ZILLM.ttf');
 }
@@ -18,7 +21,6 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  /* justify-items: center; */
   align-self: center;
   width: 80%;
   height: 70%;
@@ -85,4 +87,4 @@
 
 .landlord-status-btn:disabled, .set-appt-btn:disabled {
   background-color: gray;
-}
+} */
