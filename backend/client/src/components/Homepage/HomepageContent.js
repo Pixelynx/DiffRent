@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom'
 import '../../styles/homepage/homepage.css'
 import { SectionOne } from './Sections/SectionOne';
 import { SectionFour } from './Sections/SectionFour';
+import { SectionTwo } from './Sections/SectionsTwo';
+import { SectionThree } from './Sections/SectionThree';
 
 class HomepageContent extends Component{
 
@@ -23,6 +25,8 @@ class HomepageContent extends Component{
                 {/* section two */}
                 <section id='section02'>
 
+                    <SectionTwo />
+
                     <span onClick={handleScroll03}></span>
                     <span onClick={handleScroll03}></span>
                     <span onClick={handleScroll03}></span>
@@ -31,6 +35,8 @@ class HomepageContent extends Component{
 
                 {/* section three */}
                 <section id='section03'>
+
+                    <SectionThree />
 
                     <span onClick={handleScroll04}></span>
                     <span onClick={handleScroll04}></span>
