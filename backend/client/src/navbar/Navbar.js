@@ -22,7 +22,7 @@ const NavBar = (props) => {
                 <div className='nav'>
     <SideNav className='sidenav'
         onSelect={(selected) => {
-          console.log('I WAS SELECTED?', selected)
+
           props.history.push(selected);
         }}
     >
@@ -52,6 +52,7 @@ const NavBar = (props) => {
                     Profile
                 </NavText>
             </NavItem>
+          {/*
             <NavItem eventKey="/about">
                 <NavIcon>
                   <li className="fas fa-info-circle"><NavLink to={"/about"}></NavLink></li>
@@ -60,6 +61,7 @@ const NavBar = (props) => {
                     About
                 </NavText>
             </NavItem>
+            */}
             <NavItem eventKey="/faq">
                 <NavIcon>
                     <li className="far fa-question-circle"><NavLink to={"/faq"}></NavLink></li>

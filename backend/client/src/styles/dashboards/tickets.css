@@ -1,3 +1,12 @@
+.tik-mdl-ctn {
+  display: flex;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  right: 0%;
+  bottom: 0%;
+}
+
 .td-tik-ctn, .ld-tik-ctn {
   display: flex;
   flex-direction: column;
@@ -23,7 +32,7 @@
 .mdl-indv-tik {
   display: flex;
   justify-content: center;
-  position: absolute;
+  /* position: absolute; */
   width: 35%;
   height: 80%;
   right: 35%;

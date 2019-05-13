@@ -57,7 +57,7 @@ class CreateTicketForm extends Component {
   }
 
   render() {
-    console.log(this.state)
+
     if(this.props.createTicket && this.state.formModalOpen) {
     return(
       <>
