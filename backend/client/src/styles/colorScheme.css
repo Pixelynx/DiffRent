@@ -4,10 +4,8 @@
   --dark-blue: #5680E9;
   --medium-blue: #5AB9EA;
   --light-blue: #84CEEB;
-  --modal-container: rgba(132, 206, 235, 0.65);
-  --form-modal-container: rgba(88, 129, 233, 0.4);
-  --landlord-tik-modal-container: rgba(193, 200, 228, .6);
   --dash-bg: #e6e9f4;
+  --tik-modal: rgba(255, 255, 255, .8);
 }
 
 /* css variables -- background-color: var(--dark-pruple) for example */
