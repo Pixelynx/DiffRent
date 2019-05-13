@@ -1,0 +1,36 @@
+.sectionThree{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.desc_container{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(37, 90, 146);
+}
+
+.card-2, .card-3 {
+    border-left: 2px solid white;
+  }
+
+.card-1 {
+    width: 33%
+}
+
+.card-2 {
+    width: 33%
+}
+
+.card-3 {
+    width: 33%
+}
+
+.hompage_question {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
