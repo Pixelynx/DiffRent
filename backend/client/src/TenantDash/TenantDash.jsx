@@ -119,8 +119,6 @@ class TenantDash extends Component {
      const { landlordInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
 
-     console.log(this.state)
-
   return(
     <>
       <div className='tenant-dash-container'>
@@ -147,26 +145,3 @@ class TenantDash extends Component {
 }
 
 export default TenantDash;
-
-
-// if(this.state.ticketModalOpen) {
-//   return(
-//     <>
-//       <div onClick={this.handleModalOpen} className='modal-container'>
-//         <div className='ticket-window-container'>
-//           <div className='ticket-window'>
-//             {this.displayUnresolvedTickets()}
-//           </div>
-//           <button onClick={this.handleCreateTicketBtn} className='create-ticket-btn'>Create New Ticket</button>
-//         </div>
-//       </div>
-//     </>
-//   )
-// }
-
-
-// <button
-//   className='tickets-btn'
-//   onClick={this.handleModalOpen}>
-//   You have {defaultValue.length} open ticket(s)
-// </button>

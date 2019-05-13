@@ -64,7 +64,7 @@ handleTicketModal = (e) => {
         <div id={ticket.ticketid} className='td-tik-td-appt-dt-tm'>{ticket.appt_date !== null ? apptDate : null} {ticket.appt_time !== null ? ticket.appt_time : null}</div>
       </button>
 
-      {ticketModalOpen ?
+      { ticketModalOpen ?
 
           <>
             <div
@@ -81,42 +81,10 @@ handleTicketModal = (e) => {
                 </div>
               </div>
             </>
-          : null
-      }
+          : null }
     </>
   )
 
 }
 }
 export default Tickets;
-
-
-// if(!this.state.hovered) {
-//   return(
-//     <>
-//       <div
-//         className='ticket-front'
-//         onMouseEnter={this.mouseEnter}>
-//         <p className='ticket-item' id='ticket-subject-front'>Issue: {ticket.subject}</p>
-//         <p className='ticket-item' id='appt-date-time-front'>Appointment: {apptDate} {ticket.appt_time}</p>
-//       </div>
-//       </>
-//   )
-//     } else {
-//       return (
-//         <>
-//         <div
-//           className='ticket-back'
-//           onMouseLeave={this.mouseLeave}>
-//           <p className='ticket-item' id='ticket-subject-back'>Issue: {ticket.subject}</p>
-//           <p className='ticket-item' id='appt-date-time-back'>Appointment: {apptDate} {ticket.appt_time}</p>
-//           <p className='ticket-item' id='ticket-desc'>Description: {ticket.body}</p>
-//         <button
-//           id={ticket.ticketid}
-//           onClick={this.tenantHandleStatus}
-//           className='status-btn'
-//           disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
-//       </div>
-//     </>
-//   )
-// }
