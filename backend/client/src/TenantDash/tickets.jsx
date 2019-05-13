@@ -45,11 +45,11 @@ handleTicketModal = (e) => {
     let date = ticket.appt_date
     let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
 
-    if(ticket.completed_tenant === '1' && ticket.completed_landlord === '1') {
+    if(this.state.completed_tenant === '1' && ticket.completed_landlord === '1') {
       resolution = 'Resolved'
-    } else if(ticket.completed_tenant === '1' && ticket.completed_landlord === '0') {
+    } else if(this.state.completed_tenant === '1' && ticket.completed_landlord === '0') {
       resolution = 'Waiting for landlord to resolve'
-    } else if(ticket.completed_tenant === '0') {
+    } else if(this.state.completed_tenant === '0') {
       resolution = 'Mark Resolved'
     }
 
