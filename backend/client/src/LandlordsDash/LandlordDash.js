@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../styles/landlordDashContent/dashboard.css';
 import '../styles/landlordDashContent/tenantContact.css';
-import '../styles/landlordDashContent/tickets.css';
 import '../styles/colorScheme.css';
 
 import TenantContactInfo from './TenantContactInfo.js';

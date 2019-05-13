@@ -119,8 +119,6 @@ class TenantDash extends Component {
      const { landlordInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
 
-     console.log(this.state)
-
   return(
     <>
       <div className='tenant-dash-container'>

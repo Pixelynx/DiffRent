@@ -18,9 +18,6 @@ const SetApptCal = (props) => {
   const [selectedDate, handleDateChange] = useState(new Date());
   const [selectedTime, handleTimeChange] = useState(new Date());
 
-  // const today = new Date(),
-  //   date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
-
   let setApptForm =
                     <>
                       <form onSubmit={handleSetAppt} className='appt-form-container'>
@@ -68,16 +65,3 @@ const SetApptCal = (props) => {
 };
 
 export default withRouter(SetApptCal);
-
-
-
-// minDateMessage='Date must be at least next day.'
-// value={selectedDate}
-// minDate={subDays(new Date(), 2)}
-// openTo="year"
-// showtimeselect="true"
-// timeformat="HH:mm"
-// timeintervals={15}
-// timecaption="time"
-// dateformat="MMMM, d, yyyy"
-// onChange={handleDateChange}
