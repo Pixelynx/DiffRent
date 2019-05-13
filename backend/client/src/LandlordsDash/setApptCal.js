@@ -12,7 +12,8 @@ const SetApptCal = (props) => {
     apptSubmitted,
     handleSetAppt,
     aptInfo,
-    tenantName
+    tenantName,
+    setAppt
   } = props;
 
   const [selectedDate, handleDateChange] = useState(new Date());
@@ -20,37 +21,39 @@ const SetApptCal = (props) => {
 
   let setApptForm =
                     <>
-                      <form onSubmit={handleSetAppt} className='appt-form-container'>
-                        <div className='appt-cal-container'>
-                          <div className='appt-cal'>
-                          <label>Set an Appointment for:</label>
-                          <p>Tenant: {tenantName}</p>
-                          <p>Address: {aptInfo.address}</p>
-                          <p>Apartment#: {aptInfo.apt}</p>
-                          <p>Issue: {ticket.subject}</p>
-                          <DatePicker
-                            className='date-picker'
-                            mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
-                            keyboard
-                            allowKeyboardControl
-                            minDateMessage='Invalid date.'
-                            value={selectedDate}
-                            minDate={addDays(new Date(), 0)}
-                            openTo="year"
-                            format="MM/dd/yyyy"
-                            views={["year", "month", "day"]}
-                            onChange={handleDateChange}
-                        />
+                      <form onSubmit={handleSetAppt} onClick={setAppt} className='appt-form-container'>
+                        <div className='appt-container'>
+                          <div className='appt-cal-container'>
+                            <div className='appt-cal'>
+                            <label>Set an Appointment for:</label>
+                            <p>Tenant: {tenantName}</p>
+                            <p>Address: {aptInfo.address}</p>
+                            <p>Apartment#: {aptInfo.apt}</p>
+                            <p>Issue: {ticket.subject}</p>
+                            <DatePicker
+                              className='date-picker'
+                              mask={value => (value ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/] : [])}
+                              keyboard
+                              allowKeyboardControl
+                              minDateMessage='Invalid date.'
+                              value={selectedDate}
+                              minDate={addDays(new Date(), 0)}
+                              openTo="year"
+                              format="MM/dd/yyyy"
+                              views={["year", "month", "day"]}
+                              onChange={handleDateChange}
+                          />
 
-                        <TimePicker
-                          value={selectedTime}
-                          onChange={handleTimeChange}
-                          format="hh:mm"
-                        />
-                      <input type='submit' value='Submit Appointment' />
-                      </div>
+                          <TimePicker
+                            value={selectedTime}
+                            onChange={handleTimeChange}
+                            format="hh:mm"
+                          />
+                          <input type='submit' value='Submit Appointment' />
+                          </div>
 
-                      </div>
+                          </div>
+                        </div>
                       </form>
                       </>
 
