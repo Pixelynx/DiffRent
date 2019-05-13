@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import SetApptCal from './setApptCal.js';
 import '../styles/landlordDashContent/setAppt.css';
-import '../styles/tenantDash/tenantTickets/tickets.css';
+import '../styles/dashboards/tickets.css';
 
 class Tickets extends Component {
   state = {
@@ -15,15 +15,9 @@ class Tickets extends Component {
   }
 
   handleTicketModal = (e) => {
-    this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
-  }
-
-  mouseEnter = () => {
-    this.setState(prevState => ({ hovered: !prevState.hovered }))
-  }
-
-  mouseLeave = () => {
-    this.setState(prevState => ({ hovered: !prevState.hovered }))
+    if(e.target.className === 'tik-mdl-ctn' || e.target.className === 'ld-tik' || e.target.className === 'mdl-indv-tik') {
+      this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
+    }
   }
 
   landlordHandleStatus = (e) => {
@@ -49,6 +43,7 @@ class Tickets extends Component {
 
   handleSettingAppt = (e) => {
     const { ticket } = this.props
+    let thisClassName = e.target.className
 
     axios.get(`/apartments/${ticket.apartment_id}`)
     .then(res => {
@@ -57,8 +52,10 @@ class Tickets extends Component {
       axios.get(`/tenants/${this.state.aptApptInfo.tenant_id}`)
         .then(res => {
           this.setState({ tenantName: res.data.data.name })
-        }).then(() => {
-          this.setState(prevState => ({ settingAppt: !prevState.settingAppt }))
+        }).then((e) => {
+          if(thisClassName === 'set-appt-btn' || thisClassName === 'appt-form-container') {
+            this.setState(prevState => ({ settingAppt: !prevState.settingAppt }))
+          }
         })
     })
   }
@@ -132,24 +129,24 @@ class Tickets extends Component {
 
       { ticketModalOpen ?
         <>
-          <div
-             onMouseLeave={this.mouseLeave}
-             className='mdl-indv-tik'
-             >
-             <div className='indv-tik'>
-               <p className='mdl-tik-item' id='tik-subj'>Issue: {ticket.subject}</p>
-               <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {apptDate} {ticket.appt_time}</p>
-               <p className='mdl-tik-item' id='tik-desc'>Description: {ticket.body}</p>
-                 <button
-                   id={ticket.ticketid}
-                   onClick={this.landlordHandleStatus}
-                   className='status-btn'
-                   disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
-                 <button
-                   onClick={this.handleSettingAppt}
-                   className='set-appt-btn'
-                   disabled={resolution === 'Resolved' ? true : false}>Set Appointment</button>
-            </div>
+          <div className='tik-mdl-ctn' onClick={this.handleTicketModal}>
+            <div
+               className='mdl-indv-tik'>
+               <div className='indv-tik'>
+                 <p className='mdl-tik-item' id='tik-subj'>Issue: {ticket.subject}</p>
+                 <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {apptDate} {ticket.appt_time}</p>
+                 <p className='mdl-tik-item' id='tik-desc'>Description: {ticket.body}</p>
+                   <button
+                     id={ticket.ticketid}
+                     onClick={this.landlordHandleStatus}
+                     className='status-btn'
+                     disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
+                   <button
+                     onClick={this.handleSettingAppt}
+                     className='set-appt-btn'
+                     disabled={resolution === 'Resolved' ? true : false}>Set Appointment</button>
+              </div>
+             </div>
            </div>
        </>
         : null }
