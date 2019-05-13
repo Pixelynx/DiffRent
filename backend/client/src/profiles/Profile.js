@@ -27,12 +27,13 @@ class Profile extends Component {
   }
 
   componentWillMount(){
-    this.getLandlordInfo()
+    this.getUserInfo()
   }
 
-  getLandlordInfo = () => {
-    axios.get(`/users/${this.props.user.email}`)
+  getUserInfo = () => {
+    axios.get(`/users/user/${this.props.user.email}`)
       .then(response => {
+        debugger;
         this.setState({ defaultVals : {
           id: response.data.data.userId,
           name: response.data.data.name,
@@ -53,8 +54,7 @@ class Profile extends Component {
   this.setState({
     newVals:{...this.state.newVals,
     [event.target.name] : event.target.value,
-  },
-    formSubmitted: true
+  }
   })
 };
 
@@ -94,7 +94,9 @@ handleSubmit = event => {
   }
 
   axios.put(`/users/${this.props.user.userid}`, putRequestInfo)
-    .then(() => console.log('This updated'))
+    .then(this.setState({
+      formSubmitted: true
+    }))
   .catch(err => console.log('GET LANDLORD FAILED', err))
 }
 
@@ -114,7 +116,8 @@ handleSubmit = event => {
             New Password: <input type='password' className='password-input' onChange={this.handleChange} name='password' placeholder='' value='' />
           <hr/>
             <input type='submit' className='submit-btn' value="Submit Changes"/>
-        </div>
+            {this.state.formSubmitted? <p>Your Pofile has been updated!</p> : null}
+         </div>
         </form>
 
           {/*<button><Redirect to='/landlord/:id' /></button>*/}

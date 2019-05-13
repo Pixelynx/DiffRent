@@ -4,8 +4,8 @@ const passport = require('../auth/local');
 const { loginRequired } = require("../auth/helpers");
 const queries = require('../db/queries/users.js');
 
-router.get("/:id", queries.getUserAptInfo, queries.getSingleUser)
-// router.get("/:id", queries.getSingleUser)
+router.get("/:id", queries.getUserAptInfo)
+router.get("/user/:id", queries.getSingleUser)
 router.put("/:id", queries.updateUser)
 router.post("/", queries.addNewUser)
 router.post("/isLoggedIn", queries.isLoggedIn);
