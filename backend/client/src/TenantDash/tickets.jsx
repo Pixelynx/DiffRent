@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../styles/colorScheme.css';
-import '../styles/tenantDash/tenantTickets/tickets.css';
+import '../styles/dashboards/tickets.css';
 
 class Tickets extends Component {
   state = {
     completed_tenant: `${this.props.ticket.completed_tenant === '1' ? '1' : '0'}`,
     ticketModalOpen: false,
-  }
-
-  handleModalOpen = (e) => {
-    if(e.target.className === 'td-tik') {
-      this.setState(prevState => ({ticketModalOpen: !prevState.ticketModalOpen}))
-    }
   }
 
   tenantHandleStatus = async(e) => {
@@ -38,7 +32,9 @@ class Tickets extends Component {
   }
 
 handleTicketModal = (e) => {
-  this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
+  if(e.target.className === 'td-tik' || e.target.className === 'tik-mdl-ctn' || e.target.className === 'mdl-indv-tik') {
+    this.setState(prevState => ({ticketModalOpen: !prevState.ticketModalOpen}))
+  }
 }
 
   render() {
@@ -67,17 +63,19 @@ handleTicketModal = (e) => {
       { ticketModalOpen ?
 
           <>
-            <div
-              className='mdl-indv-tik'>
-              <div className='indv-tik'>
-                <p className='mdl-tik-item' id='tik-subj'>Issue: {ticket.subject}</p>
-                <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {apptDate} {ticket.appt_time}</p>
-                <p className='mdl-tik-item' id='tik-desc'>Description: {ticket.body}</p>
-                  <button
-                    id={ticket.ticketid}
-                    onClick={this.tenantHandleStatus}
-                    className='status-btn'
-                    disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
+            <div className='tik-mdl-ctn' onClick={this.handleTicketModal}>
+              <div
+                className='mdl-indv-tik'>
+                <div className='indv-tik'>
+                  <p className='mdl-tik-item' id='tik-subj'>Issue: {ticket.subject}</p>
+                  <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {apptDate} {ticket.appt_time}</p>
+                  <p className='mdl-tik-item' id='tik-desc'>Description: {ticket.body}</p>
+                    <button
+                      id={ticket.ticketid}
+                      onClick={this.tenantHandleStatus}
+                      className='status-btn'
+                      disabled={resolution === 'Resolved' ? true : false}>{resolution}</button>
+                  </div>
                 </div>
               </div>
             </>
