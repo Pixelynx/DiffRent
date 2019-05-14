@@ -1,0 +1,13 @@
+.faq-container {
+  margin: 0% 20%;
+  padding-left: 1%;
+  padding-right: 1%;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 100%;
+  length: 100vh;
+  font-family: 'Didact Gothic', sans-serif;
+  overflow: scroll;
+}
