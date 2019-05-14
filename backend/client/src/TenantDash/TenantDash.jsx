@@ -111,7 +111,9 @@ class TenantDash extends Component {
   }
 
   handleCreateTicketBtn = (e) => {
-    this.setState(prevState => ({ creatingTicket: !prevState.creatingTicket }))
+    if(e.target.className === 'create-new-tik-btn' || e.target.className === 'form-outter-ctn' || e.target.className === 'form-inner-ctn') {
+      this.setState(prevState => ({ creatingTicket: !prevState.creatingTicket }))
+    }
   }
 
   // handleFormModal = (e) => {
