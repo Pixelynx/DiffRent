@@ -18,7 +18,8 @@
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  background-color: black;
+  max-height: 80%;
+  background-color: var(--dark-purple);
 }
 
 .td-tik, .ld-tik {
@@ -34,8 +35,8 @@
 
 .td-tik:hover, .ld-tik:hover {
   background-color: var(--light-purple);
-  color: var(--light-blue);
   border: none;
+  animation: crt-glowing 1500ms infinite;
 }
 
 .mdl-indv-tik {
