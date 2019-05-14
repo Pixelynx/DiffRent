@@ -63,7 +63,7 @@ class CreateTicketForm extends Component {
               onChange={this.handleSubjectInput}
               name='subjectInput'
               value={this.state.subjectInput}
-              placeholder='subject'
+              placeholder='Subject'
               id='form-subject'
               />
             <br/>
@@ -79,7 +79,6 @@ class CreateTicketForm extends Component {
             <button className='submit-ticket-btn' type='submit'>Submit Ticket</button>
             </div>
           </form>
-
       </>
     )
   }

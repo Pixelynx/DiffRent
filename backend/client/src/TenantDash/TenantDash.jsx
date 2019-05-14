@@ -130,14 +130,16 @@ class TenantDash extends Component {
           <h1>Welcome, {this.state.name}</h1>
           <LandlordContactInfo landlordInfo={landlordInfo}/>
         </div>
-          <div className='ticket-dash-info'>
-            <h2>Tickets Information</h2>
-            <div className='td-tik-ctn'>
-              {this.displayUnresolvedTickets()}
+          <div className='tik-dash-ctn'>
+            <div className='ticket-dash-info'>
+              <h2>Tickets Information</h2>
+              <div className='td-tik-ctn'>
+                {this.displayUnresolvedTickets()}
+              </div>
+              <div
+                onClick={this.handleCreateTicketBtn}
+                className='create-new-tik-btn'>Create Ticket</div>
             </div>
-            <div
-              onClick={this.handleCreateTicketBtn}
-              className='create-new-tik-btn'>Create Ticket</div>
           </div>
         </div>
 
