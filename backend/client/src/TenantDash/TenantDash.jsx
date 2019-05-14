@@ -100,11 +100,11 @@ class TenantDash extends Component {
       return defaultValue.map(ticket => {
         return (
           <Tickets
-            defaultValue={defaultValue}
-            handleModalOpen={this.handleModalOpen}
-            ticketModalOpen={ticketModalOpen}
-            user={user}
-            ticket={ticket}
+          defaultValue={defaultValue}
+          handleModalOpen={this.handleModalOpen}
+          ticketModalOpen={ticketModalOpen}
+          user={user}
+          ticket={ticket}
           />
         )
       })
