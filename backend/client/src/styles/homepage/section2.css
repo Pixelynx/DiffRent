@@ -1,12 +1,125 @@
 .sectionTwo{
-
+    display: flex;
+    height: 100%;
+    z-index: 2;
+    flex-direction: column;
+    justify-content: flex-start; 
 }
 
 .app-name {
+    position: sticky;
+    z-index: 3;
     font-size: 40px;
+    text-align: center;
+    background-color: var(--dark-purple);
+    padding: 25px;
+    top: 0;
+    /* margin-bottom: 5% */
+}
+
+.divider{
+    width: 100%;
+    height: 29%;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    margin-bottom: 6%;
+}
+
+.first{
+    background-color: var(--light-blue);
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    margin-bottom: 6%;
+    height: auto;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
 .sectionTwo h1{
-    margin: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
+.sectionTwo h2{
+    margin-top: 0;
+    /* margin-bottom: 0; */
+}
+
+.second{
+    background-color: var(--light-purple);
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    position: sticky;
+    margin-bottom: 6%;
+    height: auto;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+/* .sectionTwo{
+    display: flex;
+     flex-direction: column;
+    justify-content: space-between;
+} */
+
+/* .sectionTwo h1{
+    margin-top: 0;
+}
+
+.third{
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
+    height: 65px;
+    width: 100%;
+}
+
+.second{
+    background-color: var(--light-purple);
+    z-index: 3;
+    height: 85px;
+    position: sticky;
+    display: flex;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.first{
+    background-color: var(--light-purple);
+    position: sticky;
+    z-index: 3;
+    bottom: 0;
+    height: 85px;
+    margin-bottom:10%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.app-name {
+    position: sticky;
+    z-index: 4;
+    font-size: 40px;
+    text-align: center;
+    background-color: var(--dark-purple);
+    padding: 25px;
+    top: 0.0001px;
+    margin-bottom: 5%
+} */
