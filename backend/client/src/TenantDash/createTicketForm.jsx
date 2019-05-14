@@ -6,15 +6,9 @@ import '../styles/tenantDash/tenantTickets/createTicketForm.css';
 class CreateTicketForm extends Component {
   state = {
     formSubmitted: false,
-    formModalOpen: `${this.props.createTicket ? 'false' : 'true'}`,
+    formModalOpen: false,
     subjectInput: '',
     bodyInput: ''
-  }
-
-  handleModalOpen = (e) => {
-    if(e.target.className === 'form-inner-ctn' || e.target.className === 'form-outter-ctn' || e.target.className === 'create-new-tik-btn') {
-      this.setState(prevState => ({ formModalOpen: !prevState.formModalOpen }))
-    }
   }
 
   handleSubjectInput = (e) => {
@@ -56,13 +50,10 @@ class CreateTicketForm extends Component {
   }
 
   render() {
-console.log(this.state, 'create ticket form')
 
-    if(this.props.createTicket && this.state.formModalOpen) {
     return(
       <>
-          <form className='form-outter-ctn' onClick={this.handleModalOpen} onSubmit={this.handlePostTicket}>
-            <div className='form-inner-ctn'>
+          <form className='form-inner-ctn' onSubmit={this.handlePostTicket}>
             <div className='form-content'>
             <p className='create-tik-notice'>
               Please provide a detailed description of the issue within the household.
@@ -87,13 +78,12 @@ console.log(this.state, 'create ticket form')
             <br/>
             <button className='submit-ticket-btn' type='submit'>Submit Ticket</button>
             </div>
-            </div>
           </form>
 
       </>
     )
-  } else return null
   }
+
 }
 
 export default CreateTicketForm;

@@ -23,7 +23,7 @@ class TenantDash extends Component {
       appointments: [],
       tickets: [],
       creatingTicket: false,
-      defaultValue: []
+      defaultValue: [],
     }
 
 
@@ -112,14 +112,16 @@ class TenantDash extends Component {
 
   handleCreateTicketBtn = (e) => {
     this.setState(prevState => ({ creatingTicket: !prevState.creatingTicket }))
-    console.log(this.state.creatingTicket)
-    // this.setState({ ticketModalOpen: false })
   }
+
+  // handleFormModal = (e) => {
+  //   if(e.target.className === )
+  //   this.setState(prevState => ({ formModalOpen: !prevState.formModalOpen }))
+  // }
 
   render() {
      const { landlordInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
-     console.log(this.state.creatingTicket, 'CREATING TICKET')
 
   return(
     <>
@@ -128,7 +130,7 @@ class TenantDash extends Component {
           <h1>Welcome, {this.state.name}</h1>
           <LandlordContactInfo landlordInfo={landlordInfo}/>
         </div>
-          <div className="ticket-dash-info">
+          <div className='ticket-dash-info'>
             <h2>Tickets Information</h2>
             <div className='td-tik-ctn'>
               {this.displayUnresolvedTickets()}
@@ -139,10 +141,12 @@ class TenantDash extends Component {
           </div>
         </div>
 
-        <CreateTicketForm
-          createTicket={this.state.creatingTicket}
-          user={this.props.user}
-          />
+        { this.state.creatingTicket ?
+          <div className='form-outter-ctn' onClick={this.handleCreateTicketBtn}>
+            <CreateTicketForm
+              createTicket={this.state.creatingTicket}
+              user={this.props.user}
+          /></div> : null }
       </>
      )
 
