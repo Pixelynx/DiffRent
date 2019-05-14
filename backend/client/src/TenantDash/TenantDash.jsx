@@ -5,7 +5,7 @@ import LandlordContactInfo from './landlordContactInfo.jsx';
 import Tickets from './tickets.jsx';
 import CreateTicketForm from './createTicketForm.jsx';
 import '../styles/tenantDash/dashboard.css';
-import '../styles/tenantDash/tenantTickets/tickets.css';
+import '../styles/dashboards/tickets.css';
 
 class TenantDash extends Component {
 
@@ -112,12 +112,14 @@ class TenantDash extends Component {
 
   handleCreateTicketBtn = (e) => {
     this.setState(prevState => ({ creatingTicket: !prevState.creatingTicket }))
-    this.setState({ ticketModalOpen: false })
+    console.log(this.state.creatingTicket)
+    // this.setState({ ticketModalOpen: false })
   }
 
   render() {
      const { landlordInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
+     console.log(this.state.creatingTicket, 'CREATING TICKET')
 
   return(
     <>
@@ -131,6 +133,9 @@ class TenantDash extends Component {
             <div className='td-tik-ctn'>
               {this.displayUnresolvedTickets()}
             </div>
+            <div
+              onClick={this.handleCreateTicketBtn}
+              className='create-new-tik-btn'>Create Ticket</div>
           </div>
         </div>
 
