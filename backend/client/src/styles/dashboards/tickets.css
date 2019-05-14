@@ -17,6 +17,8 @@
 .td-tik-ctn, .ld-tik-ctn {
   display: flex;
   flex-direction: column;
+  overflow: scroll;
+  /* background-color: black; */
 }
 
 .td-tik, .ld-tik {
