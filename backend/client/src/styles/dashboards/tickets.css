@@ -12,11 +12,13 @@
 
 .tik-mdl-ctn {
   display: flex;
+  align-items: center;
   position: absolute;
-  height: 100vh;
-  width: 100vw;
-  left: 30%;
-  top: 10%;
+  height: 100%;
+  width: 100%;
+  left: 0%;
+  top: 0%;
+  justify-content: center;
 }
 
 .td-tik-ctn, .ld-tik-ctn {

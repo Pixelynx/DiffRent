@@ -26,14 +26,14 @@ class Tickets extends Component {
 
     let id = e.target.id;
     let completeConfirm = `${this.state.completed_landlord === '1' ? '0' : '1'}`;
-    let in_progress = `${ticket.completed_tenant === '1' && this.state.completed_landlord === '1' ? '0' : '1'}`
+    let inProgress = `${ticket.completed_tenant === '1' && this.state.completed_landlord === '1' ? '0' : '1'}`
 
       axios.put(`/tickets/${id}`, {
         ticketid: id,
         apartment_id: ticket.apartment_id,
         completed_tenant: ticket.completed_tenant,
         completed_landlord: completeConfirm,
-        in_progress: in_progress,
+        in_progress: inProgress,
         appt_date: ticket.appt_date,
         appt_time: ticket.appt_time
       })
