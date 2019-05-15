@@ -6,6 +6,7 @@ import '../styles/colorScheme.css';
 
 import TenantContactInfo from './TenantContactInfo.js';
 import Tickets from './tickets.jsx';
+import ArchivedTickets from '../archivedTickets.jsx';
 import { ApartmentInfo } from './ApartmentInfo';
 
 class LandlordDash extends Component {
@@ -23,6 +24,9 @@ class LandlordDash extends Component {
       selectedApt: null,
       tickets: [],
       defaultValue: [],
+      resolvedTickets: [],
+      archivedTicketsShowing: false,
+      unresolvedTicketsShowing: true,
       ticketModalOpen: false,
     }
 
@@ -137,42 +141,51 @@ class LandlordDash extends Component {
   }
 
   // hacky fix to get the modal to ONLY close when the outer div is clicked
-  handleModalOpen = (e) => {
-    if(e.target.className === 'open-tiks-btn' || e.target.className === 'modal-container') {
-      this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
-    }
-  }
 
-  displayUnresolvedTickets = () => {
-    const { defaultValue, ticketModalOpen } = this.state
+  displayTickets = () => {
+    // need to change up ticket resolve -- append resolve to tenants and landlord tickets
+    const { defaultValue, ticketModalOpen, archivedTicketsShowing, unresolvedTicketsShowing, resolvedTickets } = this.state
     const { user } = this.props
 
+    if(unresolvedTicketsShowing) {
       return defaultValue.map(ticket => {
-        return (
-              <Tickets
-                match={this.props.match}
-                defaultValue={defaultValue}
-                handleModalOpen={this.handleModalOpen}
-                ticketModalOpen={ticketModalOpen}
-                user={user}
-                ticket={ticket}
-                settingAppt={this.props.settingAppt}
-                completed_landlord={this.state.completed_landlord}
-                />
-            )
-          })
+        if(ticket.in_progress === '1') {
+          return (
+            <Tickets
+              match={this.props.match}
+              defaultValue={defaultValue}
+              handleModalOpen={this.handleModalOpen}
+              ticketModalOpen={ticketModalOpen}
+              user={user}
+              ticket={ticket}
+              settingAppt={this.props.settingAppt}
+              completed_landlord={this.state.completed_landlord}
+              />
+          )
+        }
+      })
+    } else if(archivedTicketsShowing) {
+      return defaultValue.map(ticket => {
+        if(ticket.in_progress === '0') {
+          return (
+            <ArchivedTickets
+            defaultValue={defaultValue}
+            archiveShowing={archivedTicketsShowing}
+            resolvedTiks={this.state.resolvedTickets}
+            handleResolved={this.handleResolvedTicket}
+            user={user}
+            ticket={ticket}
+            />
+          )
+        }
+      })
     }
-
-
-  mouseEnter = () => {
-    this.setState(prevState => ({ hovered: !prevState.hovered }))
   }
 
-  mouseLeave = () => {
-    this.setState(prevState => ({ hovered: !prevState.hovered }))
+  handleArchivedDisplay = (e) => {
+    this.setState(prevState => ({ archivedTicketsShowing: !prevState.archivedTicketsShowing }))
+    this.setState(prevState => ({ unresolvedTicketsShowing: !prevState.unresolvedTicketsShowing }))
   }
-
-
 
 
   render(){
@@ -188,7 +201,12 @@ class LandlordDash extends Component {
                                 <div className="landlord-ticket-dash-info">
                                   <h2>Tickets Information</h2>
                                   <div className='ld-tik-ctn'>
-                                    {this.displayUnresolvedTickets()}
+                                    {this.displayTickets()}
+                                  </div>
+                                  <div
+                                    onClick={this.handleArchivedDisplay}
+                                    className='arch-tik-btn'>
+                                    {this.state.unresolvedTicketsShowing ? 'Arch' : 'Tiks'}
                                   </div>
                                 </div>
                                 <TenantContactInfo
@@ -208,6 +226,7 @@ class LandlordDash extends Component {
                                 </div>
                                 <div className="landlord-ticket-dash-info">
                                   <h2>Tickets Information</h2>
+                                  <p>No ticket information to display.</p>
                                 </div>
                                 <ApartmentInfo
                                   tenant={tenant}
