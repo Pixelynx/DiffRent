@@ -70,11 +70,11 @@ class Threads extends React.Component {
           
         </div>
         <div className="threadListContainer" >
-            <ThreadList  
-              threads={this.state.threads} 
-              user={this.props.user}
-            />
-            </div>
+          <ThreadList  
+            threads={this.state.threads} 
+            user={this.props.user}
+          />
+        </div>
       </React.Fragment>
     )
   }
