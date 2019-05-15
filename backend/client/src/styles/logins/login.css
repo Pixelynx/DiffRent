@@ -10,6 +10,12 @@
     60% { box-shadow: 0 0 20px navy; }
     100% { box-shadow: 0 0 -10px navy; }
   }
+@keyframes glowing-white {
+    0% { box-shadow: 0 0 -10px white; }
+    40% { box-shadow: 0 0 20px white; }
+    60% { box-shadow: 0 0 20px white; }
+    100% { box-shadow: 0 0 -10px white; }
+  }
 
 /*//////////Login form////////////*/
 .loginFormContainer{
