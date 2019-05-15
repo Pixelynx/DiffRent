@@ -55,6 +55,8 @@
   border-radius: 4px;
   /* padding-left: 20px; */
   background-color: #7149B0;
+  width: 25%;
+  overflow: scroll;
 }
 
 .threadList {
@@ -62,6 +64,8 @@
   font-family: 'Didact Gothic', sans-serif;
   /* padding-top: 5px; */
   padding-bottom: 5px;
+  width: 100%;
+  overflow-wrap: break-word;
 }
 
 /* div.threadList:nth-child(odd) {
@@ -78,6 +82,7 @@
   /* border-bottom: 2px dotted yellow; */
   margin: 0;
   color: white;
+  padding-left: 10px;
 }
 
 .threadList a {
@@ -102,6 +107,8 @@
   font-family: 'Open Sans', sans-serif !important;
   font-size: 12px;
   line-height: 1.3;
+  width: 35%;
+  overflow: scroll;
 }
 
 .msg-back-link {
@@ -143,7 +150,7 @@
 }
 
 .msgInput[type=text], select {
-  width: 100%;
+  width: 80%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -151,6 +158,10 @@
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 16px;
+}
+
+.buttonInput {
+  width: 20%;
 }
 
 .threadList hr {

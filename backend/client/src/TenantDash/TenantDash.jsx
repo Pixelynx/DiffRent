@@ -4,6 +4,8 @@ import axios from 'axios'
 import LandlordContactInfo from './landlordContactInfo.jsx';
 import Tickets from './tickets.jsx';
 import CreateTicketForm from './createTicketForm.jsx';
+import ArchivedTickets from '../archivedTickets.jsx';
+
 import '../styles/tenantDash/dashboard.css';
 import '../styles/dashboards/tickets.css';
 
@@ -24,6 +26,9 @@ class TenantDash extends Component {
       tickets: [],
       creatingTicket: false,
       defaultValue: [],
+      resolvedTickets: [],
+      archivedTicketsShowing: false,
+      unresolvedTicketsShowing: true
     }
 
 
@@ -92,22 +97,41 @@ class TenantDash extends Component {
     })
   }
 
-  displayUnresolvedTickets = () => {
+  displayTickets = () => {
     // need to change up ticket resolve -- append resolve to tenants and landlord tickets
-    const { defaultValue, ticketModalOpen } = this.state
+    const { defaultValue, ticketModalOpen, archivedTicketsShowing, unresolvedTicketsShowing, resolvedTickets } = this.state
     const { user } = this.props
 
+    if(unresolvedTicketsShowing) {
       return defaultValue.map(ticket => {
-        return (
-          <Tickets
-          defaultValue={defaultValue}
-          handleModalOpen={this.handleModalOpen}
-          ticketModalOpen={ticketModalOpen}
-          user={user}
-          ticket={ticket}
-          />
-        )
+        if(ticket.in_progress === '1') {
+          return (
+            <Tickets
+            defaultValue={defaultValue}
+            handleModalOpen={this.handleModalOpen}
+            ticketModalOpen={ticketModalOpen}
+            user={user}
+            ticket={ticket}
+            />
+          )
+        }
       })
+    } else if(archivedTicketsShowing) {
+      return defaultValue.map(ticket => {
+        if(ticket.in_progress === '0') {
+          return (
+            <ArchivedTickets
+            defaultValue={defaultValue}
+            archiveShowing={archivedTicketsShowing}
+            resolvedTiks={this.state.resolvedTickets}
+            handleResolved={this.handleResolvedTicket}
+            user={user}
+            ticket={ticket}
+            />
+          )
+        }
+      })
+    }
   }
 
   handleCreateTicketBtn = (e) => {
@@ -116,17 +140,36 @@ class TenantDash extends Component {
     }
   }
 
-  // handleFormModal = (e) => {
-  //   if(e.target.className === )
-  //   this.setState(prevState => ({ formModalOpen: !prevState.formModalOpen }))
-  // }
+  handleResolvedTicket = () => {
+    const { defaultValue } = this.state;
+    let resolvedTickets = []
+
+    return defaultValue.filter(ticket => {
+      if(ticket.in_progress === '0') {
+        resolvedTickets.push(ticket)
+      }
+      this.setState({ resolvedTickets: resolvedTickets })
+    })
+  }
+
+
+  handleArchivedDisplay = (e) => {
+    this.setState(prevState => ({ archivedTicketsShowing: !prevState.archivedTicketsShowing }))
+    this.setState(prevState => ({ unresolvedTicketsShowing: !prevState.unresolvedTicketsShowing }))
+  }
 
   render() {
      const { landlordInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
 
+     console.log(this.state.defaultValue)
+
+
   return(
     <>
+
+    {this.handleResolvedTicket}
+
       <div className='tenant-dash-container'>
         <div className='tenant-info-container'>
           <h1>Welcome, {this.state.name}</h1>
@@ -136,11 +179,19 @@ class TenantDash extends Component {
             <div className='ticket-dash-info'>
               <h2>Tickets Information</h2>
               <div className='td-tik-ctn'>
-                {this.displayUnresolvedTickets()}
+                {this.displayTickets()}
               </div>
-              <div
-                onClick={this.handleCreateTicketBtn}
-                className='create-new-tik-btn'>Create Ticket</div>
+              <div className='btns-ctn'>
+                <div
+                  onClick={this.handleCreateTicketBtn}
+                  className='create-new-tik-btn'>Create Ticket
+                </div>
+                <div
+                  onClick={this.handleArchivedDisplay}
+                  className='arch-tik-btn'>
+                  {this.state.unresolvedTicketsShowing ? 'Arch' : 'Tiks'}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -151,6 +202,7 @@ class TenantDash extends Component {
               createTicket={this.state.creatingTicket}
               user={this.props.user}
           /></div> : null }
+
       </>
      )
 

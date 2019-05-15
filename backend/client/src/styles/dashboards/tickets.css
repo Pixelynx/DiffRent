@@ -5,6 +5,11 @@
     100% { box-shadow: 0 0 -10px var(--medium-blue); }
   }
 
+.tik-dash-ctn {
+  display: flex;
+  flex-direction: column;
+}
+
 .tik-mdl-ctn {
   display: flex;
   position: absolute;
@@ -59,13 +64,18 @@
   height: 80%;
 }
 
+.btns-ctn {
+  display: flex;
+  flex-direction: row;
+}
+
 .create-new-tik-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--medium-blue);
   height: 2em;
-  width: 12.2em;
+  width: 8.2em;
   border-radius: .5em;
   margin: .5em 1em .5em 1em;
 }
@@ -75,3 +85,29 @@
   color: var(--medium-blue);
   animation: crt-glowing 1500ms infinite;
 }
+
+.arch-tik-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  height: 2em;
+  width: 2em;
+  border-radius: .5em;
+  margin: .5em 1em .5em 1em;
+}
+
+.arch-tik-mdl-ctn {
+}
+
+/* .arch-mdl-indv-tik {
+  display: flex;
+  justify-content: center;
+  width: 35%;
+  height: 80%;
+  right: 35%;
+  bottom: 10%;
+  background-color: var(--tik-modal);
+  color: #000;
+  background-color: rgba(255, 255, 255, .8);
+} */
