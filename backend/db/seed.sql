@@ -1,9 +1,14 @@
 -- DROP DATABASE IF EXISTS diffrent;
 -- CREATE DATABASE diffrent;
 
--- \c diffrent;
+\c diffrent;
 
-DROP TABLE users, apartments, tickets, threads, messages;
+DROP TABLE messages;
+DROP TABLE threads;
+DROP TABLE tickets;
+DROP TABLE apartments;
+DROP TABLE users;
+
 DROP TYPE userAcc;
 
 CREATE TYPE userAcc as ENUM('landlord', 'tenant');
