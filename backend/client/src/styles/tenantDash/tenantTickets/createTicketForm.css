@@ -4,6 +4,7 @@
   width: 100vw;
   top: 10%;
   left: 28%;
+  animation: fadein 200ms ease-in;
 }
 
 .form-inner-ctn {
