@@ -8,6 +8,13 @@ import { SectionThree } from './Sections/SectionThree';
 
 class HomepageContent extends Component{
 
+    tenantLogin = () => {
+        this.props.history.push("/tenants/login")
+    }
+    landlordLogin = () => {
+        this.props.history.push("/landlords/login")
+    }
+
     render() {
         const { handleScroll01, handleScroll02, handleScroll03, handleScroll04 } = this.props; 
         return(
@@ -15,7 +22,13 @@ class HomepageContent extends Component{
 
                 {/* section one */}
                 <section id='section01'>
-                    <SectionOne />
+                    <SectionOne 
+                    tenantLogin={this.tenantLogin}
+                    handleScroll02={handleScroll02} 
+                    handleScroll03={handleScroll03} 
+                    handleScroll04={handleScroll04} 
+                    landlordLogin={this.landlordLogin} />
+                    
                     <span onClick={handleScroll02}></span>
                     <span onClick={handleScroll02}></span>
                     <span onClick={handleScroll02}></span>

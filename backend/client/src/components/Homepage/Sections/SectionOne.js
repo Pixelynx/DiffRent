@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import '../../../styles/homepage/section1.css'
 import logo from "../../../logo/DiffRent_logo_official.png";
 
-export const SectionOne = () => {
+export const SectionOne = (props) => {
     return(
         <div className='section1'>
 
@@ -11,8 +11,16 @@ export const SectionOne = () => {
 
             <div className='loginButtons'>
 
-                <Link to='/tenants/login'><button className='tenantButton'>Tenant</button></Link>
-                <Link to='/landlords/login'><button className='landlordButton'>Landlord</button></Link>
+                <button className='tenantButton' onClick={props.tenantLogin}>Tenant</button>
+                <button className='landlordButton' onClick={props.landlordLogin}>Landlord</button>
+
+            </div>
+
+            <div className='links'>
+
+                <div onClick={props.handleScroll02}>DiffRent</div>
+                <div className='features' onClick={props.handleScroll03}>Feautures</div>
+                <div onClick={props.handleScroll04}>The Team</div>
 
             </div>
         </div>
