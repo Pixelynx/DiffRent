@@ -149,7 +149,7 @@ class LandlordDash extends Component {
 
     if(unresolvedTicketsShowing) {
       return defaultValue.map(ticket => {
-        if(ticket.in_progress === '1') {
+        if(ticket.completed_landlord === '0' || ticket.completed_tenant === '0') {
           return (
             <Tickets
               match={this.props.match}
@@ -166,7 +166,7 @@ class LandlordDash extends Component {
       })
     } else if(archivedTicketsShowing) {
       return defaultValue.map(ticket => {
-        if(ticket.in_progress === '0') {
+        if(ticket.completed_landlord === '1' && ticket.completed_tenant === '1') {
           return (
             <ArchivedTickets
             defaultValue={defaultValue}
