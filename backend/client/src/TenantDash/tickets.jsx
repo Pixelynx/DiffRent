@@ -6,6 +6,7 @@ import '../styles/dashboards/tickets.css';
 class Tickets extends Component {
   state = {
     completed_tenant: `${this.props.ticket.completed_tenant === '1' ? '1' : '0'}`,
+    completed_landlord: `${this.props.ticket.completed_landlord === '1' ? '1' : '0'}`,
     ticketModalOpen: false,
   }
 
@@ -14,7 +15,7 @@ class Tickets extends Component {
 
     let id = e.target.id;
     let completedTenant = `${this.state.completed_tenant === '1' ? '0' : '1'}`;
-    let in_progress = `${this.state.completed_tenant === '1' && ticket.completed_landlord === '1' ? '0' : '1'}`;
+    let in_progress = `${this.state.completed_tenant === '1' && this.state.completed_landlord === '1' ? '0' : '1'}`;
     let aptid = user.aptid;
 
       await axios.put(`/tickets/${id}`, {

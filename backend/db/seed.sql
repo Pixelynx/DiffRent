@@ -67,7 +67,7 @@ INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Elliot Horn', 'Elliothorn@gmail.com', '(432)221-7567', '1985-12-15', 'JFK123', 'landlord');
 
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Zoe Goulding', 'zGoulding@gmail.com', '(609)367-5162', '1998-10-01',  '$2a$10$ljQkp/aLpymNrrlFrtsEY.MdCn5wxvhwbAjRKxt3fgN/DWddHTc12', 'tenant');
-INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Nikola Ryder', 'nRyder@gmail.com', '(319)471-7363', '1995-12-02',  '$2a$10$ljQkp/aLpymNrrlFrtsEY.MdCn5wxvhwbAjRKxt3fgN/DWddHTc12', 'tenant');
+INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Erick Arellano', 'nRyder@gmail.com', '(319)471-7363', '1995-12-02',  '$2a$10$ljQkp/aLpymNrrlFrtsEY.MdCn5wxvhwbAjRKxt3fgN/DWddHTc12', 'tenant');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Kylie Thomas', 'kThomas@gmail.com', '(440)685-5383', '1996-06-03', '$2a$10$ljQkp/aLpymNrrlFrtsEY.MdCn5wxvhwbAjRKxt3fgN/DWddHTc12', 'tenant');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Brody Welsh', 'bWelsh@gmail.com', '(312)600-6147', '1991-04-05',  'xyz456', 'tenant');
 INSERT INTO users(name, email, phone, dob, password_digest, user_type) VALUES ('Karol Lu', 'kLu@gmail.com', '(206)213-6903', '1980-09-02', '987abc' , 'tenant');
@@ -102,14 +102,14 @@ INSERT INTO apartments(apt, address, tenant_id, landlord_id) VALUES ('3', '10 Ea
 
 
 
-INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '0', '1', '2019-05-05', '12:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door not closing right', '1', '1', '0', '2019-05-07', '1:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door STILL not closing right', '0', '0', '1', NULL, NULL );
-INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'key broke in door', '1', '1', '0', '2019-05-07', '1:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'gas leak', '0', '0', '1', NULL, NULL );
-INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(3, 'Ceiling', 'Living room ceiling needs small repair', '0', '0', '1', '2019-05-08', '2:00 [PM]' );
-INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(4, 'Window', 'Window lock not working', '0', '0', '0', NULL, NULL );
-INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(5, 'Building key', 'Lost key for the entrance of the building', '0', '0', '1', '2019-05-09', '4:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES (1, 'Plumbing', 'Bathroom sink not working', '0', '0', '1', NULL, '12:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Unit Entrance', 'Door not closing right', '0', '0', '1', '2019-05-07', '1:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Bedroom', 'Doorknob fell off', '0', '0', '1', NULL, NULL );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Bathroom', 'key broke in door', '0', '0', '1', '2019-05-07', '1:00 [PM]' );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(2, 'Kitchen', 'gas leak', '0', '0', '1', NULL, NULL );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(3, 'Ceiling', 'Living room ceiling needs small repair', '0', '0', '1', NULL, NULL );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(4, 'Window', 'Window lock not working', '0', '0', '1', NULL, NULL );
+INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(5, 'Building key', 'Lost key for the entrance of the building', '0', '0', '1', NULL, NULL );
 
 INSERT INTO threads(title, tenant_id, landlord_id)
 VALUES
@@ -124,9 +124,9 @@ VALUES
 ('11', '1', 'Please fix this','1995-12-17T03:24:00'),
 ('12', '2', 'Hi Reya','2019-05-01 08:13:20'),
 ('12', '2', 'Just checking in with you on the heat problem','2019-05-01 08:14:10'),
-('2', '2', 'Hi Nikola','2019-05-01 09:26:40'),
+('2', '2', 'Hi Erick', '9-05-01 09:26:40'),
 ('2', '2', 'I apologize for the inconvenience but it will be fixed this afternoon','2019-05-01 09:28:40'),
-('2', '3', 'Good afternoon Nikola, just letting you know the problem is resolved', '2019-05-01 09:28:40');
+('2', '3', 'Good afternoon Erick, letting you know the problem is resolved', '2019-05-01 09:28:40');
 
 
 
@@ -197,7 +197,7 @@ VALUES
 --                                                      ('3', '10 East 8th Street, New York, NY 10003', 10);
 --
 -- INSERT INTO tenants(name, email, phone, dob, apartment_id, password_digest) VALUES ('Zoe Goulding', 'zGoulding@gmail.com', '(609)367-5162', '1998-10-01', 1,  'abc123' ),
---                                                                                     ('Nikola Ryder', 'nRyder@gmail.com', '(319)471-7363', '1995-12-02', 2,  '123abc' ),
+--                                                                                     ('Erick Arellano', 'nRyder@gmail.com', '(319)471-7363', '1995-12-02', 2,  '123abc' ),
 --                                                                                     ('Kylie Thomas', 'kThomas@gmail.com', '(440)685-5383', '1996-06-03', 3, '456xyz' ),
 --                                                                                     ('Brody Welsh', 'bWelsh@gmail.com', '(312)600-6147', '1991-04-05', 4,  'xyz456' ),
 --                                                                                     ('Karol Lu', 'kLu@gmail.com', '(206)213-6903', '1980-09-02', 5, '987abc' ),
