@@ -53,6 +53,8 @@ handleTicketModal = (e) => {
       resolution = 'Mark Resolved'
     }
 
+    // TEST THIS: onClick={(e) => e.target.className === 'form-container' ? this.handleModalOpen : null}
+
   return(
     <>
       <button onClick={this.handleTicketModal} className='td-tik' id={ticket.ticketid}>
@@ -61,6 +63,7 @@ handleTicketModal = (e) => {
       </button>
 
       { ticketModalOpen ?
+
           <>
             <div className='tik-mdl-ctn' onClick={this.handleTicketModal}>
               <div

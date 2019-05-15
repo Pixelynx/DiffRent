@@ -103,7 +103,7 @@ class App extends Component {
   render() {
     const { isLoggedIn, user, navbar } = this.state;
     let logoutButton = isLoggedIn ? (
-      <button onClick={this.logoutUser.bind(this)}>Logout</button>
+      <div onClick={this.logoutUser.bind(this)}>Logout</div>
     ) : null;
     return (
       <div className="App">

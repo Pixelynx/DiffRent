@@ -3,8 +3,12 @@ import '../../../styles/homepage/section3.css'
 
 export const SectionThree = () => {
     return (
+        <>
         <div className='sectionThree'>
-        <h1 className='hompage_question'>What does DiffRent do, uh...differently?</h1>
+        <div className='hompage_question'>
+        <h1>What does DiffRent do, uh...differently?</h1>
+        </div>
+        <div className='featuresContainer'>
         <div className='desc_container'>
           <div className='card-1'>
             <h2>Organization Made Easy</h2>
@@ -40,5 +44,7 @@ export const SectionThree = () => {
           </div>
         </div>
         </div>
+        </div>
+        </>
     )
 }

@@ -5,7 +5,7 @@ import LandlordContactInfo from './landlordContactInfo.jsx';
 import Tickets from './tickets.jsx';
 import CreateTicketForm from './createTicketForm.jsx';
 import '../styles/tenantDash/dashboard.css';
-import '../styles/tenantDash/tenantTickets/tickets.css';
+import '../styles/dashboards/tickets.css';
 
 class TenantDash extends Component {
 
@@ -23,7 +23,7 @@ class TenantDash extends Component {
       appointments: [],
       tickets: [],
       creatingTicket: false,
-      defaultValue: []
+      defaultValue: [],
     }
 
 
@@ -100,20 +100,26 @@ class TenantDash extends Component {
       return defaultValue.map(ticket => {
         return (
           <Tickets
-            defaultValue={defaultValue}
-            handleModalOpen={this.handleModalOpen}
-            ticketModalOpen={ticketModalOpen}
-            user={user}
-            ticket={ticket}
+          defaultValue={defaultValue}
+          handleModalOpen={this.handleModalOpen}
+          ticketModalOpen={ticketModalOpen}
+          user={user}
+          ticket={ticket}
           />
         )
       })
   }
 
   handleCreateTicketBtn = (e) => {
-    this.setState(prevState => ({ creatingTicket: !prevState.creatingTicket }))
-    this.setState({ ticketModalOpen: false })
+    if(e.target.className === 'create-new-tik-btn' || e.target.className === 'form-outter-ctn' || e.target.className === 'form-inner-ctn') {
+      this.setState(prevState => ({ creatingTicket: !prevState.creatingTicket }))
+    }
   }
+
+  // handleFormModal = (e) => {
+  //   if(e.target.className === )
+  //   this.setState(prevState => ({ formModalOpen: !prevState.formModalOpen }))
+  // }
 
   render() {
      const { landlordInfo, tickets, defaultValue } = this.state;
@@ -126,18 +132,25 @@ class TenantDash extends Component {
           <h1>Welcome, {this.state.name}</h1>
           <LandlordContactInfo landlordInfo={landlordInfo}/>
         </div>
-          <div className="ticket-dash-info">
-            <h2>Tickets Information</h2>
-            <div className='td-tik-ctn'>
-              {this.displayUnresolvedTickets()}
+          <div className='tik-dash-ctn'>
+            <div className='ticket-dash-info'>
+              <h2>Tickets Information</h2>
+              <div className='td-tik-ctn'>
+                {this.displayUnresolvedTickets()}
+              </div>
+              <div
+                onClick={this.handleCreateTicketBtn}
+                className='create-new-tik-btn'>Create Ticket</div>
             </div>
           </div>
         </div>
 
-        <CreateTicketForm
-          createTicket={this.state.creatingTicket}
-          user={this.props.user}
-          />
+        { this.state.creatingTicket ?
+          <div className='form-outter-ctn' onClick={this.handleCreateTicketBtn}>
+            <CreateTicketForm
+              createTicket={this.state.creatingTicket}
+              user={this.props.user}
+          /></div> : null }
       </>
      )
 
