@@ -7,7 +7,6 @@ import erick from '../../assets/profileImgs/erick.jpg';
 import tkeya from '../../assets/profileImgs/tjs.png';
 import trey from '../../assets/profileImgs/treagan.jpeg';
 import kelly from '../../assets/profileImgs/Kelly.png'
-import { Link } from 'react-router-dom';
 
 class About extends Component {
     state = {

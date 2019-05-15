@@ -18,9 +18,9 @@ export const SectionOne = (props) => {
 
             <div className='links'>
 
-                <div onClick={props.handleScroll02}>DiffRent</div>
-                <div className='features' onClick={props.handleScroll03}>Feautures</div>
-                <div onClick={props.handleScroll04}>The Team</div>
+                <div className='name' onClick={props.handleScroll02}>DiffRent</div>
+                <div className='features' onClick={props.handleScroll03}>Features</div>
+                <div className='team' onClick={props.handleScroll04}>The Team</div>
 
             </div>
         </div>
