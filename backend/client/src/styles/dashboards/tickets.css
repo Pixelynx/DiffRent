@@ -5,6 +5,11 @@
     100% { box-shadow: 0 0 -10px var(--medium-blue); }
   }
 
+@keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 .tik-dash-ctn {
   display: flex;
   flex-direction: column;
@@ -19,6 +24,7 @@
   left: 0%;
   top: 0%;
   justify-content: center;
+  animation: fadein 200ms ease-in;
 }
 
 .td-tik-ctn, .ld-tik-ctn {
@@ -49,7 +55,7 @@
 .mdl-indv-tik {
   display: flex;
   justify-content: center;
-  /* position: absolute; */
+  border-radius: .3em;
   width: 35%;
   height: 80%;
   right: 35%;
@@ -61,14 +67,57 @@
 
 .indv-tik {
   align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: var(--light-purple);
+  border-radius: .3em;
+  padding-top: 1em;
   width: 70%;
-  height: 80%;
+  height: 78%;
+}
+
+.mdl-tik-item {
+  margin: .5em;
 }
 
 .btns-ctn {
   display: flex;
   flex-direction: row;
+}
+
+.status-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  color: #fff;
+  background-color: var(--dark-purple);
+  height: 3em;
+  width: 70%;
+  border-radius: .5em;
+  margin: 2em 1em .5em 1em;
+}
+
+.status-btn:hover {
+  background-color: var(--light-blue);
+  color: var(--dark-purple);
+  animation: crt-glowing 1500ms infinite;
+}
+
+.set-appt-btn {
+  background-color: #666699;
+  height: 3em;
+  width: 70%;
+  border-radius: .5em;
+  font-size: 1em;
+  margin: 20 1em .5em 1em;
+}
+
+.set-appt-btn:hover {
+  background-color: var(--light-blue);
+  color: #fff;
+  animation: crt-glowing 1500ms infinite;
 }
 
 .create-new-tik-btn {
@@ -79,7 +128,7 @@
   height: 2em;
   width: 8.2em;
   border-radius: .5em;
-  margin: .5em 1em .5em 1em;
+  margin: .5em .2em .5em 1em;
 }
 
 .create-new-tik-btn:hover {
@@ -93,23 +142,36 @@
   align-items: center;
   justify-content: center;
   align-self: flex-end;
+  background-color: #666699;
   height: 2em;
-  width: 2em;
+  width: 4em;
   border-radius: .5em;
-  margin: .5em 1em .5em 1em;
+  margin: .5em 1em .5em .2em;
 }
 
-.arch-tik-mdl-ctn {
-}
-
-/* .arch-mdl-indv-tik {
+.ld-arch-tik-btn {
   display: flex;
+  align-items: center;
   justify-content: center;
-  width: 35%;
-  height: 80%;
-  right: 35%;
-  bottom: 10%;
-  background-color: var(--tik-modal);
-  color: #000;
-  background-color: rgba(255, 255, 255, .8);
-} */
+  align-self: center;
+  background-color: #666699;
+  height: 2em;
+  width: 4em;
+  border-radius: .5em;
+  margin: .5em 1em .5em .2em;
+}
+
+.arch-tik-btn:hover, .ld-arch-tik-btn:hover {
+  background-color: var(--light-purple);
+  color: var(--light-blue);
+  animation: crt-glowing 1500ms infinite;
+}
+
+.arch-indv-tik {
+  background-color: #666699;
+  border-radius: .3em;
+  padding-top: 1em;
+  align-self: center;
+  width: 70%;
+  height: 78%;
+}

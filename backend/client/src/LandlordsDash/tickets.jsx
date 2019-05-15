@@ -116,7 +116,7 @@ class Tickets extends Component {
         if(this.state.completed_landlord === '1' && ticket.completed_tenant === '1') {
           resolution = 'Resolved'
         } else if(this.state.completed_landlord === '1' && ticket.completed_tenant === '0') {
-          resolution = 'Waiting for tenant to resolve'
+          resolution = 'Pending'
         } else if(this.state.completed_landlord === '0') {
           resolution = 'Mark Resolved'
         }
