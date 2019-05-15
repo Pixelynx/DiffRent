@@ -44,7 +44,7 @@ handleTicketModal = (e) => {
     let resolution;
     let date = ticket.appt_date
     let apptDate = new Intl.DateTimeFormat('en-US').format(new Date(date))
-    
+
     if(this.state.completed_tenant === '1' && ticket.completed_landlord === '1') {
       resolution = 'Resolved'
     } else if(this.state.completed_tenant === '1' && ticket.completed_landlord === '0') {
@@ -52,8 +52,6 @@ handleTicketModal = (e) => {
     } else if(this.state.completed_tenant === '0') {
       resolution = 'Mark Resolved'
     }
-
-    // TEST THIS: onClick={(e) => e.target.className === 'form-container' ? this.handleModalOpen : null}
 
   return(
     <>
