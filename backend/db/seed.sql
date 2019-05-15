@@ -119,10 +119,10 @@ INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_lan
 INSERT INTO threads(title, tenant_id, landlord_id)
 VALUES
 ('Will be on vacation', 11, 1),
-('Quick question regarding heat', 12, 2),
-('Follow Up on Ticket', 12, 2),
-('On Vacation next week', 12, 2),
-('Question about rent', 12, 2) ;
+('Quick question re heat', 12, 2),
+('Follow Up on door', 12, 2),
+('Re: rent', 12, 2),
+('On vacation next week', 12, 2);
 
 INSERT INTO messages(owner_id, threads_id, body, message_date)
 VALUES

@@ -61,7 +61,7 @@ class ThreadItem extends React.Component {
         <div>
           {this.state.title}
         </div>
-        <div>
+        <div className="msgContainer">
           <div>
             <Link className="msg-back-link" to={`/inbox`}>Back</Link>
           </div>
@@ -69,9 +69,9 @@ class ThreadItem extends React.Component {
             <MessageList messages={this.state.messages} sendMessage={this.sendMessage} />
           </div> : <h2>Send the first message!</h2>}
           <div>
-            <form style={{display: 'flex'}}onSubmit={this.sendMessage}> 
+            <form onSubmit={this.sendMessage}> 
               <input className="msgInput"onChange={this.handleChange} value={this.state.body} type="text" placeholder="Type your message here" /> 
-              <button className="buttonInput" type="submit" >Send</button>
+              <input className="msgInput" type="submit" Send />
             </form>
           </div>
         </div>
