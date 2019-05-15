@@ -26,6 +26,7 @@ class TenantDash extends Component {
       tickets: [],
       creatingTicket: false,
       defaultValue: [],
+      resolvedTickets: [],
       archivedTicketsShowing: false,
       unresolvedTicketsShowing: true
     }
@@ -98,11 +99,12 @@ class TenantDash extends Component {
 
   displayTickets = () => {
     // need to change up ticket resolve -- append resolve to tenants and landlord tickets
-    const { defaultValue, ticketModalOpen, archivedTicketsShowing, unresolvedTicketsShowing } = this.state
+    const { defaultValue, ticketModalOpen, archivedTicketsShowing, unresolvedTicketsShowing, resolvedTickets } = this.state
     const { user } = this.props
 
+    if(unresolvedTicketsShowing) {
       return defaultValue.map(ticket => {
-        if(unresolvedTicketsShowing) {
+        if(ticket.in_progress === '1') {
           return (
             <Tickets
             defaultValue={defaultValue}
@@ -112,17 +114,24 @@ class TenantDash extends Component {
             ticket={ticket}
             />
           )
-        } else if(archivedTicketsShowing) {
+        }
+      })
+    } else if(archivedTicketsShowing) {
+      return defaultValue.map(ticket => {
+        if(ticket.in_progress === '0') {
           return (
             <ArchivedTickets
             defaultValue={defaultValue}
             archiveShowing={archivedTicketsShowing}
+            resolvedTiks={this.state.resolvedTickets}
+            handleResolved={this.handleResolvedTicket}
             user={user}
             ticket={ticket}
             />
           )
         }
       })
+    }
   }
 
   handleCreateTicketBtn = (e) => {
@@ -131,7 +140,20 @@ class TenantDash extends Component {
     }
   }
 
-  handleArchivedModal = (e) => {
+  handleResolvedTicket = () => {
+    const { defaultValue } = this.state;
+    let resolvedTickets = []
+
+    return defaultValue.filter(ticket => {
+      if(ticket.in_progress === '0') {
+        resolvedTickets.push(ticket)
+      }
+      this.setState({ resolvedTickets: resolvedTickets })
+    })
+  }
+
+
+  handleArchivedDisplay = (e) => {
     this.setState(prevState => ({ archivedTicketsShowing: !prevState.archivedTicketsShowing }))
     this.setState(prevState => ({ unresolvedTicketsShowing: !prevState.unresolvedTicketsShowing }))
   }
@@ -140,10 +162,14 @@ class TenantDash extends Component {
      const { landlordInfo, tickets, defaultValue } = this.state;
      const { user } = this.props;
 
-     console.log(this.state.archivedTicketsShowing, 'archived', this.state.unresolvedTicketsShowing, 'unresolved')
+     console.log(this.state.defaultValue)
+
 
   return(
     <>
+
+    {this.handleResolvedTicket}
+
       <div className='tenant-dash-container'>
         <div className='tenant-info-container'>
           <h1>Welcome, {this.state.name}</h1>
@@ -161,7 +187,7 @@ class TenantDash extends Component {
                   className='create-new-tik-btn'>Create Ticket
                 </div>
                 <div
-                  onClick={this.handleArchivedModal}
+                  onClick={this.handleArchivedDisplay}
                   className='arch-tik-btn'>
                   {this.state.unresolvedTicketsShowing ? 'Arch' : 'Tiks'}
                 </div>
@@ -176,6 +202,7 @@ class TenantDash extends Component {
               createTicket={this.state.creatingTicket}
               user={this.props.user}
           /></div> : null }
+
       </>
      )
 
