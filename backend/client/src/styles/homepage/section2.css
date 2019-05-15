@@ -9,10 +9,13 @@
 .app-name {
     position: sticky;
     z-index: 3;
-    font-size: 40px;
+    font-family: 'KingRichard';
+    font-size: 65px;
+    color: #4ef7ff;
+    letter-spacing: 13px;
     text-align: center;
     background-color: var(--dark-purple);
-    padding: 25px;
+    padding: 15px;
     top: 0;
     /* margin-bottom: 5% */
 }
@@ -47,7 +50,7 @@
     margin-bottom: 0;
 }
 .sectionTwo h2{
-    margin-top: 0;
+    /* margin-top: 0; */
     /* margin-bottom: 0; */
 }
 

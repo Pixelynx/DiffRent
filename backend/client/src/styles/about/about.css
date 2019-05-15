@@ -74,3 +74,22 @@
     display: flex;
     justify-content: center;
 }
+
+.personName{
+    padding-left: 10px;
+    padding-top: 5px;
+    font-family: 'Didact Gothic';
+    font-weight: bolder;
+    font-size: 20px;
+    color: white;
+}
+
+.socialIcons{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+.socialIcons img{
+    margin-left: 10px;
+    margin-right: 10px;
+}
