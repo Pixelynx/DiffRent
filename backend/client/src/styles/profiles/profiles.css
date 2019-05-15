@@ -10,7 +10,8 @@
       /* border-bottom: 2px solid #C8CCD4; */
       background: none;
       border-radius: 0;
-      transition: all .15s ease;
+      color: white;
+      /* transition: all .15s ease;
       &:hover;
         background: rgba(#223254,.03);
       &:not(:placeholder-shown)
@@ -23,11 +24,11 @@
           color: #0077FF;
           transform: translateY(-26px) scale(.75)
           + .border;
-              transform: scaleX(1)
+              transform: scaleX(1) */
 }
 .profile-form {
   font-family: 'Didact Gothic', sans-serif;
-  color: white;
+  color: #84CEEB;
   width: 500px;
   font-size: 20px;
   position: absolute;
@@ -62,7 +63,7 @@
   border: none;
   color:black;
   border-radius: 10px;
-  margin-left: 36%; 
+  margin-left: 36%;
 }
 
 .submit-btn:hover{
