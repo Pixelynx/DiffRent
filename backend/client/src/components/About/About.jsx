@@ -30,9 +30,9 @@ class About extends Component {
                             <img alt='' src={tkeya} className='profileImage' />
                         </div>
                         
-                        <div>T'Keya Stevens</div>
+                        <div className='personName'>T'Keya Stevens</div>
 
-                        <div>
+                        <div className='socialIcons'>
                             <p>
                                 <a href='//www.instagram.com/pixelynx_'><img alt='' src={insta} className='socialButton' /></a>
                                 <a href='//www.github.com/pixelynx'><img alt='' src={git} className='socialButton' /></a>
@@ -46,9 +46,9 @@ class About extends Component {
                             <img alt='' src={trey} className='profileImage' />
                         </div>
                         
-                        <div>Treagan Birbal</div>
+                        <div className='personName'>Treagan Birbal</div>
 
-                        <div>
+                        <div className='socialIcons'>
                             <p>
                                 <a href='//www.instagram.com/treaganism'><img alt='' src={insta} className='socialButton' /></a>
                                 <a href='//www.github.com/treaganbirbal'><img alt='' src={git} className='socialButton' /></a>
@@ -62,9 +62,9 @@ class About extends Component {
                             <img alt='' src={erick} className='profileImage' />
                         </div>
 
-                        <div>Erick Arellano</div>
+                        <div className='personName'>Erick Arellano</div>
 
-                        <div>
+                        <div className='socialIcons'>
                             <p>
                                 <a href='//www.instagram.com/earellano1719'><img alt='' src={insta} className='socialButton' /></a>
                                 <a href='//github.com/earellano1719'><img alt='' src={git} className='socialButton' /></a>
@@ -78,9 +78,9 @@ class About extends Component {
                             <img alt='' src={kelly} className='profileImage' />
                         </div>
                         
-                        <div>Kelly Liang</div>
+                        <div className='personName'>Kelly Liang</div>
 
-                        <div>
+                        <div className='socialIcons'>
                             <p>
                                 <a href='//www.instagram.com/imkellyliang'><img alt='' src={insta} className='socialButton' /></a>
                                 <a href='//www.linkedin.com/in/imkellyliang'><img alt='' src={git} className='socialButton' /></a>

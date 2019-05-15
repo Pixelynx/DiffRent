@@ -1,8 +1,3 @@
-@font-face {
-    font-family: 'KingRichard';
-    src: url('../fonts/kingrichardit.ttf')format('truetype')
-  }
-
 .section1{
     position: relative;
     width: 100%;
@@ -30,6 +25,7 @@
     background-color: #84CEEB;
     border: none;
     color:black;
+    font-family: 'Didact Gothic';
     font-size: 97%;
     border-radius: 10px;
     margin-left: 40px;
@@ -53,17 +49,14 @@
 .links div{
     font-size: 45px;
     font-family: 'KingRichard';
+    letter-spacing: 1.7px;
     color: var(--dash-bg);
     margin-top: 90px;
     border-radius: 10px;
-    padding: 0px 8px 0px 3px;
+    padding: 0px 8px 0px 8px;
 }
 
 .links div:hover{
     cursor: pointer;
     animation: glowing-white 2000ms infinite;
-}
-
-.features{
-
 }

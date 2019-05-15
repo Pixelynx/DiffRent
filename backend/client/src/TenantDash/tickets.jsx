@@ -15,7 +15,7 @@ class Tickets extends Component {
 
     let id = e.target.id;
     let completedTenant = `${this.state.completed_tenant === '1' ? '0' : '1'}`;
-    let in_progress = `${this.state.completed_tenant === '1' && this.state.completed_landlord === '1' ? '0' : '1'}`;
+    let inProgress = `${this.state.completed_tenant === '1' && this.state.completed_landlord === '1' ? '0' : '1'}`;
     let aptid = user.aptid;
 
       await axios.put(`/tickets/${id}`, {
@@ -23,7 +23,7 @@ class Tickets extends Component {
         apartment_id: aptid,
         completed_tenant: completedTenant,
         completed_landlord: ticket.completed_landlord,
-        in_progress: in_progress,
+        in_progress: inProgress,
         appt_date: ticket.appt_date,
         appt_time: ticket.appt_time
       })
@@ -49,7 +49,7 @@ handleTicketModal = (e) => {
     if(this.state.completed_tenant === '1' && ticket.completed_landlord === '1') {
       resolution = 'Resolved'
     } else if(this.state.completed_tenant === '1' && ticket.completed_landlord === '0') {
-      resolution = 'Waiting for landlord to resolve'
+      resolution = 'Pending'
     } else if(this.state.completed_tenant === '0') {
       resolution = 'Mark Resolved'
     }
