@@ -7,6 +7,7 @@ import erick from '../../assets/profileImgs/erick.jpg';
 import tkeya from '../../assets/profileImgs/tjs.png';
 import trey from '../../assets/profileImgs/treagan.jpeg';
 import kelly from '../../assets/profileImgs/Kelly.png'
+import { Link } from 'react-router-dom';
 
 class About extends Component {
     state = {
@@ -34,9 +35,9 @@ class About extends Component {
 
                         <div>
                             <p>
-                                <img alt='' src={insta} className='socialButton' />
-                                <img alt='' src={git} className='socialButton' />
-                                <img alt='' src={lnkd} className='socialButton' />
+                                <a href='//www.instagram.com/pixelynx_'><img alt='' src={insta} className='socialButton' /></a>
+                                <a href='//www.github.com/pixelynx'><img alt='' src={git} className='socialButton' /></a>
+                                <a href='//www.linkedin.com/in/tjstevens92'><img alt='' src={lnkd} className='socialButton' /></a>
                             </p>
                         </div>
                     </div>
@@ -50,9 +51,9 @@ class About extends Component {
 
                         <div>
                             <p>
-                                <img alt='' src={insta} className='socialButton' />
-                                <img alt='' src={git} className='socialButton' />
-                                <img alt='' src={lnkd} className='socialButton' />
+                                <a href='//www.instagram.com/treaganism'><img alt='' src={insta} className='socialButton' /></a>
+                                <a href='//www.github.com/treaganbirbal'><img alt='' src={git} className='socialButton' /></a>
+                                <a href='//www.linkedin.com/in/treagan-birbal'><img alt='' src={lnkd} className='socialButton' /></a>
                             </p>
                         </div>
                     </div>
@@ -66,9 +67,9 @@ class About extends Component {
 
                         <div>
                             <p>
-                                <img alt='' src={insta} className='socialButton' />
-                                <img alt='' src={git} className='socialButton' />
-                                <img alt='' src={lnkd} className='socialButton' />
+                                <a href='//www.instagram.com/earellano1719'><img alt='' src={insta} className='socialButton' /></a>
+                                <a href='//github.com/earellano1719'><img alt='' src={git} className='socialButton' /></a>
+                                <a href='//www.linkedin.com/in/earellano1719'><img alt='' src={lnkd} className='socialButton' /></a>
                             </p>
                         </div>
                     </div>
@@ -82,9 +83,9 @@ class About extends Component {
 
                         <div>
                             <p>
-                                <img alt='' src={insta} className='socialButton' />
-                                <img alt='' src={git} className='socialButton' />
-                                <img alt='' src={lnkd} className='socialButton' />
+                                <a href='//www.instagram.com/imkellyliang'><img alt='' src={insta} className='socialButton' /></a>
+                                <a href='//www.linkedin.com/in/imkellyliang'><img alt='' src={git} className='socialButton' /></a>
+                                <a href='//www.github.com/kellyliang7'><img alt='' src={lnkd} className='socialButton' /></a>
                             </p>
                         </div>
                     </div>

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'KingRichard';
+    src: url('../fonts/kingrichardit.ttf')format('truetype')
+  }
+
 .section1{
     position: relative;
     width: 100%;
@@ -20,8 +25,8 @@
 }
 
 .loginButtons button{
-    height: 40px;
-    width: 100px;
+    height: 50px;
+    width: 125px;
     background-color: #84CEEB;
     border: none;
     color:black;
@@ -35,4 +40,29 @@
     background-color: #8860D0;
     color: white;
     animation: glowing 2000ms infinite;
+}
+
+.links{
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* margin-left: 60px; */
+
+}
+
+.links div{
+    font-size: 45px;
+    font-family: 'KingRichard';
+    color: var(--dash-bg);
+    margin-top: 90px;
+}
+
+.links div:hover{
+    cursor: pointer;
+}
+
+.features{
+
 }
