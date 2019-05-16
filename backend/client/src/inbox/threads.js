@@ -56,7 +56,7 @@ class Threads extends React.Component {
               <form onSubmit={this.handleSubmit}>
                 <div className="threadInputContainer">
                   <input className="threadInput" type="text" onChange={this.handleChange} value={this.state.title_input} placeholder="Subject"/>
-                  <input type="submit" value="create" />
+                  <input className="threadInput" type="submit" value="Add" />
                 </div>
               </form>
             </div>

@@ -52,6 +52,19 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  font-size: 16px;
+}
+
+.threadInput[type=submit] {
+  height: 43px;
+  width: 18%;
+  background-color: #84CEEB;
+  border: none;
+  color: black;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 3px;
+  font-size: 16px;
 }
 
 .threadListContainer {
@@ -101,6 +114,7 @@
   color: black;
 }
 
+
 /* Thread Messages Container */
 
 .threadMsgContainer {
@@ -137,7 +151,7 @@
   margin: 6px 6px 0px 6px;
   padding: 7px 5px 0px 4px;
   font-size: 20px;
-  color: rgba(255, 255, 255, 0.644);
+  color: white;
 }
 
 .msgName {
@@ -167,7 +181,7 @@
 
 
 .msgInput[type=submit], select{
-  height: 40px;
+  height: 43px;
   width: 18%;
   background-color: #84CEEB;
   border: none;
@@ -175,6 +189,7 @@
   border-radius: 4px;
   padding: 10px;
   margin: 3px;
+  font-size: 16px;
 }
 
 .threadList hr {
