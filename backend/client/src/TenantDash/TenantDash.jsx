@@ -8,7 +8,6 @@ import ArchivedTickets from '../archivedTickets.jsx';
 
 import '../styles/tenantDash/dashboard.css';
 import '../styles/dashboards/tickets.css';
-import archTiks from '../logo/like.png';
 
 class TenantDash extends Component {
 
