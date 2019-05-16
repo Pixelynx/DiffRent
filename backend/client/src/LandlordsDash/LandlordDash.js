@@ -205,8 +205,7 @@ class LandlordDash extends Component {
                                   </div>
                                   <div
                                     onClick={this.handleArchivedDisplay}
-                                    className='ld-arch-tik-btn'>
-                                    {this.state.unresolvedTicketsShowing ? 'Arch' : 'Tiks'}
+                                    className={this.state.archivedTicketsShowing ? 'ld-open-tik-btn' : 'ld-arch-tik-btn'}>
                                   </div>
                                 </div>
                                 <TenantContactInfo

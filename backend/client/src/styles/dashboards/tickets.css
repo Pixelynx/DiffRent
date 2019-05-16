@@ -140,21 +140,12 @@
 .arch-tik-btn {
   display: flex;
   align-items: center;
+  align-content: center;
   justify-content: center;
   align-self: flex-end;
-  background-color: #666699;
-  height: 2em;
-  width: 4em;
-  border-radius: .5em;
-  margin: .5em 1em .5em .2em;
-}
-
-.ld-arch-tik-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  background-color: #666699;
+  background: #666699 url('../../logo/like.png') no-repeat;
+  background-size: 1.5em 1.5em;
+  background-position: center;
   height: 2em;
   width: 4em;
   border-radius: .5em;
@@ -162,6 +153,60 @@
 }
 
 .arch-tik-btn:hover, .ld-arch-tik-btn:hover {
+  background-image: url('../../logo/like_blue.png');
+}
+
+.open-tik-btn {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  align-self: flex-end;
+  background: #666699 url('../../logo/like.png') no-repeat;
+  background-size: 1.5em 1.5em;
+  background-position: center;
+  transform: rotate(180deg);
+  height: 2em;
+  width: 4em;
+  border-radius: .5em;
+  margin: .5em 1em .5em .2em;
+}
+
+.open-tik-btn:hover, .ld-open-tik-btn:hover {
+  background-image: url('../../logo/like_blue.png');
+  transform: rotate(180deg);
+}
+
+.ld-arch-tik-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  background: #666699 url('../../logo/like.png') no-repeat;
+  background-size: 1.5em 1.5em;
+  background-position: center;
+  height: 2em;
+  width: 4em;
+  border-radius: .5em;
+  margin: .5em 1em .5em .2em;
+}
+
+.ld-open-tik-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  background: #666699 url('../../logo/like.png') no-repeat;
+  background-size: 1.5em 1.5em;
+  background-position: center;
+  transform: rotate(180deg);
+  height: 2em;
+  width: 4em;
+  border-radius: .5em;
+  margin: .5em 1em .5em .2em;
+}
+
+.arch-tik-btn:hover, .open-tik-btn:hover, .ld-arch-tik-btn:hover, .ld-open-tik-btn:hover {
   background-color: var(--light-purple);
   color: var(--light-blue);
   animation: crt-glowing 1500ms infinite;
