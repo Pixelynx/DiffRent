@@ -8,6 +8,7 @@ import ArchivedTickets from '../archivedTickets.jsx';
 
 import '../styles/tenantDash/dashboard.css';
 import '../styles/dashboards/tickets.css';
+import archTiks from '../logo/like.png';
 
 class TenantDash extends Component {
 
@@ -186,8 +187,7 @@ class TenantDash extends Component {
                 </div>
                 <div
                   onClick={this.handleArchivedDisplay}
-                  className='arch-tik-btn'>
-                  {this.state.unresolvedTicketsShowing ? 'Arch' : 'Tiks'}
+                  className={this.state.archivedTicketsShowing ? 'open-tik-btn' : 'arch-tik-btn'}>
                 </div>
               </div>
             </div>
