@@ -160,6 +160,7 @@ class LandlordDash extends Component {
               ticket={ticket}
               settingAppt={this.props.settingAppt}
               completed_landlord={this.state.completed_landlord}
+              key={ticket.ticketid}
               />
           )
         }
@@ -175,6 +176,7 @@ class LandlordDash extends Component {
             handleResolved={this.handleResolvedTicket}
             user={user}
             ticket={ticket}
+            key={ticket.ticketid}
             />
           )
         }
