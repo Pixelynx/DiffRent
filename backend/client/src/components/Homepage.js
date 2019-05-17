@@ -39,8 +39,8 @@ class Homepage extends Component{
                     The inclusive, user friendly communication platform that streamlines the landlord and tenant interaction.
                   </h2>
                   <h2 onClick={this.handleTwo}>
-                    Whether you are a landlord managing multi-family apartments or a tenant looking for an easy uncomplicate
-                    a part of life in an ever-growing, complicated world, DiffRent is the right tool for you.
+                    Whether you are a landlord managing multi-family apartments or a tenant looking for a way to uncomplicate
+                    a part of life in an ever-growing, complicated world, then DiffRent is the right tool for you.
                   </h2>
                   <div className="arrow-bounce bounce" onClick={this.handleScroll}>
 
