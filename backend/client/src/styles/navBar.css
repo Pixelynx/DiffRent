@@ -350,14 +350,14 @@ li .logo_official{
 .closedNavbar{
   position: absolute;
   margin-left: 1%;
-  margin-top: 1%;
+  margin-top: 0 ;
 }
 .nav {
 
   position: relative;
   left: -20px;
-  margin-top: -15px;
-  min-height: 100vh;
+  /* margin-top: -15px; */
+  height: 100vh;
   color: #123C69;
 }
 /* .fa-home {
