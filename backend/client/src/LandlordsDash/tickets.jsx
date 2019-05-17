@@ -16,7 +16,7 @@ class Tickets extends Component {
   }
 
   handleTicketModal = (e) => {
-    if(e.target.className === 'tik-mdl-ctn' || e.target.className === 'ld-tik' || e.target.className === 'mdl-indv-tik') {
+    if(e.target.className === 'tik-mdl-ctn' || e.target.className === 'ld-tik' || e.target.className === 'mdl-indv-tik' || e.target.className === 'ld-tik-subject' || e.target.className === 'ld-tik-td-appt-dt-tm') {
       this.setState(prevState => ({ ticketModalOpen: !prevState.ticketModalOpen }))
     }
   }
@@ -123,10 +123,10 @@ class Tickets extends Component {
 
     return(
       <>
-      <button onClick={this.handleTicketModal} className='ld-tik' id={ticket.ticketid}>
+      <div onClick={this.handleTicketModal} className='ld-tik' id={ticket.ticketid}>
         <div id={ticket.ticketid} className='ld-tik-subject'>{ticket.subject}</div>
         <div id={ticket.ticketid} className='ld-tik-td-appt-dt-tm'>{ticket.appt_date !== null ? apptDate : null} {ticket.appt_time !== null ? ticket.appt_time : null}</div>
-      </button>
+      </div>
 
       { ticketModalOpen ?
         <>
@@ -135,7 +135,7 @@ class Tickets extends Component {
                className='mdl-indv-tik'>
                <div className='indv-tik'>
                  <p className='mdl-tik-item' id='tik-subj'>Issue: {ticket.subject}</p>
-                 <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {apptDate} {ticket.appt_time}</p>
+                 <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {ticket.appt_date !== null ? apptDate : null} {ticket.appt_time !== null ? ticket.appt_time : null}</p>
                  <p className='mdl-tik-item' id='tik-desc'>Description: {ticket.body}</p>
                    <button
                      id={ticket.ticketid}

@@ -3,6 +3,8 @@ import axios from 'axios';
 import '../styles/colorScheme.css';
 import '../styles/dashboards/tickets.css';
 
+// stash b2691f7
+
 class Tickets extends Component {
   state = {
     completed_tenant: `${this.props.ticket.completed_tenant === '1' ? '1' : '0'}`,
@@ -33,7 +35,7 @@ class Tickets extends Component {
   }
 
 handleTicketModal = (e) => {
-  if(e.target.className === 'td-tik' || e.target.className === 'tik-mdl-ctn' || e.target.className === 'mdl-indv-tik') {
+  if(e.target.className === 'td-tik' || e.target.className === 'tik-mdl-ctn' || e.target.className === 'mdl-indv-tik' || e.target.className === 'td-tik-subject' || e.target.className === 'td-tik-td-appt-dt-tm') {
     this.setState(prevState => ({ticketModalOpen: !prevState.ticketModalOpen}))
   }
 }
@@ -56,10 +58,10 @@ handleTicketModal = (e) => {
 
   return(
     <>
-      <button onClick={this.handleTicketModal} className='td-tik' id={ticket.ticketid}>
+      <div onClick={this.handleTicketModal} className='td-tik' id={ticket.ticketid}>
         <div id={ticket.ticketid} className='td-tik-subject'>{ticket.subject}</div>
         <div id={ticket.ticketid} className='td-tik-td-appt-dt-tm'>{ticket.appt_date !== null ? apptDate : null} {ticket.appt_time !== null ? ticket.appt_time : null}</div>
-      </button>
+      </div>
 
       { ticketModalOpen ?
 
@@ -69,7 +71,7 @@ handleTicketModal = (e) => {
                 className='mdl-indv-tik'>
                 <div className='indv-tik'>
                   <p className='mdl-tik-item' id='tik-subj'>Issue: {ticket.subject}</p>
-                  <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {apptDate} {ticket.appt_time}</p>
+                  <p className='mdl-tik-item' id='tik-appt-date-time'>Appointment: {ticket.appt_date !== null ? apptDate : null} {ticket.appt_time !== null ? ticket.appt_time : null}</p>
                   <p className='mdl-tik-item' id='tik-desc'>Description: {ticket.body}</p>
                     <button
                       id={ticket.ticketid}
