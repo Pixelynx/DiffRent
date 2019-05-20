@@ -10,7 +10,7 @@
 
 .hompage_question {
     position: absolute;
-    font-family: 'KingRichard';
+    font-family: 'Didact Gothic', sans-serif;
     color: var(--dash-bg);
     font-size: 30px;
     width: 100%;
