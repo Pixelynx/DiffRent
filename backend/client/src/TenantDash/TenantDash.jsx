@@ -31,10 +31,28 @@ class TenantDash extends Component {
       unresolvedTicketsShowing: true
     }
 
+// addtik to state function
+// expects ticket as argument
+// copy tickets in state add new ticket set state with new tickets
 
   componentDidMount = async() => {
     await this.getTenantInfo();
     await this.handleSetState();
+  }
+
+  handleNewTik = (newTik) => {
+    let ticket = {
+      ticketid: newTik.ticketid,
+      apartment_id: this.props.user.aptid,
+      completed_tenant: newTik.completed_tenant,
+      completed_landlord: newTik.completed_landlord,
+      subject: newTik.subject,
+      body: newTik.body,
+      in_progress: newTik.in_progress,
+      appt_date: newTik.appt_date,
+      appt_time: newTik.appt_time
+    }
+    this.setState(prevState => ({ defaultValue: [ticket, ...prevState.defaultValue] }))
   }
 
   handleSetState = () => {
@@ -71,7 +89,7 @@ class TenantDash extends Component {
         }
       })
       this.getLandlordInfo(res.data.data.apartmentid)
-      this.getAllTickets(res.data.data.apartmentid)
+      // this.getAllTickets(res.data.data.apartmentid)
     })
   }
 
@@ -160,7 +178,7 @@ class TenantDash extends Component {
   }
 
   render() {
-     const { landlordInfo, tickets, defaultValue } = this.state;
+     const { landlordInfo, tickets, defaultValue, archivedTicketsShowing } = this.state;
      const { user } = this.props;
 
   return(
@@ -175,7 +193,12 @@ class TenantDash extends Component {
         </div>
           <div className='tik-dash-ctn'>
             <div className='ticket-dash-info'>
-              <h2>Tickets Information</h2>
+              <h2>{!archivedTicketsShowing ? 'Open Tickets' : 'Archived Tickets'}</h2>
+                <div
+                  onClick={this.handleArchivedDisplay}
+                  className={archivedTicketsShowing ? 'open-tik-btn' : 'arch-tik-btn'}>
+                  {!archivedTicketsShowing ? 'Archive' : 'Open'}
+                </div>
               <div className='td-tik-ctn'>
                 {this.displayTickets()}
               </div>
@@ -183,10 +206,6 @@ class TenantDash extends Component {
                 <div
                   onClick={this.handleCreateTicketBtn}
                   className='create-new-tik-btn'>Create Ticket
-                </div>
-                <div
-                  onClick={this.handleArchivedDisplay}
-                  className={this.state.archivedTicketsShowing ? 'open-tik-btn' : 'arch-tik-btn'}>
                 </div>
               </div>
             </div>
@@ -198,6 +217,7 @@ class TenantDash extends Component {
             <CreateTicketForm
               createTicket={this.state.creatingTicket}
               user={this.props.user}
+              handleNewTik={this.handleNewTik}
           /></div> : null }
 
       </>
