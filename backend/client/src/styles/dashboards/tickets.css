@@ -142,10 +142,8 @@
   align-items: center;
   align-content: center;
   justify-content: center;
-  align-self: flex-end;
-  background: #666699 url('../../logo/completed-tasks.png') no-repeat;
-  background-size: 1.5em 1.5em;
-  background-position: center;
+  align-self: center;
+  background-color: #666699;
   height: 2em;
   width: 4em;
   border-radius: .5em;
@@ -153,18 +151,11 @@
 }
 
 .arch-tik-btn:hover, .ld-arch-tik-btn:hover {
-  background-image: url('../../logo/completed-tasks-blue.png');
 }
 
 .open-tik-btn {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  align-self: flex-end;
-  background: #666699 url('../../logo/not-complete.png') no-repeat;
-  background-size: 1.5em 1.5em;
-  background-position: center;
+  background-color: #666699;
+  align-self: center;
   height: 2em;
   width: 4em;
   border-radius: .5em;
@@ -172,7 +163,6 @@
 }
 
 .open-tik-btn:hover, .ld-open-tik-btn:hover {
-  background-image: url('../../logo/not-complete-blue.png');
 }
 
 .ld-arch-tik-btn {
@@ -180,9 +170,7 @@
   align-items: center;
   justify-content: center;
   align-self: center;
-  background: #666699 url('../../logo/completed-tasks.png') no-repeat;
-  background-size: 1.5em 1.5em;
-  background-position: center;
+  background-color: #666699;
   height: 2em;
   width: 4em;
   border-radius: .5em;
@@ -194,9 +182,7 @@
   align-items: center;
   justify-content: center;
   align-self: center;
-  background: #666699 url('../../logo/not-complete.png') no-repeat;
-  background-size: 1.5em 1.5em;
-  background-position: center;
+  background-color: #666699;
   height: 2em;
   width: 4em;
   border-radius: .5em;

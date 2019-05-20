@@ -26,6 +26,7 @@ class CreateTicketForm extends Component {
   handlePostTicket = (e) => {
     e.preventDefault()
     const { subjectInput, bodyInput } = this.state
+    const { handleNewTik } = this.props
     let apartment_id = this.props.user.aptid
     let subject = subjectInput
     let body = bodyInput
@@ -37,12 +38,11 @@ class CreateTicketForm extends Component {
       body
     })
     .then(res => {
-      this.setState({ subjectInput: '' })
-      this.setState({ bodyInput: '' })
+      this.setState({ subjectInput: '', bodyInput: '' })
+      handleNewTik(res.data.body)
     })
       .catch(err => console.log(err))
     }
-    window.location.reload();
   }
 
   handleSubmit = (e) => {

@@ -36,7 +36,7 @@ const getTicketsByLandlord = (req, res, next) => {
 
 
 const addNewTicket = (req, res, next) => {
-  db.none("INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(${apartment_id}, ${subject}, ${body}, ${completed_tenant}, ${completed_landlord}, ${in_progress}, ${appt_date}, ${appt_time})",
+  db.one("INSERT INTO tickets(apartment_id, subject, body, completed_tenant, completed_landlord, in_progress, appt_date, appt_time) VALUES(${apartment_id}, ${subject}, ${body}, ${completed_tenant}, ${completed_landlord}, ${in_progress}, ${appt_date}, ${appt_time}) RETURNING *",
   {
     apartment_id: req.body.apartment_id,
     subject: req.body.subject,
@@ -47,11 +47,12 @@ const addNewTicket = (req, res, next) => {
     appt_date: req.body.appt_date,
     appt_time: req.body.appt_time
   })
-  .then(() => {
+  .then(data => {
     res.status(200)
        .json({
          status: 'success',
-         message: 'New Ticket Added'
+         message: 'New Ticket Added',
+         body: data
        })
   })
   .catch(err => {
