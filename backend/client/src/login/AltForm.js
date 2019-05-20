@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { MuiPickersUtilsProvider, DatePicker } from "material-ui-pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import "../styles/logins/login.css";
+import "../styles/logins/altlogin.css";
 import { subYears } from "date-fns/esm";
 import MaskedInput from "react-text-mask";
 
@@ -30,13 +30,14 @@ const Form = props => {
     <div className="formContainer">
       
         <h1>DiffRent</h1>
-        <h2>
+        <h1>
           {" "}
           {path === "/landlords/login" ? "Landlord Login" : "Tenant Login"}{" "}
-        </h2>
+        </h1>
         <div className="loginForm">
           <form onSubmit={loginUser}>
             <div className='emailField'>
+              <label>Email</label>
               <input
                 autoFocus
                 required
@@ -50,6 +51,7 @@ const Form = props => {
             </div>
 
             <div className='passwordField'>
+              <label>Password</label>
               <input
                 required
                 type="password"
@@ -65,9 +67,9 @@ const Form = props => {
               readOnly={true}
               value={path === "/landlords/login" ? "landlord" : "tenant"}
             />
-            {/* <div className='loginButton'>
+            <div className='loginButton'>
               <input type="submit" value='Log In'/>
-            </div> */}
+            </div>
           </form>
         </div>
 
