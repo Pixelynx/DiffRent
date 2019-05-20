@@ -17,12 +17,12 @@ html {
   background-color: var(--dash-bg);
 }
 
-@font-face {
+ /* @font-face {
   font-family: 'KingRichardItalic';
   src: url('./fonts/kingrichardit.ttf')format('truetype')
-}
+} */
 
-@font-face {
+/* @font-face {
   font-family: 'KingRichard';
   src: url('./fonts/kingrichardrg.ttf')format('truetype')
-}
+} */
