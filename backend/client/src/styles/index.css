@@ -26,3 +26,22 @@ html {
   font-family: 'KingRichard';
   src: url('./fonts/kingrichardrg.ttf')format('truetype')
 }
+
+@keyframes glowing {
+  0% { box-shadow: 0 0 -10px #8860D0; }
+  40% { box-shadow: 0 0 20px #8860D0; }
+  60% { box-shadow: 0 0 20px #8860D0; }
+  100% { box-shadow: 0 0 -10px #8860D0; }
+}
+@keyframes glowing-alt {
+  0% { box-shadow: 0 0 -10px navy; }
+  40% { box-shadow: 0 0 20px navy; }
+  60% { box-shadow: 0 0 20px navy; }
+  100% { box-shadow: 0 0 -10px navy; }
+}
+@keyframes glowing-white {
+  0% { box-shadow: 0 0 -10px white; }
+  40% { box-shadow: 0 0 20px white; }
+  60% { box-shadow: 0 0 20px white; }
+  100% { box-shadow: 0 0 -10px white; }
+}
