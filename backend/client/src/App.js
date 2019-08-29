@@ -34,46 +34,46 @@ class App extends Component {
 
   checkAuthenticateStatus = () => {
     axios.post("/users/isLoggedIn")
-    .then(user => {
-      if (user.data.username === Auth.getToken()) {
-        if (user.data.username !== null) {
-          return (
-            this.setState({
-              isLoggedIn: Auth.isUserAuthenticated()
-            }, () => this.getUserInformation(user.data.username))
-          );
-        }
-      } else {
-        if (user.data.username) {
-          this.logoutUser();
+      .then(user => {
+        if (user.data.username === Auth.getToken()) {
+          if (user.data.username !== null) {
+            return (
+              this.setState({
+                isLoggedIn: Auth.isUserAuthenticated()
+              }, () => this.getUserInformation(user.data.username))
+            );
+          }
         } else {
-          Auth.deauthenticateUser();
+          if (user.data.username) {
+            this.logoutUser();
+          } else {
+            Auth.deauthenticateUser();
+          }
         }
-      }
-    });
+      });
   };
 
   getUserInformation = email => {
     axios.get("/users/" + email)
-    .then(res => {
-      this.setState({
-        user: res.data.data,
-      });
-    })
-    .then(() => {
-      if (this.state.user.aptid){
-        return this.getTenantInfo(this.state.user.aptid)
-      }
-    })
+      .then(res => {
+        this.setState({
+          user: res.data.data,
+        });
+      })
+      .then(() => {
+        if (this.state.user.aptid) {
+          return this.getTenantInfo(this.state.user.aptid)
+        }
+      })
   };
 
   getTenantInfo = (aptid) => {
     axios.get(`/apartments/tenant/${aptid}`)
-    .then((res) => {
-      this.setState({
-        tenant: res.data.apartment
+      .then((res) => {
+        this.setState({
+          tenant: res.data.apartment
+        })
       })
-    })
   }
 
   toggleNavbar = e => {
@@ -115,13 +115,13 @@ class App extends Component {
 
             <div>
 
-                <Navbar
-                  isLoggedIn={isLoggedIn}
-                  toggleNavbar={this.toggleNavbar}
-                  logoutButton={logoutButton}
-                  logoutFunc={this.logoutUser}
-                  user={user}
-                />
+              <Navbar
+                isLoggedIn={isLoggedIn}
+                toggleNavbar={this.toggleNavbar}
+                logoutButton={logoutButton}
+                logoutFunc={this.logoutUser}
+                user={user}
+              />
 
             </div>
           </div>
@@ -137,8 +137,8 @@ class App extends Component {
                     isLoggedIn={isLoggedIn}
                   />
                 ) : (
-                  <Redirect to={`/landlord/${user.userid}`} />
-                );
+                    <Redirect to={`/landlord/${user.userid}`} />
+                  );
               }}
             />
             <Route
@@ -152,8 +152,8 @@ class App extends Component {
                     isLoggedIn={isLoggedIn}
                   />
                 ) : (
-                  <Redirect to={`/tenant/${user.userid}`} />
-                );
+                    <Redirect to={`/tenant/${user.userid}`} />
+                  );
               }}
             />
             <Route
@@ -167,50 +167,56 @@ class App extends Component {
                     isLoggedIn={isLoggedIn}
                   />
                 ) : (
-                  <Redirect
-                    to={
-                      user.user_type === "tenant"
-                        ? `/tenant/${user.userid}`
-                        : `/landlord/${user.userid}`
-                    }
-                  />
-                );
+                    <Redirect
+                      to={
+                        user.user_type === "tenant"
+                          ? `/tenant/${user.userid}`
+                          : `/landlord/${user.userid}`
+                      }
+                    />
+                  );
               }}
             />
             <Route
-            path='/about'
-            render={(props) => { return user ? <About /> : <Redirect to='/' /> } }
+              path='/about'
+              render={(props) => { return user ? <About /> : <Redirect to='/' /> }}
             />
             <Route
               path="/addApartment"
-              render={(props) => { return user ? !user.aptid ? <AddApartment user={user}
-                                          getUserInformation={this.getUserInformation} />
-                                        : <Redirect to={`/landlord/${user.userid}`} />
-                                        : <Redirect to='/' /> }}
+              render={(props) => {
+                return user ? !user.aptid ? <AddApartment user={user}
+                  getUserInformation={this.getUserInformation} />
+                  : <Redirect to={`/landlord/${user.userid}`} />
+                  : <Redirect to='/' />
+              }}
             />
             <PrivateRoute
               path="/landlord/profile/:id"
               user={this.state.user}
+              getUserInformation={this.getUserInformation}
               component={Profile}
             />
             <PrivateRoute
               path="/tenant/profile/:id"
               user={this.state.user}
+              getUserInformation={this.getUserInformation}
               component={Profile}
             />
             <Route
               path="/landlord/:id"
-              render={(props) => {return user ? user.aptid ? <LandlordDash {...props} user={user}
-                                                              tenant={this.state.tenant}
-                                                              getUserInformation={this.getUserInformation} />
-                                                            : <Redirect to='/addApartment' />
-                                                            : <Redirect to='/' /> }}
+              render={(props) => {
+                return user ? user.aptid ? <LandlordDash {...props} user={user}
+                  tenant={this.state.tenant}
+                  getUserInformation={this.getUserInformation} />
+                  : <Redirect to='/addApartment' />
+                  : <Redirect to='/' />
+              }}
             />
             <PrivateRoute
               path="/tenant/:id"
               user={user}
               getUserInformation={this.getUserInformation}
-              component={ user.aptid ? TenantDash : searchApartment }
+              component={user.aptid ? TenantDash : searchApartment}
             />
             <Route
               exact
@@ -219,19 +225,19 @@ class App extends Component {
                 return !user ? (
                   <Homepage />
                 ) : (
-                  <Redirect
-                    to={
-                      user.user_type === "landlord"
-                        ? `/landlord/${user.userid}`
-                        : `/tenant/${user.userid}`
-                    }
-                  />
-                );
+                    <Redirect
+                      to={
+                        user.user_type === "landlord"
+                          ? `/landlord/${user.userid}`
+                          : `/tenant/${user.userid}`
+                      }
+                    />
+                  );
               }}
             />
-             <Route exact path='/inbox' render={()=><View user={this.state.user} />}/>
-             <Route path="/inbox/threads/:id" render={(props) => <ThreadItem {...props} user={this.state.user} />} />
-             <Route path='/faq' component={ FAQ } />
+            <Route exact path='/inbox' render={() => <View user={this.state.user} />} />
+            <Route path="/inbox/threads/:id" render={(props) => <ThreadItem {...props} user={this.state.user} />} />
+            <Route path='/faq' component={FAQ} />
             <Route component={NoMatch} />
           </Switch>
         </>

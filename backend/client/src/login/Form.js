@@ -65,9 +65,9 @@ const Form = props => {
               readOnly={true}
               value={path === "/landlords/login" ? "landlord" : "tenant"}
             />
-            {/* <div className='loginButton'>
+            <div className='loginButton'>
               <input type="submit" value='Log In'/>
-            </div> */}
+            </div>
           </form>
         </div>
 
