@@ -1,7 +1,7 @@
 -- DROP DATABASE IF EXISTS diffrent;
 -- CREATE DATABASE diffrent;
 
--- \c diffrent;
+\c diffrent;
 
 DROP TABLE messages;
 DROP TABLE threads;
