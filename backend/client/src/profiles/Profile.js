@@ -70,6 +70,7 @@ handleSubmit = event => {
     apt_Id: defaultVals.apt_Id,
     user_type: defaultVals.Id
   };
+
   if(!newVals.apt_id){
     putRequestInfo.apt_Id = defaultVals.apt_id
   }
