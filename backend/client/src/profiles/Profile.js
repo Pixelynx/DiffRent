@@ -115,8 +115,8 @@ handleSubmit = async(event) => {
           <hr/>
             Phone Number: <input type='text' className='phone-input' onChange={this.handleChange} name='phone' defaultValue={this.state.defaultVals.phone} />
           <hr />
-            Old Password: <input type='password' className='oldPassword-input' onChange={this.handleChange} name='oldPassword' placeholder='' value='' />
-          <hr/>
+            {/* {Old Password: <input type='password' className='oldPassword-input' onChange={this.handleChange} name='oldPassword' placeholder='' value='' />
+          <hr/>} */}
             New Password: <input type='password' className='password-input' onChange={this.handleChange} name='password' placeholder='' value='' />
           <hr/>
             <input type='submit' className='submit-btn' value="Submit Changes"/>
