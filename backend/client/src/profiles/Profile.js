@@ -20,6 +20,7 @@ class Profile extends Component {
           name: '',
           phone: '',
           email: '',
+          oldPassword: '',
           password: ''
         },
       formSubmitted: false
@@ -57,8 +58,9 @@ class Profile extends Component {
   })
 };
 
-handleSubmit = event => {
+handleSubmit = async(event) => {
   const {defaultVals, newVals} = this.state;
+  const { getUserInformation } = this.props;
   event.preventDefault();
   let putRequestInfo = {
     id: defaultVals.id,
@@ -88,12 +90,12 @@ handleSubmit = event => {
   }
   if(!newVals.password){
     putRequestInfo.password_digest = defaultVals.password
-  }
+  } 
   if(!newVals.user_type) {
     putRequestInfo.user_type = defaultVals.user_type
   }
 
-  axios.put(`/users/${this.props.user.userid}`, putRequestInfo)
+  await axios.put(`/users/${this.props.user.userid}`, putRequestInfo)
     .then(this.setState({
       formSubmitted: true
     }))
@@ -112,7 +114,9 @@ handleSubmit = event => {
             Email Address: <input type='email' className='email-input' onChange={this.handleChange} name='email' defaultValue={this.state.defaultVals.email} />
           <hr/>
             Phone Number: <input type='text' className='phone-input' onChange={this.handleChange} name='phone' defaultValue={this.state.defaultVals.phone} />
-          <hr/>
+          <hr />
+            {/* {Old Password: <input type='password' className='oldPassword-input' onChange={this.handleChange} name='oldPassword' placeholder='' value='' />
+          <hr/>} */}
             New Password: <input type='password' className='password-input' onChange={this.handleChange} name='password' placeholder='' value='' />
           <hr/>
             <input type='submit' className='submit-btn' value="Submit Changes"/>
