@@ -1,7 +1,7 @@
 # DiffRent
 ---
 
-#MVP
+# MVP
 ---
 
 DiffRent is an application that is meant to improve the ability for landlords and tenants to communicate with one another. It will include payment tracking features to keep track of each payment a tenant has made. It will also include a form of helpdesk and support ticketing so when a tenant has an issue within the household, they can easily submit a ticket to the landlord. This will get rid of the issue some may have experienced with trying to get a hold of the landlord to fix issues and not being able to reach them due to them being busy handling other matters. This app will be able to accomplish the following:
