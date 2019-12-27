@@ -1,4 +1,5 @@
 # DiffRent
+[View Live Site](http://diff-rent.herokuapp.com/)
 
 ## MVP
 ---
